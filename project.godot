@@ -11,12 +11,21 @@ config_version=5
 [application]
 
 config/name="PixelCats Go!"
+run/main_scene="uid://nyoocmxc6p3y"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=90
+window/size/viewport_height=160
+window/size/window_width_override=480
+window/size/window_height_override=853
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 window/handheld/orientation=6
+window/size/viewport_width.mobile=0
+window/stretch/mode.mobile=""
 
 [input]
 
