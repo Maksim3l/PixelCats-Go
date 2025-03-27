@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://nyoocmxc6p3y"]
+[gd_scene load_steps=23 format=3 uid="uid://nyoocmxc6p3y"]
 
 [ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="1_qbwvd"]
 [ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="2_d7sxu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://calculate_bg.gd" id="5_5oejy"]
 [ext_resource type="Script" uid="uid://ctjyh76sb71o2" path="res://player.gd" id="5_atqe7"]
 [ext_resource type="Texture2D" uid="uid://bbxust6tjsc1n" path="res://characters/main/temp.png" id="5_v7vdx"]
+[ext_resource type="Script" uid="uid://d032refjnrrqh" path="res://button.gd" id="8_5oejy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7vdx"]
 atlas = ExtResource("1_qbwvd")
@@ -172,5 +173,16 @@ frame_progress = 0.909301
 position = Vector2(0.5, 8)
 shape = SubResource("RectangleShape2D_gjbw5")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Organizer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Organizer/HBoxContainer"]
+layout_mode = 2
+text = "Press"
+script = ExtResource("8_5oejy")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_qbwvd")
+
+[connection signal="pressed" from="Organizer/HBoxContainer/Button" to="Organizer/HBoxContainer/Button" method="_on_pressed"]
