@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://c2fjhhfsjexs2"]
+[gd_scene load_steps=38 format=3 uid="uid://c2fjhhfsjexs2"]
 
 [ext_resource type="Script" uid="uid://821y286gmud0" path="res://scenes/character_1.gd" id="1_6t3t7"]
 [ext_resource type="Script" uid="uid://bq2ikvubg8n2i" path="res://scenes/merge.gd" id="1_58pvd"]
 [ext_resource type="Texture2D" uid="uid://delb6g54k0hna" path="res://assets/sprites/Cat Sprite Sheet.png" id="1_ef75t"]
 [ext_resource type="Script" uid="uid://btwrhqkm8dnhs" path="res://scenes/character_2.gd" id="3_6u5my"]
 [ext_resource type="Texture2D" uid="uid://bkykg53nerhep" path="res://assets/sprites/tornado.png" id="4_mbhl0"]
+[ext_resource type="Script" uid="uid://cr456w83gs1rx" path="res://scenes/new_cat.gd" id="6_58pvd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t3t7"]
 atlas = ExtResource("1_ef75t")
@@ -178,6 +179,42 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_33h80"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2kxn"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(0, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1putj"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(32, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we8bw"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(64, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa8nv"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(96, 0, 32, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pef0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2kxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1putj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we8bw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fa8nv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Merge" type="Node2D"]
 script = ExtResource("1_58pvd")
 
@@ -187,28 +224,28 @@ script = ExtResource("1_58pvd")
 script = ExtResource("1_6t3t7")
 
 [node name="SpriteA" type="AnimatedSprite2D" parent="Character1"]
-position = Vector2(-24, 0)
+position = Vector2(-37, 0)
 scale = Vector2(1.03125, 1)
 sprite_frames = SubResource("SpriteFrames_6sdmd")
 autoplay = "default"
-frame_progress = 0.897986
+frame_progress = 0.867223
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character1"]
-position = Vector2(-23, 11)
+position = Vector2(-36, 10)
 shape = SubResource("CircleShape2D_6u5my")
 
 [node name="Character2" type="CharacterBody2D" parent="."]
 script = ExtResource("3_6u5my")
 
 [node name="SpriteB" type="AnimatedSprite2D" parent="Character2"]
-position = Vector2(22, 1)
+position = Vector2(37, 0)
 sprite_frames = SubResource("SpriteFrames_1r6qo")
 autoplay = "default"
-frame_progress = 0.367469
+frame_progress = 0.336793
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character2"]
-position = Vector2(22, 10)
+position = Vector2(37, 9)
 shape = SubResource("CircleShape2D_mbhl0")
 
 [node name="Tornado" type="CharacterBody2D" parent="."]
@@ -219,9 +256,18 @@ position = Vector2(3, 3)
 scale = Vector2(0.868421, 0.853846)
 sprite_frames = SubResource("SpriteFrames_u2kxn")
 autoplay = "default"
-frame_progress = 0.405591
+frame_progress = 0.3749
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado"]
 shape = SubResource("CircleShape2D_33h80")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="NewCat" type="CharacterBody2D" parent="."]
+script = ExtResource("6_58pvd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NewCat"]
+position = Vector2(-1.125, -35.25)
+scale = Vector2(2.07031, 1.7375)
+sprite_frames = SubResource("SpriteFrames_pef0w")
+autoplay = "default"

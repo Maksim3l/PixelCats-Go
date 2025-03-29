@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
-@export var speed = 100.0
+@export var speed = 60.0
 var direction = Vector2(1, 0) # Start moving right
 @onready var tornado: CharacterBody2D = $"../Tornado"
 @onready var timer: Timer = $"../Timer"
 var collision_enabled = true  # Flag to track if collision detection is enabled
+@onready var new_cat: CharacterBody2D = $"../NewCat"
 
 var health = 30
 var power = 40
@@ -15,6 +16,7 @@ func _ready():
 		timer.timeout.connect(_on_tornado_timeout)
 	# Make sure tornado is initially hidden
 	tornado.hide()
+	new_cat.hide()
 
 func _physics_process(delta):
 	# Only process collisions if enabled
@@ -46,6 +48,7 @@ func _on_collision():
 func _on_tornado_timeout():
 	print("Tornado will be hidden")
 	tornado.hide()
+	new_cat.show()
 	
 	# Optionally, you can re-enable collision here if needed
 	# collision_enabled = true

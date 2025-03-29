@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 100.0
+@export var speed = 60.0
 var direction = Vector2(-1, 0) # Start moving right
 
 var health = 30
