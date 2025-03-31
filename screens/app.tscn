@@ -1,23 +1,24 @@
-[gd_scene load_steps=22 format=3 uid="uid://nyoocmxc6p3y"]
+[gd_scene load_steps=24 format=3 uid="uid://nyoocmxc6p3y"]
 
-[ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="1_qbwvd"]
-[ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="2_d7sxu"]
-[ext_resource type="Script" uid="uid://de0clhe7b3v7d" path="res://test_cam.gd" id="2_qbwvd"]
-[ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="3_v7vdx"]
-[ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://calculate_bg.gd" id="5_5oejy"]
-[ext_resource type="Script" uid="uid://ctjyh76sb71o2" path="res://player.gd" id="5_atqe7"]
-[ext_resource type="Texture2D" uid="uid://bbxust6tjsc1n" path="res://characters/main/temp.png" id="5_v7vdx"]
+[ext_resource type="Script" uid="uid://d27g5fleq0xtt" path="res://scripts/battle.gd" id="1_2rbw6"]
+[ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="2_b6efx"]
+[ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="3_g44tj"]
+[ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="4_673js"]
+[ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/calculate_bg.gd" id="5_k8m7a"]
+[ext_resource type="Script" uid="uid://ctjyh76sb71o2" path="res://scripts/player.gd" id="6_nipoi"]
+[ext_resource type="Texture2D" uid="uid://bbxust6tjsc1n" path="res://characters/main/temp.png" id="7_u606p"]
+[ext_resource type="Script" uid="uid://de0clhe7b3v7d" path="res://scripts/test_cam.gd" id="8_jgn6f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7vdx"]
-atlas = ExtResource("1_qbwvd")
+atlas = ExtResource("2_b6efx")
 region = Rect2(0, 0, 180, 160)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atqe7"]
-atlas = ExtResource("2_d7sxu")
+atlas = ExtResource("3_g44tj")
 region = Rect2(0, 0, 180, 160)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5oejy"]
-atlas = ExtResource("3_v7vdx")
+atlas = ExtResource("4_673js")
 region = Rect2(0, 0, 180, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5oejy"]
@@ -41,32 +42,34 @@ animations = [{
 a = Vector2(0, -82)
 b = Vector2(0, 76)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l216t"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8rub"]
-atlas = ExtResource("5_v7vdx")
+atlas = ExtResource("7_u606p")
 region = Rect2(16, 64, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_acaik"]
-atlas = ExtResource("5_v7vdx")
+atlas = ExtResource("7_u606p")
 region = Rect2(0, 64, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jndut"]
-atlas = ExtResource("5_v7vdx")
+atlas = ExtResource("7_u606p")
 region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ovwn0"]
-atlas = ExtResource("5_v7vdx")
+atlas = ExtResource("7_u606p")
 region = Rect2(0, 32, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7iiwk"]
-atlas = ExtResource("5_v7vdx")
+atlas = ExtResource("7_u606p")
 region = Rect2(16, 32, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a37lv"]
-atlas = ExtResource("5_v7vdx")
+atlas = ExtResource("7_u606p")
 region = Rect2(32, 32, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtgpg"]
-atlas = ExtResource("5_v7vdx")
+atlas = ExtResource("7_u606p")
 region = Rect2(48, 32, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ra7kh"]
@@ -112,6 +115,7 @@ animations = [{
 size = Vector2(13, 16)
 
 [node name="Battle Arena" type="Node2D"]
+script = ExtResource("1_2rbw6")
 
 [node name="Organizer" type="CanvasLayer" parent="."]
 
@@ -141,13 +145,19 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_5oejy")
 animation = &"living_room"
 
-[node name="Area2D" type="Area2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
-script = ExtResource("5_5oejy")
+[node name="Switchbox" type="Area2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
+script = ExtResource("5_k8m7a")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox"]
 modulate = Color(0.223529, 1, 1, 1)
 position = Vector2(92, 4)
 shape = SubResource("SegmentShape2D_atqe7")
+
+[node name="Battle" type="Area2D" parent="Organizer/Center"]
+position = Vector2(-25, -60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/Center/Battle"]
+shape = SubResource("RectangleShape2D_l216t")
 
 [node name="CenterLeft" type="HBoxContainer" parent="Organizer"]
 anchors_preset = -1
@@ -160,7 +170,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="player" type="CharacterBody2D" parent="Organizer/CenterLeft"]
-script = ExtResource("5_atqe7")
+script = ExtResource("6_nipoi")
 
 [node name="Catimation" type="AnimatedSprite2D" parent="Organizer/CenterLeft/player"]
 texture_filter = 1
@@ -173,4 +183,4 @@ position = Vector2(0.5, 8)
 shape = SubResource("RectangleShape2D_gjbw5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("2_qbwvd")
+script = ExtResource("8_jgn6f")

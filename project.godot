@@ -27,6 +27,15 @@ window/handheld/orientation=6
 window/size/viewport_width.mobile=0
 window/stretch/mode.mobile=""
 
+[file_customization]
+
+folder_colors={
+"res://characters/": "yellow",
+"res://enviroment/": "green",
+"res://screens/": "blue",
+"res://scripts/": "gray"
+}
+
 [input]
 
 pause={
