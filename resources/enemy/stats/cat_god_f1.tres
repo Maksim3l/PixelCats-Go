@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://dn6qgudusv5oa"]
+
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemyStats.gd" id="1_jv5og"]
+
+[resource]
+script = ExtResource("1_jv5og")
+sprite_name = "characters/enemy/cat_god_f1"
+name = "Cat God"
+title = "The Magnificent"
+health = 1000
+damage = 20
+metadata/_custom_type_script = "uid://cvr5vbg24gmcm"

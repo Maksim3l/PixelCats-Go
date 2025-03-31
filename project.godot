@@ -32,6 +32,7 @@ window/stretch/mode.mobile=""
 folder_colors={
 "res://characters/": "yellow",
 "res://enviroment/": "green",
+"res://resources/": "purple",
 "res://screens/": "blue",
 "res://scripts/": "gray"
 }
