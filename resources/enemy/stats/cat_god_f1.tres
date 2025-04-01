@@ -1,12 +1,15 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://dn6qgudusv5oa"]
 
-[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemyStats.gd" id="1_jv5og"]
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_xa0yo"]
 
 [resource]
-script = ExtResource("1_jv5og")
-sprite_name = "characters/enemy/cat_god_f1"
+script = ExtResource("1_xa0yo")
 name = "Cat God"
 title = "The Magnificent"
-health = 1000
-damage = 20
+max_health = 800
+attack = 20
+defense = 15
+attack_cooldown = 1.3
+experience_reward = 10
+gold_reward = 5
 metadata/_custom_type_script = "uid://cvr5vbg24gmcm"

@@ -1,12 +1,15 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://cy5dctn26bawt"]
 
-[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemyStats.gd" id="1_h5fq0"]
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_rsa6g"]
 
 [resource]
-script = ExtResource("1_h5fq0")
-sprite_name = "characters/enemy/cat_god_f2"
+script = ExtResource("1_rsa6g")
 name = "Fido"
 title = "The Fake God"
-health = 0
-damage = 0
+max_health = 1000
+attack = 50
+defense = 20
+attack_cooldown = 2.0
+experience_reward = 10
+gold_reward = 5
 metadata/_custom_type_script = "uid://cvr5vbg24gmcm"

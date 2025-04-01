@@ -1,13 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://nyoocmxc6p3y"]
+[gd_scene load_steps=23 format=3 uid="uid://nyoocmxc6p3y"]
 
 [ext_resource type="Script" uid="uid://d27g5fleq0xtt" path="res://scripts/events/battle.gd" id="1_2rbw6"]
 [ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="2_b6efx"]
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="2_l216t"]
 [ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="3_g44tj"]
+[ext_resource type="Resource" uid="uid://camschyompbni" path="res://resources/enemy/stats/roomba.tres" id="3_q5w02"]
 [ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="4_673js"]
+[ext_resource type="Resource" uid="uid://bj2a11el3x2ds" path="res://resources/enemy/stats/bathtub.tres" id="4_vg0s6"]
+[ext_resource type="Resource" uid="uid://bgji6rxeueb50" path="res://resources/enemy/stats/mirror.tres" id="5_5kvnb"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="5_k8m7a"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="6_30i37"]
+[ext_resource type="Resource" uid="uid://bauwrccu7j3oc" path="res://resources/enemy/stats/can_opener.tres" id="6_c6ktl"]
 [ext_resource type="PackedScene" uid="uid://h8brxvmkyg2o" path="res://screens/enemy.tscn" id="7_2rbw6"]
+[ext_resource type="Resource" uid="uid://y3elvsj7m0j3" path="res://resources/enemy/stats/water_hose.tres" id="7_nsrmf"]
 [ext_resource type="Script" uid="uid://de0clhe7b3v7d" path="res://scripts/test_cam.gd" id="8_jgn6f"]
+[ext_resource type="Resource" uid="uid://dn6qgudusv5oa" path="res://resources/enemy/stats/cat_god_f1.tres" id="8_v6a0r"]
+[ext_resource type="Resource" uid="uid://cy5dctn26bawt" path="res://resources/enemy/stats/cat_god_f2.tres" id="9_bmmfm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7vdx"]
 atlas = ExtResource("2_b6efx")
@@ -46,6 +54,7 @@ b = Vector2(0, 76)
 
 [node name="Battle Arena" type="Node2D"]
 script = ExtResource("1_2rbw6")
+enemy_types = Array[ExtResource("2_l216t")]([ExtResource("3_q5w02"), ExtResource("4_vg0s6"), ExtResource("5_5kvnb"), ExtResource("6_c6ktl"), ExtResource("7_nsrmf"), ExtResource("8_v6a0r"), ExtResource("9_bmmfm")])
 
 [node name="Organizer" type="CanvasLayer" parent="."]
 
@@ -102,8 +111,8 @@ size_flags_vertical = 4
 [node name="player" parent="Organizer/CenterLeft" instance=ExtResource("6_30i37")]
 
 [node name="CenterRight" type="HBoxContainer" parent="Organizer"]
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = -1
+anchor_left = 0.84
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5

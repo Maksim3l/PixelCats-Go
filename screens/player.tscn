@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4ot3ksjrurvq"]
+[gd_scene load_steps=14 format=3 uid="uid://c4ot3ksjrurvq"]
 
 [ext_resource type="Script" uid="uid://ctjyh76sb71o2" path="res://scripts/creature/player.gd" id="1_5jwn5"]
 [ext_resource type="Texture2D" uid="uid://bbxust6tjsc1n" path="res://characters/main/temp.png" id="2_5k2th"]
 [ext_resource type="Texture2D" uid="uid://dfdocskieec21" path="res://characters/main/main.png" id="3_5k2th"]
+[ext_resource type="Script" uid="uid://dardd46yf6176" path="res://scripts/events/health_bar.gd" id="4_8qnwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x8rub"]
 atlas = ExtResource("2_5k2th")
@@ -72,7 +73,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjbw5"]
-size = Vector2(13, 16)
+size = Vector2(15, 53)
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_5jwn5")
@@ -83,5 +84,17 @@ sprite_frames = SubResource("SpriteFrames_ra7kh")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 8)
+position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_gjbw5")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+texture_filter = 1
+offset_left = -22.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = -25.0
+min_value = 100.0
+value = 100.0
+script = ExtResource("4_8qnwq")

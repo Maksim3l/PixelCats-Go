@@ -1,12 +1,15 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://y3elvsj7m0j3"]
 
-[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemyStats.gd" id="1_smawe"]
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_we2nk"]
 
 [resource]
-script = ExtResource("1_smawe")
-sprite_name = "characters/enemy/water_hose"
+script = ExtResource("1_we2nk")
 name = "Water Hose"
 title = "The Garden Serpent"
-health = 600
-damage = 50
+max_health = 300
+attack = 20
+defense = 10
+attack_cooldown = 1.5
+experience_reward = 10
+gold_reward = 5
 metadata/_custom_type_script = "uid://cvr5vbg24gmcm"

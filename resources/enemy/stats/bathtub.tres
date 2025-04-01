@@ -1,12 +1,15 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://bj2a11el3x2ds"]
 
-[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemyStats.gd" id="1_x6mcs"]
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_ume3k"]
 
 [resource]
-script = ExtResource("1_x6mcs")
-sprite_name = "characters/enemy/bathrub"
+script = ExtResource("1_ume3k")
 name = "Bathtub"
 title = "The Drencher"
-health = 300
-damage = 1
+max_health = 100
+attack = 10
+defense = 0
+attack_cooldown = 1.5
+experience_reward = 10
+gold_reward = 5
 metadata/_custom_type_script = "uid://cvr5vbg24gmcm"
