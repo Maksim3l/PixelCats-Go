@@ -1,14 +1,17 @@
 # Player.gd
 extends CharacterBody2D
 
-var max_health: int = 100
-var current_health: int = max_health
-var attack: int = 10
-var defense: int = 5
-var speed: int = 10
-var gold: int = 0
-var experience: int = 0
-var level: int = 1
+var save_file_path = "res://data/"
+var save_file_name = "PlayerSave.tres"
+var playerData = PlayerData.new()
+
+var max_health: int = playerData.max_health
+var current_health: int = playerData.current_health
+var attack: int = playerData.attack
+var defense: int = playerData.defense
+var gold: int = playerData.gold
+var experience: int = playerData.experience
+var level: int = playerData.level
 
 @onready var health_bar = $HealthBar
 @onready var attack_timer = $AttackTimer
@@ -19,6 +22,14 @@ var current_target = null
 func _ready():
 	health_bar.value = current_health
 	health_bar.max_value = max_health
+	
+	load_game()
+	
+func _input(event):
+	if event.is_action_pressed("save_game"):
+		save_game()
+	elif event.is_action_pressed("load_game"):
+		load_game()
 
 func _process(delta):
 	if current_target and can_attack:
@@ -64,3 +75,41 @@ func level_up():
 
 func _on_attack_timer_timeout():
 	can_attack = true
+	
+func save_game():
+	# Create PlayerData from current player state
+	var data = PlayerData.from_player(self)
+	
+	# Create directory if it doesn't exist (this works only in editor)
+	var dir = DirAccess.open("res://")
+	if not dir.dir_exists("data"):
+		dir.make_dir("data")
+	
+	# Save the resource to disk
+	var error = ResourceSaver.save(data, save_file_path + save_file_name)
+	if error != OK:
+		print("Error saving game: ", error)
+		return false
+	
+	print("Game saved successfully to: ", save_file_path + save_file_name)
+	return true
+
+func load_game():
+	if not FileAccess.file_exists(save_file_path + save_file_name):
+		print("No save file found")
+		return false
+	
+	# Load the resource
+	var data = ResourceLoader.load(save_file_path + save_file_name)
+	if not data:
+		print("Error loading save file")
+		return false
+	
+	# Apply the data to the player
+	data.apply_to_player(self)
+	
+	current_health = 100
+	health_bar.value = current_health
+	
+	print("Game loaded successfully")
+	return true
