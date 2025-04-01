@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://bgji6rxeueb50"]
+
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_cmy74"]
+[ext_resource type="Texture2D" uid="uid://dnqxx5cy4g55w" path="res://characters/enemy/Machine.png" id="2_njtau"]
+
+[resource]
+script = ExtResource("1_cmy74")
+name = "Mirror"
+title = "The Doppelganger"
+max_health = 250
+attack = 15
+defense = 10
+texture = ExtResource("2_njtau")
+attack_cooldown = 1.5
+experience_reward = 10
+gold_reward = 5
+metadata/_custom_type_script = "uid://cvr5vbg24gmcm"

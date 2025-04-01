@@ -22,10 +22,13 @@ func _ready():
 	change_frame_randomly()
 	connect("body_entered", Callable(self, "_on_body_entered"))
 
-func _process(_delta):
-	if Input.is_action_just_pressed("pause"):
-		is_paused = not is_paused 
-
 func _on_body_entered(body):
 	if not is_paused and body == cat:
 		change_frame_randomly()
+
+
+func _on_battle_arena_battle_started():
+	is_paused = true
+	
+func _on_battle_arena_battle_ended():
+	is_paused = false

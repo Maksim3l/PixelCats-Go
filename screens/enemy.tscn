@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://h8brxvmkyg2o"]
+
+[ext_resource type="Script" uid="uid://cgq4gmvorh2hn" path="res://scripts/creature/enemy.gd" id="1_h737n"]
+[ext_resource type="Texture2D" uid="uid://dnqxx5cy4g55w" path="res://characters/enemy/Machine.png" id="2_83ito"]
+[ext_resource type="Resource" uid="uid://camschyompbni" path="res://resources/enemy/stats/roomba.tres" id="2_hj34r"]
+[ext_resource type="PackedScene" uid="uid://bl8dq63e4q50s" path="res://screens/health_bar.tscn" id="3_hj34r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hj34r"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_lqn1i"]
+font_size = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwxfe"]
+size = Vector2(44, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h737n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_83ito")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_h737n")
+enemy_data = ExtResource("2_hj34r")
+
+[node name="Name" type="Label" parent="."]
+offset_left = -44.0
+offset_top = -75.0
+offset_right = -4.0
+offset_bottom = -52.0
+label_settings = SubResource("LabelSettings_hj34r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+offset_left = -43.0
+offset_top = -64.0
+offset_right = -3.0
+offset_bottom = -41.0
+label_settings = SubResource("LabelSettings_lqn1i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" parent="." instance=ExtResource("3_hj34r")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dwxfe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_h737n")
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
