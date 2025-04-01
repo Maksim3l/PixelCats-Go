@@ -2,7 +2,7 @@ extends Node2D
 
 @export var enemy_spawn_point: Node2D
 @export var player_character: Node2D
-@export var enemies_per_battle: int = 3
+@export var enemies_per_battle: int = 1
 @export var enemy_types: Array[EnemyStats] = []
 
 var enemies_defeated: int = 0
@@ -13,6 +13,10 @@ var current_enemies: Array = []
 var easy_enemies: Array[int] = [0, 1, 2]  
 var medium_enemies: Array[int] = [3, 4, 5, 6] 
 var hard_enemies: Array[int] = [7, 8, 9]
+@onready var timer = $Timer
+
+signal battle_started
+signal battle_ended
 
 func _ready():
 	randomize()
@@ -20,10 +24,11 @@ func _ready():
 func start_battle():
 	battle_active = true
 	enemies_defeated = 0
-	spawn_enemies()
+	emit_signal("battle_started")
+	spawn_specific_difficulty_enemy(1,0)
+	#spawn_enemies()
 
 func spawn_enemies():
-	
 	for enemy in current_enemies:
 		if is_instance_valid(enemy):
 			enemy.queue_free()
@@ -34,13 +39,10 @@ func spawn_enemies():
 		
 		var random_index = randi() % enemy_types.size()
 		enemy_instance.enemy_data = enemy_types[random_index]
-		
-		var offset = Vector2(i * 100, 0)  
-		enemy_instance.position = enemy_spawn_point.position + offset
-		
 		enemy_instance.target = player_character
-		
-		add_child(enemy_instance)
+		player_character.current_target = enemy_instance
+		enemy_instance.battle = self
+		enemy_spawn_point.add_child(enemy_instance)
 
 func select_enemy_by_difficulty() -> EnemyStats:
 	var pool_to_use: Array[int]
@@ -66,15 +68,12 @@ func spawn_mixed_difficulty_enemies():
 	var position_offset = 0
 	for i in range(enemy_counts.hard):
 		spawn_specific_difficulty_enemy(3, position_offset)
-		position_offset += 100
 	
 	for i in range(enemy_counts.medium):
 		spawn_specific_difficulty_enemy(2, position_offset)
-		position_offset += 100
 	
 	for i in range(enemy_counts.easy):
 		spawn_specific_difficulty_enemy(1, position_offset)
-		position_offset += 100
 	
 func spawn_specific_difficulty_enemy(difficulty: int, offset: float):
 	var enemy_instance = preload("res://screens/enemy.tscn").instantiate()
@@ -88,13 +87,12 @@ func spawn_specific_difficulty_enemy(difficulty: int, offset: float):
 	   
 	var random_index = pool_to_use[randi() % pool_to_use.size()]
 	enemy_instance.enemy_data = enemy_types[random_index]
-	enemy_instance.position = enemy_spawn_point.position + Vector2(offset, 0)
 	enemy_instance.target = player_character
-	add_child(enemy_instance)
-	current_enemies.append(enemy_instance)
+	player_character.current_target = enemy_instance
+	enemy_instance.battle = self
+	enemy_spawn_point.add_child(enemy_instance)
 
 func enemy_defeated(exp, gold):
-	# Give rewards to player
 	if player_character.has_method("add_experience"):
 		player_character.add_experience(exp)
 	
@@ -104,6 +102,13 @@ func enemy_defeated(exp, gold):
 	enemies_defeated += 1
 	if enemies_defeated >= enemies_per_battle:
 		battle_complete()
+	
+	timer.wait_time = 5
 
 func battle_complete():
 	battle_active = false
+	emit_signal("battle_ended")
+
+func _on_timer_timeout():
+	if battle_active == false:
+		start_battle()

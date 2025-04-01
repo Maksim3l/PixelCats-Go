@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://cy5dctn26bawt"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://cy5dctn26bawt"]
 
-[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_rsa6g"]
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_q63wc"]
+[ext_resource type="Texture2D" uid="uid://dnqxx5cy4g55w" path="res://characters/enemy/Machine.png" id="2_r7b4v"]
 
 [resource]
-script = ExtResource("1_rsa6g")
+script = ExtResource("1_q63wc")
 name = "Fido"
 title = "The Fake God"
 max_health = 1000
 attack = 50
 defense = 20
+texture = ExtResource("2_r7b4v")
 attack_cooldown = 2.0
 experience_reward = 10
 gold_reward = 5

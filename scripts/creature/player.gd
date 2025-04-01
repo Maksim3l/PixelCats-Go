@@ -3,8 +3,8 @@ extends CharacterBody2D
 
 var max_health: int = 100
 var current_health: int = max_health
-var attack: int = 15
-var defense: int = 8
+var attack: int = 10
+var defense: int = 5
 var speed: int = 10
 var gold: int = 0
 var experience: int = 0
@@ -15,6 +15,10 @@ var level: int = 1
 
 var can_attack: bool = true
 var current_target = null
+
+func _ready():
+	health_bar.value = current_health
+	health_bar.max_value = max_health
 
 func _process(delta):
 	if current_target and can_attack:
@@ -57,4 +61,6 @@ func level_up():
 	current_health = max_health
 	attack += 2
 	defense += 1
-	# Update UI
+
+func _on_attack_timer_timeout():
+	can_attack = true

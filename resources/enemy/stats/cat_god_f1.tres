@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://dn6qgudusv5oa"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://dn6qgudusv5oa"]
 
-[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_xa0yo"]
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_cci0g"]
+[ext_resource type="Texture2D" uid="uid://dnqxx5cy4g55w" path="res://characters/enemy/Machine.png" id="2_e2hxa"]
 
 [resource]
-script = ExtResource("1_xa0yo")
+script = ExtResource("1_cci0g")
 name = "Cat God"
 title = "The Magnificent"
 max_health = 800
 attack = 20
 defense = 15
+texture = ExtResource("2_e2hxa")
 attack_cooldown = 1.3
 experience_reward = 10
 gold_reward = 5

@@ -1,14 +1,16 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://bj2a11el3x2ds"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://bj2a11el3x2ds"]
 
-[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_ume3k"]
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_56f30"]
+[ext_resource type="Texture2D" uid="uid://jw5mpxdq2fdy" path="res://characters/enemy/BathtubTheDrencher.png" id="2_56f30"]
 
 [resource]
-script = ExtResource("1_ume3k")
+script = ExtResource("1_56f30")
 name = "Bathtub"
 title = "The Drencher"
 max_health = 100
 attack = 10
 defense = 0
+texture = ExtResource("2_56f30")
 attack_cooldown = 1.5
 experience_reward = 10
 gold_reward = 5

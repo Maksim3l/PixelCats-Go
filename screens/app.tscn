@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://nyoocmxc6p3y"]
+[gd_scene load_steps=22 format=3 uid="uid://nyoocmxc6p3y"]
 
 [ext_resource type="Script" uid="uid://d27g5fleq0xtt" path="res://scripts/events/battle.gd" id="1_2rbw6"]
 [ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="2_b6efx"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="5_k8m7a"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="6_30i37"]
 [ext_resource type="Resource" uid="uid://bauwrccu7j3oc" path="res://resources/enemy/stats/can_opener.tres" id="6_c6ktl"]
-[ext_resource type="PackedScene" uid="uid://h8brxvmkyg2o" path="res://screens/enemy.tscn" id="7_2rbw6"]
 [ext_resource type="Resource" uid="uid://y3elvsj7m0j3" path="res://resources/enemy/stats/water_hose.tres" id="7_nsrmf"]
 [ext_resource type="Script" uid="uid://de0clhe7b3v7d" path="res://scripts/test_cam.gd" id="8_jgn6f"]
 [ext_resource type="Resource" uid="uid://dn6qgudusv5oa" path="res://resources/enemy/stats/cat_god_f1.tres" id="8_v6a0r"]
@@ -52,8 +51,10 @@ b = Vector2(0, 76)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l216t"]
 
-[node name="Battle Arena" type="Node2D"]
+[node name="Battle Arena" type="Node2D" node_paths=PackedStringArray("enemy_spawn_point", "player_character")]
 script = ExtResource("1_2rbw6")
+enemy_spawn_point = NodePath("Organizer/CenterRight/spawn_enemy")
+player_character = NodePath("Organizer/CenterLeft/player")
 enemy_types = Array[ExtResource("2_l216t")]([ExtResource("3_q5w02"), ExtResource("4_vg0s6"), ExtResource("5_5kvnb"), ExtResource("6_c6ktl"), ExtResource("7_nsrmf"), ExtResource("8_v6a0r"), ExtResource("9_bmmfm")])
 
 [node name="Organizer" type="CanvasLayer" parent="."]
@@ -121,11 +122,17 @@ grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 
-[node name="enemy" parent="Organizer/CenterRight" instance=ExtResource("7_2rbw6")]
+[node name="spawn_enemy" type="Node2D" parent="Organizer/CenterRight"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("8_jgn6f")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
+[connection signal="battle_ended" from="." to="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" method="_on_battle_arena_battle_ended"]
+[connection signal="battle_ended" from="." to="Camera2D" method="_on_battle_arena_battle_ended"]
+[connection signal="battle_started" from="." to="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" method="_on_battle_arena_battle_started"]
+[connection signal="battle_started" from="." to="Camera2D" method="_on_battle_arena_battle_started"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
