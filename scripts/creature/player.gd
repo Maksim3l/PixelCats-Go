@@ -15,6 +15,8 @@ var level: int = playerData.level
 
 @onready var health_bar = $HealthBar
 @onready var attack_timer = $AttackTimer
+@onready var dmg_timer = $DmgFlickerTimer
+@onready var hit = $hit
 
 var can_attack: bool = true
 var current_target = null
@@ -22,6 +24,7 @@ var current_target = null
 func _ready():
 	health_bar.value = current_health
 	health_bar.max_value = max_health
+	hit.visible = false
 	
 	load_game()
 	
@@ -46,6 +49,9 @@ func take_damage(amount):
 	var actual_damage = max(1, amount - defense)
 	current_health -= actual_damage
 	health_bar.value = current_health
+	
+	hit.visible = true
+	dmg_timer.start()
 	
 	if current_health <= 0:
 		die()
@@ -112,3 +118,6 @@ func load_game():
 	
 	print("Game loaded successfully")
 	return true
+	
+func _on_dmg_flicker_timer_timeout():
+	hit.visible = false
