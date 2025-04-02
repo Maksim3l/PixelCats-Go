@@ -51,8 +51,7 @@ func take_damage(amount):
 		die()
 
 func die():
-	# Game over logic
-	pass
+	get_tree().change_scene_to_file("res://screens/title_screen.tscn")
 
 func add_experience(amount):
 	experience += amount
