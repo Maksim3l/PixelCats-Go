@@ -43,6 +43,18 @@ region = Rect2(0, 0, 180, 160)
 atlas = ExtResource("13_613gb")
 region = Rect2(0, 0, 180, 160)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
+atlas = ExtResource("11_8fcku")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqksq"]
+atlas = ExtResource("12_qhd1f")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkoqu"]
+atlas = ExtResource("13_613gb")
+region = Rect2(0, 0, 180, 160)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7vdx"]
 atlas = ExtResource("2_b6efx")
 region = Rect2(0, 0, 180, 160)
@@ -105,6 +117,9 @@ default_font_size = 2
 
 [node name="Battle Arena" type="Node2D"]
 script = ExtResource("1_juw2i")
+<<<<<<< Updated upstream:screens/app.tscn
+>>>>>>> Stashed changes:screens/battle.tscn
+=======
 >>>>>>> Stashed changes:screens/battle.tscn
 
 [node name="Organizer" type="CanvasLayer" parent="."]
@@ -185,6 +200,8 @@ autostart = true
 [connection signal="battle_started" from="." to="Camera2D" method="_on_battle_arena_battle_started"]
 <<<<<<< Updated upstream:screens/app.tscn
 =======
+=======
+>>>>>>> Stashed changes:screens/battle.tscn
 [connection signal="body_entered" from="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/Center/ParallaxBackground" method="_on_switchbox_body_entered"]
 [connection signal="pressed" from="Organizer/UI Bottom/Merge" to="Organizer/UI Bottom" method="_on_merge_pressed"]
 [connection signal="pressed" from="Organizer/UI Bottom/Feed" to="Organizer/UI Bottom" method="_on_feed_pressed"]
