@@ -15,7 +15,7 @@ var medium_enemies: Array[int] = [3, 4, 5, 6]
 var hard_enemies: Array[int] = [7, 8, 9]
 @onready var timer = $Timer
 
-signal battle_started
+signal battle_started(Enemy)
 signal battle_ended
 
 func _ready():
