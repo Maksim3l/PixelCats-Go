@@ -1,4 +1,4 @@
-extends Area2D
+extends ParallaxBackground
 
 class_name ArenaBackgroundController
 
@@ -14,8 +14,8 @@ var arena_animations = {
 	5: "boss"   
 }
 
-@onready var bg = $"../BG" 
-@onready var cat = $"../../../../CenterLeft/player"
+@onready var bg = $"ParallaxLayer/BG" 
+@onready var cat = $"../../CenterLeft/player"
 @onready var arena_manager = get_node_or_null(arena_manager_path)
 
 func _ready():

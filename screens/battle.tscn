@@ -10,12 +10,12 @@
 [ext_resource type="Resource" uid="uid://dn6qgudusv5oa" path="res://resources/enemy/stats/cat_god_f1.tres" id="8_613gb"]
 [ext_resource type="Resource" uid="uid://cy5dctn26bawt" path="res://resources/enemy/stats/cat_god_f2.tres" id="9_aqg4e"]
 [ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="10_vqksq"]
-[ext_resource type="Texture2D" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="11_8fcku"]
+[ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="11_8fcku"]
 [ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="11_dkoqu"]
 [ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="12_mii7t"]
-[ext_resource type="Texture2D" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="12_qhd1f"]
+[ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="12_qhd1f"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="13_4hjoo"]
-[ext_resource type="Texture2D" path="res://enviroment/house/1_bathroom/bathroom_water_double.png" id="13_613gb"]
+[ext_resource type="Texture2D" uid="uid://bj82ugw5a0rtp" path="res://enviroment/house/1_bathroom/bathroom_water_double.png" id="13_613gb"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="14_vefff"]
 [ext_resource type="Script" uid="uid://de0clhe7b3v7d" path="res://scripts/test_cam.gd" id="15_pdxaj"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="15_t6j07"]
@@ -120,7 +120,7 @@ motion_mirroring = Vector2(180, 0)
 [node name="BG" type="AnimatedSprite2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_5oejy")
-animation = &"livingroom"
+animation = &"bathroom"
 
 [node name="Switchbox" type="Area2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
 
