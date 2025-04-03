@@ -1,12 +1,6 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=8 format=3 uid="uid://cie4aogtq8uku"]
-
-[ext_resource type="Script" uid="uid://bt6lo3d5rt5r5" path="res://screens/title_screen.gd" id="1_grftj"]
-=======
 [gd_scene load_steps=8 format=3 uid="uid://dc54u4bo86i1y"]
 
-[ext_resource type="Script" path="res://screens/title_screen.gd" id="1_grftj"]
->>>>>>> Stashed changes
+[ext_resource type="Script" uid="uid://bt6lo3d5rt5r5" path="res://scripts/title_screen.gd" id="1_grftj"]
 
 [sub_resource type="Gradient" id="Gradient_dss53"]
 colors = PackedColorArray(0, 0, 0.415686, 0.435294, 0.12549, 0.568627, 1, 0.47451)

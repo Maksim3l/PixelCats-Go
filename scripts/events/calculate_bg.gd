@@ -47,12 +47,8 @@ func change_background_for_arena(arena_level: int):
 
 func change_frame_randomly(animation_name: String):
 	bg.stop()
-<<<<<<< Updated upstream
 	var current_frame = bg.frame
 	var total_frames = bg.sprite_frames.get_frame_count('living_room')
-=======
-	var total_frames = bg.sprite_frames.get_frame_count(animation_name)
->>>>>>> Stashed changes
 	
 	var random_frame
 	if total_frames > 1:
@@ -63,23 +59,7 @@ func change_frame_randomly(animation_name: String):
 		random_frame = 0
 	
 	bg.frame = random_frame
-<<<<<<< Updated upstream
-func _ready():
-	change_frame_randomly()
-	connect("body_entered", Callable(self, "_on_body_entered"))
-
-func _on_body_entered(body):
-	if not is_paused and body == cat:
-		change_frame_randomly()
-
-
-func _on_battle_arena_battle_started():
-	is_paused = true
 	
-func _on_battle_arena_battle_ended():
-	is_paused = false
-=======
-
 func _on_switchbox_body_entered(body):
 	if not is_paused and body == cat:
 		if bg.animation:
@@ -95,4 +75,3 @@ func _on_battle_arena_difficulty_increased(new_difficulty):
 func _on_battle_started(difficulty):
 	is_paused = true
 	change_background_for_arena(difficulty)
->>>>>>> Stashed changes
