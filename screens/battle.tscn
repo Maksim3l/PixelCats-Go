@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=25 format=3 uid="uid://nyoocmxc6p3y"]
 
 [ext_resource type="Script" uid="uid://d27g5fleq0xtt" path="res://scripts/events/battle.gd" id="1_dprpa"]
+=======
+[gd_scene load_steps=30 format=3 uid="uid://dgctdc1faw2nl"]
+
+[ext_resource type="Script" uid="uid://c05gqeqqsbrhe" path="res://arena_manager.gd" id="1_juw2i"]
+>>>>>>> Stashed changes
 [ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="2_gfgft"]
 [ext_resource type="Resource" uid="uid://camschyompbni" path="res://resources/enemy/stats/roomba.tres" id="3_t6j07"]
 [ext_resource type="Resource" uid="uid://bj2a11el3x2ds" path="res://resources/enemy/stats/bathtub.tres" id="4_1ra8n"]
@@ -10,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://dn6qgudusv5oa" path="res://resources/enemy/stats/cat_god_f1.tres" id="8_613gb"]
 [ext_resource type="Resource" uid="uid://cy5dctn26bawt" path="res://resources/enemy/stats/cat_god_f2.tres" id="9_aqg4e"]
 [ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="10_vqksq"]
+<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="11_dkoqu"]
 [ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="12_mii7t"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="13_4hjoo"]
@@ -17,6 +24,30 @@
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://screens/ui_action.gd" id="15_gfgft"]
 [ext_resource type="Script" uid="uid://de0clhe7b3v7d" path="res://scripts/test_cam.gd" id="15_pdxaj"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="15_t6j07"]
+=======
+[ext_resource type="Texture2D" uid="uid://cj2rbwx6hbium" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="11_8fcku"]
+[ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="11_dkoqu"]
+[ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="12_mii7t"]
+[ext_resource type="Texture2D" uid="uid://cqkdfcs3w4i57" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="12_qhd1f"]
+[ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="13_4hjoo"]
+[ext_resource type="Texture2D" uid="uid://hblpyatqxdhl" path="res://enviroment/house/1_bathroom/bathroom_water_double.png" id="13_613gb"]
+[ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="14_vefff"]
+[ext_resource type="Script" path="res://screens/ui_action.gd" id="15_gfgft"]
+[ext_resource type="Script" uid="uid://de0clhe7b3v7d" path="res://scripts/test_cam.gd" id="15_pdxaj"]
+[ext_resource type="FontFile" path="res://resources/pixel_sans.ttf" id="15_t6j07"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
+atlas = ExtResource("11_8fcku")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqksq"]
+atlas = ExtResource("12_qhd1f")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkoqu"]
+atlas = ExtResource("13_613gb")
+region = Rect2(0, 0, 180, 160)
+>>>>>>> Stashed changes
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7vdx"]
 atlas = ExtResource("10_vqksq")
@@ -34,6 +65,23 @@ region = Rect2(0, 0, 180, 160)
 animations = [{
 "frames": [{
 "duration": 1.0,
+<<<<<<< Updated upstream
+=======
+"texture": SubResource("AtlasTexture_aqg4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqksq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkoqu")
+}],
+"loop": true,
+"name": &"bathroom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+>>>>>>> Stashed changes
 "texture": SubResource("AtlasTexture_v7vdx")
 }, {
 "duration": 1.0,
@@ -43,7 +91,11 @@ animations = [{
 "texture": SubResource("AtlasTexture_5oejy")
 }],
 "loop": true,
+<<<<<<< Updated upstream
 "name": &"living_room",
+=======
+"name": &"livingroom",
+>>>>>>> Stashed changes
 "speed": 5.0
 }]
 
@@ -51,17 +103,28 @@ animations = [{
 a = Vector2(0, -82)
 b = Vector2(0, 76)
 
+<<<<<<< Updated upstream
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l216t"]
 
+=======
+>>>>>>> Stashed changes
 [sub_resource type="Theme" id="Theme_1ra8n"]
 default_font = ExtResource("15_t6j07")
 default_font_size = 2
 
+<<<<<<< Updated upstream
 [node name="Battle Arena" type="Node2D" node_paths=PackedStringArray("enemy_spawn_point", "player_character")]
 script = ExtResource("1_dprpa")
 enemy_spawn_point = NodePath("Organizer/CenterRight/spawn_enemy")
 player_character = NodePath("Organizer/CenterLeft/player")
 enemy_types = Array[ExtResource("2_gfgft")]([ExtResource("3_t6j07"), ExtResource("4_1ra8n"), ExtResource("5_tlpw0"), ExtResource("6_8fcku"), ExtResource("7_qhd1f"), ExtResource("8_613gb"), ExtResource("9_aqg4e")])
+=======
+[node name="Battle Arena" type="Node2D" node_paths=PackedStringArray("player_character", "enemy_spawn_point")]
+script = ExtResource("1_juw2i")
+player_character = NodePath("Organizer/CenterLeft/player")
+enemy_spawn_point = NodePath("Organizer/CenterRight/spawn_enemy")
+enemy_types = Array[ExtResource("2_gfgft")]([ExtResource("4_1ra8n"), ExtResource("5_tlpw0"), ExtResource("3_t6j07"), ExtResource("6_8fcku"), ExtResource("7_qhd1f"), ExtResource("8_613gb"), ExtResource("9_aqg4e")])
+>>>>>>> Stashed changes
 
 [node name="Organizer" type="CanvasLayer" parent="."]
 
@@ -82,6 +145,11 @@ size_flags_vertical = 4
 alignment = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Organizer/Center"]
+<<<<<<< Updated upstream
+=======
+script = ExtResource("13_4hjoo")
+arena_manager_path = NodePath("../../..")
+>>>>>>> Stashed changes
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Organizer/Center/ParallaxBackground"]
 motion_mirroring = Vector2(180, 0)
@@ -89,22 +157,31 @@ motion_mirroring = Vector2(180, 0)
 [node name="BG" type="AnimatedSprite2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_5oejy")
+<<<<<<< Updated upstream
 animation = &"living_room"
 
 [node name="Switchbox" type="Area2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
 script = ExtResource("13_4hjoo")
+=======
+animation = &"livingroom"
+
+[node name="Switchbox" type="Area2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
+>>>>>>> Stashed changes
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox"]
 modulate = Color(0.223529, 1, 1, 1)
 position = Vector2(92, 4)
 shape = SubResource("SegmentShape2D_atqe7")
 
+<<<<<<< Updated upstream
 [node name="Battle" type="Area2D" parent="Organizer/Center"]
 position = Vector2(-25, -60)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/Center/Battle"]
 shape = SubResource("RectangleShape2D_l216t")
 
+=======
+>>>>>>> Stashed changes
 [node name="CenterLeft" type="HBoxContainer" parent="Organizer"]
 z_index = 1
 anchors_preset = -1
@@ -176,10 +253,19 @@ script = ExtResource("15_pdxaj")
 wait_time = 5.0
 autostart = true
 
+<<<<<<< Updated upstream
 [connection signal="battle_ended" from="." to="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" method="_on_battle_arena_battle_ended"]
 [connection signal="battle_ended" from="." to="Camera2D" method="_on_battle_arena_battle_ended"]
 [connection signal="battle_started" from="." to="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" method="_on_battle_arena_battle_started"]
 [connection signal="battle_started" from="." to="Camera2D" method="_on_battle_arena_battle_started"]
+=======
+[connection signal="battle_ended" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_ended"]
+[connection signal="battle_ended" from="." to="Camera2D" method="_on_battle_arena_battle_ended"]
+[connection signal="battle_started" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_started"]
+[connection signal="battle_started" from="." to="Camera2D" method="_on_battle_arena_battle_started"]
+[connection signal="difficulty_increased" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_arena_difficulty_increased"]
+[connection signal="body_entered" from="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/Center/ParallaxBackground" method="_on_switchbox_body_entered"]
+>>>>>>> Stashed changes
 [connection signal="pressed" from="Organizer/UI Bottom/Merge" to="Organizer/UI Bottom" method="_on_merge_pressed"]
 [connection signal="pressed" from="Organizer/UI Bottom/Feed" to="Organizer/UI Bottom" method="_on_feed_pressed"]
 [connection signal="pressed" from="Organizer/UI Bottom/Equipment" to="Organizer/UI Bottom" method="_on_equipment_pressed"]

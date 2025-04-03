@@ -26,7 +26,7 @@ func _ready():
 	nameLabel.text = enemy_data.name
 	titleLabel.text = enemy_data.title
 
-func _process(delta):
+func _process(_delta):
 	if target and can_attack:
 		attack_target()
 
