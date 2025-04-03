@@ -28,13 +28,12 @@ func _on_cat_collision():
 	timer.one_shot = true
 	timer.start()
 	
-	# Show the tornado (assuming you have a tornado node)
-	#$Tornado.show()
+
 	
 func _on_tornado_timeout():
 	print("Tornado will be hidden")
 	tornado.hide()
-	cat1.show()
+	cat1.visible = true
+	get_tree().change_scene_to_file("res://screens/battle.tscn")
+
 	
-	# Optionally, you can re-enable collision here if needed
-	# collision_enabled = true

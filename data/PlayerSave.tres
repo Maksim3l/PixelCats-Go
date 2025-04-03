@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://c0ltggbss6swy"]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://jidq0j1o4jcr"]
 
-[ext_resource type="Script" uid="uid://dq7snk8jto3g1" path="res://player_data.gd" id="1_pq5a0"]
+[ext_resource type="Script" uid="uid://dq7snk8jto3g1" path="res://resources/player_data.gd" id="1_pq5a0"]
 
 [resource]
 script = ExtResource("1_pq5a0")
 max_health = 100
-current_health = 60
-attack = 10
-defense = 5
-gold = 5
-experience = 10
+current_health = 100
+attack = 16
+defense = 8
+gold = 0
+experience = 0
 level = 1
 position = Vector2(0, 0)
