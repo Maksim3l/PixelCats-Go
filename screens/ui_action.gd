@@ -19,7 +19,7 @@ func _ready():
 # get_tree().change_scene_to_file("res://screens/battle.tscn")
 
 func _on_merge_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://screens/merge.tscn")
 
 
 func _on_feed_pressed():
