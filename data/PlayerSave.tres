@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://jidq0j1o4jcr"]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://resources/player_data.gd" id="1_pq5a0"]
 
@@ -6,8 +6,8 @@
 script = ExtResource("1_pq5a0")
 max_health = 100
 current_health = 100
-attack = 16
-defense = 8
+attack = 62
+defense = 26
 gold = 0
 experience = 0
 level = 1

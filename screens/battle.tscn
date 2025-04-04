@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dgctdc1faw2nl"]
+[gd_scene load_steps=34 format=3 uid="uid://dgctdc1faw2nl"]
 
 [ext_resource type="Script" uid="uid://bfo65nq0ie7iq" path="res://scripts/arena_manager.gd" id="1_of853"]
 [ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="2_gfgft"]
@@ -33,6 +33,22 @@ region = Rect2(0, 0, 180, 160)
 atlas = ExtResource("13_613gb")
 region = Rect2(0, 0, 180, 160)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fcku"]
+atlas = ExtResource("10_vqksq")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhd1f"]
+atlas = ExtResource("13_613gb")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_613gb"]
+atlas = ExtResource("12_mii7t")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mii7t"]
+atlas = ExtResource("12_qhd1f")
+region = Rect2(0, 0, 180, 160)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7vdx"]
 atlas = ExtResource("10_vqksq")
 region = Rect2(0, 0, 180, 160)
@@ -63,6 +79,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8fcku")
+}],
+"loop": true,
+"name": &"bedroom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhd1f")
+}],
+"loop": true,
+"name": &"boss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_613gb")
+}],
+"loop": true,
+"name": &"garden",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mii7t")
+}],
+"loop": true,
+"name": &"kitchen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_v7vdx")
 }, {
 "duration": 1.0,
@@ -79,8 +127,6 @@ animations = [{
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_atqe7"]
 a = Vector2(0, -82)
 b = Vector2(0, 76)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l216t"]
 
 [sub_resource type="Theme" id="Theme_1ra8n"]
 default_font = ExtResource("15_t6j07")
@@ -120,7 +166,7 @@ motion_mirroring = Vector2(180, 0)
 [node name="BG" type="AnimatedSprite2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_5oejy")
-animation = &"bathroom"
+animation = &"boss"
 
 [node name="Switchbox" type="Area2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
 
@@ -128,12 +174,6 @@ animation = &"bathroom"
 modulate = Color(0.223529, 1, 1, 1)
 position = Vector2(92, 4)
 shape = SubResource("SegmentShape2D_atqe7")
-
-[node name="Battle" type="Area2D" parent="Organizer/Center"]
-position = Vector2(-25, -60)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/Center/Battle"]
-shape = SubResource("RectangleShape2D_l216t")
 
 [node name="CenterLeft" type="HBoxContainer" parent="Organizer"]
 z_index = 1
@@ -206,6 +246,11 @@ script = ExtResource("15_pdxaj")
 wait_time = 5.0
 autostart = true
 
+[connection signal="battle_ended" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_ended"]
+[connection signal="battle_ended" from="." to="Camera2D" method="_on_battle_arena_battle_ended"]
+[connection signal="battle_started" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_started"]
+[connection signal="battle_started" from="." to="Camera2D" method="_on_battle_arena_battle_started"]
+[connection signal="difficulty_increased" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_arena_difficulty_increased"]
 [connection signal="body_entered" from="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/Center/ParallaxBackground" method="_on_switchbox_body_entered"]
 [connection signal="pressed" from="Organizer/UI Bottom/Merge" to="Organizer/UI Bottom" method="_on_merge_pressed"]
 [connection signal="pressed" from="Organizer/UI Bottom/Feed" to="Organizer/UI Bottom" method="_on_feed_pressed"]
