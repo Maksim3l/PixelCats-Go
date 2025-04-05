@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://bauwrccu7j3oc"]
 
 [ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_8yy6v"]
-[ext_resource type="Texture2D" uid="uid://dnqxx5cy4g55w" path="res://characters/enemy/Machine.png" id="2_f3tq5"]
+[ext_resource type="Texture2D" uid="uid://4di1t4t71d2k" path="res://characters/enemy/human1.png" id="2_8yy6v"]
 
 [resource]
 script = ExtResource("1_8yy6v")
@@ -10,7 +10,7 @@ title = "The Can Openener"
 max_health = 200
 attack = 10
 defense = 5
-texture = ExtResource("2_f3tq5")
+texture = ExtResource("2_8yy6v")
 attack_cooldown = 1.5
 experience_reward = 10
 gold_reward = 5
