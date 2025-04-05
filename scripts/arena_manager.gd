@@ -13,7 +13,7 @@ enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 	ArenaLevel.LIVINGROOM: 3,
 	ArenaLevel.KITCHEN: 3,
 	ArenaLevel.GARDEN: 3,
-	ArenaLevel.BOSS: 1
+	ArenaLevel.BOSS: 2
 }
 @export var enemy_types: Array[EnemyStats] = []
 
@@ -27,6 +27,7 @@ var end_enemies: Array[int] = [5,6] #God
 # Current state
 var current_difficulty: int = ArenaLevel.BATHROOM
 var enemies_defeated: int = 0
+var enemies_spawned: int = 0
 var battle_active: bool = false
 var current_enemies: Array = []
 var arena_backgrounds: Dictionary = {}
@@ -40,38 +41,20 @@ signal difficulty_increased(new_difficulty)
 
 func _ready():
 	randomize()
-	setup_arena_backgrounds()
-	
-func setup_arena_backgrounds():
-	arena_backgrounds = {
-		ArenaLevel.BATHROOM: preload("res://enviroment/house/1_bathroom/bathroom_base_double.png"),
-		ArenaLevel.BEDROOM: preload("res://enviroment/house/3_living_room/room_window_double.png"),
-		ArenaLevel.LIVINGROOM: preload("res://enviroment/house/3_living_room/room_base_double.png"),
-		ArenaLevel.KITCHEN: preload("res://enviroment/house/1_bathroom/bathroom_towel_double.png"),
-		ArenaLevel.GARDEN: preload("res://enviroment/house/3_living_room/room_plant_double.png"),
-		ArenaLevel.BOSS: preload("res://enviroment/house/1_bathroom/bathroom_water_double.png"),
-	}
 
 func start_battle():
-	battle_active = true
-	enemies_defeated = 0
-	emit_signal("battle_started", current_difficulty)
-	change_arena_background(current_difficulty)
-	spawn_enemies_for_current_difficulty()
+	if enemies_spawned >= enemies_per_arena[current_difficulty]:
+		return null
+	else: 
+		battle_active = true
+		emit_signal("battle_started", current_difficulty)
+		spawn_enemies_for_current_difficulty()
 
 func spawn_enemies_for_current_difficulty():
-	for enemy in current_enemies:
-		if is_instance_valid(enemy):
-			enemy.queue_free()
-	current_enemies.clear()
-	
-	var num_enemies = enemies_per_arena[current_difficulty]
-	
-	for i in range(num_enemies):
-		var enemy = spawn_enemy_by_difficulty(current_difficulty)
-		if enemy:
-			current_enemies.append(enemy)
-			await get_tree().create_timer(0.5).timeout
+	if player_character.current_target != null and is_instance_valid(player_character.current_target) and not player_character.current_target.is_defeated:
+		return null
+	spawn_enemy_by_difficulty(current_difficulty)
+	enemies_spawned += 1
 
 func spawn_enemy_by_difficulty(difficulty: int) -> Node2D:
 	var enemy_instance = preload("res://screens/enemy.tscn").instantiate()
@@ -89,20 +72,28 @@ func spawn_enemy_by_difficulty(difficulty: int) -> Node2D:
 		ArenaLevel.GARDEN: 
 			pool_to_use = garden_enemies
 		ArenaLevel.BOSS: 
-			pool_to_use =end_enemies
+			pool_to_use = end_enemies
 		_: 
 			pool_to_use = living_enemies
 	
 	if pool_to_use.size() == 0:
 		pool_to_use = living_enemies
 	
-	var random_index = pool_to_use[randi() % pool_to_use.size()]
-	enemy_instance.enemy_data = enemy_types[random_index]
+	var rnd
+	if difficulty == ArenaLevel.BOSS:
+		if enemies_defeated == 0:
+			rnd = pool_to_use[0]
+		else:
+			rnd = pool_to_use[1]
+	else: 
+		rnd = pool_to_use[randi() % pool_to_use.size()]
+	
+	enemy_instance.enemy_data = enemy_types[rnd]
 	enemy_instance.target = player_character
 	player_character.current_target = enemy_instance
 	enemy_instance.battle = self
 	
-	get_tree().current_scene.add_child(enemy_instance)
+	enemy_spawn_point.add_child(enemy_instance)
 	return enemy_instance
 
 func enemy_defeated(exp, gold):
@@ -114,26 +105,12 @@ func enemy_defeated(exp, gold):
 	
 	enemies_defeated += 1
 	
+	player_character.current_target = null
+	battle_active = false
+	emit_signal("battle_ended", current_difficulty)
+
 	if enemies_defeated >= enemies_per_arena[current_difficulty]:
 		arena_complete()
-	else:
-		var active_enemies = 0
-		for enemy in current_enemies:
-			if is_instance_valid(enemy) and not enemy.is_defeated:
-				active_enemies += 1
-		
-		if active_enemies == 0:
-			spawn_next_wave()
-
-func spawn_next_wave():
-	var enemies_remaining = enemies_per_arena[current_difficulty] - enemies_defeated
-	var wave_size = min(3, enemies_remaining) 
-	
-	for i in range(wave_size):
-		var enemy = spawn_enemy_by_difficulty(current_difficulty)
-		if enemy:
-			current_enemies.append(enemy)
-			await get_tree().create_timer(0.5).timeout
 
 func arena_complete():
 	battle_active = false
@@ -149,6 +126,8 @@ func arena_complete():
 		timer.start()
 	else:
 		game_completed()
+	enemies_spawned = 0
+	enemies_defeated = 0
 
 func show_difficulty_transition():
 	print("Difficulty increased to: " + str(current_difficulty))
@@ -158,14 +137,6 @@ func game_completed():
 	timer.wait_time = 10.0
 	timer.start()
 
-func change_arena_background(difficulty: int):
-	if arena_backgrounds.has(difficulty):
-		for child in parallax_bg.get_children():
-			child.queue_free()
-			
-		var new_bg = arena_backgrounds[difficulty].instantiate()
-		parallax_bg.add_child(new_bg)
-
 func _on_timer_timeout():
-	if not battle_active:
+	if not battle_active && enemies_defeated < enemies_per_arena[current_difficulty]:
 		start_battle()

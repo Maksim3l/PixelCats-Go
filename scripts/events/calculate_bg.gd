@@ -34,6 +34,7 @@ func change_background_for_arena(arena_level: int):
 	var animation_name = "livingroom" 
 	if arena_animations.has(arena_level):
 		animation_name = arena_animations[arena_level]
+		print(animation_name)
 	
 	if bg.sprite_frames.has_animation(animation_name):
 		bg.stop()
@@ -48,22 +49,25 @@ func change_background_for_arena(arena_level: int):
 func change_frame_randomly(animation_name: String):
 	bg.stop()
 	var current_frame = bg.frame
-	var total_frames = bg.sprite_frames.get_frame_count('living_room')
+	var total_frames = bg.sprite_frames.get_frame_count(animation_name)
 	
-	var random_frame
-	if total_frames > 1:
-		random_frame = randi() % total_frames
-		while random_frame == current_frame:
-			random_frame = randi() % total_frames
+	if current_frame != 0 and randf() < 0.5:
+		bg.frame = 0
+		return
+	
+	var available_frames = []
+	for i in range(total_frames):
+		if i != current_frame:
+			available_frames.append(i)
+	
+	if available_frames.size() > 0:
+		bg.frame = available_frames[randi() % available_frames.size()]
 	else:
-		random_frame = 0
-	
-	bg.frame = random_frame
+		bg.frame = 0
 	
 func _on_switchbox_body_entered(body):
 	if not is_paused and body == cat:
-		if bg.animation:
-			change_frame_randomly(bg.animation)
+		change_frame_randomly(bg.animation)
 
 func _on_battle_ended(difficulty):
 	is_paused = false
@@ -71,7 +75,5 @@ func _on_battle_ended(difficulty):
 func _on_battle_arena_difficulty_increased(new_difficulty):
 	change_background_for_arena(new_difficulty)
 
-
 func _on_battle_started(difficulty):
 	is_paused = true
-	change_background_for_arena(difficulty)
