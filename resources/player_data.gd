@@ -10,6 +10,10 @@ extends Resource
 @export var experience: int = 0
 @export var level: int = 1
 
+@export var weapon: Equipment
+@export var armor: Equipment
+@export var accessory: Equipment
+
 
 # Optional: Add a position property to save player's position
 @export var position: Vector2 = Vector2.ZERO
