@@ -5,6 +5,8 @@ var save_file_path = "res://data/"
 var save_file_name = "PlayerSave.tres"
 var playerData = PlayerData.new()
 
+enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
+
 var max_health: int = playerData.max_health
 var current_health: int = playerData.current_health
 var attack: int = playerData.attack
@@ -13,6 +15,7 @@ var gold: int = playerData.gold
 var experience: int = playerData.experience
 var level: int = playerData.level
 
+@onready var arena_level: int = ArenaLevel.BATHROOM
 @onready var health_bar = $HealthBar
 @onready var attack_timer = $AttackTimer
 @onready var animation_player = $AnimationPlayer
@@ -113,7 +116,8 @@ func emit_damage_particles():
 		particles.emitting = true
 
 func die():
-	get_tree().change_scene_to_file("res://screens/title_screen.tscn")
+	get_tree().change_scene_to_file("res://screens/idle_screen.tscn")
+	
 
 func add_experience(amount):
 	experience += amount
@@ -169,8 +173,13 @@ func load_game():
 	# Apply the data to the player
 	data.apply_to_player(self)
 	
-	current_health = 100
+	current_health = 2
 	health_bar.value = current_health
 	
 	print("Game loaded successfully")
 	return true
+
+
+func _on_battle_arena_difficulty_increased(new_difficulty):
+	arena_level = new_difficulty
+	
