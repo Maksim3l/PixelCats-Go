@@ -54,6 +54,8 @@ func _ready():
 		print("Error loading save file")
 		return false
 	current_difficulty = data.arena_level
+	if player_character.has_method("walk"):
+		player_character.walk()
 
 func start_battle():
 	if enemies_spawned >= enemies_per_arena[current_difficulty]:
@@ -121,7 +123,9 @@ func enemy_defeated(exp, gold):
 	player_character.current_target = null
 	battle_active = false
 	emit_signal("battle_ended", current_difficulty)
-
+	if player_character.has_method("walk"):
+		player_character.walk()
+	
 	if enemies_defeated >= enemies_per_arena[current_difficulty]:
 		arena_complete()
 

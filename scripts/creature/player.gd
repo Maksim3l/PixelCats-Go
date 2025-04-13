@@ -55,11 +55,36 @@ func _process(delta):
 
 func attack_target():
 	can_attack = false
-	var damage = attack
-	if current_target and current_target.has_method("take_damage"):
-		current_target.take_damage(damage)
-	attack_timer.start()
+	
+	if sprite.is_connected("animation_finished", _on_attack_animation_finished):
+		sprite.disconnect("animation_finished", _on_attack_animation_finished)
+	
+	if sprite.is_connected("frame_changed", _on_frame_changed):
+		sprite.disconnect("frame_changed", _on_frame_changed)
+	
+	sprite.connect("animation_finished", _on_attack_animation_finished)
+	sprite.connect("frame_changed", _on_frame_changed)
+	sprite.play("attack")
 
+func _on_frame_changed():
+	if sprite.animation == "attack" and sprite.frame == 4:
+		var damage = attack
+		if current_target and current_target.has_method("take_damage"):
+			current_target.take_damage(damage)
+		attack_timer.start()
+
+		if sprite.is_connected("frame_changed", _on_frame_changed):
+			sprite.disconnect("frame_changed", _on_frame_changed)
+	
+func _on_attack_animation_finished():
+	if sprite.animation == "attack":
+		sprite.play("idle")
+		if sprite.is_connected("animation_finished", _on_attack_animation_finished):
+			sprite.disconnect("animation_finished", _on_attack_animation_finished)
+		
+		if sprite.is_connected("frame_changed", _on_frame_changed):
+			sprite.disconnect("frame_changed", _on_frame_changed)
+	
 func take_damage(amount):
 	var actual_damage = max(1, amount - defense)
 	current_health -= actual_damage
@@ -183,3 +208,10 @@ func load_game():
 func _on_battle_arena_difficulty_increased(new_difficulty):
 	arena_level = new_difficulty
 	
+
+func walk():
+	sprite.play("walk")
+	
+func nap():
+	sprite.play("nap")
+	#health_bar.visible = false
