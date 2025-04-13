@@ -5,6 +5,10 @@ class_name ArenaBackgroundController
 @export var arena_manager_path: NodePath
 @export var is_paused: bool = false
 
+var save_file_path = "res://data/"
+var save_file_name = "PlayerSave.tres"
+var playerData = PlayerData.new()
+
 var arena_animations = {
 	0: "bathroom",     
 	1: "bedroom",      
@@ -28,7 +32,15 @@ func _ready():
 		
 		change_background_for_arena(arena_manager.current_difficulty)
 	else:
-		change_frame_randomly("livingroom")
+		if not FileAccess.file_exists(save_file_path + save_file_name):
+			print("No save file found")
+			return false
+	
+		var data = ResourceLoader.load(save_file_path + save_file_name)
+		if not data:
+			print("Error loading save file")
+			return false
+		change_background_for_arena(data.arena_level)
 
 func change_background_for_arena(arena_level: int):
 	var animation_name = "livingroom" 

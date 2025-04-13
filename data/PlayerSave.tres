@@ -5,10 +5,12 @@
 [resource]
 script = ExtResource("1_pq5a0")
 max_health = 100
-current_health = 100
-attack = 62
-defense = 26
+current_health = -3
+attack = 10
+defense = 5
 gold = 0
 experience = 0
 level = 1
+arena_level = 0
+energy = 1
 position = Vector2(0, 0)

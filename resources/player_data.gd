@@ -1,6 +1,7 @@
 class_name PlayerData
 extends Resource
 
+enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 # Player stats
 @export var max_health: int = 100
 @export var current_health: int = 100
@@ -9,13 +10,16 @@ extends Resource
 @export var gold: int = 0
 @export var experience: int = 0
 @export var level: int = 1
+@export var arena_level: int = ArenaLevel.BATHROOM
+@export var energy: int = 3
 
 # Optional: Add a position property to save player's position
 @export var position: Vector2 = Vector2.ZERO
 
 func _init(p_max_health = 100, p_current_health = 100, p_attack = 10, 
 		   p_defense = 5, p_gold = 0, p_experience = 0, 
-		   p_level = 1, p_position = Vector2.ZERO):
+		   p_level = 1, p_arena_level = ArenaLevel.BATHROOM,
+		   p_energy = 3, p_position = Vector2.ZERO):
 	max_health = p_max_health
 	current_health = p_current_health
 	attack = p_attack
@@ -23,7 +27,9 @@ func _init(p_max_health = 100, p_current_health = 100, p_attack = 10,
 	gold = p_gold
 	experience = p_experience
 	level = p_level
+	arena_level = p_arena_level
 	position = p_position
+	energy = p_energy
 
 # Create a new player data object from a player node
 static func from_player(player: CharacterBody2D) -> PlayerData:
@@ -35,7 +41,12 @@ static func from_player(player: CharacterBody2D) -> PlayerData:
 	data.gold = player.gold
 	data.experience = player.experience
 	data.level = player.level
+	if "arena_level" in player:
+		data.arena_level = player.arena_level
+	else:
+		data.arena_level = ArenaLevel.BATHROOM
 	data.position = player.position
+	data.energy = player.energy
 	return data
 	
 # Apply saved data to a player node
@@ -47,6 +58,8 @@ func apply_to_player(player: CharacterBody2D) -> void:
 	player.gold = gold
 	player.experience = experience
 	player.level = level
+	player.arena_level = arena_level
+	player.energy = energy
 	player.position = position
 	
 	# Update health bar if it exists

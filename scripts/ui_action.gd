@@ -1,10 +1,10 @@
-extends HBoxContainer
+extends CanvasLayer
 
-@onready var mbtn = $Merge
-@onready var fbtn = $Feed
-@onready var ebtn = $Equipment
-@onready var abtn = $Accessories
-@onready var pbtn = $Pets
+@onready var mbtn = $UIBottom/Merge
+@onready var fbtn = $UIBottom/Feed
+@onready var ebtn = $UIBottom/Equipment
+@onready var abtn = $UIBottom/Accessories
+@onready var pbtn = $UIBottom/Pets
 
 var custom_font = preload("res://resources/pixel_sans.ttf")
 
@@ -36,3 +36,7 @@ func _on_accessories_pressed():
 
 func _on_pets_pressed():
 	pass # Replace with function body.
+
+
+func _on_battle_pressed():
+	get_tree().change_scene_to_file("res://screens/battle.tscn")

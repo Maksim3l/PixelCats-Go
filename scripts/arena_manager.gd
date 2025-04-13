@@ -2,6 +2,9 @@ extends Node2D
 
 class_name ArenaManager
 
+var save_file_path = "res://data/"
+var save_file_name = "PlayerSave.tres"
+var playerData = PlayerData.new()
 enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 
 @export var arena_config: Resource
@@ -41,6 +44,18 @@ signal difficulty_increased(new_difficulty)
 
 func _ready():
 	randomize()
+	if not FileAccess.file_exists(save_file_path + save_file_name):
+		print("No save file found")
+		return false
+	
+	# Load the resource
+	var data = ResourceLoader.load(save_file_path + save_file_name)
+	if not data:
+		print("Error loading save file")
+		return false
+	current_difficulty = data.arena_level
+	if player_character.has_method("walk"):
+		player_character.walk()
 
 func start_battle():
 	if enemies_spawned >= enemies_per_arena[current_difficulty]:
@@ -108,7 +123,9 @@ func enemy_defeated(exp, gold):
 	player_character.current_target = null
 	battle_active = false
 	emit_signal("battle_ended", current_difficulty)
-
+	if player_character.has_method("walk"):
+		player_character.walk()
+	
 	if enemies_defeated >= enemies_per_arena[current_difficulty]:
 		arena_complete()
 

@@ -5,14 +5,18 @@ var save_file_path = "res://data/"
 var save_file_name = "PlayerSave.tres"
 var playerData = PlayerData.new()
 
+enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
+
 var max_health: int = playerData.max_health
 var current_health: int = playerData.current_health
 var attack: int = playerData.attack
 var defense: int = playerData.defense
 var gold: int = playerData.gold
+var energy: int = playerData.energy
 var experience: int = playerData.experience
 var level: int = playerData.level
 
+@onready var arena_level: int = ArenaLevel.BATHROOM
 @onready var health_bar = $HealthBar
 @onready var attack_timer = $AttackTimer
 @onready var animation_player = $AnimationPlayer
@@ -52,11 +56,36 @@ func _process(delta):
 
 func attack_target():
 	can_attack = false
-	var damage = attack
-	if current_target and current_target.has_method("take_damage"):
-		current_target.take_damage(damage)
-	attack_timer.start()
+	
+	if sprite.is_connected("animation_finished", _on_attack_animation_finished):
+		sprite.disconnect("animation_finished", _on_attack_animation_finished)
+	
+	if sprite.is_connected("frame_changed", _on_frame_changed):
+		sprite.disconnect("frame_changed", _on_frame_changed)
+	
+	sprite.connect("animation_finished", _on_attack_animation_finished)
+	sprite.connect("frame_changed", _on_frame_changed)
+	sprite.play("attack")
 
+func _on_frame_changed():
+	if sprite.animation == "attack" and sprite.frame == 4:
+		var damage = attack
+		if current_target and current_target.has_method("take_damage"):
+			current_target.take_damage(damage)
+		attack_timer.start()
+
+		if sprite.is_connected("frame_changed", _on_frame_changed):
+			sprite.disconnect("frame_changed", _on_frame_changed)
+	
+func _on_attack_animation_finished():
+	if sprite.animation == "attack":
+		sprite.play("idle")
+		if sprite.is_connected("animation_finished", _on_attack_animation_finished):
+			sprite.disconnect("animation_finished", _on_attack_animation_finished)
+		
+		if sprite.is_connected("frame_changed", _on_frame_changed):
+			sprite.disconnect("frame_changed", _on_frame_changed)
+	
 func take_damage(amount):
 	var actual_damage = max(1, amount - defense)
 	current_health -= actual_damage
@@ -113,7 +142,10 @@ func emit_damage_particles():
 		particles.emitting = true
 
 func die():
-	get_tree().change_scene_to_file("res://screens/title_screen.tscn")
+	energy -= 1
+	save_game()
+	get_tree().change_scene_to_file("res://screens/idle_screen.tscn")
+	
 
 func add_experience(amount):
 	experience += amount
@@ -169,8 +201,20 @@ func load_game():
 	# Apply the data to the player
 	data.apply_to_player(self)
 	
-	current_health = 100
+	current_health = 2
 	health_bar.value = current_health
 	
 	print("Game loaded successfully")
 	return true
+
+
+func _on_battle_arena_difficulty_increased(new_difficulty):
+	arena_level = new_difficulty
+	
+
+func walk():
+	sprite.play("walk")
+	
+func nap():
+	sprite.play("nap")
+	#health_bar.visible = false
