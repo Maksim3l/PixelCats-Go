@@ -12,6 +12,7 @@ var current_health: int = playerData.current_health
 var attack: int = playerData.attack
 var defense: int = playerData.defense
 var gold: int = playerData.gold
+var energy: int = playerData.energy
 var experience: int = playerData.experience
 var level: int = playerData.level
 
@@ -141,6 +142,8 @@ func emit_damage_particles():
 		particles.emitting = true
 
 func die():
+	energy -= 1
+	save_game()
 	get_tree().change_scene_to_file("res://screens/idle_screen.tscn")
 	
 

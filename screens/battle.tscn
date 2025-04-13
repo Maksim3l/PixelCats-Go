@@ -207,6 +207,7 @@ enemy_spawn_point = NodePath("Organizer/CenterRight/spawn_enemy")
 enemy_types = Array[ExtResource("2_gfgft")]([ExtResource("4_1ra8n"), ExtResource("5_tlpw0"), ExtResource("3_t6j07"), ExtResource("6_8fcku"), ExtResource("7_qhd1f"), ExtResource("8_613gb"), ExtResource("9_aqg4e")])
 
 [node name="Organizer" type="CanvasLayer" parent="."]
+script = ExtResource("19_8fcku")
 
 [node name="Center" type="HBoxContainer" parent="Organizer"]
 anchors_preset = 8
@@ -270,7 +271,7 @@ size_flags_vertical = 4
 
 [node name="spawn_enemy" type="Node2D" parent="Organizer/CenterRight"]
 
-[node name="UI Bottom" type="HBoxContainer" parent="Organizer"]
+[node name="UIBottom" type="HBoxContainer" parent="Organizer"]
 z_index = 2
 anchors_preset = 7
 anchor_left = 0.5
@@ -285,25 +286,24 @@ grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = SubResource("Theme_1ra8n")
-script = ExtResource("19_8fcku")
 
-[node name="Merge" type="Button" parent="Organizer/UI Bottom"]
+[node name="Merge" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Merge"
 
-[node name="Feed" type="Button" parent="Organizer/UI Bottom"]
+[node name="Feed" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Feed"
 
-[node name="Equipment" type="Button" parent="Organizer/UI Bottom"]
+[node name="Equipment" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Equip"
 
-[node name="Accessories" type="Button" parent="Organizer/UI Bottom"]
+[node name="Accessories" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Acces."
 
-[node name="Pets" type="Button" parent="Organizer/UI Bottom"]
+[node name="Pets" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Pets"
 
@@ -321,9 +321,14 @@ autostart = true
 [connection signal="difficulty_increased" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_arena_difficulty_increased"]
 [connection signal="difficulty_increased" from="." to="Organizer/CenterLeft/player" method="_on_battle_arena_difficulty_increased"]
 [connection signal="body_entered" from="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/Center/ParallaxBackground" method="_on_switchbox_body_entered"]
-[connection signal="pressed" from="Organizer/UI Bottom/Merge" to="Organizer/UI Bottom" method="_on_merge_pressed"]
-[connection signal="pressed" from="Organizer/UI Bottom/Feed" to="Organizer/UI Bottom" method="_on_feed_pressed"]
-[connection signal="pressed" from="Organizer/UI Bottom/Equipment" to="Organizer/UI Bottom" method="_on_equipment_pressed"]
-[connection signal="pressed" from="Organizer/UI Bottom/Accessories" to="Organizer/UI Bottom" method="_on_accessories_pressed"]
-[connection signal="pressed" from="Organizer/UI Bottom/Pets" to="Organizer/UI Bottom" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer/UIBottom" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer/UIBottom" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer/UIBottom" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer/UIBottom" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer/UIBottom" method="_on_pets_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

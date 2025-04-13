@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bmyvk5ge5jq6k"]
+[gd_scene load_steps=49 format=3 uid="uid://bmyvk5ge5jq6k"]
 
 [ext_resource type="Script" uid="uid://bkliwsde236od" path="res://screens/cat_manage.gd" id="1_2qr8l"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
@@ -189,17 +189,26 @@ animations = [{
 a = Vector2(0, -82)
 b = Vector2(0, 76)
 
+[sub_resource type="Theme" id="Theme_o878r"]
+default_font = ExtResource("20_g8hcl")
+default_font_size = 4
+
+[sub_resource type="Theme" id="Theme_vtkis"]
+default_font = ExtResource("20_g8hcl")
+default_font_size = 6
+
 [sub_resource type="Theme" id="Theme_uugju"]
 default_font = ExtResource("20_g8hcl")
 default_font_size = 2
 
 [node name="IdleScreen" type="Node2D" node_paths=PackedStringArray("player_character")]
 script = ExtResource("1_2qr8l")
-player_character = NodePath("Organizer/Center/ParallaxBackground/ParallaxLayer3/player")
+player_character = NodePath("Organizer/CenterBG/ParallaxBackground/ParallaxLayer3/player")
 
 [node name="Organizer" type="CanvasLayer" parent="."]
+script = ExtResource("21_54kng")
 
-[node name="Center" type="HBoxContainer" parent="Organizer"]
+[node name="CenterBG" type="HBoxContainer" parent="Organizer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -215,56 +224,86 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Organizer/Center"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Organizer/CenterBG"]
 script = ExtResource("1_36nmi")
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Organizer/Center/ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
 motion_mirroring = Vector2(180, 0)
 
-[node name="BG" type="AnimatedSprite2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
+[node name="BG" type="AnimatedSprite2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cq4eh")
 animation = &"boss"
 
-[node name="Switchbox" type="Area2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
+[node name="Switchbox" type="Area2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox"]
 modulate = Color(0.223529, 1, 1, 1)
 position = Vector2(92, 4)
 shape = SubResource("SegmentShape2D_oeyb8")
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Organizer/Center/ParallaxBackground"]
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
 position = Vector2(90, 80)
 
-[node name="Sprite2D" type="Sprite2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer2"]
+[node name="Sprite2D" type="Sprite2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer2"]
 position = Vector2(0, -68)
 texture = ExtResource("20_24gff")
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Organizer/Center/ParallaxBackground"]
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
 position = Vector2(90, 80)
 
-[node name="player" parent="Organizer/Center/ParallaxBackground/ParallaxLayer3" instance=ExtResource("22_o878r")]
+[node name="player" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer3" instance=ExtResource("22_o878r")]
 position = Vector2(-28, -80)
 
-[node name="UI Top" type="HBoxContainer" parent="Organizer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="UICenter" type="HBoxContainer" parent="Organizer"]
+offset_left = 69.0
+offset_top = 83.0
+offset_right = 90.0
+offset_bottom = 100.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = SubResource("Theme_o878r")
+alignment = 2
 
-[node name="Gold" type="VBoxContainer" parent="Organizer/UI Top"]
+[node name="Battle" type="Button" parent="Organizer/UICenter"]
+layout_mode = 2
+text = "Battle
+"
+
+[node name="UITop" type="HBoxContainer" parent="Organizer"]
+offset_right = 90.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+theme = SubResource("Theme_vtkis")
+alignment = 1
+
+[node name="Gold" type="VBoxContainer" parent="Organizer/UITop"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="txt" type="Label" parent="Organizer/UI Top/Gold"]
+[node name="txt" type="Label" parent="Organizer/UITop/Gold"]
 layout_mode = 2
-text = "Gold
-"
+text = "Gold"
 
-[node name="value" type="Label" parent="Organizer/UI Top/Gold"]
+[node name="value" type="Label" parent="Organizer/UITop/Gold"]
 layout_mode = 2
 
-[node name="UI Bottom" type="HBoxContainer" parent="Organizer"]
+[node name="Energy" type="VBoxContainer" parent="Organizer/UITop"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="txt" type="Label" parent="Organizer/UITop/Energy"]
+layout_mode = 2
+text = "Energy"
+
+[node name="value" type="Label" parent="Organizer/UITop/Energy"]
+layout_mode = 2
+
+[node name="UIBottom" type="HBoxContainer" parent="Organizer"]
 z_index = 2
 anchors_preset = 7
 anchor_left = 0.5
@@ -279,25 +318,24 @@ grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = SubResource("Theme_uugju")
-script = ExtResource("21_54kng")
 
-[node name="Merge" type="Button" parent="Organizer/UI Bottom"]
+[node name="Merge" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Merge"
 
-[node name="Feed" type="Button" parent="Organizer/UI Bottom"]
+[node name="Feed" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Feed"
 
-[node name="Equipment" type="Button" parent="Organizer/UI Bottom"]
+[node name="Equipment" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Equip"
 
-[node name="Accessories" type="Button" parent="Organizer/UI Bottom"]
+[node name="Accessories" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Acces."
 
-[node name="Pets" type="Button" parent="Organizer/UI Bottom"]
+[node name="Pets" type="Button" parent="Organizer/UIBottom"]
 layout_mode = 2
 text = "Pets"
 
@@ -307,9 +345,15 @@ limit_right = 300
 limit_bottom = 600
 script = ExtResource("22_36nmi")
 
-[connection signal="body_entered" from="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/Center/ParallaxBackground" method="_on_switchbox_body_entered"]
-[connection signal="pressed" from="Organizer/UI Bottom/Merge" to="Organizer/UI Bottom" method="_on_merge_pressed"]
-[connection signal="pressed" from="Organizer/UI Bottom/Feed" to="Organizer/UI Bottom" method="_on_feed_pressed"]
-[connection signal="pressed" from="Organizer/UI Bottom/Equipment" to="Organizer/UI Bottom" method="_on_equipment_pressed"]
-[connection signal="pressed" from="Organizer/UI Bottom/Accessories" to="Organizer/UI Bottom" method="_on_accessories_pressed"]
-[connection signal="pressed" from="Organizer/UI Bottom/Pets" to="Organizer/UI Bottom" method="_on_pets_pressed"]
+[connection signal="body_entered" from="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/CenterBG/ParallaxBackground" method="_on_switchbox_body_entered"]
+[connection signal="pressed" from="Organizer/UICenter/Battle" to="Organizer" method="_on_battle_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer/UIBottom" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer/UIBottom" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer/UIBottom" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer/UIBottom" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer/UIBottom" method="_on_pets_pressed"]
