@@ -3,18 +3,21 @@ extends CharacterBody2D
 
 var save_file_path = "res://data/"
 var save_file_name = "PlayerSave.tres"
-var playerData = PlayerData.new()
+var playerData = null
 
 enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 
-var max_health: int = playerData.max_health
-var current_health: int = playerData.current_health
-var attack: int = playerData.attack
-var defense: int = playerData.defense
-var gold: int = playerData.gold
-var energy: int = playerData.energy
-var experience: int = playerData.experience
-var level: int = playerData.level
+var max_health: int = 100
+var current_health: int = 100
+var attack: int = 10
+var defense: int = 5
+var gold: int = 0
+var energy: int = 3
+var experience: int = 0
+var level: int = 1
+
+var cats: Array = []
+var active_cat_id: String = ""
 
 @onready var arena_level: int = ArenaLevel.BATHROOM
 @onready var health_bar = $HealthBar
@@ -30,6 +33,9 @@ var stagger_tween = null
 var is_staggering = false
 
 func _ready():
+	
+	playerData = PlayerData.new()
+	
 	health_bar.value = current_health
 	health_bar.max_value = max_health
 	
@@ -49,10 +55,106 @@ func _input(event):
 		save_game()
 	elif event.is_action_pressed("load_game"):
 		load_game()
+	elif event.is_action_pressed("switch_cat"):
+		switch_to_next_cat()
 
 func _process(delta):
 	if current_target and can_attack:
 		attack_target()
+
+func get_active_cat() -> PlayerData:
+	for cat in cats:
+		if cat.id == active_cat_id:
+			return cat
+		
+		if cats.size() > 0:
+			active_cat_id = cats[0].id
+			cats[0].is_active = true
+			return cats[0]
+	
+	return null
+
+func set_active_cat(cat_id: String):
+	# First verify the cat exists
+	var cat_exists = false
+	for cat in cats:
+		# Deactivate all cats first
+		cat.is_active = false
+		if cat.id == cat_id:
+			cat_exists = true
+	
+	if cat_exists:
+		# Set the new active cat
+		active_cat_id = cat_id
+		for cat in cats:
+			if cat.id == cat_id:
+				cat.is_active = true
+				
+				# Update player stats from the cat
+				max_health = cat.max_health
+				current_health = cat.current_health
+				attack = cat.attack
+				defense = cat.defense
+				experience = cat.experience
+				level = cat.level
+				
+				# Update health bar
+				health_bar.value = current_health
+				health_bar.max_value = max_health
+				
+				return true
+	
+	return false
+			
+
+func switch_to_next_cat():
+	if cats.size() <= 1:
+		return  # No other cats to switch to
+
+	# Find the index of the current active cat
+	var current_index = -1
+	for i in range(cats.size()):
+		if cats[i].id == active_cat_id:
+			current_index = i
+			break
+	
+	if current_index == -1:
+		return  # Couldn't find active cat
+	
+	# Calculate the next index 
+	var next_index = (current_index + 1) % cats.size()
+	
+	# Switch to the next cat
+	set_active_cat(cats[next_index].id)
+	
+
+# Create a new cat and add it to the player's collection
+func create_cat(name: String, cat_type: String = "Basic", 
+				custom_stats: Dictionary = {}) -> PlayerData:
+	var cat = PlayerData.new()
+	cat.name = name
+	cat.cat_type = cat_type
+	
+	# apply any custom stats
+	for stat in custom_stats:
+		if cat.get(stat) != null:  # Only set if the property exists
+			cat.set(stat, custom_stats[stat])
+	
+	# If this is our first cat, make it active
+	if cats.size() == 0:
+		cat.is_active = true
+		active_cat_id = cat.id
+		
+		# Update player stats from the cat
+		max_health = cat.max_health
+		current_health = cat.current_health
+		attack = cat.attack
+		defense = cat.defense
+		experience = cat.experience
+		level = cat.level
+	
+	cats.append(cat)
+	return cat
 
 func attack_target():
 	can_attack = false
@@ -173,6 +275,11 @@ func save_game():
 	# Create PlayerData from current player state
 	var data = PlayerData.from_player(self)
 	
+	print("SAVING GAME:")
+	print("Player max_health: ", max_health)
+	print("Active cat max_health: ", get_active_cat().max_health if get_active_cat() else "No active cat")
+	print("Number of cats: ", cats.size())
+	
 	# Create directory if it doesn't exist (this works only in editor)
 	var dir = DirAccess.open("res://")
 	if not dir.dir_exists("data"):
@@ -200,6 +307,12 @@ func load_game():
 	
 	# Apply the data to the player
 	data.apply_to_player(self)
+	
+	print("AFTER LOADING:")
+	print("Player max_health: ", max_health)
+	print("Active cat max_health: ", get_active_cat().max_health if get_active_cat() else "No active cat")
+	print("Number of cats: ", cats.size())
+	print("Active cat id: ", active_cat_id)
 	
 	current_health = 2
 	health_bar.value = current_health

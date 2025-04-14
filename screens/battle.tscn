@@ -204,6 +204,7 @@ default_font_size = 2
 script = ExtResource("1_of853")
 player_character = NodePath("Organizer/CenterLeft/player")
 enemy_spawn_point = NodePath("Organizer/CenterRight/spawn_enemy")
+enemies_per_arena = null
 enemy_types = Array[ExtResource("2_gfgft")]([ExtResource("4_1ra8n"), ExtResource("5_tlpw0"), ExtResource("3_t6j07"), ExtResource("6_8fcku"), ExtResource("7_qhd1f"), ExtResource("8_613gb"), ExtResource("9_aqg4e")])
 
 [node name="Organizer" type="CanvasLayer" parent="."]

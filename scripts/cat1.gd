@@ -2,12 +2,10 @@ extends CharacterBody2D
 const TORNADO = preload("res://screens/tornado.tscn")
 @onready var merge: Node2D = $".."
 signal collision_detected
-
 var speed = 100.0
 var gravity = 980.0
 var direction = Vector2(1, 0)  
 var is_stopped = false 
-
 # Player stats
 var playerData = null
 var max_health: int = 0
@@ -55,14 +53,27 @@ func load_player_stats():
 		level = 1
 		return
 	
-	# Copy the stats from player data
-	max_health = playerData.max_health
-	current_health = playerData.current_health
-	attack = playerData.attack
-	defense = playerData.defense
+	# Get the active cat from player data
+	var active_cat = playerData.get_active_cat()
+	if active_cat:
+		# Copy the stats from the active cat
+		max_health = active_cat.max_health
+		current_health = active_cat.current_health
+		attack = active_cat.attack
+		defense = active_cat.defense
+		experience = active_cat.experience
+		level = active_cat.level
+	else:
+		print("No active cat found, using default stats")
+		max_health = 100
+		current_health = 100
+		attack = 10
+		defense = 5
+		experience = 0
+		level = 1
+	
+	# Load gold directly from player data
 	gold = playerData.gold
-	experience = playerData.experience
-	level = playerData.level
 	
 	print("Player stats loaded successfully")
 
@@ -79,10 +90,17 @@ func boost_stats():
 
 func save_boosted_stats():
 	if playerData:
-		playerData.max_health = max_health
-		playerData.current_health = current_health
-		playerData.attack = attack
-		playerData.defense = defense
+		# Get the active cat
+		var active_cat = playerData.get_active_cat()
+		if active_cat:
+			# Update the active cat's stats
+			active_cat.max_health = max_health
+			active_cat.current_health = current_health
+			active_cat.attack = attack
+			active_cat.defense = defense
+		else:
+			print("No active cat found, cannot save boosted stats")
+			return
 		
 		var save_file_path = "res://data/"
 		var save_file_name = "PlayerSave.tres"
