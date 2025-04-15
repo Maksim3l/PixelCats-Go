@@ -3,7 +3,7 @@ extends Resource
 
 enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 
-# Player meta stats (these apply to the player, not individual cats)
+# Player meta stats (these apply to the player)
 @export var gold: int = 0
 @export var energy: int = 3
 @export var arena_level: int = ArenaLevel.BATHROOM
@@ -17,7 +17,7 @@ func _init(p_gold = 0, p_energy = 3, p_arena_level = ArenaLevel.BATHROOM,
 	energy = p_energy
 	arena_level = p_arena_level
 	position = p_position
-	cats = []  # Initialize with empty array
+	cats = []  # empty
 
 # Get the currently active cat
 func get_active_cat() -> CatCharacter:
@@ -46,19 +46,18 @@ static func from_player(player: CharacterBody2D) -> PlayerData:
 		data.arena_level = ArenaLevel.BATHROOM
 	data.position = player.position
 	
-	# Copy cats
-	if "cats" in player and player.cats != null:
+	# Copy cats ehheheh
+	if "cats" in player and player.cats != null and player.cats.size() > 0:
 		for cat_data in player.cats:
 			data.cats.append(cat_data)
 		
 		# Set the active cat if defined in player
 		if "active_cat_id" in player and player.active_cat_id != "":
 			data.active_cat_id = player.active_cat_id
-			# Make sure is_active flags are set correctly
 			for cat in data.cats:
 				cat.is_active = (cat.id == data.active_cat_id)
 	else:
-		# If player doesn't have cats yet, create a default one from player stats
+		# If player doesn't have cats yet, create a default one
 		var cat = CatCharacter.new()
 		cat.max_health = player.max_health
 		cat.current_health = player.current_health
@@ -71,17 +70,27 @@ static func from_player(player: CharacterBody2D) -> PlayerData:
 		data.cats.append(cat)
 		data.active_cat_id = cat.id
 	
+	print("FROM_PLAYER DEBUG:")
+	print("Player max_health: ", player.max_health)
+	print("Player current_health: ", player.current_health)
+	print("Player defense: ", player.defense)
+	
+	var active_cat = data.get_active_cat()
+	if active_cat:
+		print("Data active cat max_health: ", active_cat.max_health)
+		print("Data active cat current_health: ", active_cat.current_health)
+		print("Data active cat defense: ", active_cat.defense)
+	
 	return data
 	
 # Apply saved data to a player node
 func apply_to_player(player: CharacterBody2D) -> void:
-	# Set basic player properties
 	player.gold = gold
 	player.energy = energy
 	player.arena_level = arena_level
 	player.position = position
 	
-	# Initialize the cats array if it doesn't exist yet
+	# Initialize the cats array 
 	if not "cats" in player or player.cats == null:
 		player.cats = []
 	else:
@@ -105,7 +114,6 @@ func apply_to_player(player: CharacterBody2D) -> void:
 		player.experience = active_cat.experience
 		player.level = active_cat.level
 	
-	# Update health bar if it exists
 	if player.has_node("HealthBar"):
 		player.health_bar.value = player.current_health
 		player.health_bar.max_value = player.max_health

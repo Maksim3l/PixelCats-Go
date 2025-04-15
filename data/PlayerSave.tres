@@ -1,12 +1,29 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=4 format=3]
 
+[ext_resource type="Script" path="res://scripts/CatCharacter.gd" id="1_ppier"]
 [ext_resource type="Script" path="res://resources/player_data.gd" id="1_pq5a0"]
+
+[sub_resource type="Resource" id="Resource_ppier"]
+script = ExtResource("1_ppier")
+id = "1483140074"
+name = "Default Cat"
+cat_type = "Basic"
+is_active = true
+max_health = 100
+current_health = 2
+attack = 14
+defense = 7
+speed = 100
+experience = 0
+level = 1
+color = Color(1, 1, 1, 1)
+sprite_frame = 0
 
 [resource]
 script = ExtResource("1_pq5a0")
 gold = 0
-energy = 0
+energy = 2
 arena_level = 0
-position = Vector2(0, 0)
-cats = []
-active_cat_id = ""
+position = Vector2(-32, -80)
+cats = [SubResource("Resource_ppier")]
+active_cat_id = "1483140074"

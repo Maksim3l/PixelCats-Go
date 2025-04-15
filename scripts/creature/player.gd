@@ -47,30 +47,54 @@ func _ready():
 	
 	if particles:
 		particles.emitting = false
+		
+	if cats.size() == 0:
+		var default_cat = create_cat("Default Cat")
+		print("Created default cat with ID: ", default_cat.id)
 	
 	load_game()
+	
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		# Game is being closed
+		print("Game is closing, auto-saving...")
+		save_game()
+	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		# Mobile back button pressed
+		print("Back button pressed, auto-saving...")
+		save_game()
+	elif what == NOTIFICATION_PREDELETE:
+		# Node is being removed from the scene tree
+		print("Player node is being deleted, auto-saving...")
+		save_game()
+
+#  you can use the _exit_tree method
+func _exit_tree():
+	print("Player exiting scene tree, auto-saving...")
+	save_game()
 	
 func _input(event):
 	if event.is_action_pressed("save_game"):
 		save_game()
 	elif event.is_action_pressed("load_game"):
 		load_game()
-	elif event.is_action_pressed("switch_cat"):
+	elif event.is_action_pressed("switch_to_next_cat"):
 		switch_to_next_cat()
 
 func _process(delta):
 	if current_target and can_attack:
 		attack_target()
 
-func get_active_cat() -> PlayerData:
+func get_active_cat() -> CatCharacter:  
 	for cat in cats:
 		if cat.id == active_cat_id:
 			return cat
-		
-		if cats.size() > 0:
-			active_cat_id = cats[0].id
-			cats[0].is_active = true
-			return cats[0]
+	
+	# If we have cats but no active cat is set, set the first one as active
+	if cats.size() > 0:
+		active_cat_id = cats[0].id
+		cats[0].is_active = true
+		return cats[0]
 	
 	return null
 
@@ -90,7 +114,7 @@ func set_active_cat(cat_id: String):
 			if cat.id == cat_id:
 				cat.is_active = true
 				
-				# Update player stats from the cat
+				# Update player stats cat
 				max_health = cat.max_health
 				current_health = cat.current_health
 				attack = cat.attack
@@ -109,7 +133,7 @@ func set_active_cat(cat_id: String):
 
 func switch_to_next_cat():
 	if cats.size() <= 1:
-		return  # No other cats to switch to
+		return  
 
 	# Find the index of the current active cat
 	var current_index = -1
@@ -119,25 +143,33 @@ func switch_to_next_cat():
 			break
 	
 	if current_index == -1:
-		return  # Couldn't find active cat
+		return  # No active cat
 	
-	# Calculate the next index 
 	var next_index = (current_index + 1) % cats.size()
 	
 	# Switch to the next cat
 	set_active_cat(cats[next_index].id)
 	
+func heal(amount):
+	current_health = min(current_health + amount, max_health)
+	health_bar.value = current_health
+	
+	# Update the active cat's health
+	var active_cat = get_active_cat()
+	if active_cat:
+		active_cat.current_health = current_health
+	
 
 # Create a new cat and add it to the player's collection
 func create_cat(name: String, cat_type: String = "Basic", 
-				custom_stats: Dictionary = {}) -> PlayerData:
-	var cat = PlayerData.new()
+				custom_stats: Dictionary = {}) -> CatCharacter: 
+	var cat = CatCharacter.new()  
 	cat.name = name
 	cat.cat_type = cat_type
 	
 	# apply any custom stats
 	for stat in custom_stats:
-		if cat.get(stat) != null:  # Only set if the property exists
+		if cat.get(stat) != null: 
 			cat.set(stat, custom_stats[stat])
 	
 	# If this is our first cat, make it active
@@ -192,6 +224,11 @@ func take_damage(amount):
 	var actual_damage = max(1, amount - defense)
 	current_health -= actual_damage
 	health_bar.value = current_health
+	
+	# Update the active cat's health
+	var active_cat = get_active_cat()
+	if active_cat:
+		active_cat.current_health = current_health
 	
 	stagger_effect()
 	
@@ -272,20 +309,31 @@ func _on_attack_timer_timeout():
 	can_attack = true
 	
 func save_game():
+	var active_cat = get_active_cat()
+	if active_cat:
+		# Update the active cat 
+		active_cat.max_health = max_health
+		active_cat.current_health = current_health
+		active_cat.attack = attack
+		active_cat.defense = defense
+		active_cat.experience = experience
+		active_cat.level = level
+	
 	# Create PlayerData from current player state
 	var data = PlayerData.from_player(self)
-	
 	print("SAVING GAME:")
 	print("Player max_health: ", max_health)
-	print("Active cat max_health: ", get_active_cat().max_health if get_active_cat() else "No active cat")
+	print("Player current_health: ", current_health)
+	print("Player defense: ", defense)
+	print("Active cat max_health: ", active_cat.max_health if active_cat else "No active cat")
+	print("Active cat current_health: ", active_cat.current_health if active_cat else "No active cat")
+	print("Active cat defense: ", active_cat.defense if active_cat else "No active cat")
 	print("Number of cats: ", cats.size())
 	
-	# Create directory if it doesn't exist (this works only in editor)
 	var dir = DirAccess.open("res://")
 	if not dir.dir_exists("data"):
 		dir.make_dir("data")
-	
-	# Save the resource to disk
+		
 	var error = ResourceSaver.save(data, save_file_path + save_file_name)
 	if error != OK:
 		print("Error saving game: ", error)
@@ -310,7 +358,13 @@ func load_game():
 	
 	print("AFTER LOADING:")
 	print("Player max_health: ", max_health)
-	print("Active cat max_health: ", get_active_cat().max_health if get_active_cat() else "No active cat")
+	print("Player current_health: ", current_health)
+	print("Player defense: ", defense)
+	
+	var active_cat = get_active_cat()
+	print("Active cat max_health: ", active_cat.max_health if active_cat else "No active cat")
+	print("Active cat current_health: ", active_cat.current_health if active_cat else "No active cat")
+	print("Active cat defense: ", active_cat.defense if active_cat else "No active cat")
 	print("Number of cats: ", cats.size())
 	print("Active cat id: ", active_cat_id)
 	
