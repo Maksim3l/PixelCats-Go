@@ -201,7 +201,7 @@ func load_game():
 	# Apply the data to the player
 	data.apply_to_player(self)
 	
-	current_health = 2
+	current_health = 100
 	health_bar.value = current_health
 	
 	print("Game loaded successfully")
