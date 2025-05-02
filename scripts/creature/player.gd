@@ -2,19 +2,23 @@
 extends CharacterBody2D
 
 var save_file_path = "res://data/"
-var save_file_name = "PlayerSave.tres"
-var playerData = PlayerData.new()
+var save_file_name = "CatManager.tres"
+var cat_manager = CatManager.new()
 
 enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 
-var max_health: int = playerData.max_health
-var current_health: int = playerData.current_health
-var attack: int = playerData.attack
-var defense: int = playerData.defense
-var gold: int = playerData.gold
-var energy: int = playerData.energy
-var experience: int = playerData.experience
-var level: int = playerData.level
+# Cat identity properties
+var cat_name: String = "Whiskers"
+var cat_sprite: String = "res://characters/main/main.png"
+
+var max_health: int = 100
+var current_health: int = 100
+var attack: int = 10
+var defense: int = 5
+var gold: int = 0
+var energy: int = 3
+var experience: int = 0
+var level: int = 1
 
 @onready var arena_level: int = ArenaLevel.BATHROOM
 @onready var health_bar = $HealthBar
@@ -41,14 +45,36 @@ func _ready():
 	
 	if particles:
 		particles.emitting = false
+		
+	var load_success = load_game()
 	
-	load_game()
+	# If loading failed, create a new cat and save it
+	if !load_success:
+		print("Creating new cat and saving...")
+		cat_manager = CatManager.new()
+		var new_cat = PlayerData.new()
+		cat_manager.cats = [new_cat]
+		cat_manager.active_cat_index = 0
+		save_game()
+	
+	
 	
 func _input(event):
 	if event.is_action_pressed("save_game"):
 		save_game()
 	elif event.is_action_pressed("load_game"):
 		load_game()
+	elif event.is_action_pressed("switch_cat"):
+		switch_to_next_cat()
+
+
+func switch_to_next_cat():
+	var next_index = (cat_manager.active_cat_index + 1) % cat_manager.cats.size()
+	cat_manager.switch_cat(next_index)
+	
+	var cat_data = cat_manager.get_active_cat()
+	cat_data.apply_to_player(self)
+	
 
 func _process(delta):
 	if current_target and can_attack:
@@ -170,41 +196,29 @@ func _on_attack_timer_timeout():
 	can_attack = true
 	
 func save_game():
-	# Create PlayerData from current player state
-	var data = PlayerData.from_player(self)
+	# update active cat data in the manager
+	var active_cat_data = PlayerData.from_player(self)
+	cat_manager.cats[cat_manager.active_cat_index] = active_cat_data
 	
-	# Create directory if it doesn't exist (this works only in editor)
-	var dir = DirAccess.open("res://")
-	if not dir.dir_exists("data"):
-		dir.make_dir("data")
-	
-	# Save the resource to disk
-	var error = ResourceSaver.save(data, save_file_path + save_file_name)
-	if error != OK:
-		print("Error saving game: ", error)
-		return false
-	
-	print("Game saved successfully to: ", save_file_path + save_file_name)
-	return true
+	# save cat manager
+	var save_dir = "res://data/"
+	var save_filename = "CatManager.tres"
+	var success = cat_manager.save_cats(save_file_path + save_file_name)
+	if success:
+		print("Game saved successfully with", cat_manager.cats.size(), "cats")
+	return success
 
 func load_game():
-	if not FileAccess.file_exists(save_file_path + save_file_name):
-		print("No save file found")
-		return false
+	cat_manager = CatManager.load_cats(save_file_path + save_file_name)
 	
-	# Load the resource
-	var data = ResourceLoader.load(save_file_path + save_file_name)
-	if not data:
-		print("Error loading save file")
-		return false
+	var active_cat_data = cat_manager.get_active_cat()
+	active_cat_data.apply_to_player(self)
 	
-	# Apply the data to the player
-	data.apply_to_player(self)
-	
+	# ensure good health
 	current_health = 100
 	health_bar.value = current_health
-	
-	print("Game loaded successfully")
+
+	print("Game loaded successfully with", cat_manager.cats.size(), "cats")
 	return true
 
 
@@ -218,3 +232,12 @@ func walk():
 func nap():
 	sprite.play("nap")
 	#health_bar.visible = false
+	
+# add a new cat
+func add_new_cat(cat_name: String, cat_sprite: String) -> void:
+	var new_cat = PlayerData.new(
+		cat_name,
+		cat_sprite
+	)
+	cat_manager.cats.append(new_cat)
+	print("Added new cat", cat_name)

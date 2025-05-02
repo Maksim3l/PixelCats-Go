@@ -6,8 +6,8 @@ class_name ArenaBackgroundController
 @export var is_paused: bool = false
 
 var save_file_path = "res://data/"
-var save_file_name = "PlayerSave.tres"
-var playerData = PlayerData.new()
+var save_file_name = "CatManager.tres"
+var cat_manager = CatManager.new()
 
 var arena_animations = {
 	0: "bathroom",     

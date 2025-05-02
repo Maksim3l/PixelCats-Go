@@ -3,8 +3,8 @@ extends Node2D
 class_name ArenaManager
 
 var save_file_path = "res://data/"
-var save_file_name = "PlayerSave.tres"
-var playerData = PlayerData.new()
+var save_file_name = "CatManager.tres"
+var cat_manager = CatManager.new()
 enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 
 @export var arena_config: Resource
@@ -44,18 +44,39 @@ signal difficulty_increased(new_difficulty)
 
 func _ready():
 	randomize()
-	if not FileAccess.file_exists(save_file_path + save_file_name):
-		print("No save file found")
-		return false
 	
-	# Load the resource
-	var data = ResourceLoader.load(save_file_path + save_file_name)
-	if not data:
-		print("Error loading save file")
-		return false
-	current_difficulty = data.arena_level
+	load_game()
+	
+	#Get active cats arena level
+	var active_cat = cat_manager.get_active_cat()
+	if active_cat:
+		current_difficulty = active_cat.arena_level
+		
 	if player_character.has_method("walk"):
 		player_character.walk()
+		
+func load_game():
+	if not FileAccess.file_exists(save_file_path + save_file_name):
+		print("No cat manager save file found")
+		cat_manager = CatManager.new() #default cat
+		return false
+	
+	var data = ResourceLoader.load(save_file_path + save_file_name)
+	if not data or not data is CatManager:
+		print("Error loading cat manager or invaliid format")
+		cat_manager = CatManager.new()
+		return false
+	
+	cat_manager = data
+	return true
+
+func save_game():
+	var active_cat = cat_manager.get_active_cat()
+	if active_cat:
+		active_cat.arena_level = current_difficulty
+	
+	cat_manager.save_cats(save_file_path + save_file_name)
+	
 
 func start_battle():
 	if enemies_spawned >= enemies_per_arena[current_difficulty]:
@@ -136,8 +157,9 @@ func arena_complete():
 	if current_difficulty < ArenaLevel.BOSS:
 		current_difficulty += 1
 		emit_signal("difficulty_increased", current_difficulty)
-		
+				
 		show_difficulty_transition()
+		save_game()
 		
 		timer.wait_time = 5.0
 		timer.start()
@@ -151,6 +173,8 @@ func show_difficulty_transition():
 
 func game_completed():
 	current_difficulty = ArenaLevel.BATHROOM
+	
+	save_game()
 	timer.wait_time = 10.0
 	timer.start()
 
