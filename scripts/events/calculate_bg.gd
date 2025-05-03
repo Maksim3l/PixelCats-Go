@@ -40,7 +40,7 @@ func _ready():
 		if not data:
 			print("Error loading save file")
 			return false
-		change_background_for_arena(data.arena_level)
+		change_background_for_arena(data.get_active_cat().arena_level)
 
 func change_background_for_arena(arena_level: int):
 	var animation_name = "livingroom" 
