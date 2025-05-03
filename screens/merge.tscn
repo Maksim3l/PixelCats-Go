@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cs1w6gtab7fke"]
+[gd_scene load_steps=19 format=3 uid="uid://cs1w6gtab7fke"]
 
 [ext_resource type="Texture2D" uid="uid://dfdocskieec21" path="res://characters/main/main.png" id="1_h67da"]
 [ext_resource type="Script" uid="uid://cvr5k3sm1kvbl" path="res://scripts/merge.gd" id="1_ligvh"]
 [ext_resource type="Script" uid="uid://b8xtwv1kvm0sx" path="res://scripts/cat1.gd" id="1_x63sp"]
 [ext_resource type="Script" uid="uid://caedn7un4pwib" path="res://scripts/cat2.gd" id="3_a37g2"]
 [ext_resource type="Texture2D" uid="uid://c2agtwqo6he8a" path="res://enviroment/tornado.png" id="5_28eh2"]
+[ext_resource type="Texture2D" uid="uid://codtlel5qpemv" path="res://enviroment/house/2_bedroom/bedroom_lantern.png" id="6_unr61"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x63sp"]
 animations = [{
@@ -129,3 +130,10 @@ autoplay = "default"
 frame_progress = 0.0543546
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("6_unr61")
