@@ -18,7 +18,7 @@ enum ItemLayer {BASE, TOP}
 @export var health_bonus: int = 0
 @export var energy_bonus: int = 0
 
-# Cost and rarity
+# Cost
 @export var gold_value: int = 10
 
 
