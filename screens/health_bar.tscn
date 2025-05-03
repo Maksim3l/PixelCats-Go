@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl8dq63e4q50s"]
+
+[ext_resource type="Script" uid="uid://dardd46yf6176" path="res://scripts/events/health_bar.gd" id="1_uvylo"]
+
+[node name="HealthBar" type="ProgressBar"]
+texture_filter = 1
+offset_left = -22.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = -25.0
+value = 100.0
+show_percentage = false
+script = ExtResource("1_uvylo")
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 27.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]

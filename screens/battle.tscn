@@ -1,0 +1,334 @@
+[gd_scene load_steps=54 format=3 uid="uid://dgctdc1faw2nl"]
+
+[ext_resource type="Script" uid="uid://bfo65nq0ie7iq" path="res://scripts/arena_manager.gd" id="1_of853"]
+[ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="2_gfgft"]
+[ext_resource type="Resource" uid="uid://camschyompbni" path="res://resources/enemy/stats/roomba.tres" id="3_t6j07"]
+[ext_resource type="Resource" uid="uid://bj2a11el3x2ds" path="res://resources/enemy/stats/bathtub.tres" id="4_1ra8n"]
+[ext_resource type="Resource" uid="uid://bgji6rxeueb50" path="res://resources/enemy/stats/mirror.tres" id="5_tlpw0"]
+[ext_resource type="Resource" uid="uid://bauwrccu7j3oc" path="res://resources/enemy/stats/can_opener.tres" id="6_8fcku"]
+[ext_resource type="Resource" uid="uid://y3elvsj7m0j3" path="res://resources/enemy/stats/water_hose.tres" id="7_qhd1f"]
+[ext_resource type="Resource" uid="uid://dn6qgudusv5oa" path="res://resources/enemy/stats/cat_god_f1.tres" id="8_613gb"]
+[ext_resource type="Resource" uid="uid://cy5dctn26bawt" path="res://resources/enemy/stats/cat_god_f2.tres" id="9_aqg4e"]
+[ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="10_vqksq"]
+[ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="11_8fcku"]
+[ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="11_dkoqu"]
+[ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="12_mii7t"]
+[ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="12_qhd1f"]
+[ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="13_4hjoo"]
+[ext_resource type="Texture2D" uid="uid://bj82ugw5a0rtp" path="res://enviroment/house/1_bathroom/bathroom_water_double.png" id="13_613gb"]
+[ext_resource type="Texture2D" uid="uid://tnvth467e3mq" path="res://enviroment/house/2_bedroom/bedroom_base_double.png" id="14_aqg4e"]
+[ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="14_vefff"]
+[ext_resource type="Script" uid="uid://de0clhe7b3v7d" path="res://scripts/infinite_cam.gd" id="15_pdxaj"]
+[ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="15_t6j07"]
+[ext_resource type="Texture2D" uid="uid://jqjlhwilhyh6" path="res://enviroment/house/2_bedroom/bedroom_bookshelf_double.png" id="15_vqksq"]
+[ext_resource type="Texture2D" uid="uid://dcn05hwr7rcut" path="res://enviroment/house/2_bedroom/bedroom_lantern_double.png" id="16_dkoqu"]
+[ext_resource type="Texture2D" uid="uid://ddxg3asfrn01d" path="res://enviroment/lawn/1_garden/garden_base_double.png" id="17_pdxaj"]
+[ext_resource type="Texture2D" uid="uid://dxr7rg0h40og6" path="res://enviroment/lawn/2_end/street_base_double.png" id="17_qjr76"]
+[ext_resource type="Texture2D" uid="uid://cgdp0gpsc4fcx" path="res://enviroment/lawn/1_garden/garden_flower_double.png" id="18_i6ans"]
+[ext_resource type="Texture2D" uid="uid://cnxq14svg6to1" path="res://enviroment/lawn/2_end/street_ball_double.png" id="18_jjo28"]
+[ext_resource type="Texture2D" uid="uid://cpnx64supioo0" path="res://enviroment/house/4_kitchen/kitchen_base_double.png" id="18_mii7t"]
+[ext_resource type="Texture2D" uid="uid://dxvo4jk7baa7s" path="res://enviroment/lawn/2_end/street_bird_double.png" id="19_4cbml"]
+[ext_resource type="Texture2D" uid="uid://dq5b1gukm3ch0" path="res://enviroment/house/4_kitchen/kitchen_fridge_double.png" id="19_4hjoo"]
+[ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="19_8fcku"]
+[ext_resource type="Texture2D" uid="uid://d0f2vf22cv6pu" path="res://enviroment/lawn/1_garden/garden_rock_double.png" id="19_u35gu"]
+[ext_resource type="Texture2D" uid="uid://ba34x5au33brh" path="res://enviroment/house/4_kitchen/kitchen_table_double.png" id="20_vefff"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
+atlas = ExtResource("11_8fcku")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqksq"]
+atlas = ExtResource("12_qhd1f")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkoqu"]
+atlas = ExtResource("13_613gb")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hjoo"]
+atlas = ExtResource("14_aqg4e")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vefff"]
+atlas = ExtResource("15_vqksq")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdxaj"]
+atlas = ExtResource("16_dkoqu")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50muf"]
+atlas = ExtResource("17_qjr76")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jt5j"]
+atlas = ExtResource("18_jjo28")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjygi"]
+atlas = ExtResource("19_4cbml")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjo28"]
+atlas = ExtResource("17_pdxaj")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cbml"]
+atlas = ExtResource("18_i6ans")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddvjk"]
+atlas = ExtResource("19_u35gu")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6ans"]
+atlas = ExtResource("18_mii7t")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u35gu"]
+atlas = ExtResource("19_4hjoo")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjr76"]
+atlas = ExtResource("20_vefff")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7vdx"]
+atlas = ExtResource("10_vqksq")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atqe7"]
+atlas = ExtResource("11_dkoqu")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5oejy"]
+atlas = ExtResource("12_mii7t")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5oejy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqg4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqksq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkoqu")
+}],
+"loop": true,
+"name": &"bathroom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hjoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vefff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdxaj")
+}],
+"loop": true,
+"name": &"bedroom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50muf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jt5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjygi")
+}],
+"loop": true,
+"name": &"boss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjo28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cbml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddvjk")
+}],
+"loop": true,
+"name": &"garden",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6ans")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u35gu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjr76")
+}],
+"loop": true,
+"name": &"kitchen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7vdx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atqe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5oejy")
+}],
+"loop": true,
+"name": &"livingroom",
+"speed": 5.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_atqe7"]
+a = Vector2(0, -82)
+b = Vector2(0, 76)
+
+[sub_resource type="Theme" id="Theme_1ra8n"]
+default_font = ExtResource("15_t6j07")
+default_font_size = 2
+
+[node name="Battle Arena" type="Node2D" node_paths=PackedStringArray("player_character", "enemy_spawn_point")]
+script = ExtResource("1_of853")
+player_character = NodePath("Organizer/CenterLeft/player")
+enemy_spawn_point = NodePath("Organizer/CenterRight/spawn_enemy")
+enemy_types = Array[ExtResource("2_gfgft")]([ExtResource("4_1ra8n"), ExtResource("5_tlpw0"), ExtResource("3_t6j07"), ExtResource("6_8fcku"), ExtResource("7_qhd1f"), ExtResource("8_613gb"), ExtResource("9_aqg4e")])
+
+[node name="Organizer" type="CanvasLayer" parent="."]
+script = ExtResource("19_8fcku")
+
+[node name="Center" type="HBoxContainer" parent="Organizer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Organizer/Center"]
+script = ExtResource("13_4hjoo")
+arena_manager_path = NodePath("../../..")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Organizer/Center/ParallaxBackground"]
+motion_mirroring = Vector2(180, 0)
+
+[node name="BG" type="AnimatedSprite2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_5oejy")
+animation = &"boss"
+
+[node name="Switchbox" type="Area2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox"]
+modulate = Color(0.223529, 1, 1, 1)
+position = Vector2(92, 4)
+shape = SubResource("SegmentShape2D_atqe7")
+
+[node name="CenterLeft" type="HBoxContainer" parent="Organizer"]
+z_index = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.5
+anchor_right = 0.3
+anchor_bottom = 0.5
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="player" parent="Organizer/CenterLeft" instance=ExtResource("14_vefff")]
+
+[node name="CenterRight" type="HBoxContainer" parent="Organizer"]
+z_index = 1
+anchors_preset = -1
+anchor_left = 0.84
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="spawn_enemy" type="Node2D" parent="Organizer/CenterRight"]
+
+[node name="UIBottom" type="HBoxContainer" parent="Organizer"]
+z_index = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -31.0
+offset_right = 43.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = SubResource("Theme_1ra8n")
+
+[node name="Merge" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Merge"
+
+[node name="Feed" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Feed"
+
+[node name="Equipment" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Equip"
+
+[node name="Accessories" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Acces."
+
+[node name="Pets" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Pets"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("15_pdxaj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="battle_ended" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_ended"]
+[connection signal="battle_ended" from="." to="Camera2D" method="_on_battle_arena_battle_ended"]
+[connection signal="battle_started" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_started"]
+[connection signal="battle_started" from="." to="Camera2D" method="_on_battle_arena_battle_started"]
+[connection signal="difficulty_increased" from="." to="Organizer/Center/ParallaxBackground" method="_on_battle_arena_difficulty_increased"]
+[connection signal="difficulty_increased" from="." to="Organizer/CenterLeft/player" method="_on_battle_arena_difficulty_increased"]
+[connection signal="body_entered" from="Organizer/Center/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/Center/ParallaxBackground" method="_on_switchbox_body_entered"]
+[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer/UIBottom" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer/UIBottom" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer/UIBottom" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer/UIBottom" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer/UIBottom" method="_on_pets_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
