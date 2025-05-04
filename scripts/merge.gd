@@ -29,15 +29,21 @@ func _on_cat_collision():
 	timer.one_shot = true
 	timer.start()
 	
-
-	
 func _on_tornado_timeout():
 	print("Tornado will be hidden")
 	tornado.hide()
 	cat1.visible = true
+	await get_tree().create_timer(3.0).timeout
 	
-	if (!idle):
-		get_tree().change_scene_to_file("res://screens/battle.tscn")
+	if idle:
+		var battle = load("res://screens/battle.tscn").instantiate()
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(battle)
+		get_tree().current_scene = battle
 	else:
-		get_tree().change_scene_to_file("res://screens/idle_screen.tscn")
+		var idle_screen = load("res://screens/idle_screen.tscn").instantiate()
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(idle_screen)
+		get_tree().current_scene = idle_screen
+
 	

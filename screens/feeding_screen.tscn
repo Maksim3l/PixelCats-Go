@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b53wkc7ix3uvp" path="res://enviroment/items/camp1.png" id="21_svr4l"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_mdce0"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="23_em556"]
-[ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://screens/control_camera.gd" id="24_1mkey"]
+[ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://scripts/control_camera.gd" id="24_1mkey"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
 atlas = ExtResource("3_55rq1")
@@ -343,13 +343,8 @@ script = ExtResource("24_1mkey")
 
 [connection signal="body_entered" from="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/CenterBG/ParallaxBackground" method="_on_switchbox_body_entered"]
 [connection signal="pressed" from="Organizer/UICenter/Back" to="Organizer" method="_on_back_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Bisquit" to="Organizer" method="_on_merge_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Bisquit" to="Organizer/UIBottom" method="_on_merge_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Catnip" to="Organizer" method="_on_feed_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Catnip" to="Organizer/UIBottom" method="_on_feed_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Soft" to="Organizer" method="_on_equipment_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Soft" to="Organizer/UIBottom" method="_on_equipment_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Packet" to="Organizer" method="_on_accessories_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Packet" to="Organizer/UIBottom" method="_on_accessories_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Fish" to="Organizer" method="_on_pets_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Fish" to="Organizer/UIBottom" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Bisquit" to="Organizer" method="_on_bisquit_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Catnip" to="Organizer" method="_on_catnip_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Soft" to="Organizer" method="_on_soft_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Packet" to="Organizer" method="_on_packet_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Fish" to="Organizer" method="_on_fish_pressed"]

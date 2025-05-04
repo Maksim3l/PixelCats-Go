@@ -20,8 +20,9 @@ func _ready():
 
 func _on_merge_pressed():
 	var new_scene = load("res://screens/merge.tscn").instantiate()
-	new_scene.idle = true 
-	
+	var current = get_tree().current_scene.name
+	if current == "idle_screen":
+		new_scene.idle = true
 	get_tree().current_scene.queue_free()
 	get_tree().root.add_child(new_scene)
 	get_tree().current_scene = new_scene

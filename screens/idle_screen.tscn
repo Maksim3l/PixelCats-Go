@@ -1,6 +1,6 @@
 [gd_scene load_steps=49 format=3 uid="uid://bmyvk5ge5jq6k"]
 
-[ext_resource type="Script" uid="uid://bkliwsde236od" path="res://screens/cat_manage.gd" id="1_2qr8l"]
+[ext_resource type="Script" uid="uid://bkliwsde236od" path="res://scripts/cat_manage.gd" id="1_2qr8l"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
 [ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="2_24gff"]
 [ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="3_2qr8l"]
@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b53wkc7ix3uvp" path="res://enviroment/items/camp1.png" id="20_24gff"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="20_g8hcl"]
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="21_54kng"]
-[ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://screens/control_camera.gd" id="22_36nmi"]
+[ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://scripts/control_camera.gd" id="22_36nmi"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_o878r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
