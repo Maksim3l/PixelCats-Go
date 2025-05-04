@@ -2,6 +2,12 @@ class_name PlayerData
 extends Resource
 
 enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
+
+# cat identity
+@export var cat_name: String = "Whiskers"
+@export var cat_sprite: String = "res://characters/main/main.png"
+
+
 # Player stats
 @export var max_health: int = 100
 @export var current_health: int = 100
@@ -16,10 +22,13 @@ enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 # Optional: Add a position property to save player's position
 @export var position: Vector2 = Vector2.ZERO
 
-func _init(p_max_health = 100, p_current_health = 100, p_attack = 10, 
+func _init(p_cat_name = "Whiskers", p_cat_sprite = "res://characters/main/main.png",
+		   p_max_health = 100, p_current_health = 100, p_attack = 10, 
 		   p_defense = 5, p_gold = 0, p_experience = 0, 
 		   p_level = 1, p_arena_level = ArenaLevel.BATHROOM,
 		   p_energy = 3, p_position = Vector2.ZERO):
+	cat_name = p_cat_name
+	cat_sprite = p_cat_sprite
 	max_health = p_max_health
 	current_health = p_current_health
 	attack = p_attack
@@ -34,6 +43,12 @@ func _init(p_max_health = 100, p_current_health = 100, p_attack = 10,
 # Create a new player data object from a player node
 static func from_player(player: CharacterBody2D) -> PlayerData:
 	var data = PlayerData.new()
+	
+	if "cat_name" in player:
+		data.cat_name = player.cat_name
+	if "cat_sprite" in player:
+		data.cat_sprite = player.cat_sprite
+
 	data.max_health = player.max_health
 	data.current_health = player.current_health
 	data.attack = player.attack
@@ -51,6 +66,12 @@ static func from_player(player: CharacterBody2D) -> PlayerData:
 	
 # Apply saved data to a player node
 func apply_to_player(player: CharacterBody2D) -> void:
+	if "cat_name" in player:
+		player.cat_name = cat_name
+	if "cat_sprite" in player:
+		player.cat_sprite = cat_sprite
+		
+		
 	player.max_health = max_health
 	player.current_health = 100  
 	player.attack = attack

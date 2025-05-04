@@ -6,8 +6,8 @@ class_name ArenaBackgroundController
 @export var is_paused: bool = false
 
 var save_file_path = "res://data/"
-var save_file_name = "PlayerSave.tres"
-var playerData = PlayerData.new()
+var save_file_name = "CatManager.tres"
+var cat_manager = CatManager.new()
 
 var arena_animations = {
 	0: "bathroom",     
@@ -40,7 +40,7 @@ func _ready():
 		if not data:
 			print("Error loading save file")
 			return false
-		change_background_for_arena(data.arena_level)
+		change_background_for_arena(data.get_active_cat().arena_level)
 
 func change_background_for_arena(arena_level: int):
 	var animation_name = "livingroom" 
