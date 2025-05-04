@@ -277,17 +277,17 @@ size_flags_horizontal = 4
 theme = SubResource("Theme_vtkis")
 alignment = 1
 
-[node name="Gold" type="VBoxContainer" parent="Organizer/UITop"]
+[node name="Treat" type="VBoxContainer" parent="Organizer/UITop"]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="txt" type="Label" parent="Organizer/UITop/Gold"]
+[node name="txt" type="Label" parent="Organizer/UITop/Treat"]
 layout_mode = 2
-text = "Gold"
+text = "Treats"
 
-[node name="value" type="Label" parent="Organizer/UITop/Gold"]
+[node name="value" type="Label" parent="Organizer/UITop/Treat"]
 layout_mode = 2
 
 [node name="Energy" type="VBoxContainer" parent="Organizer/UITop"]
@@ -301,6 +301,19 @@ layout_mode = 2
 text = "Energy"
 
 [node name="value" type="Label" parent="Organizer/UITop/Energy"]
+layout_mode = 2
+
+[node name="Gold" type="VBoxContainer" parent="Organizer/UITop"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="txt" type="Label" parent="Organizer/UITop/Gold"]
+layout_mode = 2
+text = "Gold"
+
+[node name="value" type="Label" parent="Organizer/UITop/Gold"]
 layout_mode = 2
 
 [node name="UIBottom" type="HBoxContainer" parent="Organizer"]

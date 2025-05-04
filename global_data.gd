@@ -3,6 +3,7 @@ extends Resource
 
 @export var coming_from_last = "none"
 @export var gold: int = 0
+@export var treat: int = 3
 # Uncomment and use this for unlocked cats
 # @export var unlocked_cats = []
 

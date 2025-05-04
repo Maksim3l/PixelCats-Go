@@ -14,8 +14,6 @@ func _ready():
 func boost_stats():
 	# Increase all stats by 20%
 	var cat = CatHandler.get_active_cat()
-	print("Attack: ", cat.attack)
-	print("Defense: ", cat.defense)
 	cat.attack = int(cat.attack * 1.2)
 	cat.defense = int(cat.defense * 1.2)
 
@@ -26,9 +24,6 @@ func boost_stats():
 	print("Attack: ", cat.attack)
 	print("Defense: ", cat.defense)
 	
-	save_boosted_stats()
-
-func save_boosted_stats():
 	CatHandler.save_cat_manager()
 
 func _physics_process(delta):

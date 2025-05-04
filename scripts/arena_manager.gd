@@ -51,8 +51,12 @@ func _ready():
 
 func save_game():
 	var active_cat = CatHandler.get_active_cat()
-	if active_cat:
-		active_cat.arena_level = current_difficulty
+	active_cat.arena_level = current_difficulty
+	active_cat.temp_attack = 0
+	active_cat.temp_defense = 0
+	
+	var all_cats = CatHandler.get_all_cats()
+	all_cats[CatHandler.cat_manager.active_cat_index] = active_cat
 	
 	CatHandler.save_cat_manager()
 
@@ -137,6 +141,7 @@ func arena_complete():
 		emit_signal("difficulty_increased", current_difficulty)
 				
 		show_difficulty_transition()
+		
 		save_game()
 		
 		timer.wait_time = 5.0

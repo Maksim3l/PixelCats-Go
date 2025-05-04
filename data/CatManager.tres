@@ -7,15 +7,17 @@
 script = ExtResource("1_tbgf5")
 cat_name = "Whiskers"
 cat_sprite = "res://characters/main/main.png"
-max_health = 100
-current_health = 0
-attack = 12
-defense = 6
-experience = 50
-level = 1
-arena_level = 0
+max_health = 195
+current_health = -26
+attack = 21
+temp_attack = 32
+defense = 10
+temp_defense = 12
+experience = 240
+level = 3
+arena_level = 5
 max_energy = 3
-energy = 1
+energy = 2
 position = Vector2(0, 0)
 
 [resource]

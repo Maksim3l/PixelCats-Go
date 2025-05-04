@@ -1,8 +1,8 @@
 extends Node2D
-@export var player_character: Node2D
 @onready var treat = $"Organizer/UITop/Treat/value"
 @onready var energy = $"Organizer/UITop/Energy/value"
 @onready var gold = $"Organizer/UITop/Gold/value"
+@export var player_character: Node2D
 
 func _ready():
 	randomize()
@@ -19,7 +19,7 @@ func _ready():
 	player_character.position.x = -32
 	player_character.position.y = -80
 	
-	energy.text = str(active_cat.max_energy) + "/" + str(active_cat.energy)
+	energy.text = str(active_cat.energy) + "/" + str(active_cat.max_energy)
 	gold.text = str(global_data.gold)
 	treat.text = str(global_data.treat)
 	

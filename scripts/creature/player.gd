@@ -15,6 +15,8 @@ var max_energy: int = 3
 var energy: int = 3
 var experience: int = 0
 var level: int = 1
+var temp_attack: int = 0
+var temp_defense: int = 0
 
 @onready var arena_level: int = ArenaLevel.BATHROOM
 @onready var health_bar = $HealthBar
@@ -81,7 +83,10 @@ func attack_target():
 
 func _on_frame_changed():
 	if sprite.animation == "attack" and sprite.frame == 4:
-		var damage = attack
+		var damage = attack + temp_attack
+		
+		print("atk: ", attack, "; tmp_atk: ", temp_attack)
+		
 		if current_target and current_target.has_method("take_damage"):
 			current_target.take_damage(damage)
 		attack_timer.start()
@@ -99,10 +104,11 @@ func _on_attack_animation_finished():
 			sprite.disconnect("frame_changed", _on_frame_changed)
 	
 func take_damage(amount):
-	var actual_damage = max(1, amount - defense)
+	var actual_damage = max(1, amount - (defense + temp_defense))
 	current_health -= actual_damage
 	health_bar.value = current_health
 	
+	print("def: ", defense, "; tmp_def: ", temp_defense)
 	stagger_effect()
 	
 	if current_health <= 0:
@@ -195,9 +201,7 @@ func save_game():
 func load_game():
 	var active_cat_data = CatHandler.get_active_cat()
 	active_cat_data.apply_to_cat(self)
-	print("AttacK: ", active_cat_data.attack)
-	
-	current_health = 100
+
 	health_bar.value = current_health
 	print("Game loaded successfully with", CatHandler.get_all_cats().size(), "cats")
 	return true
