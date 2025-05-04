@@ -17,7 +17,6 @@ func _ready():
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_cat_collision():
 	# Hide the cat
 	cat1.hide()
@@ -33,9 +32,9 @@ func _on_tornado_timeout():
 	print("Tornado will be hidden")
 	tornado.hide()
 	cat1.visible = true
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(1.2).timeout
 	
-	if idle:
+	if GlobalDataHandler.global_data.coming_from_last == "Battle Arena":
 		var battle = load("res://screens/battle.tscn").instantiate()
 		get_tree().current_scene.queue_free()
 		get_tree().root.add_child(battle)

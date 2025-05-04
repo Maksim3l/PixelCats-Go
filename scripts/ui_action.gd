@@ -6,6 +6,9 @@ extends CanvasLayer
 @onready var abtn = $UIBottom/Accessories
 @onready var pbtn = $UIBottom/Pets
 
+var active_cat
+var global_data
+
 var custom_font = preload("res://resources/pixel_sans.ttf")
 
 func _ready():
@@ -14,15 +17,19 @@ func _ready():
 	ebtn.add_theme_font_override("font", custom_font) 
 	abtn.add_theme_font_override("font", custom_font) 
 	pbtn.add_theme_font_override("font", custom_font) 
+	active_cat = CatHandler.get_active_cat()
+	global_data = GlobalDataHandler.global_data
 
 # Here to be copy and paisted for convenience
 # get_tree().change_scene_to_file("res://screens/battle.tscn")
 
 func _on_merge_pressed():
 	var new_scene = load("res://screens/merge.tscn").instantiate()
-	var current = get_tree().current_scene.name
-	if current == "idle_screen":
-		new_scene.idle = true
+	
+	global_data.coming_from_last = get_tree().current_scene.name
+	GlobalDataHandler.global_data = global_data
+	GlobalDataHandler.save_game()
+	
 	get_tree().current_scene.queue_free()
 	get_tree().root.add_child(new_scene)
 	get_tree().current_scene = new_scene
@@ -45,4 +52,7 @@ func _on_pets_pressed():
 
 
 func _on_battle_pressed():
-	get_tree().change_scene_to_file("res://screens/battle.tscn")
+	if (active_cat.energy != 0):
+		get_tree().change_scene_to_file("res://screens/battle.tscn")
+	else:
+		print("Not enought energy.")

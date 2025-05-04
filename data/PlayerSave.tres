@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://bnk18eb751835"]
+[gd_resource type="Resource" script_class="CatData" load_steps=2 format=3]
 
-[ext_resource type="Script" uid="uid://dq7snk8jto3g1" path="res://resources/cat_data.gd" id="1_pq5a0"]
+[ext_resource type="Script" path="res://resources/cat_data.gd" id="1_pq5a0"]
 
 [resource]
 script = ExtResource("1_pq5a0")
@@ -8,11 +8,11 @@ cat_name = "Whiskers"
 cat_sprite = "res://characters/main/main.png"
 max_health = 100
 current_health = 100
-attack = 14
-defense = 7
-gold = 0
+attack = 37
+defense = 16
 experience = 0
 level = 1
 arena_level = 0
+max_energy = 3
 energy = 3
 position = Vector2(0, 0)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=49 format=3 uid="uid://bmyvk5ge5jq6k"]
 
-[ext_resource type="Script" uid="uid://bkliwsde236od" path="res://scripts/cat_manage.gd" id="1_2qr8l"]
+[ext_resource type="Script" uid="uid://bkliwsde236od" path="res://scripts/idle_manage.gd" id="1_2qr8l"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
 [ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="2_24gff"]
 [ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="3_2qr8l"]

@@ -1,24 +1,24 @@
-[gd_resource type="Resource" script_class="CatManager" load_steps=4 format=3 uid="uid://blyhbidodry4q"]
+[gd_resource type="Resource" script_class="CatManager" load_steps=4 format=3]
 
-[ext_resource type="Script" uid="uid://dq7snk8jto3g1" path="res://resources/cat_data.gd" id="1_tbgf5"]
-[ext_resource type="Script" uid="uid://bs0ol5ddly1lp" path="res://scripts/cat_manager.gd" id="2_8tpsk"]
+[ext_resource type="Script" path="res://resources/cat_data.gd" id="1_tbgf5"]
+[ext_resource type="Script" path="res://scripts/cat_manager.gd" id="2_8tpsk"]
 
-[sub_resource type="Resource" id="Resource_pajuj"]
+[sub_resource type="Resource" id="Resource_tbgf5"]
 script = ExtResource("1_tbgf5")
 cat_name = "Whiskers"
 cat_sprite = "res://characters/main/main.png"
 max_health = 100
-current_health = 90
-attack = 10
-defense = 5
-gold = 0
-experience = 0
+current_health = 0
+attack = 0
+defense = 0
+experience = 30
 level = 1
 arena_level = 0
-energy = 3
+max_energy = 3
+energy = -1
 position = Vector2(0, 0)
 
 [resource]
 script = ExtResource("2_8tpsk")
-cats = Array[ExtResource("1_tbgf5")]([SubResource("Resource_pajuj")])
+cats = Array[ExtResource("1_tbgf5")]([SubResource("Resource_tbgf5")])
 active_cat_index = 0

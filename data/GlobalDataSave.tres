@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GlobalData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://global_data.gd" id="1_rit5f"]
+
+[resource]
+script = ExtResource("1_rit5f")
+coming_from_last = &"Battle Arena"
+gold = 15
