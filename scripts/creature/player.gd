@@ -1,13 +1,8 @@
 # Player.gd
 extends CharacterBody2D
 
-var save_file_path = "res://data/"
-var save_file_name = "CatManager.tres"
-var cat_manager = CatManager.new()
-
 enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 
-# Cat identity properties
 var cat_name: String = "Whiskers"
 var cat_sprite: String = "res://characters/main/main.png"
 
@@ -16,9 +11,12 @@ var current_health: int = 100
 var attack: int = 10
 var defense: int = 5
 var gold: int = 0
+var max_energy: int = 3
 var energy: int = 3
 var experience: int = 0
 var level: int = 1
+var temp_attack: int = 0
+var temp_defense: int = 0
 
 @onready var arena_level: int = ArenaLevel.BATHROOM
 @onready var health_bar = $HealthBar
@@ -46,17 +44,7 @@ func _ready():
 	if particles:
 		particles.emitting = false
 		
-	var load_success = load_game()
-	
-	# If loading failed, create a new cat and save it
-	if !load_success:
-		print("Creating new cat and saving...")
-		cat_manager = CatManager.new()
-		var new_cat = PlayerData.new()
-		cat_manager.cats = [new_cat]
-		cat_manager.active_cat_index = 0
-		save_game()
-	
+	load_game()
 	
 	
 func _input(event):
@@ -69,11 +57,11 @@ func _input(event):
 
 
 func switch_to_next_cat():
-	var next_index = (cat_manager.active_cat_index + 1) % cat_manager.cats.size()
-	cat_manager.switch_cat(next_index)
+	var next_index = (CatHandler.cat_manager.active_cat_index + 1) % CatHandler.get_all_cats().size()
+	CatHandler.switch_cat(next_index)
 	
-	var cat_data = cat_manager.get_active_cat()
-	cat_data.apply_to_player(self)
+	var cat_data = CatHandler.get_active_cat()
+	cat_data.apply_to_cat(self)
 	
 
 func _process(delta):
@@ -95,7 +83,10 @@ func attack_target():
 
 func _on_frame_changed():
 	if sprite.animation == "attack" and sprite.frame == 4:
-		var damage = attack
+		var damage = attack + temp_attack
+		
+		print("atk: ", attack, "; tmp_atk: ", temp_attack)
+		
 		if current_target and current_target.has_method("take_damage"):
 			current_target.take_damage(damage)
 		attack_timer.start()
@@ -113,10 +104,11 @@ func _on_attack_animation_finished():
 			sprite.disconnect("frame_changed", _on_frame_changed)
 	
 func take_damage(amount):
-	var actual_damage = max(1, amount - defense)
+	var actual_damage = max(1, amount - (defense + temp_defense))
 	current_health -= actual_damage
 	health_bar.value = current_health
 	
+	print("def: ", defense, "; tmp_def: ", temp_defense)
 	stagger_effect()
 	
 	if current_health <= 0:
@@ -178,7 +170,7 @@ func add_experience(amount):
 	check_level_up()
 
 func add_gold(amount):
-	gold += amount
+	GlobalDataHandler.add_gold(amount)
 
 func check_level_up():
 	var exp_needed = level * 100  # Simple formula, adjust as needed
@@ -197,28 +189,21 @@ func _on_attack_timer_timeout():
 	
 func save_game():
 	# update active cat data in the manager
-	var active_cat_data = PlayerData.from_player(self)
-	cat_manager.cats[cat_manager.active_cat_index] = active_cat_data
+	var active_cat_data = CatData.from_cat(self)
+	var all_cats = CatHandler.get_all_cats()
+	all_cats[CatHandler.cat_manager.active_cat_index] = active_cat_data
 	
-	# save cat manager
-	var save_dir = "res://data/"
-	var save_filename = "CatManager.tres"
-	var success = cat_manager.save_cats(save_file_path + save_file_name)
+	var success = CatHandler.save_cat_manager()
 	if success:
-		print("Game saved successfully with", cat_manager.cats.size(), "cats")
+		print("Game saved successfully with", CatHandler.get_all_cats().size(), "cats")
 	return success
 
 func load_game():
-	cat_manager = CatManager.load_cats(save_file_path + save_file_name)
-	
-	var active_cat_data = cat_manager.get_active_cat()
-	active_cat_data.apply_to_player(self)
-	
-	# ensure good health
-	current_health = 100
-	health_bar.value = current_health
+	var active_cat_data = CatHandler.get_active_cat()
+	active_cat_data.apply_to_cat(self)
 
-	print("Game loaded successfully with", cat_manager.cats.size(), "cats")
+	health_bar.value = current_health
+	print("Game loaded successfully with", CatHandler.get_all_cats().size(), "cats")
 	return true
 
 
@@ -235,9 +220,9 @@ func nap():
 	
 # add a new cat
 func add_new_cat(cat_name: String, cat_sprite: String) -> void:
-	var new_cat = PlayerData.new(
+	var new_cat = CatData.new(
 		cat_name,
 		cat_sprite
 	)
-	cat_manager.cats.append(new_cat)
+	CatHandler.cat_manager.cats.append(new_cat)
 	print("Added new cat", cat_name)

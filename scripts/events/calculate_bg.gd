@@ -5,10 +5,6 @@ class_name ArenaBackgroundController
 @export var arena_manager_path: NodePath
 @export var is_paused: bool = false
 
-var save_file_path = "res://data/"
-var save_file_name = "CatManager.tres"
-var cat_manager = CatManager.new()
-
 var arena_animations = {
 	0: "bathroom",     
 	1: "bedroom",      
@@ -25,22 +21,13 @@ var arena_animations = {
 func _ready():
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	
+	var active_cat = CatHandler.get_active_cat()
+	
 	if arena_manager:
 		arena_manager.connect("battle_started", Callable(self, "_on_battle_started"))
 		arena_manager.connect("battle_ended", Callable(self, "_on_battle_ended"))
 		arena_manager.connect("difficulty_increased", Callable(self, "_on_difficulty_increased"))
-		
-		change_background_for_arena(arena_manager.current_difficulty)
-	else:
-		if not FileAccess.file_exists(save_file_path + save_file_name):
-			print("No save file found")
-			return false
-	
-		var data = ResourceLoader.load(save_file_path + save_file_name)
-		if not data:
-			print("Error loading save file")
-			return false
-		change_background_for_arena(data.get_active_cat().arena_level)
+	change_background_for_arena(active_cat.arena_level)
 
 func change_background_for_arena(arena_level: int):
 	var animation_name = "livingroom" 

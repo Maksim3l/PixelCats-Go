@@ -5,7 +5,6 @@ const TORNADO = preload("res://screens/tornado.tscn")
 @onready var tornado: CharacterBody2D = $tornado
 @onready var timer: Timer = $Timer
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tornado.hide()
@@ -15,7 +14,6 @@ func _ready():
 
 func _process(delta: float) -> void:
 	pass
-
 
 func _on_cat_collision():
 	# Hide the cat
@@ -28,12 +26,21 @@ func _on_cat_collision():
 	timer.one_shot = true
 	timer.start()
 	
-
-	
 func _on_tornado_timeout():
 	print("Tornado will be hidden")
 	tornado.hide()
 	cat1.visible = true
-	get_tree().change_scene_to_file("res://screens/battle.tscn")
+	await get_tree().create_timer(1.2).timeout
+	
+	if GlobalDataHandler.global_data.coming_from_last == "Battle Arena":
+		var battle = load("res://screens/battle.tscn").instantiate()
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(battle)
+		get_tree().current_scene = battle
+	else:
+		var idle_screen = load("res://screens/idle_screen.tscn").instantiate()
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(idle_screen)
+		get_tree().current_scene = idle_screen
 
 	

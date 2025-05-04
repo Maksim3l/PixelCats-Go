@@ -1,7 +1,7 @@
 class_name CatManager
 extends Resource
 
-@export var cats: Array[PlayerData] = []
+@export var cats: Array[CatData] = []
 @export var active_cat_index: int = 0
 
 func _init():
@@ -9,18 +9,18 @@ func _init():
 		add_new_cat()
 
 func add_new_cat():
-	var new_cat = PlayerData.new()
+	var new_cat = CatData.new()
 	cats.append(new_cat)
 	return cats.size() - 1
 
-func get_active_cat() -> PlayerData:
+func get_active_cat() -> CatData:
 	if cats.size() == 0:
 		add_new_cat()
 	if active_cat_index >= cats.size():
 		active_cat_index = 0
 	return cats[active_cat_index]
 	
-func switch_cat(index: int) -> PlayerData:
+func switch_cat(index: int) -> CatData:
 	if index >= 0 and index < cats.size():
 		active_cat_index = index
 		return get_active_cat()
@@ -67,7 +67,3 @@ static func load_cats(path: String) -> CatManager:
 		return CatManager.new()
 	
 	return data
-
-
-		
-	
