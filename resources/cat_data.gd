@@ -72,7 +72,7 @@ func apply_to_cat(cat: CharacterBody2D) -> void:
 		
 		
 	cat.max_health = max_health
-	cat.current_health = 100  
+	cat.current_health = max_health
 	cat.attack = attack
 	cat.defense = defense
 	cat.experience = experience

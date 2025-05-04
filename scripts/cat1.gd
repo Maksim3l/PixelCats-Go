@@ -8,24 +8,16 @@ var gravity = 980.0
 var direction = Vector2(1, 0)  
 var is_stopped = false 
 
-# Player stats
-var playerData = null
-var max_health: int = 0
-var current_health: int = 0
-var attack: int = 0
-var defense: int = 0
-var gold: int = 0
-var experience: int = 0
-var level: int = 0
-
 func _ready():
 	boost_stats()
 
 func boost_stats():
 	# Increase all stats by 20%
 	var cat = CatHandler.get_active_cat()
-	cat.attack = int(attack * 1.2)
-	cat.defense = int(defense * 1.2)
+	print("Attack: ", cat.attack)
+	print("Defense: ", cat.defense)
+	cat.attack = int(cat.attack * 1.2)
+	cat.defense = int(cat.defense * 1.2)
 
 	var all_cats = CatHandler.get_all_cats()
 	all_cats[CatHandler.cat_manager.active_cat_index] = cat

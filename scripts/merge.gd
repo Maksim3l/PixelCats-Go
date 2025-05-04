@@ -4,8 +4,6 @@ const TORNADO = preload("res://screens/tornado.tscn")
 @onready var cat2: CharacterBody2D = $CharacterBody2D2
 @onready var tornado: CharacterBody2D = $tornado
 @onready var timer: Timer = $Timer
-var idle = false
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

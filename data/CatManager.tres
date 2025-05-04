@@ -9,13 +9,13 @@ cat_name = "Whiskers"
 cat_sprite = "res://characters/main/main.png"
 max_health = 100
 current_health = 0
-attack = 0
-defense = 0
-experience = 30
+attack = 12
+defense = 6
+experience = 50
 level = 1
 arena_level = 0
 max_energy = 3
-energy = -1
+energy = 1
 position = Vector2(0, 0)
 
 [resource]

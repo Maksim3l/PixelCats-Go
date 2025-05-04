@@ -24,7 +24,11 @@ func _ready():
 # get_tree().change_scene_to_file("res://screens/battle.tscn")
 
 func _on_bisquit_pressed():
-
+	if (active_cat.current_health < active_cat.max_health):
+		if ((active_cat.max_health-active_cat.current_health) < 30):
+			active_cat.current_health == active_cat.max_health
+		else:
+			active_cat.current_health += 30
 
 func _on_catnip_pressed():
 	pass # Replace with function body.
@@ -39,7 +43,7 @@ func _on_packet_pressed():
 
 
 func _on_fish_pressed():
-	pass # Replace with function body.
+	active_cat.energy = active_cat.max_energy
 
 
 func _on_back_pressed():

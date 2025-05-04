@@ -195,6 +195,7 @@ func save_game():
 func load_game():
 	var active_cat_data = CatHandler.get_active_cat()
 	active_cat_data.apply_to_cat(self)
+	print("AttacK: ", active_cat_data.attack)
 	
 	current_health = 100
 	health_bar.value = current_health
