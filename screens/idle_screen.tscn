@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bmyvk5ge5jq6k"]
+[gd_scene load_steps=53 format=3 uid="uid://bmyvk5ge5jq6k"]
 
 [ext_resource type="Script" uid="uid://bkliwsde236od" path="res://screens/cat_manage.gd" id="1_2qr8l"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="21_54kng"]
 [ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://screens/control_camera.gd" id="22_36nmi"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_o878r"]
+[ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="25_vtkis"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
 atlas = ExtResource("2_24gff")
@@ -193,6 +194,20 @@ b = Vector2(0, 76)
 default_font = ExtResource("20_g8hcl")
 default_font_size = 4
 
+[sub_resource type="Theme" id="Theme_e2gqq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vtkis"]
+texture = ExtResource("25_vtkis")
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+region_rect = Rect2(384, 320, 48, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ihj5"]
+texture = ExtResource("25_vtkis")
+expand_margin_left = 15.0
+expand_margin_right = 15.0
+region_rect = Rect2(384, 256, 48, 16)
+
 [sub_resource type="Theme" id="Theme_vtkis"]
 default_font = ExtResource("20_g8hcl")
 default_font_size = 6
@@ -250,23 +265,30 @@ position = Vector2(0, -68)
 texture = ExtResource("20_24gff")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
-position = Vector2(90, 80)
+position = Vector2(89, 80)
 
 [node name="player" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer3" instance=ExtResource("22_o878r")]
-position = Vector2(-28, -80)
+position = Vector2(-29, -86)
 
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
-offset_left = 69.0
-offset_top = 83.0
-offset_right = 90.0
-offset_bottom = 100.0
+offset_left = 20.0
+offset_top = 107.0
+offset_right = 69.0
+offset_bottom = 123.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme = SubResource("Theme_o878r")
-alignment = 2
+alignment = 1
 
 [node name="Battle" type="Button" parent="Organizer/UICenter"]
 layout_mode = 2
+theme = SubResource("Theme_e2gqq")
+theme_override_colors/font_hover_pressed_color = Color(0.0866292, 0.0866292, 0.0866292, 1)
+theme_override_colors/font_hover_color = Color(0.0453124, 0.0453124, 0.0453124, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+theme_override_styles/hover = SubResource("StyleBoxTexture_vtkis")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8ihj5")
 text = "Battle
 "
 
@@ -340,6 +362,7 @@ layout_mode = 2
 text = "Pets"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(55, 0)
 limit_left = -100
 limit_right = 300
 limit_bottom = 600
