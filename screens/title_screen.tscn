@@ -1,17 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc54u4bo86i1y"]
+[gd_scene load_steps=22 format=3 uid="uid://dc54u4bo86i1y"]
 
 [ext_resource type="Script" uid="uid://bt6lo3d5rt5r5" path="res://scripts/title_screen.gd" id="1_grftj"]
-
-[sub_resource type="Gradient" id="Gradient_dss53"]
-colors = PackedColorArray(0, 0, 0.415686, 0.435294, 0.12549, 0.568627, 1, 0.47451)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_81buc"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_grftj"]
-width = 89
-height = 160
-color_ramp = SubResource("Gradient_dss53")
-noise = SubResource("FastNoiseLite_81buc")
+[ext_resource type="Texture2D" uid="uid://djvfitsiur4md" path="res://themes/UI_images/orig.png" id="2_n8gtu"]
+[ext_resource type="Texture2D" uid="uid://c8xrv0lo154hl" path="res://themes/UI_images/PixelCatsGo_Logo.png" id="3_cjojn"]
+[ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="4_txg6x"]
+[ext_resource type="Texture2D" uid="uid://3kpxkqyvv2lu" path="res://characters/main/idle_napping.png" id="5_cjojn"]
 
 [sub_resource type="Gradient" id="Gradient_81buc"]
 colors = PackedColorArray(0, 0, 0.243137, 0.756863, 1, 1, 1, 0.592157)
@@ -21,9 +14,70 @@ gradient = SubResource("Gradient_81buc")
 fill_from = Vector2(0.545872, 1)
 fill_to = Vector2(0.495413, 0)
 
+[sub_resource type="Theme" id="Theme_7jf2m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dsjsu"]
+texture = ExtResource("3_cjojn")
+
 [sub_resource type="LabelSettings" id="LabelSettings_sxlwc"]
 font_size = 13
 font_color = Color(0, 0, 0.396078, 1)
+
+[sub_resource type="Theme" id="Theme_p1edy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjojn"]
+texture = ExtResource("4_txg6x")
+region_rect = Rect2(69, 193, 52, 15)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghegn"]
+texture = ExtResource("4_txg6x")
+region_rect = Rect2(5, 129, 52, 15)
+
+[sub_resource type="Theme" id="Theme_mvehq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_txg6x"]
+texture = ExtResource("4_txg6x")
+region_rect = Rect2(69, 225, 52, 15)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mo0vk"]
+texture = ExtResource("4_txg6x")
+region_rect = Rect2(5, 161, 52, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txg6x"]
+atlas = ExtResource("5_cjojn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jf2m"]
+atlas = ExtResource("5_cjojn")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsjsu"]
+atlas = ExtResource("5_cjojn")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1edy"]
+atlas = ExtResource("5_cjojn")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghegn"]
+animations = [{
+"frames": [{
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_txg6x")
+}, {
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_7jf2m")
+}, {
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_dsjsu")
+}, {
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_p1edy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -42,11 +96,14 @@ color = Color(9.62615e-06, 0.649022, 0.979761, 1)
 
 [node name="Texture" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 90.0
-offset_bottom = 160.0
-texture = SubResource("NoiseTexture2D_grftj")
+offset_left = -264.0
+offset_top = -144.0
+offset_right = 312.0
+offset_bottom = 180.0
+texture = ExtResource("2_n8gtu")
 
 [node name="Gradient" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 90.0
 offset_bottom = 160.0
@@ -54,10 +111,12 @@ texture = SubResource("GradientTexture2D_sxlwc")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_top = 13.0
-offset_right = 89.0
-offset_bottom = 36.0
-text = "PixelCats Go!"
+offset_left = 19.0
+offset_top = 7.0
+offset_right = 71.0
+offset_bottom = 55.0
+theme = SubResource("Theme_7jf2m")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dsjsu")
 label_settings = SubResource("LabelSettings_sxlwc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -65,17 +124,32 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 36.0
+offset_top = 69.0
 offset_right = 75.0
 offset_bottom = 124.0
 
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Play"
+theme = SubResource("Theme_p1edy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cjojn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ghegn")
+text = "
+"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Exit"
+theme = SubResource("Theme_mvehq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_txg6x")
+theme_override_styles/normal = SubResource("StyleBoxTexture_mo0vk")
+text = "
+"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(68, 122)
+sprite_frames = SubResource("SpriteFrames_ghegn")
+autoplay = "default"
+frame = 1
+frame_progress = 0.373676
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
