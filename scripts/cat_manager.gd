@@ -67,7 +67,3 @@ static func load_cats(path: String) -> CatManager:
 		return CatManager.new()
 	
 	return data
-
-
-		
-	

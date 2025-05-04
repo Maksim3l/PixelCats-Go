@@ -1,0 +1,355 @@
+[gd_scene load_steps=48 format=3 uid="uid://h557uwro0glo"]
+
+[ext_resource type="Script" uid="uid://o0h8rrkmnnc" path="res://scripts/feed_action.gd" id="1_85pcd"]
+[ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="2_qshnh"]
+[ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="3_55rq1"]
+[ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="4_askjg"]
+[ext_resource type="Texture2D" uid="uid://bj82ugw5a0rtp" path="res://enviroment/house/1_bathroom/bathroom_water_double.png" id="5_dggct"]
+[ext_resource type="Texture2D" uid="uid://tnvth467e3mq" path="res://enviroment/house/2_bedroom/bedroom_base_double.png" id="6_tdxox"]
+[ext_resource type="Texture2D" uid="uid://jqjlhwilhyh6" path="res://enviroment/house/2_bedroom/bedroom_bookshelf_double.png" id="7_q7gbk"]
+[ext_resource type="Texture2D" uid="uid://dcn05hwr7rcut" path="res://enviroment/house/2_bedroom/bedroom_lantern_double.png" id="8_3ooq6"]
+[ext_resource type="Texture2D" uid="uid://dxr7rg0h40og6" path="res://enviroment/lawn/2_end/street_base_double.png" id="9_kii78"]
+[ext_resource type="Texture2D" uid="uid://cnxq14svg6to1" path="res://enviroment/lawn/2_end/street_ball_double.png" id="10_ykw7f"]
+[ext_resource type="Texture2D" uid="uid://dxvo4jk7baa7s" path="res://enviroment/lawn/2_end/street_bird_double.png" id="11_20fnc"]
+[ext_resource type="Texture2D" uid="uid://ddxg3asfrn01d" path="res://enviroment/lawn/1_garden/garden_base_double.png" id="12_nmocj"]
+[ext_resource type="Texture2D" uid="uid://cgdp0gpsc4fcx" path="res://enviroment/lawn/1_garden/garden_flower_double.png" id="13_nxry8"]
+[ext_resource type="Texture2D" uid="uid://d0f2vf22cv6pu" path="res://enviroment/lawn/1_garden/garden_rock_double.png" id="14_q2jt1"]
+[ext_resource type="Texture2D" uid="uid://cpnx64supioo0" path="res://enviroment/house/4_kitchen/kitchen_base_double.png" id="15_pfndq"]
+[ext_resource type="Texture2D" uid="uid://dq5b1gukm3ch0" path="res://enviroment/house/4_kitchen/kitchen_fridge_double.png" id="16_k6y6m"]
+[ext_resource type="Texture2D" uid="uid://ba34x5au33brh" path="res://enviroment/house/4_kitchen/kitchen_table_double.png" id="17_ssu4w"]
+[ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="18_s3vt7"]
+[ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="19_w0dfa"]
+[ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="20_crch5"]
+[ext_resource type="Texture2D" uid="uid://b53wkc7ix3uvp" path="res://enviroment/items/camp1.png" id="21_svr4l"]
+[ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_mdce0"]
+[ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="23_em556"]
+[ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://screens/control_camera.gd" id="24_1mkey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
+atlas = ExtResource("3_55rq1")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqksq"]
+atlas = ExtResource("4_askjg")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkoqu"]
+atlas = ExtResource("5_dggct")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hjoo"]
+atlas = ExtResource("6_tdxox")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vefff"]
+atlas = ExtResource("7_q7gbk")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdxaj"]
+atlas = ExtResource("8_3ooq6")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50muf"]
+atlas = ExtResource("9_kii78")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jt5j"]
+atlas = ExtResource("10_ykw7f")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjygi"]
+atlas = ExtResource("11_20fnc")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjo28"]
+atlas = ExtResource("12_nmocj")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cbml"]
+atlas = ExtResource("13_nxry8")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddvjk"]
+atlas = ExtResource("14_q2jt1")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6ans"]
+atlas = ExtResource("15_pfndq")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u35gu"]
+atlas = ExtResource("16_k6y6m")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjr76"]
+atlas = ExtResource("17_ssu4w")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7vdx"]
+atlas = ExtResource("18_s3vt7")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atqe7"]
+atlas = ExtResource("19_w0dfa")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5oejy"]
+atlas = ExtResource("20_crch5")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4afrj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqg4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqksq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkoqu")
+}],
+"loop": true,
+"name": &"bathroom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hjoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vefff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdxaj")
+}],
+"loop": true,
+"name": &"bedroom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50muf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jt5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjygi")
+}],
+"loop": true,
+"name": &"boss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjo28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cbml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddvjk")
+}],
+"loop": true,
+"name": &"garden",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6ans")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u35gu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjr76")
+}],
+"loop": true,
+"name": &"kitchen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7vdx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atqe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5oejy")
+}],
+"loop": true,
+"name": &"livingroom",
+"speed": 5.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_d18q6"]
+a = Vector2(0, -82)
+b = Vector2(0, 76)
+
+[sub_resource type="Theme" id="Theme_vvhym"]
+default_font = ExtResource("23_em556")
+default_font_size = 4
+
+[sub_resource type="Theme" id="Theme_lvq3o"]
+default_font = ExtResource("23_em556")
+default_font_size = 6
+
+[sub_resource type="Theme" id="Theme_herb4"]
+default_font = ExtResource("23_em556")
+default_font_size = 2
+
+[node name="FeedingScreen" type="Node2D"]
+
+[node name="Organizer" type="CanvasLayer" parent="."]
+script = ExtResource("1_85pcd")
+
+[node name="CenterBG" type="HBoxContainer" parent="Organizer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Organizer/CenterBG"]
+script = ExtResource("2_qshnh")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
+motion_mirroring = Vector2(180, 0)
+
+[node name="BG" type="AnimatedSprite2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4afrj")
+animation = &"boss"
+
+[node name="Switchbox" type="Area2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox"]
+modulate = Color(0.223529, 1, 1, 1)
+position = Vector2(92, 4)
+shape = SubResource("SegmentShape2D_d18q6")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
+position = Vector2(90, 80)
+
+[node name="Sprite2D" type="Sprite2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(0, -68)
+texture = ExtResource("21_svr4l")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
+position = Vector2(90, 80)
+
+[node name="player" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer3" instance=ExtResource("22_mdce0")]
+position = Vector2(-28, -80)
+
+[node name="UICenter" type="HBoxContainer" parent="Organizer"]
+offset_left = 69.0
+offset_top = 83.0
+offset_right = 90.0
+offset_bottom = 100.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = SubResource("Theme_vvhym")
+alignment = 2
+
+[node name="Back" type="Button" parent="Organizer/UICenter"]
+layout_mode = 2
+text = "Back"
+
+[node name="UITop" type="HBoxContainer" parent="Organizer"]
+offset_right = 90.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+theme = SubResource("Theme_lvq3o")
+alignment = 1
+
+[node name="Gold" type="VBoxContainer" parent="Organizer/UITop"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="txt" type="Label" parent="Organizer/UITop/Gold"]
+layout_mode = 2
+text = "Treats"
+
+[node name="value" type="Label" parent="Organizer/UITop/Gold"]
+layout_mode = 2
+
+[node name="Energy" type="VBoxContainer" parent="Organizer/UITop"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="txt" type="Label" parent="Organizer/UITop/Energy"]
+layout_mode = 2
+text = "Energy"
+
+[node name="value" type="Label" parent="Organizer/UITop/Energy"]
+layout_mode = 2
+
+[node name="UIBottom" type="HBoxContainer" parent="Organizer"]
+z_index = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -31.0
+offset_right = 43.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = SubResource("Theme_herb4")
+
+[node name="Bisquit" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Bisquit"
+
+[node name="Catnip" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Catnip"
+
+[node name="Soft" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Soft"
+
+[node name="Packet" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Packet"
+
+[node name="Fish" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+text = "Fish"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -100
+limit_right = 300
+limit_bottom = 600
+script = ExtResource("24_1mkey")
+
+[connection signal="body_entered" from="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/CenterBG/ParallaxBackground" method="_on_switchbox_body_entered"]
+[connection signal="pressed" from="Organizer/UICenter/Back" to="Organizer" method="_on_back_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Bisquit" to="Organizer" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Bisquit" to="Organizer/UIBottom" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Catnip" to="Organizer" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Catnip" to="Organizer/UIBottom" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Soft" to="Organizer" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Soft" to="Organizer/UIBottom" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Packet" to="Organizer" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Packet" to="Organizer/UIBottom" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Fish" to="Organizer" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/Fish" to="Organizer/UIBottom" method="_on_pets_pressed"]

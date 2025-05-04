@@ -4,6 +4,7 @@ const TORNADO = preload("res://screens/tornado.tscn")
 @onready var cat2: CharacterBody2D = $CharacterBody2D2
 @onready var tornado: CharacterBody2D = $tornado
 @onready var timer: Timer = $Timer
+var idle = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,6 +35,9 @@ func _on_tornado_timeout():
 	print("Tornado will be hidden")
 	tornado.hide()
 	cat1.visible = true
-	get_tree().change_scene_to_file("res://screens/battle.tscn")
-
+	
+	if (!idle):
+		get_tree().change_scene_to_file("res://screens/battle.tscn")
+	else:
+		get_tree().change_scene_to_file("res://screens/idle_screen.tscn")
 	

@@ -18,30 +18,25 @@ func _ready():
 # Here to be copy and paisted for convenience
 # get_tree().change_scene_to_file("res://screens/battle.tscn")
 
-func _on_merge_pressed():
-	var new_scene = load("res://screens/merge.tscn").instantiate()
-	new_scene.idle = true 
-	
-	get_tree().current_scene.queue_free()
-	get_tree().root.add_child(new_scene)
-	get_tree().current_scene = new_scene
+func _on_bisquit_pressed():
+	get_tree().change_scene_to_file("res://screens/merge.tscn")
 
 
-func _on_feed_pressed():
-	get_tree().change_scene_to_file("res://screens/feeding_screen.tscn")
-
-
-func _on_equipment_pressed():
+func _on_catnip_pressed():
 	pass # Replace with function body.
 
 
-func _on_accessories_pressed():
+func _on_soft_pressed():
 	pass # Replace with function body.
 
 
-func _on_pets_pressed():
+func _on_packet_pressed():
 	pass # Replace with function body.
 
 
-func _on_battle_pressed():
+func _on_fish_pressed():
+	pass # Replace with function body.
+
+
+func _on_back_pressed():
 	get_tree().change_scene_to_file("res://screens/battle.tscn")
