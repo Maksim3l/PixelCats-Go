@@ -1,0 +1,237 @@
+[gd_scene load_steps=41 format=3 uid="uid://c1pkinmub44bq"]
+
+[ext_resource type="Script" uid="uid://b8ykr0g8riaox" path="res://scripts/choose_cat.gd" id="1_t2xig"]
+[ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="6_v3m62"]
+[ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="7_ia5gq"]
+[ext_resource type="Texture2D" uid="uid://bj82ugw5a0rtp" path="res://enviroment/house/1_bathroom/bathroom_water_double.png" id="8_8axev"]
+[ext_resource type="Texture2D" uid="uid://tnvth467e3mq" path="res://enviroment/house/2_bedroom/bedroom_base_double.png" id="9_a577p"]
+[ext_resource type="Texture2D" uid="uid://jqjlhwilhyh6" path="res://enviroment/house/2_bedroom/bedroom_bookshelf_double.png" id="10_328lj"]
+[ext_resource type="Texture2D" uid="uid://dcn05hwr7rcut" path="res://enviroment/house/2_bedroom/bedroom_lantern_double.png" id="11_xks1h"]
+[ext_resource type="Texture2D" uid="uid://dxr7rg0h40og6" path="res://enviroment/lawn/2_end/street_base_double.png" id="12_1xgp8"]
+[ext_resource type="Texture2D" uid="uid://cnxq14svg6to1" path="res://enviroment/lawn/2_end/street_ball_double.png" id="13_s0dg2"]
+[ext_resource type="Texture2D" uid="uid://dxvo4jk7baa7s" path="res://enviroment/lawn/2_end/street_bird_double.png" id="14_jixll"]
+[ext_resource type="Texture2D" uid="uid://ddxg3asfrn01d" path="res://enviroment/lawn/1_garden/garden_base_double.png" id="15_cu5ht"]
+[ext_resource type="Texture2D" uid="uid://cgdp0gpsc4fcx" path="res://enviroment/lawn/1_garden/garden_flower_double.png" id="16_a4cng"]
+[ext_resource type="Texture2D" uid="uid://d0f2vf22cv6pu" path="res://enviroment/lawn/1_garden/garden_rock_double.png" id="17_3tor8"]
+[ext_resource type="Texture2D" uid="uid://cpnx64supioo0" path="res://enviroment/house/4_kitchen/kitchen_base_double.png" id="18_f856y"]
+[ext_resource type="Texture2D" uid="uid://dq5b1gukm3ch0" path="res://enviroment/house/4_kitchen/kitchen_fridge_double.png" id="19_x50ti"]
+[ext_resource type="Texture2D" uid="uid://ba34x5au33brh" path="res://enviroment/house/4_kitchen/kitchen_table_double.png" id="20_as5ru"]
+[ext_resource type="Texture2D" uid="uid://buavvm5gvldj6" path="res://enviroment/resized.png" id="20_jb4t3"]
+[ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="21_hqydo"]
+[ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="22_q4vqo"]
+[ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="23_vao1c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
+atlas = ExtResource("6_v3m62")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqksq"]
+atlas = ExtResource("7_ia5gq")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkoqu"]
+atlas = ExtResource("8_8axev")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hjoo"]
+atlas = ExtResource("9_a577p")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vefff"]
+atlas = ExtResource("10_328lj")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdxaj"]
+atlas = ExtResource("11_xks1h")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50muf"]
+atlas = ExtResource("12_1xgp8")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jt5j"]
+atlas = ExtResource("13_s0dg2")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjygi"]
+atlas = ExtResource("14_jixll")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjo28"]
+atlas = ExtResource("15_cu5ht")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cbml"]
+atlas = ExtResource("16_a4cng")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddvjk"]
+atlas = ExtResource("17_3tor8")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6ans"]
+atlas = ExtResource("18_f856y")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u35gu"]
+atlas = ExtResource("19_x50ti")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjr76"]
+atlas = ExtResource("20_as5ru")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7vdx"]
+atlas = ExtResource("21_hqydo")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atqe7"]
+atlas = ExtResource("22_q4vqo")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5oejy"]
+atlas = ExtResource("23_vao1c")
+region = Rect2(0, 0, 180, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lnrk1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqg4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqksq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkoqu")
+}],
+"loop": true,
+"name": &"bathroom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hjoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vefff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdxaj")
+}],
+"loop": true,
+"name": &"bedroom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50muf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jt5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjygi")
+}],
+"loop": true,
+"name": &"boss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjo28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cbml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddvjk")
+}],
+"loop": true,
+"name": &"garden",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6ans")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u35gu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjr76")
+}],
+"loop": true,
+"name": &"kitchen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7vdx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atqe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5oejy")
+}],
+"loop": true,
+"name": &"livingroom",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_jb4t3"]
+
+[node name="chooseCat" type="Node2D"]
+script = ExtResource("1_t2xig")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Center" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Center"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Center/ParallaxBackground"]
+motion_mirroring = Vector2(180, 0)
+
+[node name="BG" type="AnimatedSprite2D" parent="Center/ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_lnrk1")
+animation = &"garden"
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = -45.0
+offset_top = -83.0
+offset_right = -5.0
+offset_bottom = -43.0
+theme = SubResource("Theme_jb4t3")
+theme_type_variation = &"FlatButton"
+icon = ExtResource("20_jb4t3")
+
+[node name="ContinueButton" type="Button" parent="."]
+offset_left = -15.0
+offset_top = 61.0
+offset_right = 15.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 5
+text = "Continue"
+
+[node name="CatList2" type="VBoxContainer" parent="."]
+offset_left = -41.0
+offset_top = -46.0
+offset_right = -1.0
+offset_bottom = -6.0
