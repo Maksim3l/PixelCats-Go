@@ -90,9 +90,12 @@ func _on_continue_button_pressed():
 		print("You must select at least 2 cats.")
 		return
 
-	cat_manager.active_cat_index = selected_cats[0]
+	var merge_scene = load("res://screens/merge.tscn").instantiate()
+	merge_scene.selected_cats = selected_cats
+	get_tree().root.add_child(merge_scene)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = merge_scene
 	save_game()
-	get_tree().change_scene_to_file("res://screens/battle.tscn")
 
 func _on_back_button_pressed():
 	get_tree().change_scene_to_file("res://screens/idle_screen.tscn")

@@ -5,6 +5,7 @@ const TORNADO = preload("res://screens/tornado.tscn")
 @onready var tornado: CharacterBody2D = $tornado
 @onready var timer: Timer = $Timer
 
+var selected_cats = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +13,9 @@ func _ready():
 	cat1.connect("collision_detected", Callable(self, "_on_cat_collision"))
 	if not timer.timeout.is_connected(_on_tornado_timeout):
 		timer.timeout.connect(_on_tornado_timeout)
-
+	print("Recieved cats", selected_cats)
+	
+	
 func _process(delta: float) -> void:
 	pass
 
