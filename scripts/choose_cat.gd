@@ -1,10 +1,5 @@
 extends Node2D
 
-var save_file_path = "res://data/"
-var save_file_name = "CatManager.tres"
-var cat_manager = CatManager.new()
-
-# UI references
 @onready var continue_button: Button = $ContinueButton
 @onready var back_button: Button = $BackButton
 @onready var cats_list: VBoxContainer = $CatList2
@@ -17,8 +12,6 @@ var max_cats = 2
 var font_file
 
 func _ready():
-	load_game()
-
 	# Load font file (ttf)
 	font_file = preload("res://resources/pixel_sans.ttf")
 
@@ -34,30 +27,16 @@ func _ready():
 	back_button.connect("pressed", Callable(self, "_on_back_button_pressed"))
 	continue_button.disabled = true
 
-func load_game():
-	if not FileAccess.file_exists(save_file_path + save_file_name):
-		print("No save file found")
-		return false
-
-	var data = ResourceLoader.load(save_file_path + save_file_name)
-	if not data or not data is CatManager:
-		print("Error loading cat manager or invalid format")
-		cat_manager = CatManager.new()
-		return false
-
-	cat_manager = data
-	return true
-
-func save_game():
-	var success = cat_manager.save_cats(save_file_path + save_file_name)
-	if success:
-		print("Game saved successfully with", cat_manager.cats.size(), "cats")
-	return success
-
 func populate_cats_list():
-
-	for i in range(cat_manager.cats.size()):
-		var cat = cat_manager.cats[i]
+	# Clear existing list items
+	for child in cats_list.get_children():
+		child.queue_free()
+	
+	# Get all cats from the CatHandler singleton
+	var all_cats = CatHandler.get_all_cats()
+	
+	for i in range(all_cats.size()):
+		var cat = all_cats[i]
 		var checkbox = CheckButton.new()
 		checkbox.text = cat.cat_name
 		
@@ -79,7 +58,7 @@ func _on_cat_checkbox_toggled(pressed: bool, cat_index: int):
 	if selected_cats.size() > max_cats:
 		var last_index = selected_cats.pop_back()
 		for child in cats_list.get_children():
-			if child is CheckButton and child.text == cat_manager.cats[last_index].cat_name:
+			if child is CheckButton and child.text == CatHandler.get_all_cats()[last_index].cat_name:
 				child.button_pressed = false
 				break
 
@@ -95,7 +74,8 @@ func _on_continue_button_pressed():
 	get_tree().root.add_child(merge_scene)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = merge_scene
-	save_game()
+	
+	# The CatHandler will save automatically when needed
 
 func _on_back_button_pressed():
 	get_tree().change_scene_to_file("res://screens/idle_screen.tscn")

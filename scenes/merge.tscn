@@ -1,11 +1,113 @@
-[gd_scene load_steps=38 format=3 uid="uid://c2fjhhfsjexs2"]
+[gd_scene load_steps=38 format=3 uid="uid://di60qatklrk3p"]
 
-[ext_resource type="Script" uid="uid://821y286gmud0" path="res://scenes/character_1.gd" id="1_6t3t7"]
-[ext_resource type="Script" uid="uid://bq2ikvubg8n2i" path="res://scenes/merge.gd" id="1_58pvd"]
 [ext_resource type="Texture2D" uid="uid://delb6g54k0hna" path="res://assets/sprites/Cat Sprite Sheet.png" id="1_ef75t"]
-[ext_resource type="Script" uid="uid://btwrhqkm8dnhs" path="res://scenes/character_2.gd" id="3_6u5my"]
 [ext_resource type="Texture2D" uid="uid://bkykg53nerhep" path="res://assets/sprites/tornado.png" id="4_mbhl0"]
-[ext_resource type="Script" uid="uid://cr456w83gs1rx" path="res://scenes/new_cat.gd" id="6_58pvd"]
+
+[sub_resource type="GDScript" id="GDScript_33h80"]
+script/source = "extends Node2D
+const TORNADO = preload(\"res://screens/tornado.tscn\")
+@onready var cat1: CharacterBody2D = $CharacterBody2D
+@onready var cat2: CharacterBody2D = $CharacterBody2D2
+@onready var tornado: CharacterBody2D = $tornado
+@onready var timer: Timer = $Timer
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	tornado.hide()
+	cat1.connect(\"collision_detected\", Callable(self, \"_on_cat_collision\"))
+	if not timer.timeout.is_connected(_on_tornado_timeout):
+		timer.timeout.connect(_on_tornado_timeout)
+
+func _process(delta: float) -> void:
+	pass
+
+func _on_cat_collision():
+	# Hide the cat
+	cat1.hide()
+	cat2.queue_free()
+	
+	tornado.show()
+	
+	timer.wait_time = 4.0
+	timer.one_shot = true
+	timer.start()
+	
+func _on_tornado_timeout():
+	print(\"Tornado will be hidden\")
+	tornado.hide()
+	cat1.visible = true
+	await get_tree().create_timer(1.2).timeout
+	
+	if GlobalDataHandler.global_data.coming_from_last == \"Battle Arena\":
+		var battle = load(\"res://screens/battle.tscn\").instantiate()
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(battle)
+		get_tree().current_scene = battle
+	else:
+		var idle_screen = load(\"res://screens/idle_screen.tscn\").instantiate()
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(idle_screen)
+		get_tree().current_scene = idle_screen
+
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_6u5my"]
+script/source = "extends CharacterBody2D
+
+@export var speed = 60.0
+var direction = Vector2(1, 0) # Start moving right
+@onready var tornado: CharacterBody2D = $\"../Tornado\"
+@onready var timer: Timer = $\"../Timer\"
+var collision_enabled = true  # Flag to track if collision detection is enabled
+@onready var new_cat: CharacterBody2D = $\"../NewCat\"
+
+var health = 30
+var power = 40
+
+func _ready():
+	# Connect the timer signal once when the scene starts
+	if not timer.timeout.is_connected(_on_tornado_timeout):
+		timer.timeout.connect(_on_tornado_timeout)
+	# Make sure tornado is initially hidden
+	tornado.hide()
+	new_cat.hide()
+
+func _physics_process(delta):
+	# Only process collisions if enabled
+	if collision_enabled:
+		velocity = direction * speed
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			# Collision event
+			_on_collision()
+	else:
+		# If collision is disabled, still update position but don't check collisions
+		position += direction * speed * delta
+
+func _on_collision():
+	hide()
+	tornado.show()
+	
+	# Disable further collision detection
+	collision_enabled = false
+	
+	# Start the 5-second timer
+	timer.wait_time = 4.0
+	timer.one_shot = true
+	timer.start()
+	
+	# Debug print to confirm timer started
+	print(\"Timer started, tornado should hide in 5 seconds\")
+
+func _on_tornado_timeout():
+	print(\"Tornado will be hidden\")
+	tornado.hide()
+	new_cat.show()
+	
+	# Optionally, you can re-enable collision here if needed
+	# collision_enabled = true
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t3t7"]
 atlas = ExtResource("1_ef75t")
@@ -73,6 +175,27 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6u5my"]
 radius = 5.0
+
+[sub_resource type="GDScript" id="GDScript_mbhl0"]
+script/source = "extends CharacterBody2D
+
+@export var speed = 60.0
+var direction = Vector2(-1, 0) # Start moving right
+
+var health = 30
+var power = 60
+
+func _physics_process(delta):
+	velocity = direction * speed
+	var collision = move_and_collide(velocity * delta)
+
+	if collision:
+		#Collision event
+		_on_collision(collision.get_collider())
+
+func _on_collision(collider):
+	hide()
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ef75t"]
 atlas = ExtResource("1_ef75t")
@@ -179,6 +302,23 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_33h80"]
 
+[sub_resource type="GDScript" id="GDScript_6t3t7"]
+script/source = "extends CharacterBody2D
+@onready var new_cat: CharacterBody2D = $\".\"
+
+var health;
+var power;
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2kxn"]
 atlas = ExtResource("1_ef75t")
 region = Rect2(0, 0, 32, 40)
@@ -216,12 +356,12 @@ animations = [{
 }]
 
 [node name="Merge" type="Node2D"]
-script = ExtResource("1_58pvd")
+script = SubResource("GDScript_33h80")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Character1" type="CharacterBody2D" parent="."]
-script = ExtResource("1_6t3t7")
+script = SubResource("GDScript_6u5my")
 
 [node name="SpriteA" type="AnimatedSprite2D" parent="Character1"]
 position = Vector2(-37, 0)
@@ -235,7 +375,7 @@ position = Vector2(-36, 10)
 shape = SubResource("CircleShape2D_6u5my")
 
 [node name="Character2" type="CharacterBody2D" parent="."]
-script = ExtResource("3_6u5my")
+script = SubResource("GDScript_mbhl0")
 
 [node name="SpriteB" type="AnimatedSprite2D" parent="Character2"]
 position = Vector2(37, 0)
@@ -264,7 +404,7 @@ shape = SubResource("CircleShape2D_33h80")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="NewCat" type="CharacterBody2D" parent="."]
-script = ExtResource("6_58pvd")
+script = SubResource("GDScript_6t3t7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NewCat"]
 position = Vector2(-1.125, -35.25)

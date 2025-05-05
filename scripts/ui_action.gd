@@ -24,7 +24,7 @@ func _ready():
 # get_tree().change_scene_to_file("res://screens/battle.tscn")
 
 func _on_merge_pressed():
-	var new_scene = load("res://screens/merge.tscn").instantiate()
+	var new_scene = load("res://screens/choose_cat.tscn").instantiate()
 	
 	global_data.coming_from_last = get_tree().current_scene.name
 	GlobalDataHandler.global_data = global_data
