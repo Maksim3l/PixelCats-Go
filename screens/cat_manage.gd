@@ -6,9 +6,6 @@ var save_file_path = "res://data/"
 var save_file_name = "CatManager.tres" 
 var cat_manager = CatManager.new()
 
-func hide_health_bar():
-		if has_node("HealthBar"):
-			$HealthBar.visible = false
 
 func _ready():
 	randomize()
@@ -44,7 +41,7 @@ func _ready():
 	gold.text = str(active_cat.gold)
 	
 # Skrij health bar ob zagonu idle screen-a
-	if $Organizer/CenterBG/ParallaxBackground/ParallaxLayer3/player.has_node("TextureHealthBar"):
-		$Organizer/CenterBG/ParallaxBackground/ParallaxLayer3/player/TextureHealthBar.visible = false
+	if $Organizer/CenterBG/ParallaxBackground/ParallaxLayer3/player.has_node("PlayerHealthBar"):
+		$Organizer/CenterBG/ParallaxBackground/ParallaxLayer3/player/PlayerHealthBar.visible = false
 	
 	return true

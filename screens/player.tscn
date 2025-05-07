@@ -209,7 +209,7 @@ emission_rect_extents = Vector2(1, 1)
 color_ramp = SubResource("Gradient_wt686")
 script = ExtResource("5_rnd8p")
 
-[node name="TextureHealthBar" type="TextureProgressBar" parent="."]
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="."]
 offset_left = -16.0
 offset_top = -43.0
 offset_right = 17.0
@@ -218,7 +218,7 @@ texture_under = ExtResource("8_03ukr")
 texture_progress = ExtResource("9_gsa0h")
 script = ExtResource("10_03ukr")
 
-[node name="HealthLabel" type="Label" parent="TextureHealthBar"]
+[node name="HealthLabel" type="Label" parent="PlayerHealthBar"]
 visible = false
 layout_mode = 0
 offset_left = 8.0

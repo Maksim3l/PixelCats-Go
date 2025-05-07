@@ -84,7 +84,7 @@ func apply_to_player(player: CharacterBody2D) -> void:
     player.position = position
     
     # Update health bar if it exists
-    if player.has_node("TextureHealthBar"):
+    if player.has_node("PlayerHealthBar"):
         player.health_bar.value = player.current_health
         player.health_bar.max_value = max_health
         

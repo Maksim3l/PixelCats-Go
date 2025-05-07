@@ -21,7 +21,7 @@ var experience: int = 0
 var level: int = 1
 
 @onready var arena_level: int = ArenaLevel.BATHROOM
-@onready var health_bar = $TextureHealthBar
+@onready var health_bar = $PlayerHealthBar
 @onready var attack_timer = $AttackTimer
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Catimation

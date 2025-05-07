@@ -234,6 +234,7 @@ motion_mirroring = Vector2(180, 0)
 
 [node name="BG" type="AnimatedSprite2D" parent="Organizer/Center/ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
+position = Vector2(2, 0)
 sprite_frames = SubResource("SpriteFrames_5oejy")
 animation = &"boss"
 

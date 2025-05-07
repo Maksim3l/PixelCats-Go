@@ -9,7 +9,7 @@ var can_attack: bool = true
 var battle = null
 
 @onready var sprite = $AnimatedSprite2D
-@onready var health_bar = $HealthBar
+@onready var health_bar = $EnemyHealthBar
 @onready var attack_timer = $AttackTimer
 @onready var nameLabel = $Name
 @onready var titleLabel = $Title

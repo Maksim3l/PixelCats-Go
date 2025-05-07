@@ -37,6 +37,7 @@ script = ExtResource("1_h737n")
 enemy_data = ExtResource("2_hj34r")
 
 [node name="Name" type="Label" parent="."]
+visible = false
 offset_left = -44.0
 offset_top = -75.0
 offset_right = -4.0
@@ -46,6 +47,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Title" type="Label" parent="."]
+visible = false
 offset_left = -43.0
 offset_top = -64.0
 offset_right = -3.0
@@ -74,7 +76,7 @@ emission_rect_extents = Vector2(1, 1)
 color_ramp = SubResource("Gradient_yuvsy")
 script = ExtResource("5_lqn1i")
 
-[node name="TextureHealthBar" type="TextureProgressBar" parent="."]
+[node name="EnemyHealthBar" type="TextureProgressBar" parent="."]
 offset_left = -16.0
 offset_top = -52.0
 offset_right = 17.0
@@ -83,7 +85,7 @@ texture_under = ExtResource("6_3di1a")
 texture_progress = ExtResource("7_iw5bc")
 script = ExtResource("8_p2000")
 
-[node name="HealthLabel" type="Label" parent="TextureHealthBar"]
+[node name="HealthLabel" type="Label" parent="EnemyHealthBar"]
 visible = false
 layout_mode = 0
 offset_left = 8.0
