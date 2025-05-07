@@ -229,7 +229,7 @@ default_font_size = 6
 default_font = ExtResource("20_g8hcl")
 default_font_size = 2
 
-[sub_resource type="Theme" id="Theme_cdxyv"]
+[sub_resource type="Theme" id="Theme_6n6su"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cq4eh"]
 texture = ExtResource("28_aw3vd")
@@ -457,7 +457,7 @@ offset_left = -7.50001
 offset_top = -9.0
 offset_right = 7.49999
 offset_bottom = 9.0
-theme = SubResource("Theme_cdxyv")
+theme = SubResource("Theme_6n6su")
 theme_override_styles/hover = SubResource("StyleBoxTexture_cq4eh")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_oeyb8")
 theme_override_styles/normal = SubResource("StyleBoxTexture_uugju")

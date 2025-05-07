@@ -27,21 +27,22 @@ font_color = Color(0, 0, 0.396078, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjojn"]
 texture = ExtResource("4_txg6x")
-region_rect = Rect2(69, 193, 52, 15)
+texture_margin_left = 3.0
+region_rect = Rect2(5, 193, 52, 15)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghegn"]
 texture = ExtResource("4_txg6x")
-region_rect = Rect2(5, 129, 52, 15)
+region_rect = Rect2(69, 129, 52, 15)
 
 [sub_resource type="Theme" id="Theme_mvehq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_txg6x"]
 texture = ExtResource("4_txg6x")
-region_rect = Rect2(69, 225, 52, 15)
+region_rect = Rect2(5, 225, 52, 15)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mo0vk"]
 texture = ExtResource("4_txg6x")
-region_rect = Rect2(5, 161, 52, 15)
+region_rect = Rect2(69, 161, 52, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_txg6x"]
 atlas = ExtResource("5_cjojn")
