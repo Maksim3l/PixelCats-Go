@@ -1,10 +1,14 @@
 extends Node2D
 @export var player_character: Node2D
-@onready var energy = $"Organizer/UITop/Energy/value"
-@onready var gold = $"Organizer/UITop/Gold/value"
+@onready var energy = $"Organizer/UITop/ProfileUI/Energy/value"
+@onready var gold = $"Organizer/UITop/ProfileUI/Gold/value"
 var save_file_path = "res://data/"
 var save_file_name = "CatManager.tres" 
 var cat_manager = CatManager.new()
+
+func hide_health_bar():
+		if has_node("HealthBar"):
+			$HealthBar.visible = false
 
 func _ready():
 	randomize()
@@ -38,5 +42,9 @@ func _ready():
 	# Update UI with the active cat's data
 	energy.text = "3/" + str(active_cat.energy)
 	gold.text = str(active_cat.gold)
+	
+# Skrij health bar ob zagonu idle screen-a
+	if $Organizer/CenterBG/ParallaxBackground/ParallaxLayer3/player.has_node("TextureHealthBar"):
+		$Organizer/CenterBG/ParallaxBackground/ParallaxLayer3/player/TextureHealthBar.visible = false
 	
 	return true

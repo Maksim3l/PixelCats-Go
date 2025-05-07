@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bmyvk5ge5jq6k"]
+[gd_scene load_steps=87 format=3 uid="uid://bmyvk5ge5jq6k"]
 
 [ext_resource type="Script" uid="uid://bkliwsde236od" path="res://screens/cat_manage.gd" id="1_2qr8l"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
@@ -23,9 +23,22 @@
 [ext_resource type="Texture2D" uid="uid://b53wkc7ix3uvp" path="res://enviroment/items/camp1.png" id="20_24gff"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="20_g8hcl"]
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="21_54kng"]
+[ext_resource type="Texture2D" uid="uid://djvfitsiur4md" path="res://themes/UI_images/orig.png" id="22_6n6su"]
 [ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://screens/control_camera.gd" id="22_36nmi"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_o878r"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="25_vtkis"]
+[ext_resource type="Texture2D" uid="uid://b7w0xc82p7sck" path="res://themes/UI_images/profileUI.png" id="26_e2gqq"]
+[ext_resource type="Texture2D" uid="uid://v1bwbw1r7o33" path="res://themes/UI_images/BottomButtonsUI2.png" id="27_aw3vd"]
+[ext_resource type="Texture2D" uid="uid://n8jhb6nwvypp" path="res://themes/UI_images/foodIconUIHover.png" id="28_2tk18"]
+[ext_resource type="Texture2D" uid="uid://r5g0lykubcol" path="res://themes/UI_images/mergeUIbtnHover.png" id="28_aw3vd"]
+[ext_resource type="Texture2D" uid="uid://oboet65b0rq8" path="res://themes/UI_images/foodIconUI.png" id="29_1q1h3"]
+[ext_resource type="Texture2D" uid="uid://bl5yq020tkvjw" path="res://themes/UI_images/mergeUIbtn.png" id="29_6n6su"]
+[ext_resource type="Texture2D" uid="uid://dhr7lq0b1fqu0" path="res://themes/UI_images/EquipmentUIbtnHover.png" id="30_aekbk"]
+[ext_resource type="Texture2D" uid="uid://hofvmxf5ngjj" path="res://themes/UI_images/EquipmentUIbtn.png" id="31_12vks"]
+[ext_resource type="Texture2D" uid="uid://sd5hqxa6r5bf" path="res://themes/UI_images/BowTieUIbtnHover.png" id="32_0jlkm"]
+[ext_resource type="Texture2D" uid="uid://ctqcdbyg5hml" path="res://themes/UI_images/PetsUIbtnHover.png" id="32_q2yvb"]
+[ext_resource type="Texture2D" uid="uid://5wht657h53p5" path="res://themes/UI_images/PetsUIbtn.png" id="33_1a4cj"]
+[ext_resource type="Texture2D" uid="uid://b5x2jku6vt0i7" path="res://themes/UI_images/BowTieUIbtn.png" id="33_at2v4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
 atlas = ExtResource("2_24gff")
@@ -200,13 +213,13 @@ default_font_size = 4
 texture = ExtResource("25_vtkis")
 expand_margin_left = 15.0
 expand_margin_right = 15.0
-region_rect = Rect2(384, 320, 48, 16)
+region_rect = Rect2(384, 288, 48, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ihj5"]
 texture = ExtResource("25_vtkis")
 expand_margin_left = 15.0
 expand_margin_right = 15.0
-region_rect = Rect2(384, 256, 48, 16)
+region_rect = Rect2(384, 288, 48, 16)
 
 [sub_resource type="Theme" id="Theme_vtkis"]
 default_font = ExtResource("20_g8hcl")
@@ -215,6 +228,64 @@ default_font_size = 6
 [sub_resource type="Theme" id="Theme_uugju"]
 default_font = ExtResource("20_g8hcl")
 default_font_size = 2
+
+[sub_resource type="Theme" id="Theme_cdxyv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cq4eh"]
+texture = ExtResource("28_aw3vd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oeyb8"]
+texture = ExtResource("29_6n6su")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uugju"]
+texture = ExtResource("29_6n6su")
+
+[sub_resource type="Theme" id="Theme_aekbk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1q1h3"]
+texture = ExtResource("29_1q1h3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2tk18"]
+texture = ExtResource("28_2tk18")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aekbk"]
+texture = ExtResource("29_1q1h3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q2yvb"]
+texture = ExtResource("29_1q1h3")
+
+[sub_resource type="Theme" id="Theme_q2yvb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1a4cj"]
+texture = ExtResource("30_aekbk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0jlkm"]
+texture = ExtResource("31_12vks")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_at2v4"]
+texture = ExtResource("31_12vks")
+
+[sub_resource type="Theme" id="Theme_aw3vd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g8hcl"]
+texture = ExtResource("32_0jlkm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_54kng"]
+texture = ExtResource("33_at2v4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vdhkv"]
+texture = ExtResource("33_at2v4")
+
+[sub_resource type="Theme" id="Theme_0jlkm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aw3vd"]
+texture = ExtResource("32_q2yvb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6n6su"]
+texture = ExtResource("33_1a4cj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cdxyv"]
+texture = ExtResource("33_1a4cj")
 
 [node name="IdleScreen" type="Node2D" node_paths=PackedStringArray("player_character")]
 script = ExtResource("1_2qr8l")
@@ -257,6 +328,20 @@ modulate = Color(0.223529, 1, 1, 1)
 position = Vector2(92, 4)
 shape = SubResource("SegmentShape2D_oeyb8")
 
+[node name="background" type="TextureRect" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = -243.0
+offset_right = 284.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_6n6su")
+stretch_mode = 2
+
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
 position = Vector2(90, 80)
 
@@ -268,13 +353,13 @@ texture = ExtResource("20_24gff")
 position = Vector2(89, 80)
 
 [node name="player" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer3" instance=ExtResource("22_o878r")]
-position = Vector2(-29, -86)
+position = Vector2(-28, -95)
 
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
-offset_left = 20.0
-offset_top = 107.0
-offset_right = 69.0
-offset_bottom = 123.0
+offset_left = 21.0
+offset_top = 117.0
+offset_right = 70.0
+offset_bottom = 133.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme = SubResource("Theme_o878r")
@@ -285,7 +370,7 @@ layout_mode = 2
 theme = SubResource("Theme_e2gqq")
 theme_override_colors/font_hover_pressed_color = Color(0.0866292, 0.0866292, 0.0866292, 1)
 theme_override_colors/font_hover_color = Color(0.0453124, 0.0453124, 0.0453124, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 7
 theme_override_styles/hover = SubResource("StyleBoxTexture_vtkis")
 theme_override_styles/normal = SubResource("StyleBoxTexture_8ihj5")
@@ -299,30 +384,44 @@ size_flags_horizontal = 4
 theme = SubResource("Theme_vtkis")
 alignment = 1
 
-[node name="Gold" type="VBoxContainer" parent="Organizer/UITop"]
+[node name="ProfileUI" type="TextureRect" parent="Organizer/UITop"]
+layout_mode = 2
+texture = ExtResource("26_e2gqq")
+
+[node name="Gold" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
 layout_direction = 2
 layout_mode = 2
+offset_left = 37.0
+offset_top = 20.0
+offset_right = 61.0
+offset_bottom = 28.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="txt" type="Label" parent="Organizer/UITop/Gold"]
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
+visible = false
 layout_mode = 2
 text = "Gold"
 
-[node name="value" type="Label" parent="Organizer/UITop/Gold"]
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
 layout_mode = 2
 
-[node name="Energy" type="VBoxContainer" parent="Organizer/UITop"]
+[node name="Energy" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
 layout_direction = 2
 layout_mode = 2
+offset_left = 36.0
+offset_top = 7.0
+offset_right = 61.0
+offset_bottom = 16.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="txt" type="Label" parent="Organizer/UITop/Energy"]
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Energy"]
+visible = false
 layout_mode = 2
 text = "Energy"
 
-[node name="value" type="Label" parent="Organizer/UITop/Energy"]
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Energy"]
 layout_mode = 2
 
 [node name="UIBottom" type="HBoxContainer" parent="Organizer"]
@@ -332,34 +431,97 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = -31.0
-offset_right = 43.0
+offset_left = -138.0
+offset_top = -28.0
+offset_right = 83.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = SubResource("Theme_uugju")
+alignment = 1
 
-[node name="Merge" type="Button" parent="Organizer/UIBottom"]
+[node name="BottomUI" type="TextureRect" parent="Organizer/UIBottom"]
 layout_mode = 2
-text = "Merge"
+texture = ExtResource("27_aw3vd")
+expand_mode = 3
 
-[node name="Feed" type="Button" parent="Organizer/UIBottom"]
+[node name="Merge" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 2
-text = "Feed"
+anchor_left = 0.69
+anchor_top = 0.5
+anchor_right = 0.69
+anchor_bottom = 0.5
+offset_left = -7.50001
+offset_top = -9.0
+offset_right = 7.49999
+offset_bottom = 9.0
+theme = SubResource("Theme_cdxyv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cq4eh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_oeyb8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uugju")
 
-[node name="Equipment" type="Button" parent="Organizer/UIBottom"]
+[node name="Feed" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 2
-text = "Equip"
+anchor_left = 0.9
+anchor_top = 0.5
+anchor_right = 0.9
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -9.0
+offset_right = 7.0
+offset_bottom = 9.0
+theme = SubResource("Theme_aekbk")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_1q1h3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2tk18")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aekbk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_q2yvb")
 
-[node name="Accessories" type="Button" parent="Organizer/UIBottom"]
+[node name="Equipment" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 2
-text = "Acces."
+anchor_left = 0.797
+anchor_top = 0.5
+anchor_right = 0.797
+anchor_bottom = 0.5
+offset_left = -7.55001
+offset_top = -9.0
+offset_right = 7.44999
+offset_bottom = 9.0
+theme = SubResource("Theme_q2yvb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1a4cj")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0jlkm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_at2v4")
 
-[node name="Pets" type="Button" parent="Organizer/UIBottom"]
+[node name="Accessories" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 2
-text = "Pets"
+anchor_left = 0.583
+anchor_top = 0.5
+anchor_right = 0.583
+anchor_bottom = 0.5
+offset_left = -7.45
+offset_top = -9.0
+offset_right = 7.55
+offset_bottom = 9.0
+theme = SubResource("Theme_aw3vd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g8hcl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_54kng")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vdhkv")
+
+[node name="Pets" type="Button" parent="Organizer/UIBottom/BottomUI"]
+layout_mode = 2
+anchor_left = 0.477
+anchor_top = 0.5
+anchor_right = 0.477
+anchor_bottom = 0.5
+offset_left = -7.55
+offset_top = -9.0
+offset_right = 7.45
+offset_bottom = 9.0
+theme = SubResource("Theme_0jlkm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_aw3vd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6n6su")
+theme_override_styles/normal = SubResource("StyleBoxTexture_cdxyv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(55, 0)
@@ -370,13 +532,13 @@ script = ExtResource("22_36nmi")
 
 [connection signal="body_entered" from="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/CenterBG/ParallaxBackground" method="_on_switchbox_body_entered"]
 [connection signal="pressed" from="Organizer/UICenter/Battle" to="Organizer" method="_on_battle_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer" method="_on_merge_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer/UIBottom" method="_on_merge_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer" method="_on_feed_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer/UIBottom" method="_on_feed_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer" method="_on_equipment_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer/UIBottom" method="_on_equipment_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer" method="_on_accessories_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer/UIBottom" method="_on_accessories_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer" method="_on_pets_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer/UIBottom" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Merge" to="Organizer" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Merge" to="Organizer/UIBottom" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Feed" to="Organizer" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Feed" to="Organizer/UIBottom" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Equipment" to="Organizer" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Equipment" to="Organizer/UIBottom" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Accessories" to="Organizer" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Accessories" to="Organizer/UIBottom" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Pets" to="Organizer" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Pets" to="Organizer/UIBottom" method="_on_pets_pressed"]

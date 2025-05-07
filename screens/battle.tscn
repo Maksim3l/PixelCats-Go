@@ -272,6 +272,7 @@ size_flags_vertical = 4
 [node name="spawn_enemy" type="Node2D" parent="Organizer/CenterRight"]
 
 [node name="UIBottom" type="HBoxContainer" parent="Organizer"]
+visible = false
 z_index = 2
 anchors_preset = 7
 anchor_left = 0.5

@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://h8brxvmkyg2o"]
+[gd_scene load_steps=14 format=3 uid="uid://h8brxvmkyg2o"]
 
 [ext_resource type="Script" uid="uid://cgq4gmvorh2hn" path="res://scripts/creature/enemy.gd" id="1_h737n"]
 [ext_resource type="Texture2D" uid="uid://dnqxx5cy4g55w" path="res://characters/enemy/Machine.png" id="2_83ito"]
 [ext_resource type="Resource" uid="uid://camschyompbni" path="res://resources/enemy/stats/roomba.tres" id="2_hj34r"]
 [ext_resource type="PackedScene" uid="uid://bl8dq63e4q50s" path="res://screens/health_bar.tscn" id="3_hj34r"]
 [ext_resource type="Script" uid="uid://cymskb8os05mp" path="res://scripts/events/damage_particles.gd" id="5_lqn1i"]
+[ext_resource type="Texture2D" uid="uid://cjxeb2qe52nso" path="res://themes/UI_images/healthbarUnder.png" id="6_3di1a"]
+[ext_resource type="Texture2D" uid="uid://bnbrosqfkieab" path="res://themes/UI_images/healthbarProgress.png" id="7_iw5bc"]
+[ext_resource type="Script" uid="uid://dgm66g3vbnqux" path="res://scripts/events/texture_health_bar.gd" id="8_p2000"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hj34r"]
 font_size = 12
@@ -52,6 +55,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HealthBar" parent="." instance=ExtResource("3_hj34r")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dwxfe")
@@ -69,5 +73,22 @@ emission_shape = 3
 emission_rect_extents = Vector2(1, 1)
 color_ramp = SubResource("Gradient_yuvsy")
 script = ExtResource("5_lqn1i")
+
+[node name="TextureHealthBar" type="TextureProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -52.0
+offset_right = 17.0
+offset_bottom = -41.0
+texture_under = ExtResource("6_3di1a")
+texture_progress = ExtResource("7_iw5bc")
+script = ExtResource("8_p2000")
+
+[node name="HealthLabel" type="Label" parent="TextureHealthBar"]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = -7.0
+offset_right = 58.0
+offset_bottom = 16.0
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
