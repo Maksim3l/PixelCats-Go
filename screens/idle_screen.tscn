@@ -1,6 +1,5 @@
-[gd_scene load_steps=86 format=3 uid="uid://bmyvk5ge5jq6k"]
+[gd_scene load_steps=84 format=3 uid="uid://bmyvk5ge5jq6k"]
 
-[ext_resource type="Script" path="res://screens/cat_manage.gd" id="1_2qr8l"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
 [ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="2_24gff"]
 [ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="3_2qr8l"]
@@ -23,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://b53wkc7ix3uvp" path="res://enviroment/items/camp1.png" id="20_24gff"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="20_g8hcl"]
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="21_54kng"]
-[ext_resource type="Script" path="res://screens/control_camera.gd" id="22_36nmi"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_o878r"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="25_vtkis"]
 [ext_resource type="Texture2D" uid="uid://v1bwbw1r7o33" path="res://themes/UI_images/BottomButtonsUI2.png" id="26_at2v4"]
@@ -289,9 +287,7 @@ texture = ExtResource("36_gxilw")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uvs1c"]
 texture = ExtResource("36_gxilw")
 
-[node name="IdleScreen" type="Node2D" node_paths=PackedStringArray("player_character")]
-script = ExtResource("1_2qr8l")
-player_character = NodePath("Organizer/CenterBG/ParallaxBackground/ParallaxLayer3/player")
+[node name="IdleScreen" type="Node2D"]
 
 [node name="Organizer" type="CanvasLayer" parent="."]
 script = ExtResource("21_54kng")
@@ -513,7 +509,6 @@ position = Vector2(0, 7)
 limit_left = -100
 limit_right = 300
 limit_bottom = 600
-script = ExtResource("22_36nmi")
 
 [connection signal="body_entered" from="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/CenterBG/ParallaxBackground" method="_on_switchbox_body_entered"]
 [connection signal="pressed" from="Organizer/UICenter/Battle" to="Organizer" method="_on_battle_pressed"]
