@@ -1,6 +1,6 @@
-[gd_scene load_steps=41 format=3 uid="uid://c1pkinmub44bq"]
+[gd_scene load_steps=53 format=3 uid="uid://cmp0y0dj5sym4"]
 
-[ext_resource type="Script" uid="uid://b8ykr0g8riaox" path="res://scripts/choose_cat.gd" id="1_t2xig"]
+[ext_resource type="Script" path="res://scripts/choose_cat.gd" id="1_t2xig"]
 [ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="6_v3m62"]
 [ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="7_ia5gq"]
 [ext_resource type="Texture2D" uid="uid://bj82ugw5a0rtp" path="res://enviroment/house/1_bathroom/bathroom_water_double.png" id="8_8axev"]
@@ -16,9 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://cpnx64supioo0" path="res://enviroment/house/4_kitchen/kitchen_base_double.png" id="18_f856y"]
 [ext_resource type="Texture2D" uid="uid://dq5b1gukm3ch0" path="res://enviroment/house/4_kitchen/kitchen_fridge_double.png" id="19_x50ti"]
 [ext_resource type="Texture2D" uid="uid://ba34x5au33brh" path="res://enviroment/house/4_kitchen/kitchen_table_double.png" id="20_as5ru"]
-[ext_resource type="Texture2D" uid="uid://buavvm5gvldj6" path="res://enviroment/resized.png" id="20_jb4t3"]
+[ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="20_jb4t3"]
+[ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="21_46iwk"]
 [ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="21_hqydo"]
+[ext_resource type="Texture2D" uid="uid://camfeilneors3" path="res://themes/UI_images/backButton.png" id="21_lte52"]
 [ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="22_q4vqo"]
+[ext_resource type="Texture2D" uid="uid://cesnqosmid6yx" path="res://themes/UI_images/goldIcon.png" id="23_t2xig"]
 [ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="23_vao1c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
@@ -182,6 +185,38 @@ animations = [{
 
 [sub_resource type="Theme" id="Theme_jb4t3"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_46iwk"]
+texture = ExtResource("20_jb4t3")
+region_rect = Rect2(692, 305, 8, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xaho0"]
+texture = ExtResource("21_lte52")
+region_rect = Rect2(628, 274, 8, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lte52"]
+texture = ExtResource("20_jb4t3")
+region_rect = Rect2(628, 274, 8, 12)
+
+[sub_resource type="Theme" id="Theme_xaho0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j4d2q"]
+texture = ExtResource("20_jb4t3")
+region_rect = Rect2(384, 352, 48, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t2xig"]
+texture = ExtResource("20_jb4t3")
+region_rect = Rect2(384, 288, 48, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yinns"]
+texture = ExtResource("20_jb4t3")
+region_rect = Rect2(384, 352, 48, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tjrl5"]
+texture = ExtResource("20_jb4t3")
+region_rect = Rect2(384, 351, 48, 17)
+
+[sub_resource type="Theme" id="Theme_yinns"]
+
 [node name="chooseCat" type="Node2D"]
 script = ExtResource("1_t2xig")
 
@@ -214,21 +249,47 @@ sprite_frames = SubResource("SpriteFrames_lnrk1")
 animation = &"garden"
 
 [node name="BackButton" type="Button" parent="."]
-offset_left = -45.0
-offset_top = -83.0
-offset_right = -5.0
-offset_bottom = -43.0
+offset_left = -43.0
+offset_top = -75.0
+offset_right = -30.0
+offset_bottom = -62.0
 theme = SubResource("Theme_jb4t3")
 theme_type_variation = &"FlatButton"
-icon = ExtResource("20_jb4t3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_46iwk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xaho0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lte52")
 
 [node name="ContinueButton" type="Button" parent="."]
 offset_left = -15.0
 offset_top = 61.0
 offset_right = 15.0
 offset_bottom = 77.0
+theme = SubResource("Theme_xaho0")
+theme_override_fonts/font = ExtResource("21_46iwk")
 theme_override_font_sizes/font_size = 5
-text = "Continue"
+theme_override_styles/disabled = SubResource("StyleBoxTexture_j4d2q")
+theme_override_styles/hover = SubResource("StyleBoxTexture_t2xig")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yinns")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tjrl5")
+
+[node name="price" type="Label" parent="ContinueButton"]
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 18.0
+offset_bottom = 12.0
+theme = SubResource("Theme_yinns")
+theme_override_fonts/font = ExtResource("21_46iwk")
+theme_override_font_sizes/font_size = 6
+text = "500"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="ContinueButton/price"]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 16.0
+offset_bottom = 5.0
+texture = ExtResource("23_t2xig")
+expand_mode = 4
 
 [node name="CatList2" type="VBoxContainer" parent="."]
 offset_left = -41.0
