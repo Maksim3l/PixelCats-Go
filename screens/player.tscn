@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c4ot3ksjrurvq"]
+[gd_scene load_steps=35 format=3 uid="uid://c4ot3ksjrurvq"]
 
 [ext_resource type="Script" uid="uid://ctjyh76sb71o2" path="res://scripts/creature/player.gd" id="1_5jwn5"]
 [ext_resource type="Texture2D" uid="uid://dq23fem364i6e" path="res://characters/main/attack.png" id="2_wt686"]
@@ -180,6 +180,8 @@ size = Vector2(15, 53)
 [sub_resource type="Gradient" id="Gradient_wt686"]
 colors = PackedColorArray(0.431373, 0, 0, 1, 1, 1, 1, 0)
 
+[sub_resource type="Theme" id="Theme_03ukr"]
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_5jwn5")
 
@@ -214,5 +216,15 @@ offset_bottom = -5.0
 texture_under = ExtResource("8_woc4k")
 texture_progress = ExtResource("9_03ukr")
 script = ExtResource("10_03ukr")
+
+[node name="HealthLabel" type="Label" parent="PlayerHealthBar"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 34.0
+offset_bottom = 25.0
+theme = SubResource("Theme_03ukr")
+theme_override_font_sizes/font_size = 4
+horizontal_alignment = 1
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
