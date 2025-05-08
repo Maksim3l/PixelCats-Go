@@ -52,7 +52,15 @@ func _on_accessories_pressed():
 
 
 func _on_pets_pressed():
-	pass # Replace with function body.
+	var new_scene = load("res://screens/pet_screen.tscn").instantiate()
+	
+	global_data.coming_from_last = get_tree().current_scene.name
+	GlobalDataHandler.global_data = global_data
+	GlobalDataHandler.save_game()
+	
+	get_tree().current_scene.queue_free()
+	get_tree().root.add_child(new_scene)
+	get_tree().current_scene = new_scene
 
 
 func _on_battle_pressed():
