@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_rit5f")
 coming_from_last = &"Battle Arena"
-gold = 170
+gold = 300
 treat = 3

@@ -5,8 +5,21 @@ const TORNADO = preload("res://screens/tornado.tscn")
 @onready var tornado: CharacterBody2D = $tornado
 @onready var timer: Timer = $Timer
 
+var selected_cats = []
+var cat1_data
+var cat2_data
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	cat1_data = CatHandler.get_all_cats()[selected_cats[0]]
+	cat2_data = CatHandler.get_all_cats()[selected_cats[1]]
+	
+	GlobalDataHandler.global_data.gold -= 50
+	GlobalDataHandler.save_game()
+	
+	boost_stats()
+	
 	tornado.hide()
 	cat1.connect("collision_detected", Callable(self, "_on_cat_collision"))
 	if not timer.timeout.is_connected(_on_tornado_timeout):
@@ -14,6 +27,26 @@ func _ready():
 
 func _process(delta: float) -> void:
 	pass
+	
+
+func boost_stats():
+	# Increase the stats of both cats by 20%
+	cat1_data.attack = int(cat1_data.attack * 1.2)
+	cat1_data.defense = int(cat1_data.defense * 1.2)
+	
+	cat2_data.attack = int(cat2_data.attack * 1.2)
+	cat2_data.defense = int(cat2_data.defense * 1.2)
+	# Save the updated cat data back into CatHandler
+	CatHandler.get_all_cats()[selected_cats[0]] = cat1_data
+	CatHandler.get_all_cats()[selected_cats[1]] = cat2_data
+
+	print("Stats boosted by 20% for both cats:")
+	print("Cat 1 - Attack: ", cat1_data.attack, ", Defense: ", cat1_data.defense)
+	print("Cat 2 - Attack: ", cat2_data.attack, ", Defense: ", cat2_data.defense)
+	
+	# Save cat manager data
+	CatHandler.save_cat_manager()
+	 
 
 func _on_cat_collision():
 	# Hide the cat

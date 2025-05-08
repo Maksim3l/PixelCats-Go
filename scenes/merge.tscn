@@ -1,0 +1,413 @@
+[gd_scene load_steps=38 format=3 uid="uid://di60qatklrk3p"]
+
+[ext_resource type="Texture2D" uid="uid://delb6g54k0hna" path="res://assets/sprites/Cat Sprite Sheet.png" id="1_ef75t"]
+[ext_resource type="Texture2D" uid="uid://bkykg53nerhep" path="res://assets/sprites/tornado.png" id="4_mbhl0"]
+
+[sub_resource type="GDScript" id="GDScript_33h80"]
+script/source = "extends Node2D
+const TORNADO = preload(\"res://screens/tornado.tscn\")
+@onready var cat1: CharacterBody2D = $CharacterBody2D
+@onready var cat2: CharacterBody2D = $CharacterBody2D2
+@onready var tornado: CharacterBody2D = $tornado
+@onready var timer: Timer = $Timer
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	tornado.hide()
+	cat1.connect(\"collision_detected\", Callable(self, \"_on_cat_collision\"))
+	if not timer.timeout.is_connected(_on_tornado_timeout):
+		timer.timeout.connect(_on_tornado_timeout)
+
+func _process(delta: float) -> void:
+	pass
+
+func _on_cat_collision():
+	# Hide the cat
+	cat1.hide()
+	cat2.queue_free()
+	
+	tornado.show()
+	
+	timer.wait_time = 4.0
+	timer.one_shot = true
+	timer.start()
+	
+func _on_tornado_timeout():
+	print(\"Tornado will be hidden\")
+	tornado.hide()
+	cat1.visible = true
+	await get_tree().create_timer(1.2).timeout
+	
+	if GlobalDataHandler.global_data.coming_from_last == \"Battle Arena\":
+		var battle = load(\"res://screens/battle.tscn\").instantiate()
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(battle)
+		get_tree().current_scene = battle
+	else:
+		var idle_screen = load(\"res://screens/idle_screen.tscn\").instantiate()
+		get_tree().current_scene.queue_free()
+		get_tree().root.add_child(idle_screen)
+		get_tree().current_scene = idle_screen
+
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_6u5my"]
+script/source = "extends CharacterBody2D
+
+@export var speed = 60.0
+var direction = Vector2(1, 0) # Start moving right
+@onready var tornado: CharacterBody2D = $\"../Tornado\"
+@onready var timer: Timer = $\"../Timer\"
+var collision_enabled = true  # Flag to track if collision detection is enabled
+@onready var new_cat: CharacterBody2D = $\"../NewCat\"
+
+var health = 30
+var power = 40
+
+func _ready():
+	# Connect the timer signal once when the scene starts
+	if not timer.timeout.is_connected(_on_tornado_timeout):
+		timer.timeout.connect(_on_tornado_timeout)
+	# Make sure tornado is initially hidden
+	tornado.hide()
+	new_cat.hide()
+
+func _physics_process(delta):
+	# Only process collisions if enabled
+	if collision_enabled:
+		velocity = direction * speed
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			# Collision event
+			_on_collision()
+	else:
+		# If collision is disabled, still update position but don't check collisions
+		position += direction * speed * delta
+
+func _on_collision():
+	hide()
+	tornado.show()
+	
+	# Disable further collision detection
+	collision_enabled = false
+	
+	# Start the 5-second timer
+	timer.wait_time = 4.0
+	timer.one_shot = true
+	timer.start()
+	
+	# Debug print to confirm timer started
+	print(\"Timer started, tornado should hide in 5 seconds\")
+
+func _on_tornado_timeout():
+	print(\"Tornado will be hidden\")
+	tornado.hide()
+	new_cat.show()
+	
+	# Optionally, you can re-enable collision here if needed
+	# collision_enabled = true
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t3t7"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u5my"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbhl0"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33h80"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58pvd"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp2t0"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(160, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmgpl"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(192, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2twbq"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(224, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6sdmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t3t7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u5my")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbhl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33h80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58pvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp2t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmgpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2twbq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6u5my"]
+radius = 5.0
+
+[sub_resource type="GDScript" id="GDScript_mbhl0"]
+script/source = "extends CharacterBody2D
+
+@export var speed = 60.0
+var direction = Vector2(-1, 0) # Start moving right
+
+var health = 30
+var power = 60
+
+func _physics_process(delta):
+	velocity = direction * speed
+	var collision = move_and_collide(velocity * delta)
+
+	if collision:
+		#Collision event
+		_on_collision(collision.get_collider())
+
+func _on_collision(collider):
+	hide()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef75t"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sdmd"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhf1f"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irwjt"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rw1q5"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru628"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57g0f"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arx8e"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(224, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1r6qo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef75t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sdmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhf1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irwjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rw1q5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru628")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57g0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arx8e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mbhl0"]
+radius = 6.08276
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r6qo"]
+atlas = ExtResource("4_mbhl0")
+region = Rect2(0, 0, 57, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sauaa"]
+atlas = ExtResource("4_mbhl0")
+region = Rect2(57, 0, 57, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djocr"]
+atlas = ExtResource("4_mbhl0")
+region = Rect2(114, 0, 57, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72xr4"]
+atlas = ExtResource("4_mbhl0")
+region = Rect2(171, 0, 57, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u2kxn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r6qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sauaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djocr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72xr4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_33h80"]
+
+[sub_resource type="GDScript" id="GDScript_6t3t7"]
+script/source = "extends CharacterBody2D
+@onready var new_cat: CharacterBody2D = $\".\"
+
+var health;
+var power;
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2kxn"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(0, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1putj"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(32, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_we8bw"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(64, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa8nv"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(96, 0, 32, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pef0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2kxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1putj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_we8bw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fa8nv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Merge" type="Node2D"]
+script = SubResource("GDScript_33h80")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Character1" type="CharacterBody2D" parent="."]
+script = SubResource("GDScript_6u5my")
+
+[node name="SpriteA" type="AnimatedSprite2D" parent="Character1"]
+position = Vector2(-37, 0)
+scale = Vector2(1.03125, 1)
+sprite_frames = SubResource("SpriteFrames_6sdmd")
+autoplay = "default"
+frame_progress = 0.867223
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character1"]
+position = Vector2(-36, 10)
+shape = SubResource("CircleShape2D_6u5my")
+
+[node name="Character2" type="CharacterBody2D" parent="."]
+script = SubResource("GDScript_mbhl0")
+
+[node name="SpriteB" type="AnimatedSprite2D" parent="Character2"]
+position = Vector2(37, 0)
+sprite_frames = SubResource("SpriteFrames_1r6qo")
+autoplay = "default"
+frame_progress = 0.336793
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character2"]
+position = Vector2(37, 9)
+shape = SubResource("CircleShape2D_mbhl0")
+
+[node name="Tornado" type="CharacterBody2D" parent="."]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Tornado"]
+position = Vector2(3, 3)
+scale = Vector2(0.868421, 0.853846)
+sprite_frames = SubResource("SpriteFrames_u2kxn")
+autoplay = "default"
+frame_progress = 0.3749
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tornado"]
+shape = SubResource("CircleShape2D_33h80")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="NewCat" type="CharacterBody2D" parent="."]
+script = SubResource("GDScript_6t3t7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NewCat"]
+position = Vector2(-1.125, -35.25)
+scale = Vector2(2.07031, 1.7375)
+sprite_frames = SubResource("SpriteFrames_pef0w")
+autoplay = "default"

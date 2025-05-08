@@ -1,0 +1,139 @@
+[gd_scene load_steps=18 format=3 uid="uid://c2fjhhfsjexs2"]
+
+[ext_resource type="Texture2D" uid="uid://delb6g54k0hna" path="res://assets/sprites/Cat Sprite Sheet.png" id="1_ef75t"]
+[ext_resource type="Script" uid="uid://c1cq8yp8g2h20" path="res://scenes/mergeCollision.gd" id="1_mbhl0"]
+[ext_resource type="Script" uid="uid://qr65c1vuovmv" path="res://scenes/cat1.gd" id="2_6t3t7"]
+[ext_resource type="Texture2D" uid="uid://bkykg53nerhep" path="res://assets/sprites/tornado.png" id="3_6u5my"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t3t7"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u5my"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbhl0"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33h80"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58pvd"]
+atlas = ExtResource("1_ef75t")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fp2t0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t3t7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u5my")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbhl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33h80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58pvd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qmgpl"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp2t0"]
+atlas = ExtResource("3_6u5my")
+region = Rect2(0, 0, 63, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmgpl"]
+atlas = ExtResource("3_6u5my")
+region = Rect2(378, 0, 63, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2twbq"]
+atlas = ExtResource("3_6u5my")
+region = Rect2(0, 168, 63, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sdmd"]
+atlas = ExtResource("3_6u5my")
+region = Rect2(567, 168, 63, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vhf1f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp2t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmgpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2twbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sdmd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_irwjt"]
+radius = 6.32456
+
+[node name="Merge" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_mbhl0")
+
+[node name="Cat1" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(-23, 4)
+sprite_frames = SubResource("SpriteFrames_fp2t0")
+autoplay = "default"
+frame = 4
+frame_progress = 0.0394774
+script = ExtResource("2_6t3t7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-24, 16)
+shape = SubResource("CircleShape2D_qmgpl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+
+[node name="Cat2" type="AnimatedSprite2D" parent="CharacterBody2D2"]
+position = Vector2(24, 5)
+sprite_frames = SubResource("SpriteFrames_fp2t0")
+autoplay = "default"
+frame_progress = 0.503446
+flip_h = true
+script = ExtResource("2_6t3t7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D2"]
+position = Vector2(23, 15)
+shape = SubResource("CircleShape2D_qmgpl")
+
+[node name="MergeScene" type="CharacterBody2D" parent="."]
+
+[node name="Tornado" type="AnimatedSprite2D" parent="MergeScene"]
+position = Vector2(2, 10)
+scale = Vector2(0.515873, 0.517857)
+sprite_frames = SubResource("SpriteFrames_vhf1f")
+autoplay = "default"
+frame_progress = 0.777606
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MergeScene"]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_irwjt")
+
+[connection signal="child_entered_tree" from="CharacterBody2D" to="CharacterBody2D" method="_on_child_entered_tree"]

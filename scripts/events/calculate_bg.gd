@@ -68,6 +68,8 @@ func _on_switchbox_body_entered(body):
 	if not is_paused and body == cat:
 		change_frame_randomly(bg.animation)
 
+
+
 func _on_battle_ended(difficulty):
 	is_paused = false
 
