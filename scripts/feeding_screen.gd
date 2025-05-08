@@ -1,7 +1,7 @@
 extends Node2D
-@onready var treat = $"Organizer/UITop/Treat/value"
-@onready var energy = $"Organizer/UITop/Energy/value"
-@onready var gold = $"Organizer/UITop/Gold/value"
+@onready var treat = $"Organizer/UITop/ProfileUI/Treat/value"
+@onready var energy = $"Organizer/UITop/ProfileUI/Energy/value"
+@onready var gold = $"Organizer/UITop/ProfileUI/Gold/value"
 @export var player_character: Node2D
 
 func _ready():
