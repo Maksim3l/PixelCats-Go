@@ -14,6 +14,8 @@ var custom_font = preload("res://resources/pixel_sans.ttf")
 func _ready():
 	active_cat = CatHandler.get_active_cat()
 	global_data = GlobalDataHandler.global_data
+	
+
 
 # Here to be copy and paisted for convenience
 # get_tree().change_scene_to_file("res://screens/battle.tscn")

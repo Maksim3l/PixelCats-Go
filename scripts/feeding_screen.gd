@@ -22,5 +22,6 @@ func _ready():
 	energy.text = str(active_cat.energy) + "/" + str(active_cat.max_energy)
 	gold.text = str(global_data.gold)
 	treat.text = str(global_data.treat)
+
 	
 	return true

@@ -23,7 +23,7 @@ func _ready():
 	gold.text = str(global_data.gold)
 	treat.text = str(global_data.treat)
 	
-	var health_bar = player_character.get_node("HealthBar")
+	var health_bar = player_character.get_node("PlayerHealthBar")
 	if health_bar:
 		health_bar.visible = false
 	

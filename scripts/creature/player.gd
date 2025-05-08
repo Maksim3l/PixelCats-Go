@@ -19,7 +19,7 @@ var temp_attack: int = 0
 var temp_defense: int = 0
 
 @onready var arena_level: int = ArenaLevel.BATHROOM
-@onready var health_bar = $HealthBar
+@onready var health_bar = $PlayerHealthBar
 @onready var attack_timer = $AttackTimer
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Catimation
