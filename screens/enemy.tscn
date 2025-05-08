@@ -1,16 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://h8brxvmkyg2o"]
+[gd_scene load_steps=18 format=3 uid="uid://h8brxvmkyg2o"]
 
 [ext_resource type="Script" uid="uid://cgq4gmvorh2hn" path="res://scripts/creature/enemy.gd" id="1_h737n"]
 [ext_resource type="Texture2D" uid="uid://dnqxx5cy4g55w" path="res://characters/enemy/Machine.png" id="2_83ito"]
 [ext_resource type="Resource" uid="uid://camschyompbni" path="res://resources/enemy/stats/roomba.tres" id="2_hj34r"]
 [ext_resource type="PackedScene" uid="uid://bl8dq63e4q50s" path="res://screens/health_bar.tscn" id="3_hj34r"]
+[ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="3_iw5bc"]
 [ext_resource type="Script" uid="uid://cymskb8os05mp" path="res://scripts/events/damage_particles.gd" id="5_lqn1i"]
 [ext_resource type="Texture2D" uid="uid://cjxeb2qe52nso" path="res://themes/UI_images/healthbarUnder.png" id="6_3di1a"]
 [ext_resource type="Texture2D" uid="uid://bnbrosqfkieab" path="res://themes/UI_images/healthbarProgress.png" id="7_iw5bc"]
 [ext_resource type="Script" uid="uid://dofljv6q2tbla" path="res://scripts/events/enemy_health_bar.gd" id="8_3di1a"]
 
+[sub_resource type="Theme" id="Theme_p2000"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_hj34r"]
 font_size = 12
+
+[sub_resource type="Theme" id="Theme_gc5vx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lqn1i"]
 font_size = 8
@@ -43,6 +48,8 @@ offset_left = -55.0
 offset_top = -81.0
 offset_right = -23.0
 offset_bottom = -63.0
+theme = SubResource("Theme_p2000")
+theme_override_fonts/font = ExtResource("3_iw5bc")
 label_settings = SubResource("LabelSettings_hj34r")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -52,6 +59,8 @@ offset_left = -63.0
 offset_top = -71.0
 offset_right = -23.0
 offset_bottom = -48.0
+theme = SubResource("Theme_gc5vx")
+theme_override_fonts/font = ExtResource("3_iw5bc")
 label_settings = SubResource("LabelSettings_lqn1i")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -88,10 +97,11 @@ script = ExtResource("8_3di1a")
 [node name="HealthLabel" type="Label" parent="EnemyHealthBar"]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 2.0
+offset_top = 4.0
 offset_right = 53.0
-offset_bottom = 25.0
+offset_bottom = 27.0
 theme = SubResource("Theme_3di1a")
+theme_override_fonts/font = ExtResource("3_iw5bc")
 theme_override_font_sizes/font_size = 4
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
