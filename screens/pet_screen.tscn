@@ -142,6 +142,7 @@ layout_mode = 2
 texture = ExtResource("2_ase27")
 
 [node name="bunny" type="Button" parent="Organizer/BottomUI/TextureRect"]
+layout_mode = 0
 offset_left = 68.0
 offset_top = 6.0
 offset_right = 84.0
@@ -185,6 +186,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_blg12")
 theme_override_styles/normal = SubResource("StyleBoxTexture_21jr3")
 
 [node name="price" type="Label" parent="Organizer/BottomUI/TextureRect/cow"]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 14.0
 offset_right = 10.0
@@ -204,6 +206,7 @@ texture = ExtResource("5_blg12")
 expand_mode = 4
 
 [node name="pig" type="Button" parent="Organizer/BottomUI/TextureRect"]
+layout_mode = 0
 offset_left = 102.0
 offset_top = 6.0
 offset_right = 118.0
@@ -215,6 +218,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_mq5kj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ddtwc")
 
 [node name="price" type="Label" parent="Organizer/BottomUI/TextureRect/pig"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 14.0
 offset_right = 11.0
@@ -234,6 +238,7 @@ texture = ExtResource("5_blg12")
 expand_mode = 4
 
 [node name="dog" type="Button" parent="Organizer/BottomUI/TextureRect"]
+layout_mode = 0
 offset_left = 119.0
 offset_top = 6.0
 offset_right = 135.0
@@ -244,6 +249,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_etsf6")
 theme_override_styles/normal = SubResource("StyleBoxTexture_qes1e")
 
 [node name="price" type="Label" parent="Organizer/BottomUI/TextureRect/dog"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 14.0
 offset_right = 11.0
@@ -263,6 +269,7 @@ texture = ExtResource("5_blg12")
 expand_mode = 4
 
 [node name="redPanda" type="Button" parent="Organizer/BottomUI/TextureRect"]
+layout_mode = 0
 offset_left = 136.0
 offset_top = 6.0
 offset_right = 152.0
@@ -273,6 +280,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_n5p3l")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xpp1m")
 
 [node name="price" type="Label" parent="Organizer/BottomUI/TextureRect/redPanda"]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 14.0
 offset_right = 12.0
