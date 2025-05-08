@@ -12,11 +12,7 @@ var global_data
 var custom_font = preload("res://resources/pixel_sans.ttf")
 
 func _ready():
-	mbtn.add_theme_font_override("font", custom_font) 
-	fbtn.add_theme_font_override("font", custom_font) 
-	ebtn.add_theme_font_override("font", custom_font) 
-	abtn.add_theme_font_override("font", custom_font) 
-	pbtn.add_theme_font_override("font", custom_font) 
+	
 	active_cat = CatHandler.get_active_cat()
 	global_data = GlobalDataHandler.global_data
 

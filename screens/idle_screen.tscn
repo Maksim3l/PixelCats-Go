@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bmyvk5ge5jq6k"]
+[gd_scene load_steps=86 format=3 uid="uid://bmyvk5ge5jq6k"]
 
 [ext_resource type="Script" uid="uid://bkliwsde236od" path="res://scripts/idle_manage.gd" id="1_2qr8l"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
@@ -25,6 +25,19 @@
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="21_54kng"]
 [ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://scripts/control_camera.gd" id="22_36nmi"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_o878r"]
+[ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="25_vtkis"]
+[ext_resource type="Texture2D" uid="uid://v1bwbw1r7o33" path="res://themes/UI_images/BottomButtonsUI2.png" id="26_at2v4"]
+[ext_resource type="Texture2D" uid="uid://bf5ui7r8348fd" path="res://themes/UI_images/ProfileUIwithTreats.png" id="26_aw3vd"]
+[ext_resource type="Texture2D" uid="uid://r5g0lykubcol" path="res://themes/UI_images/mergeUIbtnHover.png" id="27_aw3vd"]
+[ext_resource type="Texture2D" uid="uid://bl5yq020tkvjw" path="res://themes/UI_images/mergeUIbtn.png" id="28_6n6su"]
+[ext_resource type="Texture2D" uid="uid://n8jhb6nwvypp" path="res://themes/UI_images/foodIconUIHover.png" id="29_cdxyv"]
+[ext_resource type="Texture2D" uid="uid://oboet65b0rq8" path="res://themes/UI_images/foodIconUI.png" id="30_g8hcl"]
+[ext_resource type="Texture2D" uid="uid://dhr7lq0b1fqu0" path="res://themes/UI_images/EquipmentUIbtnHover.png" id="31_54kng"]
+[ext_resource type="Texture2D" uid="uid://hofvmxf5ngjj" path="res://themes/UI_images/EquipmentUIbtn.png" id="32_vdhkv"]
+[ext_resource type="Texture2D" uid="uid://sd5hqxa6r5bf" path="res://themes/UI_images/BowTieUIbtnHover.png" id="33_cq4eh"]
+[ext_resource type="Texture2D" uid="uid://b5x2jku6vt0i7" path="res://themes/UI_images/BowTieUIbtn.png" id="34_oeyb8"]
+[ext_resource type="Texture2D" uid="uid://ctqcdbyg5hml" path="res://themes/UI_images/PetsUIbtnHover.png" id="35_uugju"]
+[ext_resource type="Texture2D" uid="uid://5wht657h53p5" path="res://themes/UI_images/PetsUIbtn.png" id="36_gxilw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
 atlas = ExtResource("2_24gff")
@@ -193,6 +206,26 @@ b = Vector2(0, 76)
 default_font = ExtResource("20_g8hcl")
 default_font_size = 4
 
+[sub_resource type="Theme" id="Theme_e2gqq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ihj5"]
+texture = ExtResource("25_vtkis")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(384, 192, 48, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jctyl"]
+texture = ExtResource("25_vtkis")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(384, 352, 48, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2tk18"]
+texture = ExtResource("25_vtkis")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(384, 352, 48, 16)
+
 [sub_resource type="Theme" id="Theme_vtkis"]
 default_font = ExtResource("20_g8hcl")
 default_font_size = 6
@@ -200,6 +233,61 @@ default_font_size = 6
 [sub_resource type="Theme" id="Theme_uugju"]
 default_font = ExtResource("20_g8hcl")
 default_font_size = 2
+
+[sub_resource type="Theme" id="Theme_87ogc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1n8mp"]
+texture = ExtResource("27_aw3vd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otp4d"]
+texture = ExtResource("28_6n6su")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkgtg"]
+texture = ExtResource("28_6n6su")
+
+[sub_resource type="Theme" id="Theme_i3dgq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ps5ml"]
+texture = ExtResource("29_cdxyv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ywcrb"]
+texture = ExtResource("30_g8hcl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ubt2b"]
+texture = ExtResource("30_g8hcl")
+
+[sub_resource type="Theme" id="Theme_n0yfa"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_edopx"]
+texture = ExtResource("31_54kng")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27o6g"]
+texture = ExtResource("32_vdhkv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vps1c"]
+texture = ExtResource("32_vdhkv")
+
+[sub_resource type="Theme" id="Theme_hdvme"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1vxxk"]
+texture = ExtResource("33_cq4eh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pefih"]
+texture = ExtResource("34_oeyb8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vpipw"]
+texture = ExtResource("34_oeyb8")
+
+[sub_resource type="Theme" id="Theme_v4xua"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p2aas"]
+texture = ExtResource("35_uugju")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nck6h"]
+texture = ExtResource("36_gxilw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uvs1c"]
+texture = ExtResource("36_gxilw")
 
 [node name="IdleScreen" type="Node2D" node_paths=PackedStringArray("player_character")]
 script = ExtResource("1_2qr8l")
@@ -209,15 +297,15 @@ player_character = NodePath("Organizer/CenterBG/ParallaxBackground/ParallaxLayer
 script = ExtResource("21_54kng")
 
 [node name="CenterBG" type="HBoxContainer" parent="Organizer"]
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.456
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.456
 offset_left = -20.0
-offset_top = -20.0
+offset_top = -32.96
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 0.0399933
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -246,75 +334,104 @@ shape = SubResource("SegmentShape2D_oeyb8")
 position = Vector2(90, 80)
 
 [node name="Sprite2D" type="Sprite2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer2"]
-position = Vector2(0, -68)
+position = Vector2(-62, -66)
 texture = ExtResource("20_24gff")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
-position = Vector2(90, 80)
+position = Vector2(38, 79)
 
 [node name="player" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer3" instance=ExtResource("22_o878r")]
-position = Vector2(-28, -80)
+position = Vector2(-28, -81)
 
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
-offset_left = 69.0
-offset_top = 83.0
-offset_right = 90.0
-offset_bottom = 100.0
+offset_left = 20.0
+offset_top = 112.0
+offset_right = 69.0
+offset_bottom = 129.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme = SubResource("Theme_o878r")
-alignment = 2
+alignment = 1
 
 [node name="Battle" type="Button" parent="Organizer/UICenter"]
 layout_mode = 2
+theme = SubResource("Theme_e2gqq")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/hover = SubResource("StyleBoxTexture_8ihj5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jctyl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2tk18")
 text = "Battle
 "
 
 [node name="UITop" type="HBoxContainer" parent="Organizer"]
-offset_right = 90.0
-offset_bottom = 40.0
+offset_left = -12.0
+offset_top = -1.0
+offset_right = 78.0
+offset_bottom = 39.0
 size_flags_horizontal = 4
 theme = SubResource("Theme_vtkis")
 alignment = 1
 
-[node name="Treat" type="VBoxContainer" parent="Organizer/UITop"]
+[node name="ProfileUI" type="TextureRect" parent="Organizer/UITop"]
+layout_mode = 2
+texture = ExtResource("26_aw3vd")
+
+[node name="Energy" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
 layout_direction = 2
 layout_mode = 2
+offset_left = 36.0
+offset_top = 7.0
+offset_right = 60.0
+offset_bottom = 15.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="txt" type="Label" parent="Organizer/UITop/Treat"]
-layout_mode = 2
-text = "Treats"
-
-[node name="value" type="Label" parent="Organizer/UITop/Treat"]
-layout_mode = 2
-
-[node name="Energy" type="VBoxContainer" parent="Organizer/UITop"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="txt" type="Label" parent="Organizer/UITop/Energy"]
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Energy"]
+visible = false
 layout_mode = 2
 text = "Energy"
 
-[node name="value" type="Label" parent="Organizer/UITop/Energy"]
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Energy"]
 layout_mode = 2
+horizontal_alignment = 1
 
-[node name="Gold" type="VBoxContainer" parent="Organizer/UITop"]
+[node name="Gold" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
 layout_direction = 2
 layout_mode = 2
+offset_left = 35.0
+offset_top = 18.0
+offset_right = 61.0
+offset_bottom = 26.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="txt" type="Label" parent="Organizer/UITop/Gold"]
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
+visible = false
 layout_mode = 2
 text = "Gold"
 
-[node name="value" type="Label" parent="Organizer/UITop/Gold"]
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
 layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Treat" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
+layout_direction = 2
+layout_mode = 2
+offset_left = 40.0
+offset_top = 28.0
+offset_right = 61.0
+offset_bottom = 36.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Treat"]
+visible = false
+layout_mode = 2
+text = "Treats"
+
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Treat"]
+layout_mode = 2
+horizontal_alignment = 1
 
 [node name="UIBottom" type="HBoxContainer" parent="Organizer"]
 z_index = 2
@@ -323,36 +440,76 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = -31.0
-offset_right = 43.0
+offset_left = -110.0
+offset_top = -32.0
+offset_right = 80.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = SubResource("Theme_uugju")
 
-[node name="Merge" type="Button" parent="Organizer/UIBottom"]
+[node name="TextureRect" type="TextureRect" parent="Organizer/UIBottom"]
 layout_mode = 2
-text = "Merge"
+texture = ExtResource("26_at2v4")
 
-[node name="Feed" type="Button" parent="Organizer/UIBottom"]
+[node name="Merge" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
-text = "Feed"
+offset_left = 102.0
+offset_top = 6.0
+offset_right = 118.0
+offset_bottom = 25.0
+theme = SubResource("Theme_87ogc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1n8mp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_otp4d")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkgtg")
 
-[node name="Equipment" type="Button" parent="Organizer/UIBottom"]
+[node name="Feed" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
-text = "Equip"
+offset_left = 119.0
+offset_top = 6.0
+offset_right = 135.0
+offset_bottom = 25.0
+theme = SubResource("Theme_i3dgq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ps5ml")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ywcrb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ubt2b")
 
-[node name="Accessories" type="Button" parent="Organizer/UIBottom"]
+[node name="Equipment" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
-text = "Acces."
+offset_left = 85.0
+offset_top = 6.0
+offset_right = 101.0
+offset_bottom = 25.0
+theme = SubResource("Theme_n0yfa")
+theme_override_styles/hover = SubResource("StyleBoxTexture_edopx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_27o6g")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vps1c")
 
-[node name="Pets" type="Button" parent="Organizer/UIBottom"]
+[node name="Accessories" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
-text = "Pets"
+offset_left = 68.0
+offset_top = 6.0
+offset_right = 84.0
+offset_bottom = 25.0
+theme = SubResource("Theme_hdvme")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1vxxk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pefih")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vpipw")
+
+[node name="Pets" type="Button" parent="Organizer/UIBottom/TextureRect"]
+layout_mode = 2
+offset_left = 136.0
+offset_top = 6.0
+offset_right = 152.0
+offset_bottom = 25.0
+theme = SubResource("Theme_v4xua")
+theme_override_styles/hover = SubResource("StyleBoxTexture_p2aas")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nck6h")
+theme_override_styles/normal = SubResource("StyleBoxTexture_uvs1c")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 7)
 limit_left = -100
 limit_right = 300
 limit_bottom = 600
@@ -360,13 +517,13 @@ script = ExtResource("22_36nmi")
 
 [connection signal="body_entered" from="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/CenterBG/ParallaxBackground" method="_on_switchbox_body_entered"]
 [connection signal="pressed" from="Organizer/UICenter/Battle" to="Organizer" method="_on_battle_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer" method="_on_merge_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Merge" to="Organizer/UIBottom" method="_on_merge_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer" method="_on_feed_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Feed" to="Organizer/UIBottom" method="_on_feed_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer" method="_on_equipment_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Equipment" to="Organizer/UIBottom" method="_on_equipment_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer" method="_on_accessories_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Accessories" to="Organizer/UIBottom" method="_on_accessories_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer" method="_on_pets_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Pets" to="Organizer/UIBottom" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Merge" to="Organizer" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Merge" to="Organizer/UIBottom" method="_on_merge_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Feed" to="Organizer" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Feed" to="Organizer/UIBottom" method="_on_feed_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Equipment" to="Organizer" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Equipment" to="Organizer/UIBottom" method="_on_equipment_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Accessories" to="Organizer" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Accessories" to="Organizer/UIBottom" method="_on_accessories_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Pets" to="Organizer" method="_on_pets_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Pets" to="Organizer/UIBottom" method="_on_pets_pressed"]
