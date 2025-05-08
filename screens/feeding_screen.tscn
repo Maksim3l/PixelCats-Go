@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://h557uwro0glo"]
+[gd_scene load_steps=86 format=3 uid="uid://h557uwro0glo"]
 
 [ext_resource type="Script" uid="uid://o0h8rrkmnnc" path="res://scripts/feed_action.gd" id="1_85pcd"]
 [ext_resource type="Script" uid="uid://ck8t5nu02f3o6" path="res://scripts/feeding_screen.gd" id="1_qshnh"]
@@ -30,8 +30,14 @@
 [ext_resource type="Texture2D" uid="uid://dnv4q8g2mjdmr" path="res://themes/UI_images/biscuitIconHover.png" id="27_ykw7f"]
 [ext_resource type="Texture2D" uid="uid://dxo3kcf40lopc" path="res://themes/UI_images/biscuitIconNormal.png" id="28_20fnc"]
 [ext_resource type="Texture2D" uid="uid://cxf4nvx5acg7a" path="res://themes/UI_images/fishIconHover.png" id="29_nmocj"]
+[ext_resource type="Texture2D" uid="uid://b74g1g41na4d0" path="res://themes/UI_images/CatNipIconHover.png" id="29_nxry8"]
 [ext_resource type="Texture2D" uid="uid://k3iau7q2vuyl" path="res://themes/UI_images/fishIconNormal.png" id="30_nxry8"]
+[ext_resource type="Texture2D" uid="uid://f40akieggoff" path="res://themes/UI_images/CatNipIconNormal.png" id="30_q2jt1"]
+[ext_resource type="Texture2D" uid="uid://c5l5yeuwrv5gt" path="res://themes/UI_images/softFoodHover.png" id="31_k6y6m"]
 [ext_resource type="Texture2D" uid="uid://bf5ui7r8348fd" path="res://themes/UI_images/ProfileUIwithTreats.png" id="31_kii78"]
+[ext_resource type="Texture2D" uid="uid://cylllrtq5mbvx" path="res://themes/UI_images/softFoodNormal.png" id="31_pfndq"]
+[ext_resource type="Texture2D" uid="uid://bacsdx2bmlgim" path="res://themes/UI_images/packetHover.png" id="32_q2jt1"]
+[ext_resource type="Texture2D" uid="uid://6fv7ykfihuel" path="res://themes/UI_images/packetNormal.png" id="33_pfndq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
 atlas = ExtResource("3_55rq1")
@@ -235,6 +241,39 @@ texture = ExtResource("28_20fnc")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_svr4l"]
 texture = ExtResource("28_20fnc")
 
+[sub_resource type="Theme" id="Theme_k6y6m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s3vt7"]
+texture = ExtResource("29_nxry8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mdce0"]
+texture = ExtResource("30_q2jt1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d18q6"]
+texture = ExtResource("30_q2jt1")
+
+[sub_resource type="Theme" id="Theme_lvq3o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sevf0"]
+texture = ExtResource("31_k6y6m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v8lst"]
+texture = ExtResource("31_pfndq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_herb4"]
+texture = ExtResource("31_pfndq")
+
+[sub_resource type="Theme" id="Theme_ssu4w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vvhym"]
+texture = ExtResource("32_q2jt1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lvq3o"]
+texture = ExtResource("33_pfndq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_er8by"]
+texture = ExtResource("33_pfndq")
+
 [sub_resource type="Theme" id="Theme_mdce0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_em556"]
@@ -360,7 +399,10 @@ offset_left = 85.0
 offset_top = 6.0
 offset_right = 101.0
 offset_bottom = 25.0
-text = "Catnip"
+theme = SubResource("Theme_k6y6m")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s3vt7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mdce0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_d18q6")
 
 [node name="Soft" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
@@ -368,7 +410,10 @@ offset_left = 102.0
 offset_top = 6.0
 offset_right = 118.0
 offset_bottom = 25.0
-text = "Soft"
+theme = SubResource("Theme_lvq3o")
+theme_override_styles/hover = SubResource("StyleBoxTexture_sevf0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v8lst")
+theme_override_styles/normal = SubResource("StyleBoxTexture_herb4")
 
 [node name="Packet" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
@@ -376,7 +421,10 @@ offset_left = 119.0
 offset_top = 6.0
 offset_right = 135.0
 offset_bottom = 25.0
-text = "Packet"
+theme = SubResource("Theme_ssu4w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vvhym")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lvq3o")
+theme_override_styles/normal = SubResource("StyleBoxTexture_er8by")
 
 [node name="Fish" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
