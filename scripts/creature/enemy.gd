@@ -9,7 +9,7 @@ var can_attack: bool = true
 var battle = null
 
 @onready var sprite = $AnimatedSprite2D
-@onready var health_bar = $HealthBar
+@onready var health_bar = $EnemyHealthBar
 @onready var attack_timer = $AttackTimer
 @onready var nameLabel = $Name
 @onready var titleLabel = $Title
@@ -37,6 +37,7 @@ func _ready():
 	
 	health_bar.max_value = enemy_data.max_health
 	health_bar.value = current_health
+	health_bar.update_label()
 	attack_timer.wait_time = enemy_data.attack_cooldown
 	nameLabel.text = enemy_data.name
 	titleLabel.text = enemy_data.title
@@ -54,7 +55,11 @@ func attack_target():
 func take_damage(amount):
 	var actual_damage = max(1, amount - enemy_data.defense)
 	current_health -= actual_damage
-	health_bar.value = current_health
+	if current_health < 0:
+		current_health = 0
+	
+	if health_bar:
+		health_bar.set_current_health(current_health)
 	
 	stagger_effect()
 	

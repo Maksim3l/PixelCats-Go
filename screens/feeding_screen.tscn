@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://h557uwro0glo"]
+[gd_scene load_steps=86 format=3 uid="uid://h557uwro0glo"]
 
 [ext_resource type="Script" uid="uid://o0h8rrkmnnc" path="res://scripts/feed_action.gd" id="1_85pcd"]
 [ext_resource type="Script" uid="uid://ck8t5nu02f3o6" path="res://scripts/feeding_screen.gd" id="1_qshnh"]
@@ -25,6 +25,19 @@
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_mdce0"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="23_em556"]
 [ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://scripts/control_camera.gd" id="24_1mkey"]
+[ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="25_3ooq6"]
+[ext_resource type="Texture2D" uid="uid://v1bwbw1r7o33" path="res://themes/UI_images/BottomButtonsUI2.png" id="26_kii78"]
+[ext_resource type="Texture2D" uid="uid://dnv4q8g2mjdmr" path="res://themes/UI_images/biscuitIconHover.png" id="27_ykw7f"]
+[ext_resource type="Texture2D" uid="uid://dxo3kcf40lopc" path="res://themes/UI_images/biscuitIconNormal.png" id="28_20fnc"]
+[ext_resource type="Texture2D" uid="uid://cxf4nvx5acg7a" path="res://themes/UI_images/fishIconHover.png" id="29_nmocj"]
+[ext_resource type="Texture2D" uid="uid://b74g1g41na4d0" path="res://themes/UI_images/CatNipIconHover.png" id="29_nxry8"]
+[ext_resource type="Texture2D" uid="uid://k3iau7q2vuyl" path="res://themes/UI_images/fishIconNormal.png" id="30_nxry8"]
+[ext_resource type="Texture2D" uid="uid://f40akieggoff" path="res://themes/UI_images/CatNipIconNormal.png" id="30_q2jt1"]
+[ext_resource type="Texture2D" uid="uid://c5l5yeuwrv5gt" path="res://themes/UI_images/softFoodHover.png" id="31_k6y6m"]
+[ext_resource type="Texture2D" uid="uid://bf5ui7r8348fd" path="res://themes/UI_images/ProfileUIwithTreats.png" id="31_kii78"]
+[ext_resource type="Texture2D" uid="uid://cylllrtq5mbvx" path="res://themes/UI_images/softFoodNormal.png" id="31_pfndq"]
+[ext_resource type="Texture2D" uid="uid://bacsdx2bmlgim" path="res://themes/UI_images/packetHover.png" id="32_q2jt1"]
+[ext_resource type="Texture2D" uid="uid://6fv7ykfihuel" path="res://themes/UI_images/packetNormal.png" id="33_pfndq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
 atlas = ExtResource("3_55rq1")
@@ -193,13 +206,88 @@ b = Vector2(0, 76)
 default_font = ExtResource("23_em556")
 default_font_size = 4
 
-[sub_resource type="Theme" id="Theme_lvq3o"]
-default_font = ExtResource("23_em556")
-default_font_size = 6
+[sub_resource type="Theme" id="Theme_q2jt1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pfndq"]
+texture = ExtResource("25_3ooq6")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(441, 288, 33, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6y6m"]
+texture = ExtResource("25_3ooq6")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(441, 352, 32, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssu4w"]
+texture = ExtResource("25_3ooq6")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(441, 352, 32, 16)
 
 [sub_resource type="Theme" id="Theme_herb4"]
 default_font = ExtResource("23_em556")
 default_font_size = 2
+
+[sub_resource type="Theme" id="Theme_s3vt7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w0dfa"]
+texture = ExtResource("27_ykw7f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_crch5"]
+texture = ExtResource("28_20fnc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_svr4l"]
+texture = ExtResource("28_20fnc")
+
+[sub_resource type="Theme" id="Theme_k6y6m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s3vt7"]
+texture = ExtResource("29_nxry8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mdce0"]
+texture = ExtResource("30_q2jt1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d18q6"]
+texture = ExtResource("30_q2jt1")
+
+[sub_resource type="Theme" id="Theme_lvq3o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sevf0"]
+texture = ExtResource("31_k6y6m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v8lst"]
+texture = ExtResource("31_pfndq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_herb4"]
+texture = ExtResource("31_pfndq")
+
+[sub_resource type="Theme" id="Theme_ssu4w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vvhym"]
+texture = ExtResource("32_q2jt1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lvq3o"]
+texture = ExtResource("33_pfndq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_er8by"]
+texture = ExtResource("33_pfndq")
+
+[sub_resource type="Theme" id="Theme_mdce0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_em556"]
+texture = ExtResource("29_nmocj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1mkey"]
+texture = ExtResource("30_nxry8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4afrj"]
+texture = ExtResource("30_nxry8")
+
+[sub_resource type="Theme" id="Theme_ykw7f"]
+default_font = ExtResource("23_em556")
+default_font_size = 6
 
 [node name="FeedingScreen" type="Node2D" node_paths=PackedStringArray("player_character")]
 script = ExtResource("1_qshnh")
@@ -246,20 +334,20 @@ shape = SubResource("SegmentShape2D_d18q6")
 position = Vector2(90, 80)
 
 [node name="Sprite2D" type="Sprite2D" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer2"]
-position = Vector2(0, -68)
+position = Vector2(-59, -67)
 texture = ExtResource("21_svr4l")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
-position = Vector2(90, 80)
+position = Vector2(38, 78)
 
 [node name="player" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer3" instance=ExtResource("22_mdce0")]
 position = Vector2(-28, -80)
 
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
-offset_left = 69.0
-offset_top = 83.0
-offset_right = 90.0
-offset_bottom = 100.0
+offset_left = 57.0
+offset_top = 107.0
+offset_right = 78.0
+offset_bottom = 124.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme = SubResource("Theme_vvhym")
@@ -267,53 +355,12 @@ alignment = 2
 
 [node name="Back" type="Button" parent="Organizer/UICenter"]
 layout_mode = 2
+theme = SubResource("Theme_q2jt1")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/hover = SubResource("StyleBoxTexture_pfndq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k6y6m")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ssu4w")
 text = "Back"
-
-[node name="UITop" type="HBoxContainer" parent="Organizer"]
-offset_right = 90.0
-offset_bottom = 40.0
-size_flags_horizontal = 4
-theme = SubResource("Theme_lvq3o")
-alignment = 1
-
-[node name="Treat" type="VBoxContainer" parent="Organizer/UITop"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="txt" type="Label" parent="Organizer/UITop/Treat"]
-layout_mode = 2
-text = "Treats"
-
-[node name="value" type="Label" parent="Organizer/UITop/Treat"]
-layout_mode = 2
-
-[node name="Energy" type="VBoxContainer" parent="Organizer/UITop"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="txt" type="Label" parent="Organizer/UITop/Energy"]
-layout_mode = 2
-text = "Energy"
-
-[node name="value" type="Label" parent="Organizer/UITop/Energy"]
-layout_mode = 2
-
-[node name="Gold" type="VBoxContainer" parent="Organizer/UITop"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="txt" type="Label" parent="Organizer/UITop/Gold"]
-layout_mode = 2
-text = "Gold"
-
-[node name="value" type="Label" parent="Organizer/UITop/Gold"]
-layout_mode = 2
 
 [node name="UIBottom" type="HBoxContainer" parent="Organizer"]
 z_index = 2
@@ -322,36 +369,144 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -43.0
-offset_top = -31.0
-offset_right = 43.0
+offset_left = -110.0
+offset_top = -32.0
+offset_right = 80.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = SubResource("Theme_herb4")
 
-[node name="Bisquit" type="Button" parent="Organizer/UIBottom"]
+[node name="TextureRect" type="TextureRect" parent="Organizer/UIBottom"]
 layout_mode = 2
-text = "Bisquit"
+texture = ExtResource("26_kii78")
 
-[node name="Catnip" type="Button" parent="Organizer/UIBottom"]
+[node name="Bisquit" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
-text = "Catnip"
+offset_left = 68.0
+offset_top = 6.0
+offset_right = 84.0
+offset_bottom = 25.0
+theme = SubResource("Theme_s3vt7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_w0dfa")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_crch5")
+theme_override_styles/normal = SubResource("StyleBoxTexture_svr4l")
 
-[node name="Soft" type="Button" parent="Organizer/UIBottom"]
+[node name="Catnip" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
-text = "Soft"
+offset_left = 85.0
+offset_top = 6.0
+offset_right = 101.0
+offset_bottom = 25.0
+theme = SubResource("Theme_k6y6m")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s3vt7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mdce0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_d18q6")
 
-[node name="Packet" type="Button" parent="Organizer/UIBottom"]
+[node name="Soft" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
-text = "Packet"
+offset_left = 102.0
+offset_top = 6.0
+offset_right = 118.0
+offset_bottom = 25.0
+theme = SubResource("Theme_lvq3o")
+theme_override_styles/hover = SubResource("StyleBoxTexture_sevf0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v8lst")
+theme_override_styles/normal = SubResource("StyleBoxTexture_herb4")
 
-[node name="Fish" type="Button" parent="Organizer/UIBottom"]
+[node name="Packet" type="Button" parent="Organizer/UIBottom/TextureRect"]
 layout_mode = 2
-text = "Fish"
+offset_left = 119.0
+offset_top = 6.0
+offset_right = 135.0
+offset_bottom = 25.0
+theme = SubResource("Theme_ssu4w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vvhym")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lvq3o")
+theme_override_styles/normal = SubResource("StyleBoxTexture_er8by")
+
+[node name="Fish" type="Button" parent="Organizer/UIBottom/TextureRect"]
+layout_mode = 2
+offset_left = 136.0
+offset_top = 6.0
+offset_right = 152.0
+offset_bottom = 25.0
+theme = SubResource("Theme_mdce0")
+theme_override_styles/hover = SubResource("StyleBoxTexture_em556")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1mkey")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4afrj")
+
+[node name="UITop" type="HBoxContainer" parent="Organizer"]
+offset_right = 69.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+theme = SubResource("Theme_ykw7f")
+alignment = 1
+
+[node name="ProfileUI" type="TextureRect" parent="Organizer/UITop"]
+layout_mode = 2
+texture = ExtResource("31_kii78")
+
+[node name="Energy" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
+layout_direction = 2
+layout_mode = 2
+offset_left = 36.0
+offset_top = 7.0
+offset_right = 60.0
+offset_bottom = 15.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Energy"]
+visible = false
+layout_mode = 2
+text = "Energy"
+
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Energy"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Gold" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
+layout_direction = 2
+layout_mode = 2
+offset_left = 35.0
+offset_top = 18.0
+offset_right = 61.0
+offset_bottom = 26.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
+visible = false
+layout_mode = 2
+text = "Gold"
+
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Treat" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
+layout_direction = 2
+layout_mode = 2
+offset_left = 40.0
+offset_top = 28.0
+offset_right = 61.0
+offset_bottom = 36.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Treat"]
+visible = false
+layout_mode = 2
+text = "Treats"
+
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Treat"]
+layout_mode = 2
+horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 7)
 limit_left = -100
 limit_right = 300
 limit_bottom = 600
@@ -359,8 +514,8 @@ script = ExtResource("24_1mkey")
 
 [connection signal="body_entered" from="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/CenterBG/ParallaxBackground" method="_on_switchbox_body_entered"]
 [connection signal="pressed" from="Organizer/UICenter/Back" to="Organizer" method="_on_back_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Bisquit" to="Organizer" method="_on_bisquit_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Catnip" to="Organizer" method="_on_catnip_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Soft" to="Organizer" method="_on_soft_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Packet" to="Organizer" method="_on_packet_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/Fish" to="Organizer" method="_on_fish_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Bisquit" to="Organizer" method="_on_bisquit_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Catnip" to="Organizer" method="_on_catnip_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Soft" to="Organizer" method="_on_soft_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Packet" to="Organizer" method="_on_packet_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Fish" to="Organizer" method="_on_fish_pressed"]

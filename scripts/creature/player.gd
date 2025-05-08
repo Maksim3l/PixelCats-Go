@@ -19,7 +19,7 @@ var temp_attack: int = 0
 var temp_defense: int = 0
 
 @onready var arena_level: int = ArenaLevel.BATHROOM
-@onready var health_bar = $HealthBar
+@onready var health_bar = $PlayerHealthBar
 @onready var attack_timer = $AttackTimer
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Catimation
@@ -32,8 +32,9 @@ var stagger_tween = null
 var is_staggering = false
 
 func _ready():
-	health_bar.value = current_health
-	health_bar.max_value = max_health
+	if health_bar:
+		health_bar.set_max_health(max_health)
+		health_bar.set_current_health(current_health)
 	
 	if sprite:
 		hit_shader_material = ShaderMaterial.new()
@@ -106,7 +107,11 @@ func _on_attack_animation_finished():
 func take_damage(amount):
 	var actual_damage = max(1, amount - (defense + temp_defense))
 	current_health -= actual_damage
-	health_bar.value = current_health
+	if current_health < 0:
+		current_health = 0
+	
+	if health_bar:
+		health_bar.set_current_health(current_health)
 	
 	print("def: ", defense, "; tmp_def: ", temp_defense)
 	stagger_effect()
