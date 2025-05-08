@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvy0rikuqtqhu"]
+[gd_scene load_steps=17 format=3 uid="uid://cvy0rikuqtqhu"]
 
 [ext_resource type="Script" uid="uid://0pm5lp8hrwi2" path="res://scripts/accessory_screen.gd" id="1_d60ke"]
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="1_p3tf8"]
 [ext_resource type="Texture2D" uid="uid://vtuwtjhxlgbe" path="res://themes/UI_images/AccessoryRoomBG.png" id="4_2aa5o"]
+[ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="9_g37fn"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_rqttr"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="23_sq1w1"]
 [ext_resource type="Texture2D" uid="uid://vsxbuve11bwf" path="res://themes/UI_images/profileUI-petScreen.png" id="24_r80ne"]
@@ -18,6 +19,27 @@ default_font = ExtResource("23_sq1w1")
 default_font_size = 6
 
 [sub_resource type="Theme" id="Theme_u3gnb"]
+
+[sub_resource type="Theme" id="Theme_612dn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g37fn"]
+texture = ExtResource("9_g37fn")
+texture_margin_left = 1.0
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(441, 288, 33, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_612dn"]
+texture = ExtResource("9_g37fn")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(441, 352, 32, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_78mvo"]
+texture = ExtResource("9_g37fn")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(441, 352, 32, 16)
 
 [node name="AccessoryScreen" type="Node2D"]
 script = ExtResource("1_d60ke")
@@ -49,7 +71,7 @@ size_flags_vertical = 4
 alignment = 1
 
 [node name="player" parent="Organizer/CenterBG" instance=ExtResource("22_rqttr")]
-position = Vector2(1, -1)
+position = Vector2(2, -3)
 
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
 offset_left = 1.0
@@ -73,42 +95,49 @@ offset_right = 22.0
 offset_bottom = 29.0
 
 [node name="Button2" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
+layout_mode = 0
 offset_left = 29.0
 offset_top = 17.0
 offset_right = 41.0
 offset_bottom = 29.0
 
 [node name="Button3" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
+layout_mode = 0
 offset_left = 47.0
 offset_top = 17.0
 offset_right = 59.0
 offset_bottom = 29.0
 
 [node name="Button4" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
+layout_mode = 0
 offset_left = 66.0
 offset_top = 17.0
 offset_right = 78.0
 offset_bottom = 29.0
 
 [node name="Button5" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
+layout_mode = 0
 offset_left = 66.0
 offset_top = 36.0
 offset_right = 78.0
 offset_bottom = 48.0
 
 [node name="Button6" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
+layout_mode = 0
 offset_left = 47.0
 offset_top = 36.0
 offset_right = 59.0
 offset_bottom = 48.0
 
 [node name="Button7" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
+layout_mode = 0
 offset_left = 29.0
 offset_top = 36.0
 offset_right = 41.0
 offset_bottom = 48.0
 
 [node name="Button8" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 36.0
 offset_right = 22.0
@@ -148,8 +177,26 @@ theme = SubResource("Theme_u3gnb")
 theme_override_fonts/font = ExtResource("25_tuhgt")
 horizontal_alignment = 1
 
+[node name="Center" type="HBoxContainer" parent="Organizer"]
+offset_left = 65.0
+offset_top = 88.0
+offset_right = 89.0
+offset_bottom = 101.0
+
+[node name="Back" type="Button" parent="Organizer/Center"]
+layout_mode = 2
+theme = SubResource("Theme_612dn")
+theme_override_fonts/font = ExtResource("25_tuhgt")
+theme_override_font_sizes/font_size = 5
+theme_override_styles/hover = SubResource("StyleBoxTexture_g37fn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_612dn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_78mvo")
+text = "Back"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 7)
 limit_left = -100
 limit_right = 300
 limit_bottom = 600
+
+[connection signal="pressed" from="Organizer/Center/Back" to="." method="_on_back_pressed"]
