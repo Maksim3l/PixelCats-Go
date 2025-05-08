@@ -39,19 +39,19 @@ script = ExtResource("1_h737n")
 enemy_data = ExtResource("2_hj34r")
 
 [node name="Name" type="Label" parent="."]
-offset_left = -44.0
-offset_top = -75.0
-offset_right = -4.0
-offset_bottom = -52.0
+offset_left = -55.0
+offset_top = -81.0
+offset_right = -23.0
+offset_bottom = -63.0
 label_settings = SubResource("LabelSettings_hj34r")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Title" type="Label" parent="."]
-offset_left = -43.0
-offset_top = -64.0
-offset_right = -3.0
-offset_bottom = -41.0
+offset_left = -63.0
+offset_top = -71.0
+offset_right = -23.0
+offset_bottom = -48.0
 label_settings = SubResource("LabelSettings_lqn1i")
 horizontal_alignment = 1
 vertical_alignment = 1
