@@ -273,6 +273,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_yinns")
 theme_override_styles/normal = SubResource("StyleBoxTexture_tjrl5")
 
 [node name="price" type="Label" parent="ContinueButton"]
+layout_mode = 0
 offset_left = 7.0
 offset_top = 5.0
 offset_right = 18.0
