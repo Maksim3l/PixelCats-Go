@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://g2kvnnn3epf6"]
+[gd_scene load_steps=47 format=3 uid="uid://g2kvnnn3epf6"]
 
 [ext_resource type="Texture2D" uid="uid://t1obe0j4sfyp" path="res://themes/UI_images/PetScreenBG.png" id="1_2p0jb"]
 [ext_resource type="Script" uid="uid://cc46gh6ja3sis" path="res://scripts/pet_screen.gd" id="1_o0tny"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ch6yqus3g2mu8" path="res://themes/UI_images/bunnyIconNormal.png" id="4_00xwa"]
 [ext_resource type="Texture2D" uid="uid://cxpvneotg8752" path="res://themes/UI_images/bunnyIconHover.png" id="5_6c7hk"]
 [ext_resource type="Texture2D" uid="uid://cesnqosmid6yx" path="res://themes/UI_images/goldIcon.png" id="5_blg12"]
+[ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="6_ntaer"]
 [ext_resource type="Texture2D" uid="uid://dp3jpigm67tra" path="res://themes/UI_images/pigIconNormal.png" id="7_6c7hk"]
 [ext_resource type="Texture2D" uid="uid://cc0dh82ipsedv" path="res://themes/UI_images/pigIconHover.png" id="7_cgsjp"]
 [ext_resource type="Texture2D" uid="uid://di8iu35l1emb4" path="res://themes/UI_images/redPandaIconNormal.png" id="10_pbg7p"]
@@ -16,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://c2hxhw78iew14" path="res://themes/UI_images/redPandaIconHover.png" id="12_xpp1m"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="14_xpp1m"]
 [ext_resource type="Texture2D" uid="uid://vsxbuve11bwf" path="res://themes/UI_images/profileUI-petScreen.png" id="15_o0tny"]
+[ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="18_etsf6"]
 
 [sub_resource type="Theme" id="Theme_21jr3"]
 
@@ -78,6 +80,32 @@ texture = ExtResource("10_pbg7p")
 default_font = ExtResource("14_xpp1m")
 default_font_size = 6
 
+[sub_resource type="Theme" id="Theme_etsf6"]
+
+[sub_resource type="Theme" id="Theme_qes1e"]
+default_font = ExtResource("14_xpp1m")
+default_font_size = 4
+
+[sub_resource type="Theme" id="Theme_fwnjs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ifh5s"]
+texture = ExtResource("18_etsf6")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(441, 288, 33, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gstpi"]
+texture = ExtResource("18_etsf6")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(441, 352, 32, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tx00f"]
+texture = ExtResource("18_etsf6")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(441, 352, 32, 16)
+
 [node name="PetScreen" type="Node2D"]
 script = ExtResource("1_o0tny")
 
@@ -131,6 +159,7 @@ offset_top = 14.0
 offset_right = 10.0
 offset_bottom = 21.0
 theme = SubResource("Theme_blg12")
+theme_override_fonts/font = ExtResource("6_ntaer")
 theme_override_font_sizes/font_size = 4
 text = "100"
 vertical_alignment = 1
@@ -161,6 +190,7 @@ offset_top = 14.0
 offset_right = 10.0
 offset_bottom = 21.0
 theme = SubResource("Theme_blg12")
+theme_override_fonts/font = ExtResource("6_ntaer")
 theme_override_font_sizes/font_size = 4
 text = "200"
 vertical_alignment = 1
@@ -190,6 +220,7 @@ offset_top = 14.0
 offset_right = 11.0
 offset_bottom = 21.0
 theme = SubResource("Theme_blg12")
+theme_override_fonts/font = ExtResource("6_ntaer")
 theme_override_font_sizes/font_size = 4
 text = "300"
 vertical_alignment = 1
@@ -218,6 +249,7 @@ offset_top = 14.0
 offset_right = 11.0
 offset_bottom = 21.0
 theme = SubResource("Theme_blg12")
+theme_override_fonts/font = ExtResource("6_ntaer")
 theme_override_font_sizes/font_size = 4
 text = "500"
 vertical_alignment = 1
@@ -246,6 +278,7 @@ offset_top = 14.0
 offset_right = 12.0
 offset_bottom = 21.0
 theme = SubResource("Theme_blg12")
+theme_override_fonts/font = ExtResource("6_ntaer")
 theme_override_font_sizes/font_size = 4
 text = "800"
 vertical_alignment = 1
@@ -274,9 +307,9 @@ texture = ExtResource("15_o0tny")
 layout_direction = 2
 layout_mode = 2
 offset_left = 34.0
-offset_top = 8.0
+offset_top = 9.0
 offset_right = 60.0
-offset_bottom = 16.0
+offset_bottom = 17.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
@@ -287,10 +320,34 @@ text = "Gold"
 
 [node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
 layout_mode = 2
+theme = SubResource("Theme_etsf6")
+theme_override_fonts/font = ExtResource("6_ntaer")
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UICenter" type="HBoxContainer" parent="Organizer"]
+offset_left = 57.0
+offset_top = 107.0
+offset_right = 78.0
+offset_bottom = 124.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = SubResource("Theme_qes1e")
+alignment = 2
+
+[node name="Back" type="Button" parent="Organizer/UICenter"]
+layout_mode = 2
+theme = SubResource("Theme_fwnjs")
+theme_override_font_sizes/font_size = 6
+theme_override_styles/hover = SubResource("StyleBoxTexture_ifh5s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gstpi")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tx00f")
+text = "Back"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 0)
 limit_left = -100
 limit_right = 302
 limit_bottom = 600
+
+[connection signal="pressed" from="Organizer/UICenter/Back" to="." method="_on_back_pressed"]

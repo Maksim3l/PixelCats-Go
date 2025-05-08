@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://bmyvk5ge5jq6k"]
+[gd_scene load_steps=88 format=3 uid="uid://bmyvk5ge5jq6k"]
 
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
 [ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="2_24gff"]
@@ -23,6 +23,7 @@
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="20_g8hcl"]
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="21_54kng"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_o878r"]
+[ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="24_at2v4"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="25_vtkis"]
 [ext_resource type="Texture2D" uid="uid://v1bwbw1r7o33" path="res://themes/UI_images/BottomButtonsUI2.png" id="26_at2v4"]
 [ext_resource type="Texture2D" uid="uid://bf5ui7r8348fd" path="res://themes/UI_images/ProfileUIwithTreats.png" id="26_aw3vd"]
@@ -228,6 +229,12 @@ region_rect = Rect2(384, 352, 48, 16)
 default_font = ExtResource("20_g8hcl")
 default_font_size = 6
 
+[sub_resource type="Theme" id="Theme_aw3vd"]
+
+[sub_resource type="Theme" id="Theme_6n6su"]
+
+[sub_resource type="Theme" id="Theme_cdxyv"]
+
 [sub_resource type="Theme" id="Theme_uugju"]
 default_font = ExtResource("20_g8hcl")
 default_font_size = 2
@@ -334,10 +341,10 @@ position = Vector2(-62, -66)
 texture = ExtResource("20_24gff")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
-position = Vector2(38, 79)
+position = Vector2(1, 13)
 
 [node name="player" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer3" instance=ExtResource("22_o878r")]
-position = Vector2(-28, -81)
+position = Vector2(0, -30)
 
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
 offset_left = 20.0
@@ -352,6 +359,7 @@ alignment = 1
 [node name="Battle" type="Button" parent="Organizer/UICenter"]
 layout_mode = 2
 theme = SubResource("Theme_e2gqq")
+theme_override_fonts/font = ExtResource("24_at2v4")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/hover = SubResource("StyleBoxTexture_8ihj5")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_jctyl")
@@ -389,6 +397,8 @@ text = "Energy"
 
 [node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Energy"]
 layout_mode = 2
+theme = SubResource("Theme_aw3vd")
+theme_override_fonts/font = ExtResource("24_at2v4")
 horizontal_alignment = 1
 
 [node name="Gold" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
@@ -408,6 +418,8 @@ text = "Gold"
 
 [node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
 layout_mode = 2
+theme = SubResource("Theme_6n6su")
+theme_override_fonts/font = ExtResource("24_at2v4")
 horizontal_alignment = 1
 
 [node name="Treat" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
@@ -427,6 +439,8 @@ text = "Treats"
 
 [node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Treat"]
 layout_mode = 2
+theme = SubResource("Theme_cdxyv")
+theme_override_fonts/font = ExtResource("24_at2v4")
 horizontal_alignment = 1
 
 [node name="UIBottom" type="HBoxContainer" parent="Organizer"]
