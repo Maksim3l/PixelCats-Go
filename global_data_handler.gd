@@ -32,3 +32,11 @@ func get_coming_from() -> String:
 func add_gold(amount: int):
 	global_data.gold += amount
 	save_game()
+	
+func add_pet(pet_name: String):
+	if pet_name not in global_data.bought_pets:
+		global_data.bought_pets.append(pet_name)
+		save_game()
+		
+func has_pet(pet_name: String) -> bool:
+	return pet_name in global_data.bought_pets

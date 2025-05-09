@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://g2kvnnn3epf6"]
+[gd_scene load_steps=48 format=3 uid="uid://g2kvnnn3epf6"]
 
 [ext_resource type="Texture2D" uid="uid://t1obe0j4sfyp" path="res://themes/UI_images/PetScreenBG.png" id="1_2p0jb"]
 [ext_resource type="Script" uid="uid://cc46gh6ja3sis" path="res://scripts/pet_screen.gd" id="1_o0tny"]
@@ -20,6 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="18_etsf6"]
 
 [sub_resource type="Theme" id="Theme_21jr3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dpbx4"]
+texture = ExtResource("5_6c7hk")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pbg7p"]
 texture = ExtResource("5_6c7hk")
@@ -131,17 +134,17 @@ alignment = 1
 layout_mode = 2
 texture = ExtResource("1_2p0jb")
 
-[node name="BottomUI" type="HBoxContainer" parent="Organizer"]
+[node name="UIBottom" type="HBoxContainer" parent="Organizer"]
 offset_left = -65.0
 offset_top = 129.0
 offset_right = 160.0
 offset_bottom = 161.0
 
-[node name="TextureRect" type="TextureRect" parent="Organizer/BottomUI"]
+[node name="BottomUI" type="TextureRect" parent="Organizer/UIBottom"]
 layout_mode = 2
 texture = ExtResource("2_ase27")
 
-[node name="bunny" type="Button" parent="Organizer/BottomUI/TextureRect"]
+[node name="bunny" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 6.0
@@ -149,11 +152,12 @@ offset_right = 84.0
 offset_bottom = 27.0
 theme = SubResource("Theme_21jr3")
 theme_override_font_sizes/font_size = 4
+theme_override_styles/disabled = SubResource("StyleBoxTexture_dpbx4")
 theme_override_styles/hover = SubResource("StyleBoxTexture_pbg7p")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_68ubm")
 theme_override_styles/normal = SubResource("StyleBoxTexture_r5u0e")
 
-[node name="price" type="Label" parent="Organizer/BottomUI/TextureRect/bunny"]
+[node name="price" type="Label" parent="Organizer/UIBottom/BottomUI/bunny"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 14.0
@@ -165,7 +169,7 @@ theme_override_font_sizes/font_size = 4
 text = "100"
 vertical_alignment = 1
 
-[node name="coin" type="TextureRect" parent="Organizer/BottomUI/TextureRect/bunny/price"]
+[node name="coin" type="TextureRect" parent="Organizer/UIBottom/BottomUI/bunny/price"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 12.0
@@ -173,7 +177,7 @@ offset_bottom = 5.0
 texture = ExtResource("5_blg12")
 expand_mode = 4
 
-[node name="cow" type="Button" parent="Organizer/BottomUI/TextureRect"]
+[node name="cow" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 6.0
@@ -185,7 +189,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_cgsjp")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_blg12")
 theme_override_styles/normal = SubResource("StyleBoxTexture_21jr3")
 
-[node name="price" type="Label" parent="Organizer/BottomUI/TextureRect/cow"]
+[node name="price" type="Label" parent="Organizer/UIBottom/BottomUI/cow"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 14.0
@@ -197,7 +201,7 @@ theme_override_font_sizes/font_size = 4
 text = "200"
 vertical_alignment = 1
 
-[node name="coin" type="TextureRect" parent="Organizer/BottomUI/TextureRect/cow/price"]
+[node name="coin" type="TextureRect" parent="Organizer/UIBottom/BottomUI/cow/price"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 12.0
@@ -205,7 +209,7 @@ offset_bottom = 5.0
 texture = ExtResource("5_blg12")
 expand_mode = 4
 
-[node name="pig" type="Button" parent="Organizer/BottomUI/TextureRect"]
+[node name="pig" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 0
 offset_left = 102.0
 offset_top = 6.0
@@ -217,7 +221,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_q58k5")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_mq5kj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ddtwc")
 
-[node name="price" type="Label" parent="Organizer/BottomUI/TextureRect/pig"]
+[node name="price" type="Label" parent="Organizer/UIBottom/BottomUI/pig"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 14.0
@@ -229,7 +233,7 @@ theme_override_font_sizes/font_size = 4
 text = "300"
 vertical_alignment = 1
 
-[node name="coin" type="TextureRect" parent="Organizer/BottomUI/TextureRect/pig/price"]
+[node name="coin" type="TextureRect" parent="Organizer/UIBottom/BottomUI/pig/price"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 12.0
@@ -237,7 +241,7 @@ offset_bottom = 5.0
 texture = ExtResource("5_blg12")
 expand_mode = 4
 
-[node name="dog" type="Button" parent="Organizer/BottomUI/TextureRect"]
+[node name="dog" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 0
 offset_left = 119.0
 offset_top = 6.0
@@ -248,7 +252,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_ntaer")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_etsf6")
 theme_override_styles/normal = SubResource("StyleBoxTexture_qes1e")
 
-[node name="price" type="Label" parent="Organizer/BottomUI/TextureRect/dog"]
+[node name="price" type="Label" parent="Organizer/UIBottom/BottomUI/dog"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 14.0
@@ -260,7 +264,7 @@ theme_override_font_sizes/font_size = 4
 text = "500"
 vertical_alignment = 1
 
-[node name="coin" type="TextureRect" parent="Organizer/BottomUI/TextureRect/dog/price"]
+[node name="coin" type="TextureRect" parent="Organizer/UIBottom/BottomUI/dog/price"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 12.0
@@ -268,7 +272,7 @@ offset_bottom = 5.0
 texture = ExtResource("5_blg12")
 expand_mode = 4
 
-[node name="redPanda" type="Button" parent="Organizer/BottomUI/TextureRect"]
+[node name="redPanda" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 0
 offset_left = 136.0
 offset_top = 6.0
@@ -279,7 +283,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fwnjs")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_n5p3l")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xpp1m")
 
-[node name="price" type="Label" parent="Organizer/BottomUI/TextureRect/redPanda"]
+[node name="price" type="Label" parent="Organizer/UIBottom/BottomUI/redPanda"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 14.0
@@ -291,7 +295,7 @@ theme_override_font_sizes/font_size = 4
 text = "800"
 vertical_alignment = 1
 
-[node name="coin" type="TextureRect" parent="Organizer/BottomUI/TextureRect/redPanda/price"]
+[node name="coin" type="TextureRect" parent="Organizer/UIBottom/BottomUI/redPanda/price"]
 layout_mode = 0
 offset_left = 8.0
 offset_right = 12.0
@@ -333,6 +337,12 @@ theme_override_fonts/font = ExtResource("6_ntaer")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PetContainer" type="HBoxContainer" parent="Organizer"]
+offset_left = 7.0
+offset_top = 37.0
+offset_right = 148.0
+offset_bottom = 164.0
+
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
 offset_left = 57.0
 offset_top = 107.0
@@ -358,4 +368,5 @@ limit_left = -100
 limit_right = 302
 limit_bottom = 600
 
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/bunny" to="." method="_on_BunnyButton_pressed"]
 [connection signal="pressed" from="Organizer/UICenter/Back" to="." method="_on_back_pressed"]

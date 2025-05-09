@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://cc1l25uq1wqag"]
+
+[ext_resource type="Texture2D" uid="uid://8jhvvv8xfb1u" path="res://assets/sprites/bunny_pet.png" id="1_2pfqt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0x8h"]
+atlas = ExtResource("1_2pfqt")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlf2w"]
+atlas = ExtResource("1_2pfqt")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik8qi"]
+atlas = ExtResource("1_2pfqt")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4xsf"]
+atlas = ExtResource("1_2pfqt")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh47e"]
+atlas = ExtResource("1_2pfqt")
+region = Rect2(128, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgsy2"]
+atlas = ExtResource("1_2pfqt")
+region = Rect2(160, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4koc"]
+atlas = ExtResource("1_2pfqt")
+region = Rect2(192, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ek7sh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0x8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlf2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik8qi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4xsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fh47e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgsy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4koc")
+}],
+"loop": true,
+"name": &"bunny_idle",
+"speed": 7.0
+}]
+
+[node name="Bunny" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ek7sh")
+animation = &"bunny_idle"
+autoplay = "bunny_idle"
