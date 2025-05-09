@@ -1,12 +1,12 @@
 extends Node2D
-
+@onready var audio=$Organizer/Center/AudioStreamPlayer2D2
 @onready var player = $Organizer/CenterBG/player/Catimation
 @onready var health_bar = $Organizer/CenterBG/player/PlayerHealthBar
 @onready var gold = $"Organizer/UITop/ProfileUI/Gold/value"
 var active_cat
 
 func _ready():
-	
+	MusicManager.play_main_music()
 	var global_data = GlobalDataHandler.global_data
 	gold.text = str(global_data.gold)
 
@@ -16,6 +16,8 @@ func _ready():
 		health_bar.visible = false 
 		
 func _on_back_pressed():
+	audio.play()
+	await get_tree().create_timer(0.25).timeout
 	if active_cat:
 		var all_cats = CatHandler.get_all_cats()
 		all_cats[CatHandler.cat_manager.active_cat_index] = active_cat

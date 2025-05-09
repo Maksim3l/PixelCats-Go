@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var audio1 = $UICenter/AudioStreamPlayer2D
+@onready var audio = $UIBottom/TextureRect/AudioStreamPlayer2D
 @onready var mbtn = $UIBottom/Bisquit
 @onready var fbtn = $UIBottom/Catnip
 @onready var ebtn = $UIBottom/Soft
@@ -21,6 +23,9 @@ func _ready():
 # get_tree().change_scene_to_file("res://screens/battle.tscn")
 
 func _on_bisquit_pressed():
+	audio.play()
+	
+	
 	if (active_cat.current_health < active_cat.max_health):
 		if ((active_cat.max_health-active_cat.current_health) < 30):
 			active_cat.current_health == active_cat.max_health
@@ -28,21 +33,27 @@ func _on_bisquit_pressed():
 			active_cat.current_health += 30
 
 func _on_catnip_pressed():
+	audio.play()
 	active_cat.temp_attack += 10
 
 func _on_soft_pressed():
+	audio.play()
 	active_cat.temp_defense += 12
 
 
 func _on_packet_pressed():
+	audio.play()
 	active_cat.max_health += 5
 	active_cat.current_health += 5
 
 func _on_fish_pressed():
+	audio.play()
 	active_cat.energy = active_cat.max_energy
 
 
 func _on_back_pressed():
+	audio1.play()
+	await get_tree().create_timer(0.25).timeout
 	var all_cats = CatHandler.get_all_cats()
 	all_cats[CatHandler.cat_manager.active_cat_index] = active_cat
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bmyvk5ge5jq6k"]
+[gd_scene load_steps=89 format=3 uid="uid://bmyvk5ge5jq6k"]
 
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
 [ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="2_24gff"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_o878r"]
 [ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="24_at2v4"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="25_vtkis"]
+[ext_resource type="AudioStream" uid="uid://b8l75uny4mxhh" path="res://assets/soundFX/btn_click.mp3" id="26_6n6su"]
 [ext_resource type="Texture2D" uid="uid://v1bwbw1r7o33" path="res://themes/UI_images/BottomButtonsUI2.png" id="26_at2v4"]
 [ext_resource type="Texture2D" uid="uid://bf5ui7r8348fd" path="res://themes/UI_images/ProfileUIwithTreats.png" id="26_aw3vd"]
 [ext_resource type="Texture2D" uid="uid://r5g0lykubcol" path="res://themes/UI_images/mergeUIbtnHover.png" id="27_aw3vd"]
@@ -366,6 +367,11 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_jctyl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_2tk18")
 text = "Battle
 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Organizer/UICenter"]
+stream = ExtResource("26_6n6su")
+volume_db = 1.0
+pitch_scale = 0.66
 
 [node name="UITop" type="HBoxContainer" parent="Organizer"]
 offset_left = -12.0

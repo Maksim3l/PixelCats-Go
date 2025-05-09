@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://camschyompbni"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=5 format=3 uid="uid://camschyompbni"]
 
 [ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_ogybn"]
+[ext_resource type="AudioStream" uid="uid://bubb5efb85heh" path="res://assets/soundFX/roomba_low.mp3" id="1_u0wch"]
 [ext_resource type="Texture2D" uid="uid://d4dpube1pcder" path="res://characters/enemy/roomba_1.png" id="2_ogybn"]
+[ext_resource type="AudioStream" uid="uid://ekx2sp7of5ti" path="res://assets/soundFX/death.mp3" id="2_vfnfq"]
 
 [resource]
 script = ExtResource("1_ogybn")
@@ -14,4 +16,6 @@ texture = ExtResource("2_ogybn")
 attack_cooldown = 1.0
 experience_reward = 10
 gold_reward = 5
+attack_sound = ExtResource("1_u0wch")
+death_sound = ExtResource("2_vfnfq")
 metadata/_custom_type_script = "uid://cvr5vbg24gmcm"

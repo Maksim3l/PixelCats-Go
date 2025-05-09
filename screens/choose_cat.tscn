@@ -1,6 +1,6 @@
-[gd_scene load_steps=53 format=3 uid="uid://cmp0y0dj5sym4"]
+[gd_scene load_steps=55 format=3 uid="uid://cmp0y0dj5sym4"]
 
-[ext_resource type="Script" path="res://scripts/choose_cat.gd" id="1_t2xig"]
+[ext_resource type="Script" uid="uid://b8ykr0g8riaox" path="res://scripts/choose_cat.gd" id="1_t2xig"]
 [ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="6_v3m62"]
 [ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="7_ia5gq"]
 [ext_resource type="Texture2D" uid="uid://bj82ugw5a0rtp" path="res://enviroment/house/1_bathroom/bathroom_water_double.png" id="8_8axev"]
@@ -21,8 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://bx74nglig1tdf" path="res://enviroment/house/3_living_room/room_base_double.png" id="21_hqydo"]
 [ext_resource type="Texture2D" uid="uid://camfeilneors3" path="res://themes/UI_images/backButton.png" id="21_lte52"]
 [ext_resource type="Texture2D" uid="uid://p3fopoo3i4cc" path="res://enviroment/house/3_living_room/room_window_double.png" id="22_q4vqo"]
+[ext_resource type="AudioStream" uid="uid://b8l75uny4mxhh" path="res://assets/soundFX/btn_click.mp3" id="22_yinns"]
 [ext_resource type="Texture2D" uid="uid://cesnqosmid6yx" path="res://themes/UI_images/goldIcon.png" id="23_t2xig"]
 [ext_resource type="Texture2D" uid="uid://w1bmoyn657wp" path="res://enviroment/house/3_living_room/room_plant_double.png" id="23_vao1c"]
+[ext_resource type="AudioStream" uid="uid://ehqee4dcl01s" path="res://assets/soundFX/coin.mp3" id="25_tjrl5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
 atlas = ExtResource("6_v3m62")
@@ -259,6 +261,11 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_46iwk")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_xaho0")
 theme_override_styles/normal = SubResource("StyleBoxTexture_lte52")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BackButton"]
+stream = ExtResource("22_yinns")
+volume_db = 1.0
+pitch_scale = 0.66
+
 [node name="ContinueButton" type="Button" parent="."]
 offset_left = -15.0
 offset_top = 61.0
@@ -291,6 +298,11 @@ offset_right = 16.0
 offset_bottom = 5.0
 texture = ExtResource("23_t2xig")
 expand_mode = 4
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ContinueButton"]
+stream = ExtResource("25_tjrl5")
+volume_db = 1.0
+attenuation = 10.1965
 
 [node name="CatList2" type="VBoxContainer" parent="."]
 offset_left = -41.0

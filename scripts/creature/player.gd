@@ -24,6 +24,10 @@ var temp_defense: int = 0
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Catimation
 @onready var particles = $DamageParticles
+@onready var attack_sfx_player: AudioStreamPlayer = $AttackSfxPlayer 
+var player_attack_sound = preload("res://assets/soundFX/main-hit.mp3")
+
+@onready var win = $stage_clear
 
 var can_attack: bool = true
 var current_target = null
@@ -90,6 +94,10 @@ func _on_frame_changed():
 		
 		if current_target and current_target.has_method("take_damage"):
 			current_target.take_damage(damage)
+			
+		if attack_sfx_player and player_attack_sound:
+			attack_sfx_player.stream = player_attack_sound
+			attack_sfx_player.play() 
 		attack_timer.start()
 
 		if sprite.is_connected("frame_changed", _on_frame_changed):
@@ -189,6 +197,7 @@ func level_up():
 	attack += 2
 	defense += 1
 
+
 func _on_attack_timer_timeout():
 	can_attack = true
 	
@@ -214,6 +223,7 @@ func load_game():
 
 func _on_battle_arena_difficulty_increased(new_difficulty):
 	arena_level = new_difficulty
+	win.play()
 	
 
 func walk():

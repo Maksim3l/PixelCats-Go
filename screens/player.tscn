@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c4ot3ksjrurvq"]
+[gd_scene load_steps=37 format=3 uid="uid://c4ot3ksjrurvq"]
 
 [ext_resource type="Script" uid="uid://ctjyh76sb71o2" path="res://scripts/creature/player.gd" id="1_5jwn5"]
 [ext_resource type="Texture2D" uid="uid://dq23fem364i6e" path="res://characters/main/attack.png" id="2_wt686"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bnbrosqfkieab" path="res://themes/UI_images/healthbarProgress.png" id="9_03ukr"]
 [ext_resource type="Script" uid="uid://diejx4sdigqis" path="res://scripts/events/player_health_bar.gd" id="10_03ukr"]
 [ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="11_gsa0h"]
+[ext_resource type="AudioStream" uid="uid://bi2l1ny0n02iq" path="res://assets/soundFX/win.mp3" id="12_khmpe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pt0rq"]
 atlas = ExtResource("2_wt686")
@@ -227,5 +228,10 @@ theme = SubResource("Theme_03ukr")
 theme_override_fonts/font = ExtResource("11_gsa0h")
 theme_override_font_sizes/font_size = 4
 horizontal_alignment = 1
+
+[node name="AttackSfxPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="stage_clear" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_khmpe")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
