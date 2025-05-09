@@ -20,7 +20,7 @@ func _ready():
 	player_battle.stream = battle_music
 	player_battle.name = "BattleMusicPlayer"
 	player_battle.bus = "Music"
-	player_battle.volume_db=-16
+	player_battle.volume_db=-22
 	if battle_music is AudioStreamMP3:
 		battle_music.loop = true
 	add_child(player_battle)
