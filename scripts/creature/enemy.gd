@@ -17,7 +17,7 @@ var battle = null
 @onready var particles = $DamageParticles
 
 @onready var attack_sfx_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var death_sfx_player: AudioStreamPlayer2D = $death
+@onready var death_sfx_player: AudioStreamPlayer = $death
 
 var hit_shader_material = null
 var stagger_tween = null
