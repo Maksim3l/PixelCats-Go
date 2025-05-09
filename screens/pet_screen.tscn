@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://g2kvnnn3epf6"]
+[gd_scene load_steps=52 format=3 uid="uid://g2kvnnn3epf6"]
 
 [ext_resource type="Texture2D" uid="uid://t1obe0j4sfyp" path="res://themes/UI_images/PetScreenBG.png" id="1_2p0jb"]
 [ext_resource type="Script" uid="uid://cc46gh6ja3sis" path="res://scripts/pet_screen.gd" id="1_o0tny"]
@@ -19,6 +19,12 @@
 [ext_resource type="Texture2D" uid="uid://vsxbuve11bwf" path="res://themes/UI_images/profileUI-petScreen.png" id="15_o0tny"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="18_etsf6"]
 
+[sub_resource type="Theme" id="Theme_ntaer"]
+default_font = ExtResource("14_xpp1m")
+default_font_size = 6
+
+[sub_resource type="Theme" id="Theme_etsf6"]
+
 [sub_resource type="Theme" id="Theme_21jr3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dpbx4"]
@@ -37,6 +43,9 @@ texture = ExtResource("4_00xwa")
 
 [sub_resource type="Theme" id="Theme_00xwa"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1mydy"]
+texture = ExtResource("3_r5u0e")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cgsjp"]
 texture = ExtResource("3_r5u0e")
 
@@ -47,6 +56,9 @@ texture = ExtResource("3_f2w6a")
 texture = ExtResource("3_f2w6a")
 
 [sub_resource type="Theme" id="Theme_cgsjp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j0pk6"]
+texture = ExtResource("7_cgsjp")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q58k5"]
 texture = ExtResource("7_cgsjp")
@@ -59,6 +71,9 @@ texture = ExtResource("7_6c7hk")
 
 [sub_resource type="Theme" id="Theme_o0tny"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2s8hd"]
+texture = ExtResource("10_q58k5")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntaer"]
 texture = ExtResource("10_q58k5")
 
@@ -70,6 +85,9 @@ texture = ExtResource("11_mq5kj")
 
 [sub_resource type="Theme" id="Theme_68ubm"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y2p55"]
+texture = ExtResource("12_xpp1m")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fwnjs"]
 texture = ExtResource("12_xpp1m")
 
@@ -78,12 +96,6 @@ texture = ExtResource("10_pbg7p")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xpp1m"]
 texture = ExtResource("10_pbg7p")
-
-[sub_resource type="Theme" id="Theme_ntaer"]
-default_font = ExtResource("14_xpp1m")
-default_font_size = 6
-
-[sub_resource type="Theme" id="Theme_etsf6"]
 
 [sub_resource type="Theme" id="Theme_qes1e"]
 default_font = ExtResource("14_xpp1m")
@@ -133,6 +145,46 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="Organizer/CenterBG"]
 layout_mode = 2
 texture = ExtResource("1_2p0jb")
+
+[node name="UITop" type="HBoxContainer" parent="Organizer"]
+offset_left = -5.0
+offset_right = 85.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+theme = SubResource("Theme_ntaer")
+alignment = 1
+
+[node name="ProfileUI" type="TextureRect" parent="Organizer/UITop"]
+layout_mode = 2
+texture = ExtResource("15_o0tny")
+
+[node name="Gold" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
+layout_direction = 2
+layout_mode = 2
+offset_left = 34.0
+offset_top = 9.0
+offset_right = 60.0
+offset_bottom = 17.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
+visible = false
+layout_mode = 2
+text = "Gold"
+
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
+layout_mode = 2
+theme = SubResource("Theme_etsf6")
+theme_override_fonts/font = ExtResource("6_ntaer")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetContainer" type="HBoxContainer" parent="Organizer"]
+offset_left = 7.0
+offset_top = 40.0
+offset_right = 142.0
+offset_bottom = 163.0
 
 [node name="UIBottom" type="HBoxContainer" parent="Organizer"]
 offset_left = -65.0
@@ -185,6 +237,7 @@ offset_right = 101.0
 offset_bottom = 27.0
 theme = SubResource("Theme_00xwa")
 theme_override_font_sizes/font_size = 4
+theme_override_styles/disabled = SubResource("StyleBoxTexture_1mydy")
 theme_override_styles/hover = SubResource("StyleBoxTexture_cgsjp")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_blg12")
 theme_override_styles/normal = SubResource("StyleBoxTexture_21jr3")
@@ -217,6 +270,7 @@ offset_right = 118.0
 offset_bottom = 25.0
 theme = SubResource("Theme_cgsjp")
 theme_override_font_sizes/font_size = 4
+theme_override_styles/disabled = SubResource("StyleBoxTexture_j0pk6")
 theme_override_styles/hover = SubResource("StyleBoxTexture_q58k5")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_mq5kj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ddtwc")
@@ -248,6 +302,7 @@ offset_top = 6.0
 offset_right = 135.0
 offset_bottom = 25.0
 theme = SubResource("Theme_o0tny")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_2s8hd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ntaer")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_etsf6")
 theme_override_styles/normal = SubResource("StyleBoxTexture_qes1e")
@@ -279,6 +334,7 @@ offset_top = 6.0
 offset_right = 152.0
 offset_bottom = 25.0
 theme = SubResource("Theme_68ubm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_y2p55")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fwnjs")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_n5p3l")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xpp1m")
@@ -302,46 +358,6 @@ offset_right = 12.0
 offset_bottom = 5.0
 texture = ExtResource("5_blg12")
 expand_mode = 4
-
-[node name="UITop" type="HBoxContainer" parent="Organizer"]
-offset_left = -5.0
-offset_right = 85.0
-offset_bottom = 40.0
-size_flags_horizontal = 4
-theme = SubResource("Theme_ntaer")
-alignment = 1
-
-[node name="ProfileUI" type="TextureRect" parent="Organizer/UITop"]
-layout_mode = 2
-texture = ExtResource("15_o0tny")
-
-[node name="Gold" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
-layout_direction = 2
-layout_mode = 2
-offset_left = 34.0
-offset_top = 9.0
-offset_right = 60.0
-offset_bottom = 17.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
-visible = false
-layout_mode = 2
-text = "Gold"
-
-[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
-layout_mode = 2
-theme = SubResource("Theme_etsf6")
-theme_override_fonts/font = ExtResource("6_ntaer")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PetContainer" type="HBoxContainer" parent="Organizer"]
-offset_left = 7.0
-offset_top = 37.0
-offset_right = 148.0
-offset_bottom = 164.0
 
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
 offset_left = 57.0
@@ -369,4 +385,8 @@ limit_right = 302
 limit_bottom = 600
 
 [connection signal="pressed" from="Organizer/UIBottom/BottomUI/bunny" to="." method="_on_BunnyButton_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/cow" to="." method="_on_CowButton_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/pig" to="." method="_on_PigButton_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/dog" to="." method="_on_DogButton_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/redPanda" to="." method="_on_RedPandaButton_pressed"]
 [connection signal="pressed" from="Organizer/UICenter/Back" to="." method="_on_back_pressed"]

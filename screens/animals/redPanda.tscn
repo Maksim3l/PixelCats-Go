@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://deapmukytri5m"]
+
+[ext_resource type="Texture2D" uid="uid://b16gh6awg8do3" path="res://characters/pets/redPanda_pet.png" id="1_hqnai"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqnai"]
+atlas = ExtResource("1_hqnai")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27pkg"]
+atlas = ExtResource("1_hqnai")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utdgl"]
+atlas = ExtResource("1_hqnai")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi7ij"]
+atlas = ExtResource("1_hqnai")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5rdt"]
+atlas = ExtResource("1_hqnai")
+region = Rect2(128, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01s51"]
+atlas = ExtResource("1_hqnai")
+region = Rect2(160, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6l66"]
+atlas = ExtResource("1_hqnai")
+region = Rect2(192, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afog1"]
+atlas = ExtResource("1_hqnai")
+region = Rect2(224, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_afog1"]
+animations = [{
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_hqnai")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_27pkg")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_utdgl")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_xi7ij")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_g5rdt")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_01s51")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_m6l66")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_afog1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="RedPanda" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_afog1")
+autoplay = "default"
