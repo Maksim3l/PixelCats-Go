@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://h8brxvmkyg2o"]
+[gd_scene load_steps=18 format=3 uid="uid://h8brxvmkyg2o"]
 
 [ext_resource type="Script" uid="uid://cgq4gmvorh2hn" path="res://scripts/creature/enemy.gd" id="1_h737n"]
 [ext_resource type="Texture2D" uid="uid://dnqxx5cy4g55w" path="res://characters/enemy/Machine.png" id="2_83ito"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cjxeb2qe52nso" path="res://themes/UI_images/healthbarUnder.png" id="6_3di1a"]
 [ext_resource type="Texture2D" uid="uid://bnbrosqfkieab" path="res://themes/UI_images/healthbarProgress.png" id="7_iw5bc"]
 [ext_resource type="Script" uid="uid://dofljv6q2tbla" path="res://scripts/events/enemy_health_bar.gd" id="8_3di1a"]
-[ext_resource type="AudioStream" uid="uid://ekx2sp7of5ti" path="res://assets/soundFX/death.mp3" id="10_p2000"]
 
 [sub_resource type="Theme" id="Theme_p2000"]
 
@@ -104,11 +103,6 @@ offset_bottom = 27.0
 theme = SubResource("Theme_3di1a")
 theme_override_fonts/font = ExtResource("3_iw5bc")
 theme_override_font_sizes/font_size = 4
-
-[node name="take_damage" type="AudioStreamPlayer2D" parent="."]
-
-[node name="death" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_p2000")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

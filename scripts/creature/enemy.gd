@@ -17,6 +17,7 @@ var battle = null
 @onready var particles = $DamageParticles
 
 @onready var attack_sfx_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var death_sfx_player: AudioStreamPlayer2D = $death
 
 var hit_shader_material = null
 var stagger_tween = null
@@ -121,8 +122,24 @@ func emit_damage_particles():
 
 func die():
 	
-	battle.enemy_defeated(enemy_data.experience_reward, enemy_data.gold_reward)
+	if enemy_data.death_sound:
+		var temp_death_sfx_player = AudioStreamPlayer.new()
+		
+		var parent_node = get_parent() 
+		if is_instance_valid(parent_node):
+			parent_node.add_child(temp_death_sfx_player)
+		else: 
+			get_tree().root.add_child(temp_death_sfx_player)
+
+		temp_death_sfx_player.stream = enemy_data.death_sound
+		temp_death_sfx_player.play()
+		
+		temp_death_sfx_player.finished.connect(Callable(temp_death_sfx_player, "queue_free"))
+
+	if battle:
+		battle.enemy_defeated(enemy_data.experience_reward, enemy_data.gold_reward)
 	queue_free()
+	
 
 func _on_attack_timer_timeout():
 	can_attack = true

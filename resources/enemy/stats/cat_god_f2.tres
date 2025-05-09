@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://cy5dctn26bawt"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=5 format=3 uid="uid://cy5dctn26bawt"]
 
 [ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_q63wc"]
+[ext_resource type="AudioStream" uid="uid://csk85q08277ko" path="res://assets/soundFX/dog_attack.mp3" id="1_r7b4v"]
+[ext_resource type="AudioStream" uid="uid://ekx2sp7of5ti" path="res://assets/soundFX/death.mp3" id="2_3fysx"]
 [ext_resource type="Texture2D" uid="uid://dif22e4kcq1e5" path="res://characters/enemy/catgod-dog-cry.png" id="2_q63wc"]
 
 [resource]
@@ -14,4 +16,6 @@ texture = ExtResource("2_q63wc")
 attack_cooldown = 2.0
 experience_reward = 10
 gold_reward = 5
+attack_sound = ExtResource("1_r7b4v")
+death_sound = ExtResource("2_3fysx")
 metadata/_custom_type_script = "uid://cvr5vbg24gmcm"

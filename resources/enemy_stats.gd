@@ -12,3 +12,4 @@ extends Resource
 @export var gold_reward: int = 5
 
 @export var attack_sound: AudioStream
+@export var death_sound: AudioStream 
