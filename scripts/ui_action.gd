@@ -1,4 +1,6 @@
 extends CanvasLayer
+
+@onready var audio1 = $UICenter/AudioStreamPlayer2D
 @onready var audio = $UIBottom/TextureRect/AudioStreamPlayer2D2
 @onready var mbtn = $UIBottom/Merge
 @onready var fbtn = $UIBottom/Feed
@@ -12,7 +14,7 @@ var global_data
 var custom_font = preload("res://resources/pixel_sans.ttf")
 
 func _ready():
-
+	MusicManager.play_main_music()
 	active_cat = CatHandler.get_active_cat()
 	global_data = GlobalDataHandler.global_data
 
@@ -82,9 +84,10 @@ func _on_pets_pressed():
 
 
 func _on_battle_pressed():
-	audio.play()
-	await get_tree().create_timer(0.25).timeout
+	
 	if (active_cat.energy != 0):
+		audio1.play()
+		await get_tree().create_timer(0.25).timeout
 		get_tree().change_scene_to_file("res://screens/battle.tscn")
 	else:
 		print("Not enought energy.")

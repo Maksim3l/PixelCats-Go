@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var audio2 = $Organizer/UIBottom/BottomUI/click
+@onready var audio = $Organizer/UICenter/AudioStreamPlayer2D
 @onready var treat = $"Organizer/UITop/ProfileUI/Treat/value"
 @onready var energy = $"Organizer/UITop/ProfileUI/Energy/value"
 @onready var gold = $"Organizer/UITop/ProfileUI/Gold/value"
@@ -22,6 +24,8 @@ var active_cat
 var animal_keys = ["bunny", "cow", "pig", "dog", "redpanda"]
 
 func _ready():
+	
+	MusicManager.play_main_music()
 	var global_data = GlobalDataHandler.global_data
 	gold.text = str(global_data.gold)
 
@@ -57,8 +61,12 @@ func _on_back_pressed():
 	
 	# Preveri, od kod je uporabnik prišel
 	if GlobalDataHandler.global_data.coming_from_last == "Battle Arena":
+		audio.play()
+		await get_tree().create_timer(0.25).timeout
 		_load_scene("res://screens/battle.tscn")
 	else:
+		audio.play()
+		await get_tree().create_timer(0.25).timeout
 		_load_scene("res://screens/idle_screen.tscn")
 
 func _load_scene(scene_path):
@@ -68,18 +76,28 @@ func _load_scene(scene_path):
 	get_tree().current_scene = new_scene
 
 func _on_BunnyButton_pressed():
+	audio2.play()
+	await get_tree().create_timer(0.25).timeout
 	_buy_animal("bunny")
 
 func _on_CowButton_pressed():
+	audio2.play()
+	await get_tree().create_timer(0.25).timeout
 	_buy_animal("cow")
 
 func _on_PigButton_pressed():
+	audio2.play()
+	await get_tree().create_timer(0.25).timeout
 	_buy_animal("pig")
 
 func _on_DogButton_pressed():
+	audio2.play()
+	await get_tree().create_timer(0.25).timeout
 	_buy_animal("dog")
 
 func _on_RedPandaButton_pressed():
+	audio2.play()
+	await get_tree().create_timer(0.25).timeout
 	_buy_animal("redpanda")
 
 func _buy_animal(animal_key):

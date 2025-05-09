@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://g2kvnnn3epf6"]
+[gd_scene load_steps=53 format=3 uid="uid://g2kvnnn3epf6"]
 
 [ext_resource type="Texture2D" uid="uid://t1obe0j4sfyp" path="res://themes/UI_images/PetScreenBG.png" id="1_2p0jb"]
 [ext_resource type="Script" uid="uid://cc46gh6ja3sis" path="res://scripts/pet_screen.gd" id="1_o0tny"]
@@ -18,6 +18,7 @@
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="14_xpp1m"]
 [ext_resource type="Texture2D" uid="uid://vsxbuve11bwf" path="res://themes/UI_images/profileUI-petScreen.png" id="15_o0tny"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="18_etsf6"]
+[ext_resource type="AudioStream" uid="uid://b8l75uny4mxhh" path="res://assets/soundFX/btn_click.mp3" id="19_qes1e"]
 
 [sub_resource type="Theme" id="Theme_ntaer"]
 default_font = ExtResource("14_xpp1m")
@@ -359,6 +360,10 @@ offset_bottom = 5.0
 texture = ExtResource("5_blg12")
 expand_mode = 4
 
+[node name="click" type="AudioStreamPlayer2D" parent="Organizer/UIBottom/BottomUI"]
+stream = ExtResource("19_qes1e")
+volume_db = 1.0
+
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
 offset_left = 57.0
 offset_top = 107.0
@@ -377,6 +382,11 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_ifh5s")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_gstpi")
 theme_override_styles/normal = SubResource("StyleBoxTexture_tx00f")
 text = "Back"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Organizer/UICenter"]
+stream = ExtResource("19_qes1e")
+volume_db = 1.0
+pitch_scale = 0.66
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 0)

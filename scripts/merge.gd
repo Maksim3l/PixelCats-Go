@@ -11,7 +11,7 @@ var cat2_data
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	MusicManager.play_main_music()
 	cat1_data = CatHandler.get_all_cats()[selected_cats[0]]
 	cat2_data = CatHandler.get_all_cats()[selected_cats[1]]
 	

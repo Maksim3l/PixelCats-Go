@@ -5,6 +5,7 @@ extends Node2D
 @export var player_character: Node2D
 
 func _ready():
+	MusicManager.play_main_music()
 	randomize()
 	
 	var active_cat = CatHandler.get_active_cat()

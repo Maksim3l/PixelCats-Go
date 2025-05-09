@@ -16,6 +16,8 @@ var battle = null
 @onready var animation_player = $AnimationPlayer
 @onready var particles = $DamageParticles
 
+@onready var attack_sfx_player: AudioStreamPlayer = $AudioStreamPlayer
+
 var hit_shader_material = null
 var stagger_tween = null
 var is_staggering = false
@@ -47,9 +49,15 @@ func _process(_delta):
 		attack_target()
 
 func attack_target():
+	
 	can_attack = false
 	var damage = enemy_data.attack
 	target.take_damage(damage)
+	
+	if attack_sfx_player and enemy_data.attack_sound:
+		attack_sfx_player.stream = enemy_data.attack_sound
+		attack_sfx_player.play() 
+	
 	attack_timer.start()
 
 func take_damage(amount):
@@ -112,6 +120,7 @@ func emit_damage_particles():
 		particles.emitting = true
 
 func die():
+	
 	battle.enemy_defeated(enemy_data.experience_reward, enemy_data.gold_reward)
 	queue_free()
 

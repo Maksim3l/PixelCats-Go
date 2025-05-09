@@ -6,7 +6,7 @@ extends Node2D
 var active_cat
 
 func _ready():
-	
+	MusicManager.play_main_music()
 	var global_data = GlobalDataHandler.global_data
 	gold.text = str(global_data.gold)
 
