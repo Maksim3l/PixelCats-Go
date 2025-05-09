@@ -4,13 +4,23 @@ extends Resource
 @export var coming_from_last = "none"
 @export var gold: int = 0
 @export var treat: int = 3
+@export var unlocked_pets = {}
 # Uncomment and use this for unlocked cats
 # @export var unlocked_cats = []
 
 func _init(p_coming_from_last = "none", p_gold = 0):
 	coming_from_last = p_coming_from_last
 	gold = p_gold
+	unlocked_pets = {}
 
+func set_property(key: String, value):
+	unlocked_pets[key] = value
+	
+func get_property(key: String, default_value = null):
+	if key in unlocked_pets:
+		return unlocked_pets[key]
+	return default_value
+	
 func save_global_data(path: String) -> bool:
 	var dir = DirAccess.open("res://")
 	if not dir.dir_exists("data"):
