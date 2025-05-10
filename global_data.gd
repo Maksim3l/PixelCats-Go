@@ -7,6 +7,9 @@ extends Resource
 # Uncomment and use this for unlocked cats
 # @export var unlocked_cats = []
 
+@export var collected_armor_ids: Array[String] = []
+
+
 func _init(p_coming_from_last = "none", p_gold = 0):
 	coming_from_last = p_coming_from_last
 	gold = p_gold
@@ -39,3 +42,37 @@ static func load_global_data(path: String) -> GlobalData:
 		return GlobalData.new()
 	
 	return data
+
+func add_collected_armor(armor_id: String) -> void:
+	if not collected_armor_ids.has(armor_id):
+		collected_armor_ids.append(armor_id)
+
+func has_collected_armor(armor_id: String) -> bool:
+	return collected_armor_ids.has(armor_id)
+
+func get_collected_armor_items() -> Array[Item]:
+	var result: Array = []
+	for id in collected_armor_ids:
+		var item = Armor.get_armor(id)
+		if item != null:
+			result.append(item)
+	return result
+
+func remove_collected_armor(armor_id: String) -> void:
+	if collected_armor_ids.has(armor_id):
+		collected_armor_ids.erase(armor_id)
+
+func sell_collected_armor(armor_id: String) -> bool:
+	if not collected_armor_ids.has(armor_id):
+		print("Armor not in inventory: ", armor_id)
+		return false
+
+	var armor_item = Armor.get_armor(armor_id)
+	if armor_item == null:
+		print("Invalid armor ID: ", armor_id)
+		return false
+	
+	collected_armor_ids.erase(armor_id)
+	gold += armor_item.gold_value
+	print("Sold ", armor_id, " for ", armor_item.gold_value, " gold.")
+	return true

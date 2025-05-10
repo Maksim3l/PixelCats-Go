@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalDataHandler="*res://global_data_handler.gd"
 CatHandler="*res://cat_handler.gd"
+Armor="*res://resources/armor.gd"
 
 [display]
 

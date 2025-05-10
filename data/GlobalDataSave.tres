@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_rit5f")
-coming_from_last = &"Battle Arena"
-gold = 300
+coming_from_last = &"IdleScreen"
+gold = 355
 treat = 3
+collected_armor_ids = Array[String]([])

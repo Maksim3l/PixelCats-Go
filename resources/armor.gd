@@ -4,7 +4,6 @@ extends Node
 # Pre-defined armor categories
 enum ArmorTypes {CHEST, GLOVES, BOOTS, HELMET}
 
-# Pre-defined armor items - you can add more as needed
 var armors = {
 	# CHEST ARMOR
 	"leather_chest": {
@@ -100,6 +99,14 @@ func get_all_armor() -> Array:
 	var result = []
 	
 	for armor_id in armors:
+		result.append(get_armor(armor_id))
+		
+	return result
+	
+func get_collected_armor() -> Array:
+	var result = []
+	
+	for armor_id in GlobalDataHandler.global_data.collected_armor_ids:
 		result.append(get_armor(armor_id))
 		
 	return result

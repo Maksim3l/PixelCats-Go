@@ -7,18 +7,19 @@
 script = ExtResource("1_tbgf5")
 cat_name = "Whiskers"
 cat_sprite = "res://characters/main/main.png"
-max_health = 100
-current_health = 100
-attack = 26
-temp_attack = 0
-defense = 16
-temp_defense = 0
-experience = 0
-level = 1
-arena_level = 0
-max_energy = 3
-energy = 3
+max_health = 235
+current_health = 235
+attack = 51
+temp_attack = 20
+defense = 86
+temp_defense = 36
+experience = 180
+level = 2
+arena_level = 5
+max_energy = 19
+energy = 19
 position = Vector2(0, 0)
+equipped_items = {}
 
 [sub_resource type="Resource" id="Resource_8tpsk"]
 script = ExtResource("1_tbgf5")
@@ -26,9 +27,9 @@ cat_name = "Daisy"
 cat_sprite = "res://characters/main/main.png"
 max_health = 100
 current_health = 100
-attack = 21
+attack = 25
 temp_attack = 0
-defense = 12
+defense = 14
 temp_defense = 0
 experience = 0
 level = 1
@@ -36,6 +37,7 @@ arena_level = 0
 max_energy = 3
 energy = 3
 position = Vector2(0, 0)
+equipped_items = {}
 metadata/_custom_type_script = "uid://dq7snk8jto3g1"
 
 [resource]
