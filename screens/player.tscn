@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c4ot3ksjrurvq"]
+[gd_scene load_steps=43 format=3 uid="uid://c4ot3ksjrurvq"]
 
 [ext_resource type="Script" uid="uid://ctjyh76sb71o2" path="res://scripts/creature/player.gd" id="1_5jwn5"]
 [ext_resource type="Texture2D" uid="uid://dq23fem364i6e" path="res://characters/main/attack.png" id="2_wt686"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://diejx4sdigqis" path="res://scripts/events/player_health_bar.gd" id="10_03ukr"]
 [ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="11_gsa0h"]
 [ext_resource type="AudioStream" uid="uid://bi2l1ny0n02iq" path="res://assets/soundFX/win.mp3" id="12_khmpe"]
-[ext_resource type="SpriteFrames" uid="uid://c25gcgdcixkeb" path="res://accessories/head/head_item_2/ninja_spritesheet.tres" id="13_dul1j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pt0rq"]
 atlas = ExtResource("2_wt686")
@@ -100,16 +99,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pt0rq")
 }, {
-"duration": 0.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_woc4k")
 }, {
-"duration": 0.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_03ukr")
 }, {
-"duration": 0.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_gsa0h")
 }, {
-"duration": 0.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_khmpe")
 }, {
 "duration": 1.0,
@@ -123,13 +122,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3p72b")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_s771n")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_quheg")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cvoup")
 }],
 "loop": true,
@@ -180,9 +179,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjbw5"]
 size = Vector2(15, 53)
 
-[sub_resource type="Animation" id="Animation_khmpe"]
-resource_name = "idle"
-length = 0.8
+[sub_resource type="Animation" id="Animation_quheg"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -193,7 +191,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"idle"]
+"values": [&"attack"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -205,7 +203,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"idle"]
+"values": [&""]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -272,6 +270,46 @@ tracks/3/keys = {
 "args": [],
 "method": &"_deal_attack_damage"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_khmpe"]
+resource_name = "idle"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Catimation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadSlot:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySlot:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
 }
 
 [sub_resource type="Animation" id="Animation_3p72b"]
@@ -354,45 +392,6 @@ tracks/2/keys = {
 "values": [&"default"]
 }
 
-[sub_resource type="Animation" id="Animation_quheg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Catimation:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"attack"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HeadSlot:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&""]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BodySlot:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"default"]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dul1j"]
 _data = {
 &"RESET": SubResource("Animation_quheg"),
@@ -414,7 +413,6 @@ script = ExtResource("1_5jwn5")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ra7kh")
 animation = &"attack"
-frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)
@@ -463,7 +461,6 @@ stream = ExtResource("12_khmpe")
 
 [node name="HeadSlot" type="AnimatedSprite2D" parent="."]
 z_index = 2
-sprite_frames = ExtResource("13_dul1j")
 animation = &""
 
 [node name="BodySlot" type="AnimatedSprite2D" parent="."]
