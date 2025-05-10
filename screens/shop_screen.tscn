@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://camfeilneors3" path="res://themes/UI_images/backButton.png" id="9_djydb"]
 [ext_resource type="Texture2D" uid="uid://c3diguudh8ljd" path="res://themes/UI_images/Shop_Icons/sun_icon.png" id="10_dasug"]
 [ext_resource type="Texture2D" uid="uid://bqeu6qoplhayo" path="res://themes/UI_images/Shop_Icons/tie_icon.png" id="10_e3xt2"]
-[ext_resource type="Texture2D" uid="uid://o0a8xn2rx0ls" path="res://themes/UI_images/crown_icon.png" id="11_olfwg"]
+[ext_resource type="Texture2D" uid="uid://dcxfmvn2o0ybv" path="res://themes/UI_images/Shop_Icons/crown_icon.png" id="12_cm7li"]
 [ext_resource type="Texture2D" uid="uid://ctawbsa4mcti0" path="res://themes/UI_images/Shop_Icons/ninja_icon.png" id="12_fexmu"]
 [ext_resource type="Texture2D" uid="uid://qkh8d12p73mv" path="res://themes/UI_images/Shop_Icons/treatShop.png" id="13_onef4"]
 [ext_resource type="Texture2D" uid="uid://d20ytsnemerge" path="res://themes/UI_images/Shop_Icons/mask_icon.png" id="14_olfwg"]
@@ -48,7 +48,7 @@ expand_margin_right = 3.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2udhv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_is5hj"]
-texture = ExtResource("11_olfwg")
+texture = ExtResource("12_cm7li")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_53wbw"]
 
