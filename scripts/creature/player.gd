@@ -28,6 +28,8 @@ var temp_defense: int = 0
 @onready var head_slot_sprite: AnimatedSprite2D = $HeadSlot
 @onready var body_slot_sprite: AnimatedSprite2D = $BodySlot
 var player_attack_sound = preload("res://assets/soundFX/main-hit.mp3")
+var _previous_animation_before_stagger: String = "idle" 
+@onready var stagger_cleanup_timer: Timer = Timer.new()
 
 @onready var win = $stage_clear
 
@@ -56,6 +58,13 @@ func _ready():
 		
 	head_slot_sprite.visible = false
 	body_slot_sprite.visible = false
+	
+	stagger_cleanup_timer.name = "StaggerCleanupTimer"
+	stagger_cleanup_timer.one_shot = true
+	if not stagger_cleanup_timer.is_connected("timeout", Callable(self, "_perform_stagger_cleanup")):
+		stagger_cleanup_timer.connect("timeout", Callable(self, "_perform_stagger_cleanup"))
+	add_child(stagger_cleanup_timer) 
+	
 	load_game()
 	play_animation("idle")
 	
@@ -174,14 +183,54 @@ func stagger_effect():
 		
 	is_staggering = true
 	
+	if sprite and sprite.is_playing() and sprite.animation != "stagger" and sprite.animation != "death": 
+		_previous_animation_before_stagger = sprite.animation
+	elif sprite and not sprite.is_playing() and sprite.animation: 
+		_previous_animation_before_stagger = sprite.animation
+	else:
+		_previous_animation_before_stagger = "idle"
+
+	play_animation("stagger")
+	
 	apply_hit_flash()
 	apply_stagger_movement()
 	emit_damage_particles()
 	
-	await get_tree().create_timer(0.5).timeout
-	if sprite != null and is_instance_valid(sprite) and sprite.material != null:
-		sprite.material.set_shader_parameter("flash_modifier", 0.0)
+	var stagger_duration = 0.5 
+	if sprite and is_instance_valid(sprite) and \
+	   sprite.sprite_frames and sprite.sprite_frames.has_animation("stagger"):
+		
+		var anim_name = "stagger"
+		
+		var anim_is_looping = sprite.sprite_frames.get_animation_loop(anim_name)
+
+		if not anim_is_looping: 
+			var frame_count = sprite.sprite_frames.get_frame_count(anim_name)
+			var anim_speed_fps = sprite.sprite_frames.get_animation_speed(anim_name) 
+			
+			if frame_count > 0 and anim_speed_fps > 0:
+				var total_relative_duration_units = 0.0
+				for i in range(frame_count):
+					total_relative_duration_units += sprite.sprite_frames.get_frame_duration(anim_name, i) 
+				var calculated_anim_length = total_relative_duration_units / anim_speed_fps
+				stagger_duration = max(calculated_anim_length, 0.3)
+	stagger_cleanup_timer.start(stagger_duration)
+func _perform_stagger_cleanup():
+	if not is_staggering: 
+		return
+
+	if sprite != null and is_instance_valid(sprite) and sprite.material == hit_shader_material:
+		hit_shader_material.set_shader_parameter("flash_modifier", 0.0)
+
 	is_staggering = false
+
+	var current_sprite_anim = ""
+	if sprite and is_instance_valid(sprite):
+		current_sprite_anim = sprite.animation
+	
+	if current_sprite_anim != "death": 
+		if current_sprite_anim == "stagger" or (sprite and is_instance_valid(sprite) and not sprite.is_playing()):
+			play_animation(_previous_animation_before_stagger)
 
 func apply_hit_flash():
 	sprite.material = hit_shader_material
@@ -192,19 +241,38 @@ func apply_hit_flash():
 		flash_tween.tween_property(hit_shader_material, "shader_parameter/flash_modifier", 0.0, 0.2)
 
 func apply_stagger_movement():
-	var push_direction = Vector2(-1, 0)
-	if current_target: 
-		push_direction = (global_position - current_target.global_position).normalized()
-	stagger_tween = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	
-	var original_position = position
-	var original_rotation = rotation
-	
-	stagger_tween.tween_property(sprite, "position", position + push_direction * 10, 0.1)
-	stagger_tween.tween_property(sprite, "position", original_position, 0.2)
+	var sprites_to_move = []
+	if sprite and is_instance_valid(sprite): 
+		sprites_to_move.append(sprite)
+	if head_slot_sprite and is_instance_valid(head_slot_sprite) and head_slot_sprite.visible and head_slot_sprite.sprite_frames:
+		sprites_to_move.append(head_slot_sprite)
+	if body_slot_sprite and is_instance_valid(body_slot_sprite) and body_slot_sprite.visible and body_slot_sprite.sprite_frames:
+		sprites_to_move.append(body_slot_sprite)
 
-	stagger_tween.parallel().tween_property(sprite, "rotation", original_rotation - 0.1, 0.1)
-	stagger_tween.tween_property(sprite, "rotation", original_rotation, 0.2)
+	if sprites_to_move.is_empty(): # Če ni nobenega sprita za premakniti, končaj.
+		return
+
+	var push_direction = Vector2.LEFT
+	var push_amount = 10.0          # Kako daleč se sprite odbije (v pikslih)
+	var push_duration = 0.1         # Kako hitro se sprite odbije (v sekundah)
+	var return_duration = 0.2       # Kako hitro se sprite vrne (v sekundah)
+
+	if current_target and is_instance_valid(current_target):
+		var direction_away_from_target = (global_position - current_target.global_position).normalized()
+		if direction_away_from_target != Vector2.ZERO:
+			push_direction = direction_away_from_target
+	
+	if push_direction == Vector2.ZERO: 
+		push_direction = Vector2.LEFT
+
+	for s_node in sprites_to_move:
+		var individual_tween = create_tween().set_parallel(false) 
+		
+		var original_node_position = s_node.position 
+		individual_tween.tween_property(s_node, "position", original_node_position + push_direction * push_amount, push_duration)\
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		individual_tween.tween_property(s_node, "position", original_node_position, return_duration)\
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN) 
 
 func emit_damage_particles():
 	if particles:

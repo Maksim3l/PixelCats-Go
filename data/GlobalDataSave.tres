@@ -1,22 +1,13 @@
-[gd_resource type="Resource" script_class="GlobalData" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="GlobalData" load_steps=2 format=3 uid="uid://bkk8avm1lj2h7"]
 
-[ext_resource type="Script" path="res://global_data.gd" id="1_rit5f"]
+[ext_resource type="Script" uid="uid://c41l2mcfhcbjf" path="res://global_data.gd" id="1_rit5f"]
 
 [resource]
 script = ExtResource("1_rit5f")
 coming_from_last = &"Battle Arena"
-
-coming_from_last = &"IdleScreen"
-gold = 200
-treat = 3
->>>>>>> shopScreen
-unlocked_pets = {
-"bunny_count": 2,
-"cow_count": 1,
-"dog_count": 1,
-"pig_count": 1,
-"redpanda_count": 2
-}
+gold = 50
+treat = 1
+unlocked_pets = {}
 unlocked_accessories = {
 "belt": true,
 "crown": true,

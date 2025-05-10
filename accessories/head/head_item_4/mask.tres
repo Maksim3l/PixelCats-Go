@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://dgj30jufjq7h3"]
+[gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://dgj30jufjq7h3"]
 
 [ext_resource type="Texture2D" uid="uid://bu7xd4vnfyngy" path="res://accessories/head/head_item_4/mask_attack.png" id="1_qg0gw"]
 [ext_resource type="Texture2D" uid="uid://bb6amjx7eo4dr" path="res://accessories/head/head_item_4/mask_icon.png" id="2_pw66n"]
@@ -60,6 +60,22 @@ region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3vv0"]
 atlas = ExtResource("4_1q4wq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg0gw"]
+atlas = ExtResource("3_u6pna")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw66n"]
+atlas = ExtResource("3_u6pna")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6pna"]
+atlas = ExtResource("3_u6pna")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q4wq"]
+atlas = ExtResource("3_u6pna")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kea5w"]
@@ -151,6 +167,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"nap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg0gw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw66n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6pna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q4wq")
+}],
+"loop": true,
+"name": &"stagger",
 "speed": 5.0
 }, {
 "frames": [{
