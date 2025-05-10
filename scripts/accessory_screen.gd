@@ -27,14 +27,14 @@ extends Node2D
 var head_items_sf_paths = [
 	"res://accessories/head/head_item_1/crown_spritesheet.tres", # Primer za krono
 	"res://accessories/head/head_item_2/ninja_spritesheet.tres",    
-	"res://accessories/head/wizard_hat/wizard_hat_anim.tres",
-	"res://accessories/head/top_hat/top_hat_anim.tres"
+	"res://accessories/head/head_item_3/sun.tres",
+	"res://accessories/head/head_item_4/mask.tres"
 ]
 var body_items_sf_paths = [
-	"res://accessories/body/tshirt_blue/tshirt_blue_anim.tres",
-	"res://accessories/body/armor_plate/armor_plate_anim.tres",
-	"res://accessories/body/jacket_red/jacket_red_anim.tres",
-	"res://accessories/body/dress_fancy/dress_fancy_anim.tres"
+	"res://accessories/body/body_item_4/tie.tres",
+	"res://accessories/body/body_item_3/belt.tres",
+	"res://accessories/body/body_item_2/robot.tres",
+	"res://accessories/body/body_item_1/swim.tres"
 ]
 
 var current_preview_cat_data: CatData 

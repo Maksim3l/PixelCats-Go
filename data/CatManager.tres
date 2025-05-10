@@ -15,12 +15,12 @@ defense = 9889
 temp_defense = 0
 experience = 0
 level = 1
-arena_level = 2
+arena_level = 4
 max_energy = 3
 energy = 3
 position = Vector2(0, 0)
-equipped_head_sf_path = "res://accessories/head/head_item_2/ninja_spritesheet.tres"
-equipped_body_sf_path = ""
+equipped_head_sf_path = "res://accessories/head/head_item_4/mask.tres"
+equipped_body_sf_path = "res://accessories/body/body_item_1/swim.tres"
 
 [sub_resource type="Resource" id="Resource_8tpsk"]
 script = ExtResource("1_tbgf5")
