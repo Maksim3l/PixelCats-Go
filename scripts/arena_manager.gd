@@ -40,6 +40,7 @@ signal battle_ended(difficulty)
 signal difficulty_increased(new_difficulty)
 
 func _ready():
+	MusicManager.play_battle_music()
 	randomize()
 	
 	var active_cat = CatHandler.get_active_cat()

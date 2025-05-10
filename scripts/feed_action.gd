@@ -1,48 +1,82 @@
 extends CanvasLayer
 
-@onready var mbtn = $UIBottom/Bisquit
-@onready var fbtn = $UIBottom/Catnip
-@onready var ebtn = $UIBottom/Soft
-@onready var abtn = $UIBottom/Packet
-@onready var pbtn = $UIBottom/Fish
+@onready var audio1 = $UICenter/AudioStreamPlayer2D
+@onready var audio = $UIBottom/BottomUI/AudioStreamPlayer2D
+@onready var mbtn = $UIBottom/BottomUI/Bisquit
+@onready var fbtn = $UIBottom/BottomUI/Catnip
+@onready var ebtn = $UIBottom/BottomUI/Soft
+@onready var abtn = $UIBottom/BottomUI/Packet
+@onready var pbtn = $UIBottom/BottomUI/Fish
 
 var active_cat
 var global_data
-
-var custom_font = preload("res://resources/pixel_sans.ttf")
 
 func _ready():
 	active_cat = CatHandler.get_active_cat()
 	global_data = GlobalDataHandler.global_data
 	
+	update_button_states()
 
-
-# Here to be copy and paisted for convenience
-# get_tree().change_scene_to_file("res://screens/battle.tscn")
+func update_button_states():
+	# Disable buttons if no treats left
+	var has_treats = global_data.treat > 0
+	mbtn.disabled = not has_treats
+	fbtn.disabled = not has_treats
+	ebtn.disabled = not has_treats
+	abtn.disabled = not has_treats
+	pbtn.disabled = not has_treats
 
 func _on_bisquit_pressed():
-	if (active_cat.current_health < active_cat.max_health):
-		if ((active_cat.max_health-active_cat.current_health) < 30):
-			active_cat.current_health == active_cat.max_health
-		else:
-			active_cat.current_health += 30
+	if global_data.treat > 0:
+		audio.play()
+		
+		# Heal the cat
+		var heal_amount = min(30, active_cat.max_health - active_cat.current_health)
+		active_cat.current_health += heal_amount
+		
+		# Deduct a treat
+		GlobalDataHandler.use_treat(1)
+		
+		print("Healed for", heal_amount, "HP. Remaining treats:", global_data.treat)
+		
+		update_button_states()
 
 func _on_catnip_pressed():
-	active_cat.temp_attack += 10
+	if global_data.treat > 0:
+		audio.play()
+		active_cat.temp_attack += 10
+		GlobalDataHandler.use_treat(1)
+		
+		update_button_states()
 
 func _on_soft_pressed():
-	active_cat.temp_defense += 12
-
+	if global_data.treat > 0:
+		audio.play()
+		active_cat.temp_defense += 12
+		GlobalDataHandler.use_treat(1)
+		
+		update_button_states()
 
 func _on_packet_pressed():
-	active_cat.max_health += 5
-	active_cat.current_health += 5
+	if global_data.treat > 0:
+		audio.play()
+		active_cat.max_health += 5
+		active_cat.current_health += 5
+		GlobalDataHandler.use_treat(1)
+		
+		update_button_states()
 
 func _on_fish_pressed():
-	active_cat.energy = active_cat.max_energy
-
+	if global_data.treat > 0:
+		audio.play()
+		active_cat.energy = active_cat.max_energy
+		GlobalDataHandler.use_treat(1)
+		
+		update_button_states()
 
 func _on_back_pressed():
+	audio1.play()
+	await get_tree().create_timer(0.25).timeout
 	var all_cats = CatHandler.get_all_cats()
 	all_cats[CatHandler.cat_manager.active_cat_index] = active_cat
 	

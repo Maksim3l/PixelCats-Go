@@ -1,12 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://cs1w6gtab7fke"]
+[gd_scene load_steps=30 format=3 uid="uid://cs1w6gtab7fke"]
 
 [ext_resource type="Texture2D" uid="uid://dfdocskieec21" path="res://characters/main/main.png" id="1_h67da"]
 [ext_resource type="Script" uid="uid://cvr5k3sm1kvbl" path="res://scripts/merge.gd" id="1_ligvh"]
 [ext_resource type="Script" uid="uid://b8xtwv1kvm0sx" path="res://scripts/cat1.gd" id="1_x63sp"]
 [ext_resource type="Script" uid="uid://caedn7un4pwib" path="res://scripts/cat2.gd" id="3_a37g2"]
 [ext_resource type="Texture2D" uid="uid://fnmos25kty2p" path="res://characters/main/walk.png" id="4_831jr"]
-[ext_resource type="Texture2D" uid="uid://c2agtwqo6he8a" path="res://enviroment/tornado.png" id="5_28eh2"]
+[ext_resource type="Texture2D" uid="uid://yxihy57a0ltg" path="res://assets/sprites/merge_animation_64.png" id="6_831jr"]
 [ext_resource type="Texture2D" uid="uid://codtlel5qpemv" path="res://enviroment/house/2_bedroom/bedroom_lantern.png" id="6_unr61"]
+[ext_resource type="AudioStream" uid="uid://utmunv0rfiij" path="res://assets/soundFX/merge.mp3" id="8_vp8mc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qf26e"]
 atlas = ExtResource("4_831jr")
@@ -98,59 +99,80 @@ animations = [{
 radius = 5.0
 height = 18.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2uumv"]
-atlas = ExtResource("5_28eh2")
-region = Rect2(0, 0, 63, 79)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vp8mc"]
+atlas = ExtResource("6_831jr")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iy3xl"]
-atlas = ExtResource("5_28eh2")
-region = Rect2(378, 0, 63, 79)
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8dmd"]
+atlas = ExtResource("6_831jr")
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qs1d7"]
-atlas = ExtResource("5_28eh2")
-region = Rect2(0, 79, 63, 79)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtr2o"]
+atlas = ExtResource("6_831jr")
+region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4itin"]
-atlas = ExtResource("5_28eh2")
-region = Rect2(504, 79, 63, 79)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y7mf"]
+atlas = ExtResource("6_831jr")
+region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wnlqq"]
-atlas = ExtResource("5_28eh2")
-region = Rect2(567, 158, 63, 79)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkj75"]
+atlas = ExtResource("6_831jr")
+region = Rect2(256, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3cuv"]
-atlas = ExtResource("5_28eh2")
-region = Rect2(0, 158, 63, 79)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwmq4"]
+atlas = ExtResource("6_831jr")
+region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4s8pv"]
-atlas = ExtResource("5_28eh2")
-region = Rect2(63, 158, 63, 79)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x88vu"]
+atlas = ExtResource("6_831jr")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p11ew"]
+atlas = ExtResource("6_831jr")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bitrv"]
+atlas = ExtResource("6_831jr")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi4h3"]
+atlas = ExtResource("6_831jr")
+region = Rect2(576, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_unr61"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2uumv")
+"texture": SubResource("AtlasTexture_vp8mc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iy3xl")
+"texture": SubResource("AtlasTexture_w8dmd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qs1d7")
+"texture": SubResource("AtlasTexture_dtr2o")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4itin")
+"texture": SubResource("AtlasTexture_2y7mf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wnlqq")
+"texture": SubResource("AtlasTexture_xkj75")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r3cuv")
+"texture": SubResource("AtlasTexture_cwmq4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4s8pv")
+"texture": SubResource("AtlasTexture_x88vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p11ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bitrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi4h3")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 10.0
 }]
@@ -165,21 +187,21 @@ position = Vector2(0, 24)
 script = ExtResource("1_x63sp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(-30, 4)
+position = Vector2(-63, 3)
 scale = Vector2(0.734375, 0.609375)
 sprite_frames = SubResource("SpriteFrames_x63sp")
 autoplay = "default"
 frame_progress = 0.101442
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-33, 3)
+position = Vector2(-63, 3)
 shape = SubResource("CapsuleShape2D_a37g2")
 
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
 script = ExtResource("3_a37g2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D2"]
-position = Vector2(37, 26)
+position = Vector2(62, 27)
 scale = Vector2(0.671875, 0.625)
 sprite_frames = SubResource("SpriteFrames_ligvh")
 autoplay = "default"
@@ -187,13 +209,13 @@ frame_progress = 0.860173
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
-position = Vector2(41, 26)
+position = Vector2(62, 26)
 shape = SubResource("CapsuleShape2D_28eh2")
 
 [node name="tornado" type="CharacterBody2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="tornado"]
-position = Vector2(6, 34)
+position = Vector2(0.211975, 24.1306)
 scale = Vector2(0.719048, 0.60443)
 sprite_frames = SubResource("SpriteFrames_unr61")
 autoplay = "default"
@@ -207,3 +229,7 @@ frame_progress = 0.0543546
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource("6_unr61")
+
+[node name="unlock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_vp8mc")
+pitch_scale = 1.77

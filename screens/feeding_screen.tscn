@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://h557uwro0glo"]
+[gd_scene load_steps=93 format=3 uid="uid://h557uwro0glo"]
 
 [ext_resource type="Script" uid="uid://o0h8rrkmnnc" path="res://scripts/feed_action.gd" id="1_85pcd"]
 [ext_resource type="Script" uid="uid://ck8t5nu02f3o6" path="res://scripts/feeding_screen.gd" id="1_qshnh"]
@@ -38,6 +38,8 @@
 [ext_resource type="Texture2D" uid="uid://cylllrtq5mbvx" path="res://themes/UI_images/softFoodNormal.png" id="31_pfndq"]
 [ext_resource type="Texture2D" uid="uid://bacsdx2bmlgim" path="res://themes/UI_images/packetHover.png" id="32_q2jt1"]
 [ext_resource type="Texture2D" uid="uid://6fv7ykfihuel" path="res://themes/UI_images/packetNormal.png" id="33_pfndq"]
+[ext_resource type="AudioStream" uid="uid://cb05ipgknq6n1" path="res://assets/soundFX/heal-eat-snack.mp3" id="37_k6y6m"]
+[ext_resource type="AudioStream" uid="uid://b8l75uny4mxhh" path="res://assets/soundFX/btn_click.mp3" id="38_ssu4w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
 atlas = ExtResource("3_55rq1")
@@ -232,6 +234,9 @@ default_font_size = 2
 
 [sub_resource type="Theme" id="Theme_s3vt7"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0n1h1"]
+texture = ExtResource("27_ykw7f")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w0dfa"]
 texture = ExtResource("27_ykw7f")
 
@@ -242,6 +247,9 @@ texture = ExtResource("28_20fnc")
 texture = ExtResource("28_20fnc")
 
 [sub_resource type="Theme" id="Theme_k6y6m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kco8l"]
+texture = ExtResource("29_nxry8")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s3vt7"]
 texture = ExtResource("29_nxry8")
@@ -254,6 +262,9 @@ texture = ExtResource("30_q2jt1")
 
 [sub_resource type="Theme" id="Theme_lvq3o"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_poubv"]
+texture = ExtResource("31_k6y6m")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sevf0"]
 texture = ExtResource("31_k6y6m")
 
@@ -265,6 +276,9 @@ texture = ExtResource("31_pfndq")
 
 [sub_resource type="Theme" id="Theme_ssu4w"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5hlbg"]
+texture = ExtResource("32_q2jt1")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vvhym"]
 texture = ExtResource("32_q2jt1")
 
@@ -275,6 +289,9 @@ texture = ExtResource("33_pfndq")
 texture = ExtResource("33_pfndq")
 
 [sub_resource type="Theme" id="Theme_mdce0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_24g8n"]
+texture = ExtResource("29_nmocj")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_em556"]
 texture = ExtResource("29_nmocj")
@@ -362,6 +379,11 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_k6y6m")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ssu4w")
 text = "Back"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Organizer/UICenter"]
+stream = ExtResource("38_ssu4w")
+volume_db = 1.0
+pitch_scale = 0.66
+
 [node name="UIBottom" type="HBoxContainer" parent="Organizer"]
 z_index = 2
 anchors_preset = 7
@@ -378,64 +400,73 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = SubResource("Theme_herb4")
 
-[node name="TextureRect" type="TextureRect" parent="Organizer/UIBottom"]
+[node name="BottomUI" type="TextureRect" parent="Organizer/UIBottom"]
 layout_mode = 2
 texture = ExtResource("26_kii78")
 
-[node name="Bisquit" type="Button" parent="Organizer/UIBottom/TextureRect"]
+[node name="Bisquit" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 2
 offset_left = 68.0
 offset_top = 6.0
 offset_right = 84.0
 offset_bottom = 25.0
 theme = SubResource("Theme_s3vt7")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_0n1h1")
 theme_override_styles/hover = SubResource("StyleBoxTexture_w0dfa")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_crch5")
 theme_override_styles/normal = SubResource("StyleBoxTexture_svr4l")
 
-[node name="Catnip" type="Button" parent="Organizer/UIBottom/TextureRect"]
+[node name="Catnip" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 2
 offset_left = 85.0
 offset_top = 6.0
 offset_right = 101.0
 offset_bottom = 25.0
 theme = SubResource("Theme_k6y6m")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_kco8l")
 theme_override_styles/hover = SubResource("StyleBoxTexture_s3vt7")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_mdce0")
 theme_override_styles/normal = SubResource("StyleBoxTexture_d18q6")
 
-[node name="Soft" type="Button" parent="Organizer/UIBottom/TextureRect"]
+[node name="Soft" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 2
 offset_left = 102.0
 offset_top = 6.0
 offset_right = 118.0
 offset_bottom = 25.0
 theme = SubResource("Theme_lvq3o")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_poubv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sevf0")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_v8lst")
 theme_override_styles/normal = SubResource("StyleBoxTexture_herb4")
 
-[node name="Packet" type="Button" parent="Organizer/UIBottom/TextureRect"]
+[node name="Packet" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 2
 offset_left = 119.0
 offset_top = 6.0
 offset_right = 135.0
 offset_bottom = 25.0
 theme = SubResource("Theme_ssu4w")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_5hlbg")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vvhym")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_lvq3o")
 theme_override_styles/normal = SubResource("StyleBoxTexture_er8by")
 
-[node name="Fish" type="Button" parent="Organizer/UIBottom/TextureRect"]
+[node name="Fish" type="Button" parent="Organizer/UIBottom/BottomUI"]
 layout_mode = 2
 offset_left = 136.0
 offset_top = 6.0
 offset_right = 152.0
 offset_bottom = 25.0
 theme = SubResource("Theme_mdce0")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_24g8n")
 theme_override_styles/hover = SubResource("StyleBoxTexture_em556")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1mkey")
 theme_override_styles/normal = SubResource("StyleBoxTexture_4afrj")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Organizer/UIBottom/BottomUI"]
+stream = ExtResource("37_k6y6m")
+volume_db = 1.0
 
 [node name="UITop" type="HBoxContainer" parent="Organizer"]
 offset_right = 69.0
@@ -514,8 +545,8 @@ script = ExtResource("24_1mkey")
 
 [connection signal="body_entered" from="Organizer/CenterBG/ParallaxBackground/ParallaxLayer/Switchbox" to="Organizer/CenterBG/ParallaxBackground" method="_on_switchbox_body_entered"]
 [connection signal="pressed" from="Organizer/UICenter/Back" to="Organizer" method="_on_back_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Bisquit" to="Organizer" method="_on_bisquit_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Catnip" to="Organizer" method="_on_catnip_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Soft" to="Organizer" method="_on_soft_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Packet" to="Organizer" method="_on_packet_pressed"]
-[connection signal="pressed" from="Organizer/UIBottom/TextureRect/Fish" to="Organizer" method="_on_fish_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Bisquit" to="Organizer" method="_on_bisquit_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Catnip" to="Organizer" method="_on_catnip_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Soft" to="Organizer" method="_on_soft_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Packet" to="Organizer" method="_on_packet_pressed"]
+[connection signal="pressed" from="Organizer/UIBottom/BottomUI/Fish" to="Organizer" method="_on_fish_pressed"]

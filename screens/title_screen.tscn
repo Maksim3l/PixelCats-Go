@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://dc54u4bo86i1y"]
+[gd_scene load_steps=24 format=3 uid="uid://dc54u4bo86i1y"]
 
 [ext_resource type="Script" uid="uid://bt6lo3d5rt5r5" path="res://scripts/title_screen.gd" id="1_grftj"]
 [ext_resource type="Texture2D" uid="uid://djvfitsiur4md" path="res://themes/UI_images/titleScreenBG.png" id="2_cjojn"]
 [ext_resource type="Texture2D" uid="uid://c8xrv0lo154hl" path="res://themes/UI_images/PixelCatsGo_Logo.png" id="3_txg6x"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="4_7jf2m"]
 [ext_resource type="Texture2D" uid="uid://3kpxkqyvv2lu" path="res://characters/main/idle_napping.png" id="5_dsjsu"]
+[ext_resource type="AudioStream" uid="uid://b8l75uny4mxhh" path="res://assets/soundFX/btn_click.mp3" id="5_txg6x"]
 
 [sub_resource type="Gradient" id="Gradient_81buc"]
 colors = PackedColorArray(0, 0, 0.243137, 0.756863, 1, 1, 1, 0.592157)
@@ -151,6 +152,16 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_t87nc")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xjftx")
 text = "
 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+stream = ExtResource("5_txg6x")
+volume_db = 1.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+stream = ExtResource("5_txg6x")
+pitch_scale = 0.67
+max_polyphony = 2
+parameters/looping = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(63, 127)

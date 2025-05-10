@@ -1,5 +1,6 @@
 extends Node2D
-
+@onready var audio = $BackButton/AudioStreamPlayer2D
+@onready var audio1 = $ContinueButton/AudioStreamPlayer2D
 @onready var continue_button: Button = $ContinueButton
 @onready var back_button: Button = $BackButton
 @onready var cats_list: VBoxContainer = $CatList2
@@ -12,6 +13,7 @@ var max_cats = 2
 var font_file
 
 func _ready():
+	MusicManager.play_main_music()
 	# Load font file (ttf)
 	font_file = preload("res://resources/pixel_sans.ttf")
 
@@ -69,6 +71,8 @@ func _on_continue_button_pressed():
 		print("You must select at least 2 cats.")
 		return
 
+	audio1.play()
+	await get_tree().create_timer(0.3).timeout
 	var merge_scene = load("res://screens/merge.tscn").instantiate()
 	merge_scene.selected_cats = selected_cats
 	get_tree().root.add_child(merge_scene)
@@ -78,4 +82,6 @@ func _on_continue_button_pressed():
 	# The CatHandler will save automatically when needed
 
 func _on_back_button_pressed():
+	audio.play()
+	await get_tree().create_timer(0.25).timeout
 	get_tree().change_scene_to_file("res://screens/idle_screen.tscn")

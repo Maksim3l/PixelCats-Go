@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://y3elvsj7m0j3"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=5 format=3 uid="uid://y3elvsj7m0j3"]
 
 [ext_resource type="Script" uid="uid://cvr5vbg24gmcm" path="res://resources/enemy_stats.gd" id="1_06v2u"]
-[ext_resource type="Texture2D" uid="uid://dnqxx5cy4g55w" path="res://characters/enemy/Machine.png" id="2_v1prd"]
+[ext_resource type="AudioStream" uid="uid://085mw5uh8q6t" path="res://assets/soundFX/garden_hose.mp3" id="1_v1prd"]
+[ext_resource type="Texture2D" uid="uid://bm6rwb10l4xap" path="res://characters/enemy/waterhose_serpent.png" id="2_06v2u"]
+[ext_resource type="AudioStream" uid="uid://ekx2sp7of5ti" path="res://assets/soundFX/death.mp3" id="2_w8v26"]
 
 [resource]
 script = ExtResource("1_06v2u")
@@ -10,8 +12,10 @@ title = "The Garden Serpent"
 max_health = 300
 attack = 20
 defense = 10
-texture = ExtResource("2_v1prd")
+texture = ExtResource("2_06v2u")
 attack_cooldown = 1.5
 experience_reward = 10
 gold_reward = 5
+attack_sound = ExtResource("1_v1prd")
+death_sound = ExtResource("2_w8v26")
 metadata/_custom_type_script = "uid://cvr5vbg24gmcm"

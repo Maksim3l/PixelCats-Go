@@ -10,3 +10,6 @@ extends Resource
 @export var attack_cooldown: float = 1.5
 @export var experience_reward: int = 10
 @export var gold_reward: int = 5
+
+@export var attack_sound: AudioStream
+@export var death_sound: AudioStream 
