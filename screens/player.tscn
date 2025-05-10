@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c4ot3ksjrurvq"]
+[gd_scene load_steps=43 format=3 uid="uid://c4ot3ksjrurvq"]
 
 [ext_resource type="Script" uid="uid://ctjyh76sb71o2" path="res://scripts/creature/player.gd" id="1_5jwn5"]
 [ext_resource type="Texture2D" uid="uid://dq23fem364i6e" path="res://characters/main/attack.png" id="2_wt686"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://diejx4sdigqis" path="res://scripts/events/player_health_bar.gd" id="10_03ukr"]
 [ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="11_gsa0h"]
 [ext_resource type="AudioStream" uid="uid://bi2l1ny0n02iq" path="res://assets/soundFX/win.mp3" id="12_khmpe"]
-[ext_resource type="SpriteFrames" uid="uid://c25gcgdcixkeb" path="res://accessories/head/head_item_2/ninja_spritesheet.tres" id="13_dul1j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pt0rq"]
 atlas = ExtResource("2_wt686")
@@ -462,7 +461,6 @@ stream = ExtResource("12_khmpe")
 
 [node name="HeadSlot" type="AnimatedSprite2D" parent="."]
 z_index = 2
-sprite_frames = ExtResource("13_dul1j")
 animation = &""
 
 [node name="BodySlot" type="AnimatedSprite2D" parent="."]
