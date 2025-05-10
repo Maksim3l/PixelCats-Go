@@ -277,6 +277,7 @@ texture = ExtResource("7_tnpa6")
 expand_mode = 4
 
 [node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 111.0
 offset_right = 22.0
