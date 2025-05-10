@@ -25,6 +25,15 @@ enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 @export var equipped_head_sf_path: String = "" 
 @export var equipped_body_sf_path: String = "" 
 
+@export var equipped_items: Dictionary = {}
+
+var equipped_armor: Dictionary = {
+	Item.ItemSlot.HEAD: null,
+	Item.ItemSlot.TORSO: null,
+	Item.ItemSlot.ARM_BACK: null,
+	Item.ItemSlot.LEG_FRONT: null,
+}
+
 func _init(p_cat_name = "Whiskers", p_cat_sprite = "res://characters/main/main.png",
 		   p_max_health = 100, p_current_health = 100, p_attack = 10, 
 		   p_defense = 5, p_experience = 0, 
@@ -131,3 +140,104 @@ func apply_to_cat(cat: CharacterBody2D) -> void:
 	if cat.has_node("HealthBar"):
 		cat.health_bar.value = cat.current_health
 		cat.health_bar.max_value = max_health
+
+# Add these methods to your CatData class
+
+# Equip armor and apply its stats
+func equip_armor(armor: Item) -> Item:
+	if not armor or armor.item_type != Item.ItemType.ARMOR:
+		return null
+		
+	var previous_armor = null
+	
+	# Check if armor slot is valid
+	if armor.item_slot in equipped_armor:
+		# Remove stats from previously equipped armor if any
+		previous_armor = equipped_armor[armor.item_slot]
+		if previous_armor:
+			remove_armor_stats(previous_armor)
+		
+		# Equip new armor and apply its stats
+		equipped_armor[armor.item_slot] = armor
+		apply_armor_stats(armor)
+		
+	return previous_armor
+
+# Apply armor stats to cat
+func apply_armor_stats(armor: Item) -> void:
+	if not armor:
+		return
+		
+	max_health += armor.health_bonus
+	current_health = min(current_health + armor.health_bonus, max_health)
+	attack += armor.attack_bonus
+	defense += armor.defense_bonus
+	max_energy += armor.energy_bonus
+	energy = min(energy + armor.energy_bonus, max_energy)
+
+# Remove armor stats from cat
+func remove_armor_stats(armor: Item) -> void:
+	if not armor:
+		return
+		
+	max_health -= armor.health_bonus
+	current_health = min(current_health, max_health)
+	attack -= armor.attack_bonus
+	defense -= armor.defense_bonus
+	max_energy -= armor.energy_bonus
+	energy = min(energy, max_energy)
+
+# Unequip armor from a specific slot
+func unequip_armor(slot: int) -> Item:
+	if slot in equipped_armor and equipped_armor[slot] != null:
+		var armor = equipped_armor[slot]
+		remove_armor_stats(armor)
+		equipped_armor[slot] = null
+		return armor
+	return null
+
+# Get equipped armor in a specific slot
+func get_equipped_armor(slot: int) -> Item:
+	if slot in equipped_armor:
+		return equipped_armor[slot]
+	return null
+
+# Check if a slot has armor equipped
+func has_armor_equipped(slot: int) -> bool:
+	return slot in equipped_armor and equipped_armor[slot] != null
+
+# Get total defense from all equipped armor
+func get_total_armor_defense() -> int:
+	var total = 0
+	for slot in equipped_armor:
+		var armor = equipped_armor[slot]
+		if armor:
+			total += armor.defense_bonus
+	return total
+
+# Get total attack bonus from all equipped armor
+func get_total_armor_attack() -> int:
+	var total = 0
+	for slot in equipped_armor:
+		var armor = equipped_armor[slot]
+		if armor:
+			total += armor.attack_bonus
+	return total
+
+# Get total health bonus from all equipped armor
+func get_total_armor_health() -> int:
+	var total = 0
+	for slot in equipped_armor:
+		var armor = equipped_armor[slot]
+		if armor:
+			total += armor.health_bonus
+	return total
+
+# Get total energy bonus from all equipped armor
+func get_total_armor_energy() -> int:
+	var total = 0
+	for slot in equipped_armor:
+		var armor = equipped_armor[slot]
+		if armor:
+			total += armor.energy_bonus
+	return total

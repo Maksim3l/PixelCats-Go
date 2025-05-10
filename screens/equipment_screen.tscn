@@ -1,0 +1,162 @@
+[gd_scene load_steps=17 format=3 uid="uid://bgnxs4njeqs5j"]
+
+[ext_resource type="Script" uid="uid://bn7cau2p76qnh" path="res://screens/equipment_screen.gd" id="1_4jjyh"]
+[ext_resource type="Texture2D" uid="uid://mhhmnlcdv6qq" path="res://enviroment/lawn/1_garden/garden_flower.png" id="1_osj0t"]
+[ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="1_y2frp"]
+[ext_resource type="Texture2D" uid="uid://dsi18h5mhyqhr" path="res://assets/tmp_empty.png" id="2_srlrx"]
+[ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="3_xlt0y"]
+[ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="4_d808y"]
+[ext_resource type="Script" uid="uid://dp3q3r67vbsyn" path="res://screens/eq_grid.gd" id="5_d808y"]
+[ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="5_i0hib"]
+[ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="6_h77cq"]
+
+[sub_resource type="Theme" id="Theme_8lhg2"]
+default_font = ExtResource("3_xlt0y")
+default_font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0hib"]
+font = ExtResource("3_xlt0y")
+font_size = 3
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_f7wg1"]
+default_font = ExtResource("3_xlt0y")
+default_font_size = 2
+
+[sub_resource type="Theme" id="Theme_53fax"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0nkr5"]
+texture = ExtResource("6_h77cq")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(384, 192, 48, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kx7lt"]
+texture = ExtResource("6_h77cq")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(384, 352, 48, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nlu1x"]
+texture = ExtResource("6_h77cq")
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+region_rect = Rect2(384, 352, 48, 16)
+
+[node name="EquipmentScreen" type="Node2D" node_paths=PackedStringArray("player_character")]
+script = ExtResource("1_4jjyh")
+player_character = NodePath("Organizer/UICenter/Center/player")
+
+[node name="Organizer" type="CanvasLayer" parent="."]
+script = ExtResource("1_y2frp")
+
+[node name="CenterBG" type="HBoxContainer" parent="Organizer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.456
+anchor_right = 0.5
+anchor_bottom = 0.456
+offset_left = -45.0
+offset_top = -72.96
+offset_right = 45.0
+offset_bottom = 87.04
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Organizer/CenterBG"]
+layout_mode = 2
+texture = ExtResource("1_osj0t")
+
+[node name="UICenter" type="GridContainer" parent="Organizer"]
+offset_right = 90.0
+offset_bottom = 78.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = SubResource("Theme_8lhg2")
+columns = 3
+script = ExtResource("5_d808y")
+
+[node name="LeftCol" type="VBoxContainer" parent="Organizer/UICenter"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Head" type="TextureButton" parent="Organizer/UICenter/LeftCol"]
+layout_mode = 2
+texture_normal = ExtResource("2_srlrx")
+
+[node name="Torso" type="TextureButton" parent="Organizer/UICenter/LeftCol"]
+layout_mode = 2
+texture_normal = ExtResource("2_srlrx")
+
+[node name="Arms" type="TextureButton" parent="Organizer/UICenter/LeftCol"]
+layout_mode = 2
+texture_normal = ExtResource("2_srlrx")
+
+[node name="Legs" type="TextureButton" parent="Organizer/UICenter/LeftCol"]
+layout_mode = 2
+texture_normal = ExtResource("2_srlrx")
+
+[node name="Center" type="VBoxContainer" parent="Organizer/UICenter"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="player" parent="Organizer/UICenter/Center" instance=ExtResource("4_d808y")]
+position = Vector2(26, 45)
+
+[node name="RightCol" type="VBoxContainer" parent="Organizer/UICenter"]
+layout_mode = 2
+
+[node name="Info" type="Label" parent="Organizer/UICenter/RightCol"]
+custom_minimum_size = Vector2(25, 75)
+layout_mode = 2
+text = "fgontogihj rtghpoiwrthpowrthšoithoiširhsthšwr šthgorithnoširthoišrtjhošijrhoijwrhošjw rošthjošwrtnhošiwritnhošiwrnh"
+label_settings = SubResource("LabelSettings_i0hib")
+autowrap_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Organizer"]
+offset_top = 78.0
+offset_right = 90.0
+offset_bottom = 139.0
+
+[node name="VScrollBar" type="ScrollContainer" parent="Organizer/PanelContainer"]
+clip_contents = false
+layout_mode = 2
+horizontal_scroll_mode = 4
+vertical_scroll_mode = 2
+
+[node name="InventoryGrid" type="GridContainer" parent="Organizer/PanelContainer/VScrollBar"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 4
+
+[node name="UIBottom" type="HBoxContainer" parent="Organizer"]
+z_index = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -18.0
+offset_right = 90.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = SubResource("Theme_f7wg1")
+alignment = 1
+
+[node name="Battle" type="Button" parent="Organizer/UIBottom"]
+layout_mode = 2
+theme = SubResource("Theme_53fax")
+theme_override_fonts/font = ExtResource("5_i0hib")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/hover = SubResource("StyleBoxTexture_0nkr5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kx7lt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nlu1x")
+text = "Battle
+"
+
+[connection signal="pressed" from="Organizer/UIBottom/Battle" to="Organizer" method="_on_battle_pressed"]

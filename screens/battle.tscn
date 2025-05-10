@@ -295,7 +295,6 @@ alignment = 1
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Organizer/Center"]
 script = ExtResource("13_4hjoo")
 arena_manager_path = NodePath("../../..")
-is_paused = null
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Organizer/Center/ParallaxBackground"]
 motion_mirroring = Vector2(180, 0)

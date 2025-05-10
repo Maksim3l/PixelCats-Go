@@ -16,8 +16,8 @@ func _ready():
 	if player_character.has_method("nap"):
 		player_character.nap()
 	
-	player_character.position.x = -32
-	player_character.position.y = -80
+	player_character.position.y = -12
+	player_character.position.x = -5
 	
 	energy.text = str(active_cat.max_energy) + "/" + str(active_cat.energy)
 	gold.text = str(global_data.gold)

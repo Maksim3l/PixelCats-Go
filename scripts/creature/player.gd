@@ -42,9 +42,11 @@ var stagger_tween = null
 var is_staggering = false
 
 func _ready():
+	if CatHandler:
+		CatHandler.connect("cat_stats_updated", Callable(self,"_on_cat_stats_updated"))
 	
 	if health_bar:
-		health_bar.set_max_health(max_health)
+		health_bar.set_max_health(max_health) 
 		health_bar.set_current_health(current_health)
 	
 	if sprite:
@@ -110,6 +112,8 @@ func _input(event):
 	elif event.is_action_pressed("switch_cat"):
 		switch_to_next_cat()
 
+func on_cat_stats_updated(cat_data):
+	load_cat_stats(cat_data)
 
 func switch_to_next_cat():
 	var next_index = (CatHandler.cat_manager.active_cat_index + 1) % CatHandler.get_all_cats().size()
@@ -385,6 +389,12 @@ func load_game():
 	print("Game loaded successfully with", CatHandler.get_all_cats().size(), "cats")
 	return true
 
+func load_cat_stats(cat_data):
+	cat_data.apply_to_cat(self)
+
+	health_bar.value = current_health
+	print("Updated stats")
+	return true
 
 func _on_battle_arena_difficulty_increased(new_difficulty):
 	arena_level = new_difficulty
@@ -393,6 +403,9 @@ func _on_battle_arena_difficulty_increased(new_difficulty):
 
 func walk():
 	play_animation("walk")
+	
+func idle():
+	sprite.play("idle")
 	
 func nap():
 	play_animation("nap")
