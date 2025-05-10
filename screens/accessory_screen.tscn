@@ -109,10 +109,9 @@ default_font_size = 6
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g37fn"]
 texture = ExtResource("9_g37fn")
-texture_margin_left = 1.0
 expand_margin_left = 10.0
 expand_margin_right = 10.0
-region_rect = Rect2(441, 288, 33, 16)
+region_rect = Rect2(441, 352, 32, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_612dn"]
 texture = ExtResource("9_g37fn")
@@ -360,12 +359,20 @@ theme_override_fonts/font = ExtResource("25_tuhgt")
 horizontal_alignment = 1
 
 [node name="Center" type="HBoxContainer" parent="Organizer"]
-offset_left = 65.0
-offset_top = 88.0
-offset_right = 89.0
-offset_bottom = 101.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 19.5
+offset_top = 2.5
+offset_right = 34.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Back" type="Button" parent="Organizer/Center"]
+layout_direction = 1
 layout_mode = 2
 theme = SubResource("Theme_612dn")
 theme_override_fonts/font = ExtResource("25_tuhgt")
