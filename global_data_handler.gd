@@ -35,6 +35,16 @@ func add_gold(amount: int):
 	global_data.gold += amount
 	save_game()
 	
+
+func sell_armor(armor_id: String) -> bool:
+	var success = global_data.sell_collected_armor(armor_id)
+	if success:
+		global_data.save_global_data("user://save_data.tres")
+	return success
+
+func add_armor_to_inventory(armor_id: String):
+	global_data.add_collected_armor(armor_id)
+	global_data.save_global_data("user://save_data.tres")
 func add_pet(pet_name: String):
 	if pet_name not in global_data.bought_pets:
 		global_data.bought_pets.append(pet_name)
