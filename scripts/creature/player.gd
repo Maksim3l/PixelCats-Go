@@ -25,10 +25,14 @@ var temp_defense: int = 0
 @onready var sprite = $Catimation
 @onready var particles = $DamageParticles
 @onready var attack_sfx_player: AudioStreamPlayer = $AttackSfxPlayer 
+@onready var head_slot_sprite: AnimatedSprite2D = $HeadSlot
+@onready var body_slot_sprite: AnimatedSprite2D = $BodySlot
 var player_attack_sound = preload("res://assets/soundFX/main-hit.mp3")
 
 @onready var win = $stage_clear
 
+var current_head_sf_path: String = "" 
+var current_body_sf_path: String = ""
 var can_attack: bool = true
 var current_target = null
 var hit_shader_material = null
@@ -36,6 +40,7 @@ var stagger_tween = null
 var is_staggering = false
 
 func _ready():
+	
 	if health_bar:
 		health_bar.set_max_health(max_health)
 		health_bar.set_current_health(current_health)
@@ -49,9 +54,45 @@ func _ready():
 	if particles:
 		particles.emitting = false
 		
+	head_slot_sprite.visible = false
+	body_slot_sprite.visible = false
 	load_game()
+	play_animation("idle")
 	
 	
+func play_animation(animation_name: String):
+	# Predvajaj na osnovnem spritu mačke
+	var cat_played_fallback = false
+	if sprite.sprite_frames and sprite.sprite_frames.has_animation(animation_name):
+		sprite.play(animation_name)
+	elif sprite.sprite_frames and sprite.sprite_frames.has_animation("idle"):
+		sprite.play("idle")
+		cat_played_fallback = true
+	else:
+		printerr("Catimation sprite in Player.gd does not have animation: " + animation_name + " or idle.")
+
+	var equipment_anim_name = animation_name
+	if cat_played_fallback and animation_name != "idle":
+		equipment_anim_name = "idle" 
+		
+	# Predvajaj na slotu za glavo, če je viden in ima ustrezno animacijo
+	if head_slot_sprite.visible and head_slot_sprite.sprite_frames:
+		if head_slot_sprite.sprite_frames.has_animation(animation_name):
+			head_slot_sprite.play(animation_name)
+		elif head_slot_sprite.sprite_frames.has_animation("idle"):
+			head_slot_sprite.play("idle")
+		elif head_slot_sprite.sprite_frames.has_animation("default"):
+			head_slot_sprite.play("default")
+
+	# Predvajaj na slotu za telo, če je viden in ima ustrezno animacijo
+	if body_slot_sprite.visible and body_slot_sprite.sprite_frames:
+		if body_slot_sprite.sprite_frames.has_animation(animation_name):
+			body_slot_sprite.play(animation_name)
+		elif body_slot_sprite.sprite_frames.has_animation("idle"):
+			body_slot_sprite.play("idle")
+		elif head_slot_sprite.sprite_frames.has_animation("default"):
+			head_slot_sprite.play("default")
+			
 func _input(event):
 	if event.is_action_pressed("save_game"):
 		save_game()
@@ -82,9 +123,9 @@ func attack_target():
 	if sprite.is_connected("frame_changed", _on_frame_changed):
 		sprite.disconnect("frame_changed", _on_frame_changed)
 	
-	sprite.connect("animation_finished", _on_attack_animation_finished)
+	sprite.connect("animation_finished", Callable(self, "_on_attack_animation_finished"), CONNECT_ONE_SHOT)
 	sprite.connect("frame_changed", _on_frame_changed)
-	sprite.play("attack")
+	play_animation("attack")
 
 func _on_frame_changed():
 	if sprite.animation == "attack" and sprite.frame == 4:
@@ -100,12 +141,12 @@ func _on_frame_changed():
 			attack_sfx_player.play() 
 		attack_timer.start()
 
-		if sprite.is_connected("frame_changed", _on_frame_changed):
-			sprite.disconnect("frame_changed", _on_frame_changed)
+		if sprite.is_connected("frame_changed", Callable(self, "_on_frame_changed")):
+			sprite.disconnect("frame_changed", Callable(self, "_on_frame_changed"))
 	
 func _on_attack_animation_finished():
 	if sprite.animation == "attack":
-		sprite.play("idle")
+		play_animation("idle")
 		if sprite.is_connected("animation_finished", _on_attack_animation_finished):
 			sprite.disconnect("animation_finished", _on_attack_animation_finished)
 		
@@ -200,10 +241,65 @@ func level_up():
 
 func _on_attack_timer_timeout():
 	can_attack = true
-	
+
+
+func set_equipment(slot_type: String, item_sf_path: String):
+	var target_slot_sprite: AnimatedSprite2D
+	var current_path_var_to_update_in_cat_data: String 
+
+	if slot_type == "head":
+		target_slot_sprite = head_slot_sprite
+		current_head_sf_path = item_sf_path
+		current_path_var_to_update_in_cat_data = "equipped_head_sf_path"
+	elif slot_type == "body":
+		target_slot_sprite = body_slot_sprite
+		current_body_sf_path = item_sf_path
+		current_path_var_to_update_in_cat_data = "equipped_body_sf_path"
+	else:
+		printerr("Unknown equipment slot type: " + slot_type)
+		return
+
+	var previous_animation_playing_on_slot = ""
+	if target_slot_sprite.sprite_frames and target_slot_sprite.is_playing():
+		previous_animation_playing_on_slot = target_slot_sprite.animation
+
+
+	if item_sf_path != "" and item_sf_path != null:
+		var sf_resource = load(item_sf_path)
+		if sf_resource is SpriteFrames:
+			target_slot_sprite.sprite_frames = sf_resource
+			target_slot_sprite.visible = true
+			
+			var anim_to_set_on_slot =sprite.animation # Privzeto poskusi trenutno animacijo mačke
+			if not target_slot_sprite.sprite_frames.has_animation(anim_to_set_on_slot):
+				if target_slot_sprite.sprite_frames.has_animation("idle"):
+					anim_to_set_on_slot = "idle"
+				elif target_slot_sprite.sprite_frames.has_animation("default"):
+					anim_to_set_on_slot = "default"
+				else: # Če nima ničesar od tega, vzemi prvo animacijo iz seznama
+					var anims = target_slot_sprite.sprite_frames.get_animation_names()
+					if anims.size() > 0: anim_to_set_on_slot = anims[0]
+					else: anim_to_set_on_slot = "" # Ni animacij
+
+			if anim_to_set_on_slot != "" and target_slot_sprite.sprite_frames.has_animation(anim_to_set_on_slot):
+				if not target_slot_sprite.is_playing() or target_slot_sprite.animation != anim_to_set_on_slot or previous_animation_playing_on_slot == "":
+					target_slot_sprite.play(anim_to_set_on_slot)
+		else:
+			printerr("Failed to load SpriteFrames for " + slot_type + ": " + item_sf_path)
+			target_slot_sprite.sprite_frames = null
+			target_slot_sprite.visible = false
+	else: 
+		target_slot_sprite.sprite_frames = null
+		target_slot_sprite.visible = false
+
+	var active_cat_data = CatHandler.get_active_cat()
+	if active_cat_data and current_path_var_to_update_in_cat_data != "":
+		active_cat_data.set(current_path_var_to_update_in_cat_data, item_sf_path)
+		
 func save_game():
-	# update active cat data in the manager
 	var active_cat_data = CatData.from_cat(self)
+	active_cat_data.equipped_head_sf_path = current_head_sf_path
+	active_cat_data.equipped_body_sf_path = current_body_sf_path
 	var all_cats = CatHandler.get_all_cats()
 	all_cats[CatHandler.cat_manager.active_cat_index] = active_cat_data
 	
@@ -215,7 +311,8 @@ func save_game():
 func load_game():
 	var active_cat_data = CatHandler.get_active_cat()
 	active_cat_data.apply_to_cat(self)
-
+	current_head_sf_path = active_cat_data.equipped_head_sf_path
+	current_body_sf_path = active_cat_data.equipped_body_sf_path
 	health_bar.value = current_health
 	print("Game loaded successfully with", CatHandler.get_all_cats().size(), "cats")
 	return true
@@ -227,10 +324,10 @@ func _on_battle_arena_difficulty_increased(new_difficulty):
 	
 
 func walk():
-	sprite.play("walk")
+	play_animation("walk")
 	
 func nap():
-	sprite.play("nap")
+	play_animation("nap")
 	#health_bar.visible = false
 	
 # add a new cat
