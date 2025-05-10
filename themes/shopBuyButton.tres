@@ -4143,26 +4143,7 @@ texture = ExtResource("1_8r071")
 expand_margin_left = 3.0
 expand_margin_right = 3.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t8wpr"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n5868"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8satf"]
 texture = ExtResource("2_8satf")
@@ -4200,7 +4181,7 @@ Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
 Button/fonts/font = SubResource("FontFile_hnfbh")
 Button/styles/disabled = SubResource("StyleBoxTexture_8r071")
-Button/styles/focus = SubResource("StyleBoxFlat_t8wpr")
+Button/styles/focus = SubResource("StyleBoxEmpty_n5868")
 Button/styles/hover = SubResource("StyleBoxTexture_8satf")
 Button/styles/normal = SubResource("StyleBoxTexture_nr5p6")
 Button/styles/pressed = SubResource("StyleBoxTexture_n5868")

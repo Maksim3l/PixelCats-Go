@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bm0pjctxytsbq"]
+[gd_scene load_steps=55 format=3 uid="uid://bm0pjctxytsbq"]
 
 [ext_resource type="Script" uid="uid://ddb4fx5amqhsp" path="res://scripts/shop_screen.gd" id="1_djydb"]
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="1_t452i"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bryurm1g2vbnk" path="res://themes/UI_images/Shop_Icons/swim_icon.png" id="15_fexmu"]
 [ext_resource type="Texture2D" uid="uid://7gpdavpktdnm" path="res://themes/UI_images/Shop_Icons/robot_icon.png" id="16_is5hj"]
 [ext_resource type="Texture2D" uid="uid://dyx4xggo3206n" path="res://themes/UI_images/Shop_Icons/belt_icon.png" id="17_e3xt2"]
+[ext_resource type="Texture2D" uid="uid://qa4ul0dlkwc0" path="res://themes/UI_images/Shop_Icons/energyIcon.png" id="19_cm7li"]
 
 [sub_resource type="Theme" id="Theme_2yxm1"]
 default_font = ExtResource("3_bpgy2")
@@ -29,8 +30,12 @@ default_font_size = 4
 
 [sub_resource type="Theme" id="Theme_djydb"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e3xt2"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cm7li"]
 texture = ExtResource("13_onef4")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cm7li"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qh4r6"]
 texture = ExtResource("10_e3xt2")
@@ -40,26 +45,45 @@ texture = ExtResource("6_dasug")
 expand_margin_left = 3.0
 expand_margin_right = 3.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2udhv"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_is5hj"]
 texture = ExtResource("11_olfwg")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_53wbw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3xt2"]
 texture = ExtResource("12_fexmu")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qh4r6"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8cook"]
 texture = ExtResource("10_dasug")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pthkq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fexmu"]
 texture = ExtResource("14_olfwg")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_38bbx"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_onef4"]
 texture = ExtResource("15_fexmu")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63vah"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2udhv"]
 texture = ExtResource("16_is5hj")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tclyu"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53wbw"]
 texture = ExtResource("17_e3xt2")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r4pid"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pthkq"]
+texture = ExtResource("19_cm7li")
 
 [sub_resource type="Theme" id="Theme_tnpa6"]
 default_font = ExtResource("3_bpgy2")
@@ -130,7 +154,6 @@ offset_bottom = 8.0
 theme = ExtResource("6_8cook")
 theme_override_fonts/font = ExtResource("6_ub62p")
 theme_override_font_sizes/font_size = 4
-text = "800"
 vertical_alignment = 1
 
 [node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button9/price"]
@@ -159,7 +182,6 @@ offset_bottom = 8.0
 theme = ExtResource("6_8cook")
 theme_override_fonts/font = ExtResource("6_ub62p")
 theme_override_font_sizes/font_size = 4
-text = "800"
 vertical_alignment = 1
 
 [node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button10/price"]
@@ -188,7 +210,6 @@ offset_bottom = 8.0
 theme = ExtResource("6_8cook")
 theme_override_fonts/font = ExtResource("6_ub62p")
 theme_override_font_sizes/font_size = 4
-text = "800"
 vertical_alignment = 1
 
 [node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button11/price"]
@@ -217,68 +238,9 @@ offset_bottom = 8.0
 theme = ExtResource("6_8cook")
 theme_override_fonts/font = ExtResource("6_ub62p")
 theme_override_font_sizes/font_size = 4
-text = "800"
 vertical_alignment = 1
 
 [node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button12/price"]
-layout_mode = 0
-offset_left = 7.0
-offset_right = 11.0
-offset_bottom = 5.0
-theme = ExtResource("6_8cook")
-texture = ExtResource("7_tnpa6")
-expand_mode = 4
-
-[node name="Button14" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 111.0
-offset_right = 41.0
-offset_bottom = 119.0
-theme = ExtResource("6_8cook")
-
-[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Button14"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 11.0
-offset_bottom = 8.0
-theme = ExtResource("6_8cook")
-theme_override_fonts/font = ExtResource("6_ub62p")
-theme_override_font_sizes/font_size = 4
-text = "800"
-vertical_alignment = 1
-
-[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button14/price"]
-layout_mode = 0
-offset_left = 7.0
-offset_right = 11.0
-offset_bottom = 5.0
-theme = ExtResource("6_8cook")
-texture = ExtResource("7_tnpa6")
-expand_mode = 4
-
-[node name="Button15" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 111.0
-offset_right = 60.0
-offset_bottom = 119.0
-theme = ExtResource("6_8cook")
-
-[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Button15"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 11.0
-offset_bottom = 8.0
-theme = ExtResource("6_8cook")
-theme_override_fonts/font = ExtResource("6_ub62p")
-theme_override_font_sizes/font_size = 4
-text = "800"
-vertical_alignment = 1
-
-[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button15/price"]
 layout_mode = 0
 offset_left = 7.0
 offset_right = 11.0
@@ -304,7 +266,6 @@ offset_bottom = 8.0
 theme = SubResource("Theme_djydb")
 theme_override_fonts/font = ExtResource("6_ub62p")
 theme_override_font_sizes/font_size = 4
-text = "800"
 vertical_alignment = 1
 
 [node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button16/price"]
@@ -315,24 +276,44 @@ offset_bottom = 5.0
 texture = ExtResource("7_tnpa6")
 expand_mode = 4
 
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 111.0
+offset_right = 22.0
+offset_bottom = 119.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
 [node name="Treat" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
 
-[node name="treat" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Treat"]
-offset_left = 11.0
-offset_top = 128.0
-offset_right = 23.0
-offset_bottom = 140.0
-theme_override_styles/disabled = SubResource("StyleBoxTexture_cm7li")
-disabled = true
-
-[node name="Button13" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Treat"]
-offset_left = 11.0
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Treat"]
+offset_left = 30.0
 offset_top = 143.0
-offset_right = 23.0
+offset_right = 42.0
 offset_bottom = 151.0
 theme = ExtResource("6_8cook")
 
-[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Treat/Button13"]
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Treat/Buy"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -344,7 +325,7 @@ theme_override_font_sizes/font_size = 4
 text = "100"
 vertical_alignment = 1
 
-[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Treat/Button13/price"]
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Treat/Buy/price"]
 layout_mode = 0
 offset_left = 7.0
 offset_right = 11.0
@@ -352,6 +333,15 @@ offset_bottom = 5.0
 theme = ExtResource("6_8cook")
 texture = ExtResource("7_tnpa6")
 expand_mode = 4
+
+[node name="treat" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Treat"]
+offset_left = 30.0
+offset_top = 128.0
+offset_right = 42.0
+offset_bottom = 140.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_e3xt2")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_cm7li")
+disabled = true
 
 [node name="Tie" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
 
@@ -382,11 +372,12 @@ offset_bottom = 5.0
 texture = ExtResource("7_tnpa6")
 expand_mode = 4
 
-[node name="Button" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Tie"]
+[node name="Tie" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Tie"]
 offset_left = 11.0
 offset_top = 44.0
 offset_right = 23.0
 offset_bottom = 56.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cm7li")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_qh4r6")
 disabled = true
 
@@ -426,6 +417,7 @@ offset_left = 30.0
 offset_top = 44.0
 offset_right = 42.0
 offset_bottom = 56.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2udhv")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_is5hj")
 disabled = true
 
@@ -459,11 +451,12 @@ theme = ExtResource("6_8cook")
 texture = ExtResource("7_tnpa6")
 expand_mode = 4
 
-[node name="Button" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Ninja"]
+[node name="Ninja" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Ninja"]
 offset_left = 49.0
 offset_top = 44.0
 offset_right = 61.0
 offset_bottom = 56.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_53wbw")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_e3xt2")
 disabled = true
 
@@ -474,6 +467,7 @@ offset_left = 68.0
 offset_top = 44.0
 offset_right = 80.0
 offset_bottom = 56.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qh4r6")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_8cook")
 disabled = true
 
@@ -540,6 +534,7 @@ offset_left = 11.0
 offset_top = 71.0
 offset_right = 23.0
 offset_bottom = 83.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pthkq")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_fexmu")
 disabled = true
 
@@ -550,6 +545,7 @@ offset_left = 30.0
 offset_top = 71.0
 offset_right = 42.0
 offset_bottom = 83.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_38bbx")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_onef4")
 disabled = true
 
@@ -616,6 +612,7 @@ offset_left = 49.0
 offset_top = 71.0
 offset_right = 61.0
 offset_bottom = 83.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_63vah")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_2udhv")
 disabled = true
 
@@ -654,8 +651,48 @@ offset_left = 68.0
 offset_top = 71.0
 offset_right = 80.0
 offset_bottom = 83.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tclyu")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_53wbw")
 disabled = true
+
+[node name="Energy" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="Energy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Energy"]
+offset_left = 49.0
+offset_top = 128.0
+offset_right = 61.0
+offset_bottom = 140.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_r4pid")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_pthkq")
+disabled = true
+
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Energy"]
+offset_left = 49.0
+offset_top = 143.0
+offset_right = 61.0
+offset_bottom = 151.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Energy/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "300"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Energy/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
 
 [node name="UITop" type="HBoxContainer" parent="Organizer"]
 offset_left = 3.0
@@ -759,4 +796,14 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_tnpa6")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_djydb")
 theme_override_styles/normal = SubResource("StyleBoxTexture_bpgy2")
 
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Treat/Buy" to="." method="_on_TreatButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Tie/Tie" to="." method="_on_TieButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Crown/Buy" to="." method="_on_CrownButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Ninja/Buy" to="." method="_on_NinjaButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Glasses/Buy" to="." method="_on_GlassesButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Mask/Buy" to="." method="_on_MaskButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Swim/Swim" to="." method="_on_SwimButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/RobotArm/Buy" to="." method="_on_RobotArmButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Belt/Buy" to="." method="_on_BeltButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Energy/Buy" to="." method="_on_EnergyButton_pressed"]
 [connection signal="pressed" from="Organizer/UITopLeft/BackButton" to="." method="_on_back_pressed"]

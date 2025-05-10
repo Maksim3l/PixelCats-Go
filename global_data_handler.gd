@@ -51,3 +51,13 @@ func use_treat(amount: int = 1):
 		print("Signal sent for treat update:", global_data.treat)
 	else:
 		print("Nimaš dovolj treatov!")
+		
+func add_accessory(accessory_name: String):
+	if not global_data.has_accessory(accessory_name):
+		global_data.add_accessory(accessory_name)
+		save_game()
+		emit_signal("accessory_purchased", accessory_name)
+		print("Accessory purchased:", accessory_name)
+
+func has_accessory(accessory_name: String) -> bool:
+	return global_data.has_accessory(accessory_name)
