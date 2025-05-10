@@ -1,5 +1,7 @@
 extends Node
 
+signal treat_updated
+
 var global_data: GlobalData
 
 const SAVE_PATH = "res://data/GlobalDataSave.tres"
@@ -40,3 +42,12 @@ func add_pet(pet_name: String):
 		
 func has_pet(pet_name: String) -> bool:
 	return pet_name in global_data.bought_pets
+	
+func use_treat(amount: int = 1):
+	if global_data.treat >= amount:
+		global_data.treat -= amount
+		save_game()
+		emit_signal("treat_updated", global_data.treat)
+		print("Signal sent for treat update:", global_data.treat)
+	else:
+		print("Nimaš dovolj treatov!")
