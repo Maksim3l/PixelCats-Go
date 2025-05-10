@@ -91,3 +91,16 @@ func _on_battle_pressed():
 		get_tree().change_scene_to_file("res://screens/battle.tscn")
 	else:
 		print("Not enought energy.")
+		
+func _on_shop_pressed():
+	audio.play()
+	await get_tree().create_timer(0.25).timeout
+	var new_scene = load("res://screens/shop_screen.tscn").instantiate()
+	
+	global_data.coming_from_last = get_tree().current_scene.name
+	GlobalDataHandler.global_data = global_data
+	GlobalDataHandler.save_game()
+	
+	get_tree().current_scene.queue_free()
+	get_tree().root.add_child(new_scene)
+	get_tree().current_scene = new_scene

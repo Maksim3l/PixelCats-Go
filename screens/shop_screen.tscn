@@ -1,0 +1,762 @@
+[gd_scene load_steps=43 format=3 uid="uid://bm0pjctxytsbq"]
+
+[ext_resource type="Script" uid="uid://ddb4fx5amqhsp" path="res://scripts/shop_screen.gd" id="1_djydb"]
+[ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="1_t452i"]
+[ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="3_bpgy2"]
+[ext_resource type="Texture2D" uid="uid://bv75s4lidgb4i" path="res://themes/UI_images/Shop_Icons/shopBG.jpg" id="3_yqe4w"]
+[ext_resource type="Texture2D" uid="uid://k8yqgdg5l40a" path="res://themes/UI_images/Shop_Icons/shopUI.png" id="4_tnpa6"]
+[ext_resource type="Theme" uid="uid://crpkngw352pih" path="res://themes/shopBuyButton.tres" id="6_8cook"]
+[ext_resource type="Texture2D" uid="uid://3o3xnn4hedq" path="res://themes/UI_images/Shop_Icons/shopProfileUI.png" id="6_bpgy2"]
+[ext_resource type="Texture2D" uid="uid://cohk0fer0fkj2" path="res://themes/UI_images/Shop_Icons/shopUIbtnDisabled.png" id="6_dasug"]
+[ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="6_ub62p"]
+[ext_resource type="Texture2D" uid="uid://cesnqosmid6yx" path="res://themes/UI_images/goldIcon.png" id="7_tnpa6"]
+[ext_resource type="AudioStream" uid="uid://b8l75uny4mxhh" path="res://assets/soundFX/btn_click.mp3" id="8_8cook"]
+[ext_resource type="Texture2D" uid="uid://4tuscivg3ud3" path="res://themes/UI_images/backButtonHover.png" id="8_tnpa6"]
+[ext_resource type="Texture2D" uid="uid://camfeilneors3" path="res://themes/UI_images/backButton.png" id="9_djydb"]
+[ext_resource type="Texture2D" uid="uid://c3diguudh8ljd" path="res://themes/UI_images/Shop_Icons/sun_icon.png" id="10_dasug"]
+[ext_resource type="Texture2D" uid="uid://bqeu6qoplhayo" path="res://themes/UI_images/Shop_Icons/tie_icon.png" id="10_e3xt2"]
+[ext_resource type="Texture2D" uid="uid://o0a8xn2rx0ls" path="res://themes/UI_images/crown_icon.png" id="11_olfwg"]
+[ext_resource type="Texture2D" uid="uid://ctawbsa4mcti0" path="res://themes/UI_images/Shop_Icons/ninja_icon.png" id="12_fexmu"]
+[ext_resource type="Texture2D" uid="uid://qkh8d12p73mv" path="res://themes/UI_images/Shop_Icons/treatShop.png" id="13_onef4"]
+[ext_resource type="Texture2D" uid="uid://d20ytsnemerge" path="res://themes/UI_images/Shop_Icons/mask_icon.png" id="14_olfwg"]
+[ext_resource type="Texture2D" uid="uid://bryurm1g2vbnk" path="res://themes/UI_images/Shop_Icons/swim_icon.png" id="15_fexmu"]
+[ext_resource type="Texture2D" uid="uid://7gpdavpktdnm" path="res://themes/UI_images/Shop_Icons/robot_icon.png" id="16_is5hj"]
+[ext_resource type="Texture2D" uid="uid://dyx4xggo3206n" path="res://themes/UI_images/Shop_Icons/belt_icon.png" id="17_e3xt2"]
+
+[sub_resource type="Theme" id="Theme_2yxm1"]
+default_font = ExtResource("3_bpgy2")
+default_font_size = 4
+
+[sub_resource type="Theme" id="Theme_djydb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cm7li"]
+texture = ExtResource("13_onef4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qh4r6"]
+texture = ExtResource("10_e3xt2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2yxm1"]
+texture = ExtResource("6_dasug")
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_is5hj"]
+texture = ExtResource("11_olfwg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3xt2"]
+texture = ExtResource("12_fexmu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8cook"]
+texture = ExtResource("10_dasug")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fexmu"]
+texture = ExtResource("14_olfwg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_onef4"]
+texture = ExtResource("15_fexmu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2udhv"]
+texture = ExtResource("16_is5hj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53wbw"]
+texture = ExtResource("17_e3xt2")
+
+[sub_resource type="Theme" id="Theme_tnpa6"]
+default_font = ExtResource("3_bpgy2")
+default_font_size = 6
+
+[sub_resource type="Theme" id="Theme_dasug"]
+
+[sub_resource type="Theme" id="Theme_8cook"]
+
+[sub_resource type="Theme" id="Theme_yqe4w"]
+
+[sub_resource type="Theme" id="Theme_p5luj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tnpa6"]
+texture = ExtResource("8_tnpa6")
+region_rect = Rect2(1, 2, 14, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_djydb"]
+texture = ExtResource("9_djydb")
+region_rect = Rect2(1, 2, 14, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bpgy2"]
+texture = ExtResource("9_djydb")
+region_rect = Rect2(1, 2, 14, 13)
+
+[node name="ShopScreen" type="Node2D"]
+script = ExtResource("1_djydb")
+
+[node name="Organizer" type="CanvasLayer" parent="."]
+script = ExtResource("1_t452i")
+
+[node name="BG" type="TextureRect" parent="Organizer"]
+offset_left = -41.0
+offset_top = -2.0
+offset_right = 131.0
+offset_bottom = 170.0
+texture = ExtResource("3_yqe4w")
+expand_mode = 3
+
+[node name="UICenterBG" type="HBoxContainer" parent="Organizer"]
+offset_left = 1.0
+offset_top = 32.0
+offset_right = 90.0
+offset_bottom = 167.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = SubResource("Theme_2yxm1")
+alignment = 1
+
+[node name="AccessoryPanel" type="TextureRect" parent="Organizer/UICenterBG"]
+layout_mode = 2
+texture = ExtResource("4_tnpa6")
+
+[node name="Button9" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 81.0
+offset_right = 22.0
+offset_bottom = 89.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Button9"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "800"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button9/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Button10" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 81.0
+offset_right = 41.0
+offset_bottom = 89.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Button10"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "800"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button10/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Button11" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 81.0
+offset_right = 60.0
+offset_bottom = 89.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Button11"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "800"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button11/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Button12" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 81.0
+offset_right = 79.0
+offset_bottom = 89.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Button12"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "800"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button12/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Button14" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 111.0
+offset_right = 41.0
+offset_bottom = 119.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Button14"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "800"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button14/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Button15" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 111.0
+offset_right = 60.0
+offset_bottom = 119.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Button15"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "800"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button15/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Button16" type="Button" parent="Organizer/UICenterBG/AccessoryPanel"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 111.0
+offset_right = 79.0
+offset_bottom = 119.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Button16"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = SubResource("Theme_djydb")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "800"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Button16/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Treat" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="treat" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Treat"]
+offset_left = 11.0
+offset_top = 128.0
+offset_right = 23.0
+offset_bottom = 140.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_cm7li")
+disabled = true
+
+[node name="Button13" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Treat"]
+offset_left = 11.0
+offset_top = 143.0
+offset_right = 23.0
+offset_bottom = 151.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Treat/Button13"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "100"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Treat/Button13/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Tie" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Tie"]
+offset_left = 11.0
+offset_top = 59.0
+offset_right = 23.0
+offset_bottom = 67.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Tie/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = SubResource("Theme_djydb")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "100"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Tie/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Button" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Tie"]
+offset_left = 11.0
+offset_top = 44.0
+offset_right = 23.0
+offset_bottom = 56.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_qh4r6")
+disabled = true
+
+[node name="Crown" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Crown"]
+offset_left = 30.0
+offset_top = 59.0
+offset_right = 42.0
+offset_bottom = 67.0
+theme = ExtResource("6_8cook")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_2yxm1")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Crown/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "800"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Crown/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Crown" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Crown"]
+offset_left = 30.0
+offset_top = 44.0
+offset_right = 42.0
+offset_bottom = 56.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_is5hj")
+disabled = true
+
+[node name="Ninja" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Ninja"]
+offset_left = 49.0
+offset_top = 59.0
+offset_right = 61.0
+offset_bottom = 67.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Ninja/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "400"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Ninja/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Button" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Ninja"]
+offset_left = 49.0
+offset_top = 44.0
+offset_right = 61.0
+offset_bottom = 56.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_e3xt2")
+disabled = true
+
+[node name="Glasses" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="Glasses" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Glasses"]
+offset_left = 68.0
+offset_top = 44.0
+offset_right = 80.0
+offset_bottom = 56.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8cook")
+disabled = true
+
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Glasses"]
+offset_left = 68.0
+offset_top = 59.0
+offset_right = 80.0
+offset_bottom = 67.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Glasses/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "200"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Glasses/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Mask" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Mask"]
+offset_left = 11.0
+offset_top = 86.0
+offset_right = 23.0
+offset_bottom = 94.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Mask/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "100"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Mask/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Mask" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Mask"]
+offset_left = 11.0
+offset_top = 71.0
+offset_right = 23.0
+offset_bottom = 83.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_fexmu")
+disabled = true
+
+[node name="Swim" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="Swim" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Swim"]
+offset_left = 30.0
+offset_top = 71.0
+offset_right = 42.0
+offset_bottom = 83.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_onef4")
+disabled = true
+
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Swim"]
+offset_left = 30.0
+offset_top = 86.0
+offset_right = 42.0
+offset_bottom = 94.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Swim/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "150"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Swim/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="RobotArm" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/RobotArm"]
+offset_left = 49.0
+offset_top = 86.0
+offset_right = 61.0
+offset_bottom = 94.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/RobotArm/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "700"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/RobotArm/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="RobotArm" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/RobotArm"]
+offset_left = 49.0
+offset_top = 71.0
+offset_right = 61.0
+offset_bottom = 83.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_2udhv")
+disabled = true
+
+[node name="Belt" type="CanvasLayer" parent="Organizer/UICenterBG/AccessoryPanel"]
+
+[node name="Buy" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Belt"]
+offset_left = 68.0
+offset_top = 86.0
+offset_right = 80.0
+offset_bottom = 94.0
+theme = ExtResource("6_8cook")
+
+[node name="price" type="Label" parent="Organizer/UICenterBG/AccessoryPanel/Belt/Buy"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 8.0
+theme = ExtResource("6_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 4
+text = "300"
+vertical_alignment = 1
+
+[node name="coin" type="TextureRect" parent="Organizer/UICenterBG/AccessoryPanel/Belt/Buy/price"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 11.0
+offset_bottom = 5.0
+theme = ExtResource("6_8cook")
+texture = ExtResource("7_tnpa6")
+expand_mode = 4
+
+[node name="Belt" type="Button" parent="Organizer/UICenterBG/AccessoryPanel/Belt"]
+offset_left = 68.0
+offset_top = 71.0
+offset_right = 80.0
+offset_bottom = 83.0
+theme_override_styles/disabled = SubResource("StyleBoxTexture_53wbw")
+disabled = true
+
+[node name="UITop" type="HBoxContainer" parent="Organizer"]
+offset_left = 3.0
+offset_right = 68.0
+offset_bottom = 35.0
+size_flags_horizontal = 4
+theme = SubResource("Theme_tnpa6")
+alignment = 1
+
+[node name="ProfileUI" type="TextureRect" parent="Organizer/UITop"]
+layout_mode = 2
+texture = ExtResource("6_bpgy2")
+
+[node name="Energy" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
+layout_direction = 2
+layout_mode = 2
+offset_left = 36.0
+offset_top = 7.0
+offset_right = 60.0
+offset_bottom = 15.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Energy"]
+visible = false
+layout_mode = 2
+text = "Energy"
+
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Energy"]
+layout_mode = 2
+theme = SubResource("Theme_dasug")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 5
+horizontal_alignment = 1
+
+[node name="Gold" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
+layout_direction = 2
+layout_mode = 2
+offset_left = 35.0
+offset_top = 16.0
+offset_right = 61.0
+offset_bottom = 24.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
+visible = false
+layout_mode = 2
+text = "Gold"
+
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Gold"]
+layout_mode = 2
+theme = SubResource("Theme_8cook")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 5
+horizontal_alignment = 1
+
+[node name="Treat" type="VBoxContainer" parent="Organizer/UITop/ProfileUI"]
+layout_direction = 2
+layout_mode = 2
+offset_left = 40.0
+offset_top = 25.0
+offset_right = 61.0
+offset_bottom = 33.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="txt" type="Label" parent="Organizer/UITop/ProfileUI/Treat"]
+visible = false
+layout_mode = 2
+text = "Treats"
+
+[node name="value" type="Label" parent="Organizer/UITop/ProfileUI/Treat"]
+layout_mode = 2
+theme = SubResource("Theme_yqe4w")
+theme_override_fonts/font = ExtResource("6_ub62p")
+theme_override_font_sizes/font_size = 5
+horizontal_alignment = 1
+
+[node name="UITopLeft" type="HBoxContainer" parent="Organizer"]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 24.0
+offset_bottom = 15.0
+alignment = 1
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Organizer/UITopLeft"]
+stream = ExtResource("8_8cook")
+pitch_scale = 0.67
+max_polyphony = 2
+parameters/looping = false
+
+[node name="BackButton" type="Button" parent="Organizer/UITopLeft"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme = SubResource("Theme_p5luj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tnpa6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_djydb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_bpgy2")
+
+[connection signal="pressed" from="Organizer/UITopLeft/BackButton" to="." method="_on_back_pressed"]
