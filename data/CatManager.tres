@@ -9,16 +9,18 @@ cat_name = "Whiskers"
 cat_sprite = "res://characters/main/main.png"
 max_health = 265
 current_health = 265
-attack = 11866
+attack = 17086
 temp_attack = 0
-defense = 6868
+defense = 9889
 temp_defense = 0
 experience = 0
 level = 1
-arena_level = 5
+arena_level = 2
 max_energy = 3
 energy = 3
 position = Vector2(0, 0)
+equipped_head_sf_path = "res://accessories/head/head_item_2/ninja_spritesheet.tres"
+equipped_body_sf_path = ""
 
 [sub_resource type="Resource" id="Resource_8tpsk"]
 script = ExtResource("1_tbgf5")
@@ -26,9 +28,9 @@ cat_name = "Daisy"
 cat_sprite = "res://characters/main/main.png"
 max_health = 100
 current_health = 100
-attack = 9630
+attack = 13867
 temp_attack = 0
-defense = 4770
+defense = 6868
 temp_defense = 0
 experience = 0
 level = 1
@@ -36,6 +38,8 @@ arena_level = 0
 max_energy = 3
 energy = 3
 position = Vector2(0, 0)
+equipped_head_sf_path = ""
+equipped_body_sf_path = ""
 metadata/_custom_type_script = "uid://dq7snk8jto3g1"
 
 [resource]

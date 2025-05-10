@@ -1,10 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://cvy0rikuqtqhu"]
+[gd_scene load_steps=29 format=3 uid="uid://cvy0rikuqtqhu"]
 
 [ext_resource type="Script" uid="uid://0pm5lp8hrwi2" path="res://scripts/accessory_screen.gd" id="1_d60ke"]
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="1_p3tf8"]
 [ext_resource type="Texture2D" uid="uid://vtuwtjhxlgbe" path="res://themes/UI_images/AccessoryRoomBG.png" id="4_2aa5o"]
+[ext_resource type="Texture2D" uid="uid://c1ca4egj7cc8" path="res://accessories/head/head_item_1/crown_icon.png" id="7_5c5we"]
+[ext_resource type="Texture2D" uid="uid://b0xheilsantpi" path="res://accessories/head/head_item_1/crown_icon_hover.png" id="8_78mvo"]
+[ext_resource type="Texture2D" uid="uid://csim2aah25mtp" path="res://accessories/head/head_item_2/ninja_icon.png" id="9_6me0w"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="9_g37fn"]
 [ext_resource type="AudioStream" uid="uid://b8l75uny4mxhh" path="res://assets/soundFX/btn_click.mp3" id="10_612dn"]
+[ext_resource type="Texture2D" uid="uid://mrhfbgfkbg6u" path="res://accessories/head/head_item_2/ninja_icon_hover.png" id="10_ldtsk"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_rqttr"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="23_sq1w1"]
 [ext_resource type="Texture2D" uid="uid://vsxbuve11bwf" path="res://themes/UI_images/profileUI-petScreen.png" id="24_r80ne"]
@@ -14,6 +18,25 @@
 [sub_resource type="Theme" id="Theme_dlsms"]
 default_font = ExtResource("23_sq1w1")
 default_font_size = 4
+
+[sub_resource type="Theme" id="Theme_78mvo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldtsk"]
+texture = ExtResource("7_5c5we")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6me0w"]
+texture = ExtResource("8_78mvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xviac"]
+texture = ExtResource("7_5c5we")
+
+[sub_resource type="Theme" id="Theme_narnl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fbt1a"]
+texture = ExtResource("9_6me0w")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a830w"]
+texture = ExtResource("10_ldtsk")
 
 [sub_resource type="Theme" id="Theme_a1quu"]
 default_font = ExtResource("23_sq1w1")
@@ -87,6 +110,7 @@ alignment = 1
 [node name="AccessoryPanel" type="TextureRect" parent="Organizer/UICenter"]
 layout_mode = 2
 texture = ExtResource("24_u50ym")
+stretch_mode = 2
 
 [node name="Button" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
 layout_mode = 0
@@ -94,6 +118,18 @@ offset_left = 10.0
 offset_top = 17.0
 offset_right = 22.0
 offset_bottom = 29.0
+theme = SubResource("Theme_78mvo")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ldtsk")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_6me0w")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6me0w")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_6me0w")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_6me0w")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_6me0w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6me0w")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_xviac")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ldtsk")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_xviac")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xviac")
 
 [node name="Button2" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
 layout_mode = 0
@@ -101,6 +137,18 @@ offset_left = 29.0
 offset_top = 17.0
 offset_right = 41.0
 offset_bottom = 29.0
+theme = SubResource("Theme_narnl")
+theme_override_styles/focus = SubResource("StyleBoxTexture_fbt1a")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_a830w")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_a830w")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_a830w")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_a830w")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_a830w")
+theme_override_styles/hover = SubResource("StyleBoxTexture_a830w")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_fbt1a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fbt1a")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_fbt1a")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fbt1a")
 
 [node name="Button3" type="Button" parent="Organizer/UICenter/AccessoryPanel"]
 layout_mode = 0

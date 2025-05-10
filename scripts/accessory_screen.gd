@@ -1,41 +1,248 @@
+# AccessoryScreen.gd
 extends Node2D
-@onready var audio=$Organizer/Center/AudioStreamPlayer2D2
-@onready var player = $Organizer/CenterBG/player/Catimation
-@onready var health_bar = $Organizer/CenterBG/player/PlayerHealthBar
-@onready var gold = $"Organizer/UITop/ProfileUI/Gold/value"
-var active_cat
+
+# Reference na prikaznega playerja (celoten Player.tscn instanciran v tej sceni)
+@onready var displayed_player_node: CharacterBody2D = $Organizer/CenterBG/player 
+
+# Reference na gumbe - PRILAGODI POTI, ČE SO DRUGAČNE!
+# Predpostavljam, da so vsi gumbi otroci $Organizer/UICenter/AccessoryPanel
+# Če jih imaš v ločenih kontejnerjih (npr. en za glavo, en za telo), prilagodi.
+@onready var head_buttons: Array[Button] = [
+	$Organizer/UICenter/AccessoryPanel/Button,   # Head Item 1 (prvi gumb v panelu)
+	$Organizer/UICenter/AccessoryPanel/Button2,  # Head Item 2 (drugi gumb v panelu)
+	$Organizer/UICenter/AccessoryPanel/Button3,  # Head Item 3 (...)
+	$Organizer/UICenter/AccessoryPanel/Button4   # Head Item 4
+]
+@onready var body_buttons: Array[Button] = [
+	$Organizer/UICenter/AccessoryPanel/Button5,  # Body Item 1 (peti gumb v panelu)
+	$Organizer/UICenter/AccessoryPanel/Button6,  # Body Item 2 (...)
+	$Organizer/UICenter/AccessoryPanel/Button7,  # Body Item 3
+	$Organizer/UICenter/AccessoryPanel/Button8   # Body Item 4
+]
+
+@onready var audio_player_ui_sfx = $Organizer/Center/AudioStreamPlayer2D2 
+@onready var gold_label = $"Organizer/UITop/ProfileUI/Gold/value"
+
+# Hardkodirani itemi (poti do SpriteFrames) - ZAMENJAJ S SVOJIMI POTMI!
+var head_items_sf_paths = [
+	"res://accessories/head/head_item_1/crown_spritesheet.tres", # Primer za krono
+	"res://accessories/head/head_item_2/ninja_spritesheet.tres",    
+	"res://accessories/head/wizard_hat/wizard_hat_anim.tres",
+	"res://accessories/head/top_hat/top_hat_anim.tres"
+]
+var body_items_sf_paths = [
+	"res://accessories/body/tshirt_blue/tshirt_blue_anim.tres",
+	"res://accessories/body/armor_plate/armor_plate_anim.tres",
+	"res://accessories/body/jacket_red/jacket_red_anim.tres",
+	"res://accessories/body/dress_fancy/dress_fancy_anim.tres"
+]
+
+var current_preview_cat_data: CatData 
 
 func _ready():
 	MusicManager.play_main_music()
-	var global_data = GlobalDataHandler.global_data
-	gold.text = str(global_data.gold)
+	gold_label.text = str(GlobalDataHandler.global_data.gold)
 
-
-	if player and health_bar:
-		player.play("idle")  
-		health_bar.visible = false 
+	var real_active_cat_data = CatHandler.get_active_cat()
+	if real_active_cat_data:
+		current_preview_cat_data = real_active_cat_data.duplicate(true) # Uporabi deep copy za urejanje
 		
+		# Nanesi podatke na prikazni Player node
+		apply_preview_data_to_displayed_player()
+		
+		if displayed_player_node.has_method("play_animation"):
+			displayed_player_node.play_animation("idle")
+		elif displayed_player_node.has_node("Catimation"): # Fallback za animacijo
+			var catimation_on_preview = displayed_player_node.get_node("Catimation") as AnimatedSprite2D
+			if catimation_on_preview and catimation_on_preview.sprite_frames:
+				catimation_on_preview.play("idle")
+	else:
+		printerr("AccessoryScreen: Could not get active cat data! Creating empty preview data.")
+		current_preview_cat_data = CatData.new() # Ustvari prazen preview data, da se izogneš kasnejšim napakam
+
+	# Poveži signale gumbov in nastavi začetne ikone
+	for i in range(head_buttons.size()):
+		var button = head_buttons[i]
+		if button is Button: # Preveri, če je node res gumb
+			button.pressed.connect(Callable(self, "_on_head_item_button_pressed").bind(i))
+			update_button_state(button, "head", i)
+		else:
+			printerr("Head button at index " + str(i) + " is not a Button or not found at expected path.")
+
+
+	for i in range(body_buttons.size()):
+		var button = body_buttons[i]
+		if button is Button:
+			button.pressed.connect(Callable(self, "_on_body_item_button_pressed").bind(i))
+			update_button_state(button, "body", i)
+		else:
+			printerr("Body button at index " + str(i) + " is not a Button or not found at expected path.")
+
+# Nova funkcija za nanos podatkov na prikazni model
+func apply_preview_data_to_displayed_player():
+	if not current_preview_cat_data or not displayed_player_node:
+		printerr("Cannot apply preview data: preview data or displayed player node is null.")
+		return
+
+	# Predpostavljamo, da displayed_player_node ima Player.gd skripto
+	if displayed_player_node.has_method("apply_cat_data"): # Če si ustvaril to metodo v Player.gd
+		displayed_player_node.apply_cat_data(current_preview_cat_data)
+	else: # Fallback, če Player.gd nima apply_cat_data, ampak ima set_equipment
+		# Najprej nanesi osnovne podatke mačke (če je potrebno za prikaz)
+		if displayed_player_node.has_node("Catimation") and current_preview_cat_data.cat_sprite != "":
+			var catimation_preview = displayed_player_node.get_node("Catimation") as AnimatedSprite2D
+			var cat_sf = load(current_preview_cat_data.cat_sprite) # cat_sprite naj bo pot do SpriteFrames
+			if cat_sf is SpriteFrames:
+				catimation_preview.sprite_frames = cat_sf
+			else:
+				printerr("Failed to load cat SpriteFrames for preview: " + current_preview_cat_data.cat_sprite)
+		
+		# Nato opremo
+		if displayed_player_node.has_method("set_equipment"):
+			displayed_player_node.set_equipment("head", current_preview_cat_data.equipped_head_sf_path)
+			displayed_player_node.set_equipment("body", current_preview_cat_data.equipped_body_sf_path)
+		else:
+			printerr("Displayed player node does not have set_equipment method.")
+
+
+# Funkcija za posodobitev STANJA gumba (brez ikon)
+func update_button_state(button_node: Button, item_type: String, item_index: int): # Preimenovano
+	if not current_preview_cat_data or not button_node: return
+
+	var currently_equipped_sf_path: String
+	var item_sf_path_for_this_button: String = "" # Inicializiraj s praznim nizom
+	# var default_icon_path_for_this_button: String # ODSTRANJENO
+
+	if item_type == "head":
+		currently_equipped_sf_path = current_preview_cat_data.equipped_head_sf_path
+		if item_index < head_items_sf_paths.size(): # Preveri meje
+			item_sf_path_for_this_button = head_items_sf_paths[item_index]
+		# ODSTRANJENO: Branje iz head_item_icons
+		# if item_index < head_item_icons.size():
+			# default_icon_path_for_this_button = head_item_icons[item_index]
+	elif item_type == "body":
+		currently_equipped_sf_path = current_preview_cat_data.equipped_body_sf_path
+		if item_index < body_items_sf_paths.size(): # Preveri meje
+			item_sf_path_for_this_button = body_items_sf_paths[item_index]
+		# ODSTRANJENO: Branje iz body_item_icons
+		# if item_index < body_item_icons.size():
+			# default_icon_path_for_this_button = body_item_icons[item_index]
+	else:
+		printerr("update_button_state: Unknown item_type: " + item_type) # Popravljeno ime funkcije v sporočilu
+		return
+
+	# Logika za stanje gumba glede na to, ali item obstaja
+	if item_sf_path_for_this_button == "" or item_sf_path_for_this_button == null:
+		# button_node.icon = null # ODSTRANJENO
+		button_node.text = "N/A" # Gumb za item, ki (še) ne obstaja
+		button_node.disabled = true
+		return
+	else:
+		button_node.disabled = false
+		# button_node.text = "" # To lahko pustiš ali spremeniš glede na želje
+							  # Če Theme prikazuje ikono, je besedilo morda odveč,
+							  # razen če želiš prikazati ime itema.
+
+	# Logika za besedilo gumba glede na to, ali je item opremljen
+	# Ikone se ne nastavljajo več tukaj.
+	if currently_equipped_sf_path == item_sf_path_for_this_button:
+		# Item je opremljen. Theme bi moral prikazati "remove" ali "equipped" ikono.
+		# ODSTRANJENO: Logika za remove_icon_path
+		# if remove_icon_path != "" and remove_icon_path != null:
+			# button_node.icon = load(remove_icon_path)
+		# else: 
+		button_node.text = "X" # Fallback besedilo za "odstrani", če želiš
+	else:
+		# Item ni opremljen. Theme bi moral prikazati normalno ikono.
+		# ODSTRANJENO: Logika za default_icon_path_for_this_button
+		# if default_icon_path_for_this_button != "" and default_icon_path_for_this_button != null:
+			# button_node.icon = load(default_icon_path_for_this_button)
+		# else: 
+		button_node.text = "" # Privzeto prazno besedilo, če Theme prikaže ikono itema
+							  # Lahko pa nastaviš na npr.: item_type.capitalize() + " " + str(item_index + 1)
+							  # če želiš ime itema kot besedilo.
+# Funkcija, ki se sproži ob kliku na gumb za GLAVO
+func _on_head_item_button_pressed(item_index: int):
+	if not current_preview_cat_data or not displayed_player_node: return
+	if not displayed_player_node.has_method("set_equipment"):
+		printerr("Displayed player node missing 'set_equipment' method.")
+		return
+
+	var selected_sf_path = head_items_sf_paths[item_index]
+	var new_head_path = ""
+
+	if current_preview_cat_data.equipped_head_sf_path == selected_sf_path:
+		new_head_path = "" # Odstrani
+	else:
+		new_head_path = selected_sf_path # Opremi
+	
+	# Samo posodobi podatke v preview_cat_data
+	current_preview_cat_data.equipped_head_sf_path = new_head_path
+	# In nato kliči metodo, ki osveži celoten prikaz igralca na podlagi teh podatkov
+	apply_preview_data_to_displayed_player() 
+	
+	# Po apply_preview_data_to_displayed_player, ki bo poklical set_equipment,
+	# bo displayed_player_node že moral imeti pravilno animacijo na opremi.
+	# Za vsak slučaj lahko še enkrat zagotovimo, da je v idle.
+	if displayed_player_node.has_method("play_animation"):
+		displayed_player_node.play_animation("idle") # Zagotovi idle stanje za prikaz
+	
+	for i in range(head_buttons.size()):
+		if head_buttons[i] is Button: update_button_state(head_buttons[i], "head", i)
+
+func _on_body_item_button_pressed(item_index: int):
+	if not current_preview_cat_data or not displayed_player_node: return
+	if not displayed_player_node.has_method("set_equipment"):
+		printerr("Displayed player node missing 'set_equipment' method.")
+		return
+		
+	var selected_sf_path = body_items_sf_paths[item_index]
+	var new_body_path = ""
+
+	if current_preview_cat_data.equipped_body_sf_path == selected_sf_path:
+		new_body_path = ""
+	else:
+		new_body_path = selected_sf_path
+	
+	current_preview_cat_data.equipped_body_sf_path = new_body_path
+	apply_preview_data_to_displayed_player()
+	
+	if displayed_player_node.has_method("play_animation"):
+		displayed_player_node.play_animation("idle") # Zagotovi idle stanje za prikaz
+		
+	for i in range(body_buttons.size()):
+		if body_buttons[i] is Button: update_button_state(body_buttons[i], "body", i)
+
+# Ko igralec zapusti zaslon
 func _on_back_pressed():
-	audio.play()
+	if audio_player_ui_sfx: audio_player_ui_sfx.play()
 	await get_tree().create_timer(0.25).timeout
-	if active_cat:
-		var all_cats = CatHandler.get_all_cats()
-		all_cats[CatHandler.cat_manager.active_cat_index] = active_cat
+	
+	if current_preview_cat_data: 
+		var real_active_cat_data = CatHandler.get_active_cat()
+		if real_active_cat_data:
+			real_active_cat_data.equipped_head_sf_path = current_preview_cat_data.equipped_head_sf_path
+			real_active_cat_data.equipped_body_sf_path = current_preview_cat_data.equipped_body_sf_path
 		CatHandler.save_cat_manager()
 	
-	# Preverimo, od kod smo prišli, da se pravilno vrnemo
-	var previous_scene = GlobalDataHandler.global_data.coming_from_last
+	var previous_scene_path = GlobalDataHandler.global_data.coming_from_last
+	var target_scene_path = "res://screens/idle_screen.tscn" 
 	
-	match previous_scene:
-		"Battle Arena":
-			_load_scene("res://screens/battle.tscn")
-		_, "Idle Screen":
-			_load_scene("res://screens/idle_screen.tscn")
-		_:
-			print("Unknown previous scene:", previous_scene)
+	if previous_scene_path == "Battle Arena":
+		target_scene_path = "res://screens/battle.tscn"
+	
+	_load_scene(target_scene_path)
 
-func _load_scene(scene_path):
-	var new_scene = load(scene_path).instantiate()
-	get_tree().current_scene.queue_free()
-	get_tree().root.add_child(new_scene)
-	get_tree().current_scene = new_scene
+func _load_scene(scene_path: String):
+	var new_scene_resource = load(scene_path)
+	if new_scene_resource:
+		var new_scene_instance = new_scene_resource.instantiate()
+		var current_scene_node = get_tree().current_scene
+		
+		get_tree().root.add_child(new_scene_instance)
+		get_tree().current_scene = new_scene_instance
+		
+		if is_instance_valid(current_scene_node): # Preveri, preden kličeš queue_free
+			current_scene_node.queue_free()
+	else:
+		printerr("Failed to load scene: " + scene_path)
