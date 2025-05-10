@@ -6,10 +6,20 @@
 script = ExtResource("1_rit5f")
 coming_from_last = &"Battle Arena"
 
+coming_from_last = &"IdleScreen"
+gold = 200
+treat = 3
+>>>>>>> shopScreen
 unlocked_pets = {
 "bunny_count": 2,
 "cow_count": 1,
 "dog_count": 1,
 "pig_count": 1,
 "redpanda_count": 2
+}
+unlocked_accessories = {
+"belt": true,
+"crown": true,
+"glasses": true,
+"mask": true
 }

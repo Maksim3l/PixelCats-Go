@@ -5,6 +5,8 @@ extends Resource
 @export var gold: int = 0
 @export var treat: int = 3
 @export var unlocked_pets = {}
+@export var unlocked_accessories = {}
+
 # Uncomment and use this for unlocked cats
 # @export var unlocked_cats = []
 
@@ -12,14 +14,23 @@ func _init(p_coming_from_last = "none", p_gold = 0):
 	coming_from_last = p_coming_from_last
 	gold = p_gold
 	unlocked_pets = {}
+	unlocked_accessories = {}
 
 func set_property(key: String, value):
 	unlocked_pets[key] = value
+	
 	
 func get_property(key: String, default_value = null):
 	if key in unlocked_pets:
 		return unlocked_pets[key]
 	return default_value
+	
+func add_accessory(accessory_name: String):
+	if accessory_name not in unlocked_accessories:
+		unlocked_accessories[accessory_name] = true
+
+func has_accessory(accessory_name: String) -> bool:
+	return accessory_name in unlocked_accessories and unlocked_accessories[accessory_name]
 	
 func save_global_data(path: String) -> bool:
 	var dir = DirAccess.open("res://")
