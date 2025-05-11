@@ -1,6 +1,7 @@
-[gd_scene load_steps=94 format=3 uid="uid://bmyvk5ge5jq6k"]
+[gd_scene load_steps=102 format=3 uid="uid://bmyvk5ge5jq6k"]
 
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
+[ext_resource type="Script" uid="uid://bkliwsde236od" path="res://scripts/idle_manage.gd" id="1_g8hcl"]
 [ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="2_24gff"]
 [ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="3_2qr8l"]
 [ext_resource type="Texture2D" uid="uid://bj82ugw5a0rtp" path="res://enviroment/house/1_bathroom/bathroom_water_double.png" id="4_o878r"]
@@ -210,6 +211,8 @@ default_font_size = 4
 
 [sub_resource type="Theme" id="Theme_e2gqq"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g8hcl"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ihj5"]
 texture = ExtResource("25_vtkis")
 expand_margin_left = 10.0
@@ -244,6 +247,8 @@ default_font_size = 2
 
 [sub_resource type="Theme" id="Theme_87ogc"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_54kng"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1n8mp"]
 texture = ExtResource("27_aw3vd")
 
@@ -254,6 +259,8 @@ texture = ExtResource("28_6n6su")
 texture = ExtResource("28_6n6su")
 
 [sub_resource type="Theme" id="Theme_i3dgq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vdhkv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ps5ml"]
 texture = ExtResource("29_cdxyv")
@@ -266,6 +273,8 @@ texture = ExtResource("30_g8hcl")
 
 [sub_resource type="Theme" id="Theme_n0yfa"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cq4eh"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_edopx"]
 texture = ExtResource("31_54kng")
 
@@ -276,6 +285,8 @@ texture = ExtResource("32_vdhkv")
 texture = ExtResource("32_vdhkv")
 
 [sub_resource type="Theme" id="Theme_hdvme"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oeyb8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1vxxk"]
 texture = ExtResource("33_cq4eh")
@@ -288,6 +299,8 @@ texture = ExtResource("34_oeyb8")
 
 [sub_resource type="Theme" id="Theme_v4xua"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uugju"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p2aas"]
 texture = ExtResource("35_uugju")
 
@@ -296,6 +309,8 @@ texture = ExtResource("36_gxilw")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uvs1c"]
 texture = ExtResource("36_gxilw")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxilw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cdxyv"]
 texture = ExtResource("39_cdxyv")
@@ -307,6 +322,7 @@ texture = ExtResource("40_g8hcl")
 texture = ExtResource("40_g8hcl")
 
 [node name="IdleScreen" type="Node2D"]
+script = ExtResource("1_g8hcl")
 
 [node name="Organizer" type="CanvasLayer" parent="."]
 script = ExtResource("21_54kng")
@@ -353,7 +369,7 @@ position = Vector2(-62, -66)
 texture = ExtResource("20_24gff")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="Organizer/CenterBG/ParallaxBackground"]
-position = Vector2(1, 13)
+position = Vector2(1, 34)
 
 [node name="player" parent="Organizer/CenterBG/ParallaxBackground/ParallaxLayer3" instance=ExtResource("22_o878r")]
 position = Vector2(0, -30)
@@ -373,6 +389,7 @@ layout_mode = 2
 theme = SubResource("Theme_e2gqq")
 theme_override_fonts/font = ExtResource("24_at2v4")
 theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g8hcl")
 theme_override_styles/hover = SubResource("StyleBoxTexture_8ihj5")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_jctyl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_2tk18")
@@ -401,9 +418,9 @@ texture = ExtResource("26_aw3vd")
 layout_direction = 2
 layout_mode = 2
 offset_left = 36.0
-offset_top = 7.0
+offset_top = 8.0
 offset_right = 60.0
-offset_bottom = 15.0
+offset_bottom = 16.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
@@ -422,9 +439,9 @@ horizontal_alignment = 1
 layout_direction = 2
 layout_mode = 2
 offset_left = 35.0
-offset_top = 18.0
+offset_top = 19.0
 offset_right = 61.0
-offset_bottom = 26.0
+offset_bottom = 27.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
@@ -443,9 +460,9 @@ horizontal_alignment = 1
 layout_direction = 2
 layout_mode = 2
 offset_left = 40.0
-offset_top = 28.0
+offset_top = 29.0
 offset_right = 61.0
-offset_bottom = 36.0
+offset_bottom = 37.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
@@ -487,6 +504,7 @@ offset_top = 6.0
 offset_right = 118.0
 offset_bottom = 25.0
 theme = SubResource("Theme_87ogc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_54kng")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1n8mp")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_otp4d")
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkgtg")
@@ -498,6 +516,7 @@ offset_top = 6.0
 offset_right = 135.0
 offset_bottom = 25.0
 theme = SubResource("Theme_i3dgq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vdhkv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ps5ml")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ywcrb")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ubt2b")
@@ -509,6 +528,7 @@ offset_top = 6.0
 offset_right = 101.0
 offset_bottom = 25.0
 theme = SubResource("Theme_n0yfa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cq4eh")
 theme_override_styles/hover = SubResource("StyleBoxTexture_edopx")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_27o6g")
 theme_override_styles/normal = SubResource("StyleBoxTexture_vps1c")
@@ -520,6 +540,7 @@ offset_top = 6.0
 offset_right = 84.0
 offset_bottom = 25.0
 theme = SubResource("Theme_hdvme")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oeyb8")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1vxxk")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_pefih")
 theme_override_styles/normal = SubResource("StyleBoxTexture_vpipw")
@@ -531,6 +552,7 @@ offset_top = 6.0
 offset_right = 152.0
 offset_bottom = 25.0
 theme = SubResource("Theme_v4xua")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uugju")
 theme_override_styles/hover = SubResource("StyleBoxTexture_p2aas")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_nck6h")
 theme_override_styles/normal = SubResource("StyleBoxTexture_uvs1c")
@@ -549,6 +571,7 @@ offset_bottom = 29.0
 [node name="shop" type="Button" parent="Organizer/ShopBtn"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gxilw")
 theme_override_styles/hover = SubResource("StyleBoxTexture_cdxyv")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_g8hcl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_54kng")

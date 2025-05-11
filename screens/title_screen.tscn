@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dc54u4bo86i1y"]
+[gd_scene load_steps=26 format=3 uid="uid://dc54u4bo86i1y"]
 
 [ext_resource type="Script" uid="uid://bt6lo3d5rt5r5" path="res://scripts/title_screen.gd" id="1_grftj"]
 [ext_resource type="Texture2D" uid="uid://djvfitsiur4md" path="res://themes/UI_images/titleScreenBG.png" id="2_cjojn"]
@@ -26,6 +26,8 @@ font_color = Color(0, 0, 0.396078, 1)
 
 [sub_resource type="Theme" id="Theme_mvehq"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_txg6x"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mo0vk"]
 texture = ExtResource("4_7jf2m")
 region_rect = Rect2(5, 193, 52, 15)
@@ -37,6 +39,8 @@ region_rect = Rect2(69, 129, 52, 15)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tsbkc"]
 texture = ExtResource("4_7jf2m")
 region_rect = Rect2(69, 129, 52, 15)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7jf2m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bm4e8"]
 texture = ExtResource("4_7jf2m")
@@ -139,6 +143,7 @@ offset_bottom = 161.0
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_mvehq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_txg6x")
 theme_override_styles/hover = SubResource("StyleBoxTexture_mo0vk")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_fgfhh")
 theme_override_styles/normal = SubResource("StyleBoxTexture_tsbkc")
@@ -147,6 +152,7 @@ text = "
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7jf2m")
 theme_override_styles/hover = SubResource("StyleBoxTexture_bm4e8")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_t87nc")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xjftx")

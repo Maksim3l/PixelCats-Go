@@ -56,6 +56,9 @@ func _ready():
 			var catimation_on_preview = displayed_player_node.get_node("Catimation") as AnimatedSprite2D
 			if catimation_on_preview and catimation_on_preview.sprite_frames:
 				catimation_on_preview.play("idle")
+		if displayed_player_node.has_node("PlayerHealthBar"):
+			var health_bar = displayed_player_node.get_node("PlayerHealthBar")
+			health_bar.visible = false		
 	else:
 		printerr("AccessoryScreen: Could not get active cat data! Creating empty preview data.")
 		current_preview_cat_data = CatData.new() # Ustvari prazen preview data, da se izogneš kasnejšim napakam
