@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://h557uwro0glo"]
+[gd_scene load_steps=99 format=3 uid="uid://h557uwro0glo"]
 
 [ext_resource type="Script" uid="uid://o0h8rrkmnnc" path="res://scripts/feed_action.gd" id="1_85pcd"]
 [ext_resource type="Script" uid="uid://ck8t5nu02f3o6" path="res://scripts/feeding_screen.gd" id="1_qshnh"]
@@ -210,6 +210,8 @@ default_font_size = 4
 
 [sub_resource type="Theme" id="Theme_q2jt1"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ssu4w"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pfndq"]
 texture = ExtResource("25_3ooq6")
 expand_margin_left = 10.0
@@ -234,6 +236,8 @@ default_font_size = 2
 
 [sub_resource type="Theme" id="Theme_s3vt7"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s3vt7"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0n1h1"]
 texture = ExtResource("27_ykw7f")
 
@@ -247,6 +251,8 @@ texture = ExtResource("28_20fnc")
 texture = ExtResource("28_20fnc")
 
 [sub_resource type="Theme" id="Theme_k6y6m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w0dfa"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kco8l"]
 texture = ExtResource("29_nxry8")
@@ -262,6 +268,8 @@ texture = ExtResource("30_q2jt1")
 
 [sub_resource type="Theme" id="Theme_lvq3o"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_crch5"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_poubv"]
 texture = ExtResource("31_k6y6m")
 
@@ -276,6 +284,8 @@ texture = ExtResource("31_pfndq")
 
 [sub_resource type="Theme" id="Theme_ssu4w"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svr4l"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5hlbg"]
 texture = ExtResource("32_q2jt1")
 
@@ -289,6 +299,8 @@ texture = ExtResource("33_pfndq")
 texture = ExtResource("33_pfndq")
 
 [sub_resource type="Theme" id="Theme_mdce0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdce0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_24g8n"]
 texture = ExtResource("29_nmocj")
@@ -374,6 +386,7 @@ alignment = 2
 layout_mode = 2
 theme = SubResource("Theme_q2jt1")
 theme_override_font_sizes/font_size = 6
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ssu4w")
 theme_override_styles/hover = SubResource("StyleBoxTexture_pfndq")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_k6y6m")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ssu4w")
@@ -411,6 +424,7 @@ offset_top = 6.0
 offset_right = 84.0
 offset_bottom = 25.0
 theme = SubResource("Theme_s3vt7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s3vt7")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_0n1h1")
 theme_override_styles/hover = SubResource("StyleBoxTexture_w0dfa")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_crch5")
@@ -423,6 +437,7 @@ offset_top = 6.0
 offset_right = 101.0
 offset_bottom = 25.0
 theme = SubResource("Theme_k6y6m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w0dfa")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_kco8l")
 theme_override_styles/hover = SubResource("StyleBoxTexture_s3vt7")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_mdce0")
@@ -435,6 +450,7 @@ offset_top = 6.0
 offset_right = 118.0
 offset_bottom = 25.0
 theme = SubResource("Theme_lvq3o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_crch5")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_poubv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sevf0")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_v8lst")
@@ -447,6 +463,7 @@ offset_top = 6.0
 offset_right = 135.0
 offset_bottom = 25.0
 theme = SubResource("Theme_ssu4w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_svr4l")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_5hlbg")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vvhym")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_lvq3o")
@@ -459,6 +476,7 @@ offset_top = 6.0
 offset_right = 152.0
 offset_bottom = 25.0
 theme = SubResource("Theme_mdce0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mdce0")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_24g8n")
 theme_override_styles/hover = SubResource("StyleBoxTexture_em556")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1mkey")

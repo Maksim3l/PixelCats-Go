@@ -19,7 +19,7 @@ arena_level = 1
 max_energy = 3
 energy = 1
 position = Vector2(0, 0)
-equipped_head_sf_path = "res://accessories/head/head_item_1/crown_spritesheet.tres"
+equipped_head_sf_path = "res://accessories/head/head_item_2/ninja_spritesheet.tres"
 equipped_body_sf_path = "res://accessories/body/body_item_2/robot.tres"
 equipped_items = {}
 
