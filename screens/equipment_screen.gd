@@ -104,10 +104,10 @@ func update_inventory_display():
 	for child in inventory_grid.get_children():
 		child.queue_free()
 		
-	# Get all armor items
-	var all_armor = Armor.get_collected_armor()
+	#var all_armor = Armor.get_collected_armor()
 	
-	#var all_armor = Armor.get_all_armor()
+	# Get all armor items
+	var all_armor = Armor.get_all_armor()
 	
 	for armor in all_armor:
 		var item_button = TextureButton.new()
