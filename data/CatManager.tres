@@ -7,19 +7,19 @@
 script = ExtResource("1_tbgf5")
 cat_name = "Whiskers"
 cat_sprite = "res://characters/main/main.png"
-max_health = 150
-current_health = 75
+max_health = 105
+current_health = 5
 attack = 26
-temp_attack = 10
-defense = 36
-temp_defense = 60
+temp_attack = 0
+defense = 12
+temp_defense = 0
 experience = 40
 level = 1
 arena_level = 2
-max_energy = 10
-energy = 10
+max_energy = 3
+energy = 2
 position = Vector2(0, 0)
-equipped_head_sf_path = "res://accessories/head/head_item_2/ninja_spritesheet.tres"
+equipped_head_sf_path = "res://accessories/head/head_item_1/crown_spritesheet.tres"
 equipped_body_sf_path = "res://accessories/body/body_item_4/tie.tres"
 equipped_items = {}
 
