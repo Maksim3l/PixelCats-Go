@@ -124,9 +124,10 @@ volume_db = 1.0
 attenuation = 10.1965
 
 [node name="CatList2" type="HBoxContainer" parent="Organizer"]
-offset_left = -1.0
+offset_left = -4.0
+offset_top = 26.0
 offset_right = 92.0
-offset_bottom = 164.0
+offset_bottom = 137.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 0)
