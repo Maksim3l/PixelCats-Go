@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="CatManager" load_steps=9 format=3]
+[gd_resource type="Resource" script_class="CatManager" load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://resources/cat_data.gd" id="1_tbgf5"]
 [ext_resource type="Script" path="res://scripts/cat_manager.gd" id="2_8tpsk"]
 [ext_resource type="Script" path="res://resources/Item.gd" id="2_pajuj"]
 
-[sub_resource type="Resource" id="Resource_yc31j"]
+[sub_resource type="Resource" id="Resource_m88km"]
 script = ExtResource("2_pajuj")
 id = "leather_cap"
 name = "Leather Cap"
@@ -19,16 +19,29 @@ gold_value = 40
 
 [sub_resource type="Resource" id="Resource_pajuj"]
 script = ExtResource("2_pajuj")
-id = "leather_chest"
-name = "Leather Chest"
+id = "mage_robe"
+name = "Mage Robe"
 texture_path = ""
 item_type = 1
 item_slot = 1
-attack_bonus = 0
-defense_bonus = 5
-health_bonus = 10
+attack_bonus = 5
+defense_bonus = 8
+health_bonus = 15
+energy_bonus = 5
+gold_value = 380
+
+[sub_resource type="Resource" id="Resource_yc31j"]
+script = ExtResource("2_pajuj")
+id = "leather_gloves"
+name = "Leather Gloves"
+texture_path = ""
+item_type = 1
+item_slot = 3
+attack_bonus = 1
+defense_bonus = 2
+health_bonus = 0
 energy_bonus = 0
-gold_value = 60
+gold_value = 30
 
 [sub_resource type="Resource" id="Resource_q0qp2"]
 script = ExtResource("2_pajuj")
@@ -43,30 +56,44 @@ health_bonus = 5
 energy_bonus = 1
 gold_value = 35
 
+[sub_resource type="Resource" id="Resource_mt4ur"]
+script = ExtResource("2_pajuj")
+id = "basic_wand"
+name = "Basic Wand"
+texture_path = "res://characters/main/basic_wand.png"
+item_type = 2
+item_slot = 2
+attack_bonus = 6
+defense_bonus = 0
+health_bonus = 3
+energy_bonus = 1
+gold_value = 12
+
 [sub_resource type="Resource" id="Resource_tbgf5"]
 script = ExtResource("1_tbgf5")
 cat_name = "Whiskers"
 cat_sprite = "res://characters/main/main.png"
-max_health = 240
-current_health = 190
-attack = 45
+max_health = 268
+current_health = 268
+attack = 57
 temp_attack = 0
-defense = 89
+defense = 94
 temp_defense = 0
 experience = 40
 level = 1
-arena_level = 3
-max_energy = 24
-energy = 24
+arena_level = 0
+max_energy = 30
+energy = 30
 position = Vector2(0, 0)
 equipped_head_sf_path = "res://accessories/head/head_item_1/crown_spritesheet.tres"
 equipped_body_sf_path = "res://accessories/body/body_item_4/tie.tres"
 equipped_armor = {
-0: SubResource("Resource_yc31j"),
+0: SubResource("Resource_m88km"),
 1: SubResource("Resource_pajuj"),
-3: null,
+3: SubResource("Resource_yc31j"),
 4: SubResource("Resource_q0qp2")
 }
+equipped_weapon = SubResource("Resource_mt4ur")
 
 [sub_resource type="Resource" id="Resource_8tpsk"]
 script = ExtResource("1_tbgf5")

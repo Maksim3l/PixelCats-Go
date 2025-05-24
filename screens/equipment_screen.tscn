@@ -101,6 +101,10 @@ texture_normal = ExtResource("2_srlrx")
 layout_mode = 2
 texture_normal = ExtResource("2_srlrx")
 
+[node name="Item" type="TextureButton" parent="Organizer/UICenter/LeftCol"]
+layout_mode = 2
+texture_normal = ExtResource("2_srlrx")
+
 [node name="Center" type="VBoxContainer" parent="Organizer/UICenter"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -125,7 +129,7 @@ volume_db = 1.0
 parameters/looping = false
 
 [node name="PanelContainer" type="PanelContainer" parent="Organizer"]
-offset_top = 78.0
+offset_top = 96.0
 offset_right = 90.0
 offset_bottom = 139.0
 

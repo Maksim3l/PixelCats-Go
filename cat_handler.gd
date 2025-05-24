@@ -92,3 +92,50 @@ func update_cat_with_equipment(cat: CharacterBody2D, cat_data: CatData) -> void:
 	
 	if "equipped_armor" in cat:
 		cat.equipped_armor = cat_data.equipped_armor
+
+func equip_weapon_on_active_cat(weapon: Item) -> Item:
+	var active_cat = get_active_cat()
+	var previous_weapon = active_cat.equip_weapon(weapon)
+	save_cat_manager()
+	cat_stats_updated.emit(active_cat)
+	return previous_weapon
+
+# Equip weapon on specific cat
+func equip_weapon_on_cat(cat_index: int, weapon: Item) -> Item:
+	if cat_index >= 0 and cat_index < cat_manager.cats.size():
+		var cat = cat_manager.cats[cat_index]
+		var previous_weapon = cat.equip_weapon(weapon)
+		save_cat_manager()
+		cat_stats_updated.emit(cat)
+		return previous_weapon
+	return null
+
+# Unequip weapon from active cat
+func unequip_weapon_from_active_cat() -> Item:
+	var active_cat = get_active_cat()
+	var removed_weapon = active_cat.unequip_weapon()
+	save_cat_manager()
+	cat_stats_updated.emit(active_cat)
+	return removed_weapon
+
+# Get active cat's equipped weapon
+func get_active_cat_weapon() -> Item:
+	return get_active_cat().get_equipped_weapon()
+
+# Check if active cat has weapon equipped
+func active_cat_has_weapon() -> bool:
+	return get_active_cat().has_weapon_equipped()
+
+# Get weapon attack bonus for active cat
+func get_active_cat_weapon_attack() -> int:
+	return get_active_cat().get_weapon_attack()
+
+# Get weapon defense bonus for active cat
+func get_active_cat_weapon_defense() -> int:
+	return get_active_cat().get_weapon_defense()
+
+func reset_active_temps():
+	var active_cat = get_active_cat()
+	active_cat.reset_temps()
+	save_cat_manager()
+	cat_stats_updated.emit(active_cat)

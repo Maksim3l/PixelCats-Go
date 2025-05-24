@@ -4,6 +4,7 @@ extends Node2D
 @onready var torso_slot = $Organizer/UICenter/LeftCol/Torso
 @onready var arm_slot = $Organizer/UICenter/LeftCol/Arms
 @onready var leg_slot = $Organizer/UICenter/LeftCol/Legs
+@onready var item_slot = $Organizer/UICenter/LeftCol/Item
 @onready var cat_stats_display = $Organizer/UICenter/RightCol/Info
 @onready var inventory_grid = $Organizer/PanelContainer/VScrollBar/InventoryGrid
 
@@ -25,6 +26,7 @@ func _ready():
 	torso_slot.connect("pressed", _on_torso_slot_pressed)
 	arm_slot.connect("pressed", _on_arm_slot_pressed)
 	leg_slot.connect("pressed", _on_leg_slot_pressed)
+	item_slot.connect("pressed", _on_weapon_slot_pressed) 
 
 func refresh_equipment_ui():
 	update_equipment_slots()
@@ -38,44 +40,83 @@ func update_equipment_slots():
 	update_slot_visual(torso_slot, active_cat.get_equipped_armor(Item.ItemSlot.TORSO))
 	update_slot_visual(arm_slot, active_cat.get_equipped_armor(Item.ItemSlot.ARM_BACK))
 	update_slot_visual(leg_slot, active_cat.get_equipped_armor(Item.ItemSlot.LEG_FRONT))
+	update_weapon_slot_visual(item_slot, active_cat.get_equipped_weapon())
 
 func update_slot_visual(slot_button: TextureButton, armor_item: Item):
-	if armor_item and "texture" in armor_item:
-		var texture = load(armor_item.texture) if typeof(armor_item.texture) == TYPE_STRING else armor_item.texture
-		slot_button.texture_normal = texture
-		
+	if armor_item:
+		if armor_item and "texture" in armor_item:
+			var texture = load(armor_item.texture) if typeof(armor_item.texture) == TYPE_STRING else armor_item.texture
+			slot_button.texture_normal = texture
+			
+		else:
+			if armor_item.item_slot == Item.ItemSlot.HEAD:
+				slot_button.texture_normal = load("res://assets/tmp_head.png")  
+				slot_button.tooltip_text = armor_item.name
+			elif armor_item.item_slot == Item.ItemSlot.TORSO:
+				slot_button.texture_normal = load("res://assets/tmp_torso.png")  
+				slot_button.tooltip_text = armor_item.name
+			elif armor_item.item_slot == Item.ItemSlot.ARM_BACK:
+				slot_button.texture_normal = load("res://assets/tmp_arm.png")  
+				slot_button.tooltip_text = armor_item.name
+			elif armor_item.item_slot == Item.ItemSlot.LEG_FRONT:
+				slot_button.texture_normal = load("res://assets/tmp_legs.png")  
+				slot_button.tooltip_text = armor_item.name
+			else:
+				slot_button.texture_normal = load("res://assets/tmp_empty.png")  
+				slot_button.tooltip_text = "Empty Slot"
+			
 		var tooltip = "%s\nDEF: +%d | ATK: +%d\nHP: +%d | Energy: +%d" % [
-			armor_item.name,
-			armor_item.defense_bonus,
-			armor_item.attack_bonus,
-			armor_item.health_bonus,
-			armor_item.energy_bonus
+		armor_item.name,
+		armor_item.defense_bonus,
+		armor_item.attack_bonus,
+		armor_item.health_bonus,
+		armor_item.energy_bonus
 		]
 		slot_button.tooltip_text = tooltip
-	elif armor_item:
-		if armor_item.item_slot == Item.ItemSlot.HEAD:
-			slot_button.texture_normal = load("res://assets/tmp_head.png")  
-			slot_button.tooltip_text = armor_item.name
-		elif armor_item.item_slot == Item.ItemSlot.TORSO:
-			slot_button.texture_normal = load("res://assets/tmp_torso.png")  
-			slot_button.tooltip_text = armor_item.name
-		elif armor_item.item_slot == Item.ItemSlot.ARM_BACK:
-			slot_button.texture_normal = load("res://assets/tmp_arm.png")  
-			slot_button.tooltip_text = armor_item.name
-		elif armor_item.item_slot == Item.ItemSlot.LEG_FRONT:
-			slot_button.texture_normal = load("res://assets/tmp_legs.png")  
-			slot_button.tooltip_text = armor_item.name
-		else:
-			slot_button.texture_normal = load("res://assets/tmp_empty.png")  
-			slot_button.tooltip_text = "Empty Slot"
+	
+	else:
+		slot_button.texture_normal = load("res://assets/tmp_empty.png")
+		slot_button.tooltip_text = "Empty Slot"
+
+
+func update_weapon_slot_visual(slot_button: TextureButton, weapon_item: Item):
+	if weapon_item and "texture" in weapon_item:
+		var texture = load(weapon_item.texture) if typeof(weapon_item.texture) == TYPE_STRING else weapon_item.texture
+		slot_button.texture_normal = texture
+		
+		var tooltip = "%s\nATK: +%d | DEF: +%d\nHP: +%d | Energy: +%d" % [
+			weapon_item.name,
+			weapon_item.attack_bonus,
+			weapon_item.defense_bonus,
+			weapon_item.health_bonus,
+			weapon_item.energy_bonus
+		]
+		slot_button.tooltip_text = tooltip
+	elif weapon_item:
+		slot_button.texture_normal = load("res://assets/tmp_weapon.png")
+		slot_button.tooltip_text = "%s\nATK: +%d | DEF: +%d\nHP: +%d | Energy: +%d" % [
+			weapon_item.name,
+			weapon_item.attack_bonus,
+			weapon_item.defense_bonus,
+			weapon_item.health_bonus,
+			weapon_item.energy_bonus
+		]
+	else:
+		slot_button.texture_normal = load("res://assets/tmp_empty.png")
+		slot_button.tooltip_text = "Empty Weapon Slot"
 
 func update_stats_display():
 	var active_cat = CatHandler.get_active_cat()
 	
-	var base_attack = active_cat.attack - active_cat.get_total_armor_attack()
-	var base_defense = active_cat.defense - active_cat.get_total_armor_defense()
-	var base_health = active_cat.max_health - active_cat.get_total_armor_health()
-	var base_energy = active_cat.max_energy - active_cat.get_total_armor_energy()
+	var base_attack = active_cat.attack - active_cat.get_total_armor_attack() - active_cat.get_weapon_attack()
+	var base_defense = active_cat.defense - active_cat.get_total_armor_defense() - active_cat.get_weapon_defense()
+	var base_health = active_cat.max_health - active_cat.get_total_armor_health() - active_cat.get_weapon_health()
+	var base_energy = active_cat.max_energy - active_cat.get_total_armor_energy() - active_cat.get_weapon_energy()
+	
+	var equipment_attack = active_cat.get_total_armor_attack() + active_cat.get_weapon_attack()
+	var equipment_defense = active_cat.get_total_armor_defense() + active_cat.get_weapon_defense()
+	var equipment_health = active_cat.get_total_armor_health() + active_cat.get_weapon_health()
+	var equipment_energy = active_cat.get_total_armor_energy() + active_cat.get_weapon_energy()
 	
 	cat_stats_display.text = """
 	Cat: %s (Level %d)
@@ -98,23 +139,30 @@ func update_stats_display():
 		active_cat.get_total_armor_energy()
 	]
 
-# Update the inventory display with available armor
 func update_inventory_display():
-	# Clear existing items
 	for child in inventory_grid.get_children():
 		child.queue_free()
-		
-	#var all_armor = Armor.get_collected_armor()
 	
-	# Get all armor items
 	var all_armor = Armor.get_all_armor()
 	
 	for armor in all_armor:
-		var item_button = TextureButton.new()
-		var texture = null
+		add_item_to_inventory(armor, true)
 
-		if texture == null:
-			match armor.item_slot:
+	var all_weapons = Weapons.get_all_weapons()
+	
+	for weapon in all_weapons:
+		add_item_to_inventory(weapon, false)
+
+func add_item_to_inventory(item: Item, is_armor: bool):
+	var item_button = TextureButton.new()
+	var texture = null
+
+	if "texture" in item and item.texture != "":
+		texture = load(item.texture) if typeof(item.texture) == TYPE_STRING else item.texture
+
+	if texture == null:
+		if is_armor:
+			match item.item_slot:
 				Item.ItemSlot.HEAD:
 					texture = load("res://assets/tmp_head.png")
 				Item.ItemSlot.TORSO:
@@ -125,32 +173,42 @@ func update_inventory_display():
 					texture = load("res://assets/tmp_legs.png")
 				_:
 					texture = load("res://assets/tmp_empty.png")
-		item_button.texture_normal = texture
-		
-		item_button.custom_minimum_size = Vector2(16, 16)
-		item_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		item_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		item_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
-		
-		# Set tooltip with item info
-		item_button.tooltip_text = "%s\nDEF: +%d | ATK: +%d\nHP: +%d | Energy: +%d" % [
-			armor.name,
-			armor.defense_bonus,
-			armor.attack_bonus,
-			armor.health_bonus,
-			armor.energy_bonus
-		]
-		
-		# Store the armor data with the button
-		item_button.set_meta("armor_id", armor.id)
-		
-		# Connect signal
-		item_button.connect("pressed", _on_armor_item_selected.bind(armor))
-		
-		# Add to grid
-		inventory_grid.add_child(item_button)
+		else:
+			texture = load("res://assets/tmp_weapon.png")
+	
+	item_button.texture_normal = texture
+	
+	item_button.custom_minimum_size = Vector2(16, 16)
+	item_button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	item_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	item_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+	
+	item_button.tooltip_text = "%s\nATK: +%d | DEF: +%d\nHP: +%d | Energy: +%d" % [
+		item.name,
+		item.attack_bonus,
+		item.defense_bonus,
+		item.health_bonus,
+		item.energy_bonus
+	]
+	
+	var style_box = StyleBoxFlat.new()
+	style_box.set_corner_radius_all(4)
+	style_box.bg_color = Color(0, 0, 0, 0.6)
+	
+	var custom_theme = Theme.new()
+	custom_theme.set_stylebox("panel", "TooltipPanel", style_box)
+	custom_theme.set_font_size("font_size", "TooltipLabel", 4) 
+	item_button.theme = custom_theme
 
-# Equipment slot button handlers
+	if is_armor:
+		item_button.set_meta("armor_id", item.id)
+		item_button.connect("pressed", _on_armor_item_selected.bind(item))
+	else:
+		item_button.set_meta("weapon_id", item.id)
+		item_button.connect("pressed", _on_weapon_item_selected.bind(item))
+	
+	inventory_grid.add_child(item_button)
+
 func _on_head_slot_pressed():
 	handle_equipment_slot(Item.ItemSlot.HEAD)
 
@@ -162,12 +220,13 @@ func _on_arm_slot_pressed():
 
 func _on_leg_slot_pressed():
 	handle_equipment_slot(Item.ItemSlot.LEG_FRONT)
+	
+func _on_weapon_slot_pressed():
+	handle_weapon_slot()
 
-# Handle equipment slot interaction
 func handle_equipment_slot(slot: int):
 	var active_cat = CatHandler.get_active_cat()
 	
-	# If cat has armor in this slot, unequip it
 	if active_cat.has_armor_equipped(slot):
 		var unequipped_item = CatHandler.unequip_armor_from_active_cat(slot)
 		if unequipped_item:
@@ -175,40 +234,55 @@ func handle_equipment_slot(slot: int):
 			CatHandler.save_cat_manager()
 			refresh_equipment_ui()
 	else:
-		# Show armor selection for this slot
 		show_armor_selection_for_slot(slot)
 
-# Show UI for selecting armor for a specific slot
+func handle_weapon_slot():
+	var active_cat = CatHandler.get_active_cat()
+
+	if active_cat.has_weapon_equipped():
+		var unequipped_weapon = CatHandler.unequip_weapon_from_active_cat()
+		if unequipped_weapon:
+			print("Unequipped weapon: ", unequipped_weapon.name)
+			CatHandler.save_cat_manager()
+			refresh_equipment_ui()
+	else:
+		show_weapon_selection()
+
 func show_armor_selection_for_slot(slot: int):
-	# This is a placeholder - you would implement a UI to filter and show
-	# only armor that fits the selected slot
 	var slot_armor = Armor.get_armor_by_slot(slot)
-	
-	# For now, just print available armor
 	print("Available armor for slot ", slot, ":")
 	for armor in slot_armor:
 		print("- ", armor.name)
-	
-	# In a real implementation, you'd show these items in a popup or panel
 
-# When player selects armor from inventory
+func show_weapon_selection():
+	var all_weapons = Weapons.get_all_weapons()
+	print("Available weapons:")
+	for weapon in all_weapons:
+		print("- ", weapon.name)
+
 func _on_armor_item_selected(armor: Item):
-	# Check if armor is valid for active cat
 	var active_cat = CatHandler.get_active_cat()
-	
-	# Equip the armor
 	var previous_armor = CatHandler.equip_armor_on_active_cat(armor)
 	
 	if previous_armor:
 		print("Replaced: ", previous_armor.name, " with ", armor.name)
-		# Handle the replaced item (return to inventory)
 	else:
 		print("Equipped: ", armor.name)
-	
-	# Refresh UI
+
+	CatHandler.save_cat_manager()
 	refresh_equipment_ui()
 
-# When cat stats are updated externally
+func _on_weapon_item_selected(weapon: Item):
+	var active_cat = CatHandler.get_active_cat()
+	var previous_weapon = active_cat.equip_weapon(weapon)
+	if previous_weapon:
+		print("Replaced weapon: ", previous_weapon.name, " with ", weapon.name)
+	else:
+		print("Equipped weapon: ", weapon.name)
+	
+	CatHandler.save_cat_manager()
+	refresh_equipment_ui()
+
 func _on_cat_stats_updated(cat_data: CatData):
 	if cat_data == CatHandler.get_active_cat():
 		refresh_equipment_ui()

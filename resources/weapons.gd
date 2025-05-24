@@ -1,5 +1,4 @@
 extends Node
-
 enum WeaponTypes { SWORD, BOW, WAND }
 
 var weapons = {
@@ -7,6 +6,7 @@ var weapons = {
 		"id": "basic_sword",
 		"name": "Basic Sword",
 		"texture": "res://characters/main/basic_sword.png",
+		"item_type": Item.ItemType.WEAPON,
 		"type": WeaponTypes.SWORD,
 		"slot": Item.ItemSlot.ARM_FRONT,
 		"attack_bonus": 5,
@@ -19,6 +19,7 @@ var weapons = {
 		"id": "hunting_bow",
 		"name": "Hunting Bow",
 		"texture": "res://characters/main/basic_bow.png",
+		"item_type": Item.ItemType.WEAPON,
 		"type": WeaponTypes.BOW,
 		"slot": Item.ItemSlot.ARM_FRONT,
 		"attack_bonus": 7,
@@ -31,6 +32,7 @@ var weapons = {
 		"id": "basic_wand",
 		"name": "Basic Wand",
 		"texture": "res://characters/main/basic_wand.png",
+		"item_type": Item.ItemType.WEAPON,
 		"type": WeaponTypes.WAND,
 		"slot": Item.ItemSlot.ARM_FRONT,
 		"attack_bonus": 6,
@@ -53,4 +55,10 @@ func get_weapons_by_type(type: int) -> Array:
 		var weapon_data = weapons[weapon_id]
 		if weapon_data["type"] == type:
 			result.append(get_weapon(weapon_id))
+	return result
+
+func get_all_weapons() -> Array:
+	var result = []
+	for weapon_id in weapons:
+		result.append(get_weapon(weapon_id))
 	return result
