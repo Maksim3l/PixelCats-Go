@@ -1,7 +1,7 @@
 [gd_scene load_steps=99 format=3 uid="uid://h557uwro0glo"]
 
-[ext_resource type="Script" uid="uid://o0h8rrkmnnc" path="res://scripts/feed_action.gd" id="1_85pcd"]
-[ext_resource type="Script" uid="uid://ck8t5nu02f3o6" path="res://scripts/feeding_screen.gd" id="1_qshnh"]
+[ext_resource type="Script" path="res://scripts/feed_action.gd" id="1_85pcd"]
+[ext_resource type="Script" path="res://scripts/feeding_screen.gd" id="1_qshnh"]
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="2_qshnh"]
 [ext_resource type="Texture2D" uid="uid://crlb3d82vb5br" path="res://enviroment/house/1_bathroom/bathroom_base_double.png" id="3_55rq1"]
 [ext_resource type="Texture2D" uid="uid://ddym0ssdvbmlr" path="res://enviroment/house/1_bathroom/bathroom_towel_double.png" id="4_askjg"]
@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://b53wkc7ix3uvp" path="res://enviroment/items/camp1.png" id="21_svr4l"]
 [ext_resource type="PackedScene" uid="uid://c4ot3ksjrurvq" path="res://screens/player.tscn" id="22_mdce0"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="23_em556"]
-[ext_resource type="Script" uid="uid://bkcpaydtimyl6" path="res://scripts/control_camera.gd" id="24_1mkey"]
+[ext_resource type="Script" path="res://scripts/control_camera.gd" id="24_1mkey"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="25_3ooq6"]
 [ext_resource type="Texture2D" uid="uid://v1bwbw1r7o33" path="res://themes/UI_images/BottomButtonsUI2.png" id="26_kii78"]
 [ext_resource type="Texture2D" uid="uid://dnv4q8g2mjdmr" path="res://themes/UI_images/biscuitIconHover.png" id="27_ykw7f"]

@@ -22,6 +22,7 @@ CatHandler="*res://cat_handler.gd"
 Armor="*res://resources/armor.gd"
 MusicManager="*res://MusicManager.gd"
 MainMusic="*res://main_music.tscn"
+Weapons="*res://resources/weapons.gd"
 
 [display]
 

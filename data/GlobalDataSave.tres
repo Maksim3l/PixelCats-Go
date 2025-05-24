@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_rit5f")
-coming_from_last = &"Battle Arena"
-gold = 785
-treat = 2
+coming_from_last = &"IdleScreen"
+gold = 85
+treat = 0
 unlocked_pets = {
 "bunny_count": 1,
 "cow_count": 1,
-"dog_count": 1,
+"dog_count": 2,
 "pig_count": 1,
 "redpanda_count": 1
 }
