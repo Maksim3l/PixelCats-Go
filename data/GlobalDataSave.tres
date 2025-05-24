@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_rit5f")
-coming_from_last = &"Battle Arena"
-gold = 785
+coming_from_last = &"IdleScreen"
+gold = 6750
 treat = 2
 unlocked_pets = {
 "bunny_count": 1,
@@ -15,8 +15,8 @@ unlocked_pets = {
 "redpanda_count": 1
 }
 unlocked_accessories = {
-"belt": true,
 "crown": true,
-"glasses": true
+"glasses": true,
+"tie": true
 }
 collected_armor_ids = Array[String]([])
