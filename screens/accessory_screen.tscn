@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://cvy0rikuqtqhu"]
+[gd_scene load_steps=62 format=3 uid="uid://cvy0rikuqtqhu"]
 
 [ext_resource type="Script" uid="uid://0pm5lp8hrwi2" path="res://scripts/accessory_screen.gd" id="1_d60ke"]
 [ext_resource type="Script" uid="uid://ba3ys3hbkl3il" path="res://scripts/ui_action.gd" id="1_p3tf8"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://c2caufwn36pf0" path="res://accessories/body/body_item_1/swim_icon.png" id="22_tcoyv"]
 [ext_resource type="Texture2D" uid="uid://dvri5dvs18syf" path="res://accessories/body/body_item_1/swim_icon_hover.png" id="23_axql0"]
 [ext_resource type="FontFile" uid="uid://dqo1seqimy8j5" path="res://resources/pixel_sans.ttf" id="23_sq1w1"]
+[ext_resource type="Texture2D" uid="uid://c5tyf7seyb08k" path="res://themes/UI_images/LockIcon.png" id="24_e6a07"]
 [ext_resource type="Texture2D" uid="uid://vsxbuve11bwf" path="res://themes/UI_images/profileUI-petScreen.png" id="24_r80ne"]
 [ext_resource type="Texture2D" uid="uid://dssma37okqls5" path="res://themes/UI_images/AccessoryPanelUI.png" id="24_u50ym"]
 [ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="25_tuhgt"]
@@ -325,6 +326,86 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_d0k1j")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_d0k1j")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_d0k1j")
 theme_override_styles/normal = SubResource("StyleBoxTexture_d0k1j")
+
+[node name="crownLock" type="TextureRect" parent="Organizer/UICenter/AccessoryPanel"]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 17.0
+offset_right = 22.0
+offset_bottom = 29.0
+texture = ExtResource("24_e6a07")
+expand_mode = 1
+
+[node name="ninjaLock" type="TextureRect" parent="Organizer/UICenter/AccessoryPanel"]
+visible = false
+layout_mode = 0
+offset_left = 29.0
+offset_top = 17.0
+offset_right = 41.0
+offset_bottom = 29.0
+texture = ExtResource("24_e6a07")
+expand_mode = 1
+
+[node name="glassesLock" type="TextureRect" parent="Organizer/UICenter/AccessoryPanel"]
+visible = false
+layout_mode = 0
+offset_left = 47.0
+offset_top = 17.0
+offset_right = 59.0
+offset_bottom = 29.0
+texture = ExtResource("24_e6a07")
+expand_mode = 1
+
+[node name="maskLock" type="TextureRect" parent="Organizer/UICenter/AccessoryPanel"]
+visible = false
+layout_mode = 0
+offset_left = 66.0
+offset_top = 17.0
+offset_right = 78.0
+offset_bottom = 29.0
+texture = ExtResource("24_e6a07")
+expand_mode = 1
+
+[node name="swimLock" type="TextureRect" parent="Organizer/UICenter/AccessoryPanel"]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 36.0
+offset_right = 22.0
+offset_bottom = 48.0
+texture = ExtResource("24_e6a07")
+expand_mode = 1
+
+[node name="robot_armLock" type="TextureRect" parent="Organizer/UICenter/AccessoryPanel"]
+visible = false
+layout_mode = 0
+offset_left = 29.0
+offset_top = 36.0
+offset_right = 41.0
+offset_bottom = 48.0
+texture = ExtResource("24_e6a07")
+expand_mode = 1
+
+[node name="beltLock" type="TextureRect" parent="Organizer/UICenter/AccessoryPanel"]
+visible = false
+layout_mode = 0
+offset_left = 47.0
+offset_top = 36.0
+offset_right = 59.0
+offset_bottom = 48.0
+texture = ExtResource("24_e6a07")
+expand_mode = 1
+
+[node name="tieLock" type="TextureRect" parent="Organizer/UICenter/AccessoryPanel"]
+visible = false
+layout_mode = 0
+offset_left = 66.0
+offset_top = 36.0
+offset_right = 78.0
+offset_bottom = 48.0
+texture = ExtResource("24_e6a07")
+expand_mode = 1
 
 [node name="UITop" type="HBoxContainer" parent="Organizer"]
 offset_left = -3.0

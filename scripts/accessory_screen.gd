@@ -23,6 +23,26 @@ extends Node2D
 @onready var audio_player_ui_sfx = $Organizer/Center/AudioStreamPlayer2D2 
 @onready var gold_label = $"Organizer/UITop/ProfileUI/Gold/value"
 
+@onready var crown_lock = $"Organizer/UICenterBG/AccessoryPanel/crownLock"
+@onready var ninja_lock = $"Organizer/UICenterBG/AccessoryPanel/ninjaLock"
+@onready var glasses_lock = $"Organizer/UICenterBG/AccessoryPanel/glassesLock"
+@onready var mask_lock = $"Organizer/UICenterBG/AccessoryPanel/maskLock"
+@onready var swim_lock = $"Organizer/UICenterBG/AccessoryPanel/swimLock"
+@onready var robot_lock = $"Organizer/UICenterBG/AccessoryPanel/robot_armLock"
+@onready var belt_lock = $"Organizer/UICenterBG/AccessoryPanel/beltLock"
+@onready var tie_lock = $"Organizer/UICenterBG/AccessoryPanel/tieLock"
+
+var accessory_locks = {
+	"crown": crown_lock,
+	"ninja": ninja_lock,
+	"glasses": glasses_lock,
+	"mask": mask_lock,
+	"swim": swim_lock,
+	"robot_arm": robot_lock,
+	"belt": belt_lock,
+	"tie": tie_lock
+}
+
 # Hardkodirani itemi (poti do SpriteFrames) - ZAMENJAJ S SVOJIMI POTMI!
 var head_items_sf_paths = [
 	"res://accessories/head/head_item_1/crown_spritesheet.tres", # Primer za krono
@@ -125,18 +145,26 @@ func update_button_state(button_node: Button, item_type: String, item_index: int
 	else:
 		return
 
-	#  Preveri ali ima igralec ta accessory glede na ime gumba
-	if not GlobalDataHandler.has_accessory(button_node.name):
+	var accessory_name = button_node.name
+	var lock_node = button_node.get_parent().get_node_or_null(accessory_name + "Lock")
+
+	if not GlobalDataHandler.has_accessory(accessory_name):
 		button_node.disabled = true
 		button_node.text = ""
+		if lock_node:
+			lock_node.visible = true
 		return
 
 	button_node.disabled = false
+	if lock_node:
+		lock_node.visible = false
+
 	if item_sf_path == currently_equipped:
 		button_node.text = "X"
 	else:
-		button_node.text = ""
-	
+		button_node.text = ""	
+		
+		
 # Funkcija, ki se sproži ob kliku na gumb za GLAVO
 func _on_head_item_button_pressed(item_index: int):
 	if not current_preview_cat_data or not displayed_player_node: return
