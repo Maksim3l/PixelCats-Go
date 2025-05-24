@@ -56,13 +56,13 @@ func update_slot_visual(slot_button: TextureButton, armor_item: Item):
 		if armor_item.item_slot == Item.ItemSlot.HEAD:
 			slot_button.texture_normal = load("res://assets/tmp_head.png")  
 			slot_button.tooltip_text = armor_item.name
-		if armor_item.item_slot == Item.ItemSlot.TORSO:
+		elif armor_item.item_slot == Item.ItemSlot.TORSO:
 			slot_button.texture_normal = load("res://assets/tmp_torso.png")  
 			slot_button.tooltip_text = armor_item.name
-		if armor_item.item_slot == Item.ItemSlot.ARM_BACK:
+		elif armor_item.item_slot == Item.ItemSlot.ARM_BACK:
 			slot_button.texture_normal = load("res://assets/tmp_arm.png")  
 			slot_button.tooltip_text = armor_item.name
-		if armor_item.item_slot == Item.ItemSlot.LEG_FRONT:
+		elif armor_item.item_slot == Item.ItemSlot.LEG_FRONT:
 			slot_button.texture_normal = load("res://assets/tmp_legs.png")  
 			slot_button.tooltip_text = armor_item.name
 		else:
@@ -171,11 +171,8 @@ func handle_equipment_slot(slot: int):
 	if active_cat.has_armor_equipped(slot):
 		var unequipped_item = CatHandler.unequip_armor_from_active_cat(slot)
 		if unequipped_item:
-			# Handle the unequipped item (e.g., return to inventory)
 			print("Unequipped: ", unequipped_item.name)
-			# You would add code here to return item to inventory
-			
-			# Refresh UI
+			CatHandler.save_cat_manager()
 			refresh_equipment_ui()
 	else:
 		# Show armor selection for this slot
