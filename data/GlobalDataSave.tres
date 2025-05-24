@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_rit5f")
 coming_from_last = &"Battle Arena"
-gold = 785
+gold = 805
 treat = 2
 unlocked_pets = {
 "bunny_count": 1,

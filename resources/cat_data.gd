@@ -25,9 +25,7 @@ enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 @export var equipped_head_sf_path: String = "" 
 @export var equipped_body_sf_path: String = "" 
 
-@export var equipped_items: Dictionary = {}
-
-var equipped_armor: Dictionary = {
+@export var equipped_armor: Dictionary = {
 	Item.ItemSlot.HEAD: null,
 	Item.ItemSlot.TORSO: null,
 	Item.ItemSlot.ARM_BACK: null,

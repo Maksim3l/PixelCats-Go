@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgnxs4njeqs5j"]
+[gd_scene load_steps=18 format=3 uid="uid://bgnxs4njeqs5j"]
 
 [ext_resource type="Script" uid="uid://bn7cau2p76qnh" path="res://screens/equipment_screen.gd" id="1_4jjyh"]
 [ext_resource type="Texture2D" uid="uid://mhhmnlcdv6qq" path="res://enviroment/lawn/1_garden/garden_flower.png" id="1_osj0t"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dp3q3r67vbsyn" path="res://screens/eq_grid.gd" id="5_d808y"]
 [ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="5_i0hib"]
 [ext_resource type="Texture2D" uid="uid://dfvkwar5qvqna" path="res://themes/UI_images/Ui.png" id="6_h77cq"]
+[ext_resource type="AudioStream" uid="uid://b8l75uny4mxhh" path="res://assets/soundFX/btn_click.mp3" id="8_h77cq"]
 
 [sub_resource type="Theme" id="Theme_8lhg2"]
 default_font = ExtResource("3_xlt0y")
@@ -117,6 +118,12 @@ text = "fgontogihj rtghpoiwrthpowrthšoithoiširhsthšwr šthgorithnoširthoišr
 label_settings = SubResource("LabelSettings_i0hib")
 autowrap_mode = 1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Organizer/UICenter"]
+position = Vector2(68, 142)
+stream = ExtResource("8_h77cq")
+volume_db = 1.0
+parameters/looping = false
+
 [node name="PanelContainer" type="PanelContainer" parent="Organizer"]
 offset_top = 78.0
 offset_right = 90.0
@@ -158,5 +165,13 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_kx7lt")
 theme_override_styles/normal = SubResource("StyleBoxTexture_nlu1x")
 text = "Battle
 "
+
+[node name="TextureRect" type="TextureRect" parent="Organizer/UIBottom"]
+layout_mode = 2
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Organizer/UIBottom/TextureRect"]
+stream = ExtResource("8_h77cq")
+volume_db = 1.0
+parameters/looping = false
 
 [connection signal="pressed" from="Organizer/UIBottom/Battle" to="Organizer" method="_on_battle_pressed"]

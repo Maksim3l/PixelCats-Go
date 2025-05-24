@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cymskb8os05mp" path="res://scripts/events/damage_particles.gd" id="5_rnd8p"]
 [ext_resource type="Texture2D" uid="uid://cjxeb2qe52nso" path="res://themes/UI_images/healthbarUnder.png" id="8_woc4k"]
 [ext_resource type="Texture2D" uid="uid://bnbrosqfkieab" path="res://themes/UI_images/healthbarProgress.png" id="9_03ukr"]
-[ext_resource type="Script" uid="uid://diejx4sdigqis" path="res://scripts/events/player_health_bar.gd" id="10_03ukr"]
+[ext_resource type="Script" path="res://scripts/events/player_health_bar.gd" id="10_03ukr"]
 [ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="11_gsa0h"]
 [ext_resource type="AudioStream" uid="uid://bi2l1ny0n02iq" path="res://assets/soundFX/win.mp3" id="12_khmpe"]
 
