@@ -84,6 +84,7 @@ position = Vector2(-7, -11)
 stream = ExtResource("22_yinns")
 volume_db = 1.0
 pitch_scale = 0.66
+bus = &"SFX"
 
 [node name="ContinueButton" type="Button" parent="Organizer"]
 offset_left = 27.0
@@ -122,6 +123,7 @@ expand_mode = 4
 stream = ExtResource("25_tjrl5")
 volume_db = 1.0
 attenuation = 10.1965
+bus = &"SFX"
 
 [node name="CatList2" type="HBoxContainer" parent="Organizer"]
 offset_left = -1.0
