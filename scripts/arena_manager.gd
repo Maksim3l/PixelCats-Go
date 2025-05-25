@@ -51,15 +51,7 @@ func _ready():
 		player_character.walk()
 
 func save_game():
-	var active_cat = CatHandler.get_active_cat()
-	active_cat.arena_level = current_difficulty
-	active_cat.temp_attack = 0
-	active_cat.temp_defense = 0
-	
-	var all_cats = CatHandler.get_all_cats()
-	all_cats[CatHandler.cat_manager.active_cat_index] = active_cat
-	
-	CatHandler.save_cat_manager()
+	CatHandler.reset_active_temps()
 
 func start_battle():
 	if enemies_spawned >= enemies_per_arena[current_difficulty]:
@@ -157,6 +149,7 @@ func show_difficulty_transition():
 
 func game_completed():
 	current_difficulty = ArenaLevel.BATHROOM
+	emit_signal("difficulty_increased", current_difficulty)
 	
 	save_game()
 	timer.wait_time = 10.0

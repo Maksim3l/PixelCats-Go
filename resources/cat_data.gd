@@ -25,14 +25,13 @@ enum ArenaLevel {BATHROOM, BEDROOM, LIVINGROOM, KITCHEN, GARDEN, BOSS}
 @export var equipped_head_sf_path: String = "" 
 @export var equipped_body_sf_path: String = "" 
 
-@export var equipped_items: Dictionary = {}
-
-var equipped_armor: Dictionary = {
+@export var equipped_armor: Dictionary = {
 	Item.ItemSlot.HEAD: null,
 	Item.ItemSlot.TORSO: null,
 	Item.ItemSlot.ARM_BACK: null,
 	Item.ItemSlot.LEG_FRONT: null,
 }
+@export var equipped_weapon: Item = null
 
 func _init(p_cat_name = "Whiskers", p_cat_sprite = "res://characters/main/main.png",
 		   p_max_health = 100, p_current_health = 100, p_attack = 10, 
@@ -88,6 +87,10 @@ static func from_cat(cat: CharacterBody2D) -> CatData:
 		var slot = cat.get_node("BodySlot") as AnimatedSprite2D
 		if slot.sprite_frames and slot.sprite_frames.resource_path:
 			data.equipped_body_sf_path = slot.sprite_frames.resource_path
+			
+	if "equipped_weapon" in cat:
+		data.equipped_weapon = cat.equipped_weapon
+	
 	return data
 	
 # Apply saved data to a cat node
@@ -140,10 +143,91 @@ func apply_to_cat(cat: CharacterBody2D) -> void:
 	if cat.has_node("HealthBar"):
 		cat.health_bar.value = cat.current_health
 		cat.health_bar.max_value = max_health
+		
+	if "equipped_weapon" in cat:
+		cat.equipped_weapon = equipped_weapon
 
-# Add these methods to your CatData class
+func equip_weapon(weapon: Item) -> Item:
+	if not weapon:
+		return null
+		
+	var previous_weapon = equipped_weapon
+	
+	# Remove stats from previously equipped weapon if any
+	if previous_weapon:
+		remove_weapon_stats(previous_weapon)
+	
+	# Equip new weapon and apply its stats
+	equipped_weapon = weapon
+	apply_weapon_stats(weapon)
+	
+	return previous_weapon
 
-# Equip armor and apply its stats
+# Apply weapon stats to cat
+func apply_weapon_stats(weapon: Item) -> void:
+	if not weapon:
+		return
+		
+	max_health += weapon.health_bonus
+	current_health = min(current_health + weapon.health_bonus, max_health)
+	attack += weapon.attack_bonus
+	defense += weapon.defense_bonus
+	max_energy += weapon.energy_bonus
+	energy = min(energy + weapon.energy_bonus, max_energy)
+
+# Remove weapon stats from cat
+func remove_weapon_stats(weapon: Item) -> void:
+	if not weapon:
+		return
+		
+	max_health -= weapon.health_bonus
+	current_health = min(current_health, max_health)
+	attack -= weapon.attack_bonus
+	defense -= weapon.defense_bonus
+	max_energy -= weapon.energy_bonus
+	energy = min(energy, max_energy)
+
+# Unequip current weapon
+func unequip_weapon() -> Item:
+	if equipped_weapon != null:
+		var weapon = equipped_weapon
+		remove_weapon_stats(weapon)
+		equipped_weapon = null
+		return weapon
+	return null
+
+# Get equipped weapon
+func get_equipped_weapon() -> Item:
+	return equipped_weapon
+
+# Check if a weapon is equipped
+func has_weapon_equipped() -> bool:
+	return equipped_weapon != null
+
+# Get weapon attack bonus
+func get_weapon_attack() -> int:
+	if equipped_weapon:
+		return equipped_weapon.attack_bonus
+	return 0
+
+# Get weapon defense bonus  
+func get_weapon_defense() -> int:
+	if equipped_weapon:
+		return equipped_weapon.defense_bonus
+	return 0
+
+# Get weapon health bonus
+func get_weapon_health() -> int:
+	if equipped_weapon:
+		return equipped_weapon.health_bonus
+	return 0
+
+# Get weapon energy bonus
+func get_weapon_energy() -> int:
+	if equipped_weapon:
+		return equipped_weapon.energy_bonus
+	return 0
+
 func equip_armor(armor: Item) -> Item:
 	if not armor or armor.item_type != Item.ItemType.ARMOR:
 		return null
@@ -241,3 +325,22 @@ func get_total_armor_energy() -> int:
 		if armor:
 			total += armor.energy_bonus
 	return total
+
+func get_total_attack() -> int:
+	return attack + get_total_armor_attack() + get_weapon_attack()
+
+# Get total defense including weapon and armor  
+func get_total_defense() -> int:
+	return defense + get_total_armor_defense() + get_weapon_defense()
+
+# Get total health including weapon and armor
+func get_total_health() -> int:
+	return max_health + get_total_armor_health() + get_weapon_health()
+
+# Get total energy including weapon and armor
+func get_total_energy() -> int:
+	return max_energy + get_total_armor_energy() + get_weapon_energy()
+
+func reset_temps():
+	temp_attack = 0
+	temp_defense = 0
