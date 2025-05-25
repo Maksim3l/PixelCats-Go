@@ -797,12 +797,12 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_djydb")
 theme_override_styles/normal = SubResource("StyleBoxTexture_bpgy2")
 
 [connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Treat/Buy" to="." method="_on_TreatButton_pressed"]
-[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Tie/Tie" to="." method="_on_TieButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Tie/Buy" to="." method="_on_TieButton_pressed"]
 [connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Crown/Buy" to="." method="_on_CrownButton_pressed"]
 [connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Ninja/Buy" to="." method="_on_NinjaButton_pressed"]
 [connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Glasses/Buy" to="." method="_on_GlassesButton_pressed"]
 [connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Mask/Buy" to="." method="_on_MaskButton_pressed"]
-[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Swim/Swim" to="." method="_on_SwimButton_pressed"]
+[connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Swim/Buy" to="." method="_on_SwimButton_pressed"]
 [connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/RobotArm/Buy" to="." method="_on_RobotArmButton_pressed"]
 [connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Belt/Buy" to="." method="_on_BeltButton_pressed"]
 [connection signal="pressed" from="Organizer/UICenterBG/AccessoryPanel/Energy/Buy" to="." method="_on_EnergyButton_pressed"]

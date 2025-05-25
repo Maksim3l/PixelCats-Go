@@ -8,20 +8,40 @@ extends Node2D
 # Predpostavljam, da so vsi gumbi otroci $Organizer/UICenter/AccessoryPanel
 # Če jih imaš v ločenih kontejnerjih (npr. en za glavo, en za telo), prilagodi.
 @onready var head_buttons: Array[Button] = [
-	$Organizer/UICenter/AccessoryPanel/Button,   # Head Item 1 (prvi gumb v panelu)
-	$Organizer/UICenter/AccessoryPanel/Button2,  # Head Item 2 (drugi gumb v panelu)
-	$Organizer/UICenter/AccessoryPanel/Button3,  # Head Item 3 (...)
-	$Organizer/UICenter/AccessoryPanel/Button4   # Head Item 4
+	$Organizer/UICenter/AccessoryPanel/crown,   # Head Item 1 (prvi gumb v panelu)
+	$Organizer/UICenter/AccessoryPanel/ninja,  # Head Item 2 (drugi gumb v panelu)
+	$Organizer/UICenter/AccessoryPanel/glasses,  # Head Item 3 (...)
+	$Organizer/UICenter/AccessoryPanel/mask   # Head Item 4
 ]
 @onready var body_buttons: Array[Button] = [
-	$Organizer/UICenter/AccessoryPanel/Button5,  # Body Item 1 (peti gumb v panelu)
-	$Organizer/UICenter/AccessoryPanel/Button6,  # Body Item 2 (...)
-	$Organizer/UICenter/AccessoryPanel/Button7,  # Body Item 3
-	$Organizer/UICenter/AccessoryPanel/Button8   # Body Item 4
+	$Organizer/UICenter/AccessoryPanel/tie,  # Body Item 1 (peti gumb v panelu)
+	$Organizer/UICenter/AccessoryPanel/belt,  # Body Item 2 (...)
+	$Organizer/UICenter/AccessoryPanel/robot_arm,  # Body Item 3
+	$Organizer/UICenter/AccessoryPanel/swim   # Body Item 4
 ]
 
 @onready var audio_player_ui_sfx = $Organizer/Center/AudioStreamPlayer2D2 
 @onready var gold_label = $"Organizer/UITop/ProfileUI/Gold/value"
+
+@onready var crown_lock = $"Organizer/UICenterBG/AccessoryPanel/crownLock"
+@onready var ninja_lock = $"Organizer/UICenterBG/AccessoryPanel/ninjaLock"
+@onready var glasses_lock = $"Organizer/UICenterBG/AccessoryPanel/glassesLock"
+@onready var mask_lock = $"Organizer/UICenterBG/AccessoryPanel/maskLock"
+@onready var swim_lock = $"Organizer/UICenterBG/AccessoryPanel/swimLock"
+@onready var robot_lock = $"Organizer/UICenterBG/AccessoryPanel/robot_armLock"
+@onready var belt_lock = $"Organizer/UICenterBG/AccessoryPanel/beltLock"
+@onready var tie_lock = $"Organizer/UICenterBG/AccessoryPanel/tieLock"
+
+var accessory_locks = {
+	"crown": crown_lock,
+	"ninja": ninja_lock,
+	"glasses": glasses_lock,
+	"mask": mask_lock,
+	"swim": swim_lock,
+	"robot_arm": robot_lock,
+	"belt": belt_lock,
+	"tie": tie_lock
+}
 
 # Hardkodirani itemi (poti do SpriteFrames) - ZAMENJAJ S SVOJIMI POTMI!
 var head_items_sf_paths = [
@@ -109,61 +129,42 @@ func apply_preview_data_to_displayed_player():
 
 
 # Funkcija za posodobitev STANJA gumba (brez ikon)
-func update_button_state(button_node: Button, item_type: String, item_index: int): # Preimenovano
-	if not current_preview_cat_data or not button_node: return
+func update_button_state(button_node: Button, item_type: String, item_index: int):
+	if not current_preview_cat_data or not button_node:
+		return
 
-	var currently_equipped_sf_path: String
-	var item_sf_path_for_this_button: String = "" # Inicializiraj s praznim nizom
-	# var default_icon_path_for_this_button: String # ODSTRANJENO
+	var item_sf_path = ""
+	var currently_equipped = ""
 
 	if item_type == "head":
-		currently_equipped_sf_path = current_preview_cat_data.equipped_head_sf_path
-		if item_index < head_items_sf_paths.size(): # Preveri meje
-			item_sf_path_for_this_button = head_items_sf_paths[item_index]
-		# ODSTRANJENO: Branje iz head_item_icons
-		# if item_index < head_item_icons.size():
-			# default_icon_path_for_this_button = head_item_icons[item_index]
+		item_sf_path = head_items_sf_paths[item_index]
+		currently_equipped = current_preview_cat_data.equipped_head_sf_path
 	elif item_type == "body":
-		currently_equipped_sf_path = current_preview_cat_data.equipped_body_sf_path
-		if item_index < body_items_sf_paths.size(): # Preveri meje
-			item_sf_path_for_this_button = body_items_sf_paths[item_index]
-		# ODSTRANJENO: Branje iz body_item_icons
-		# if item_index < body_item_icons.size():
-			# default_icon_path_for_this_button = body_item_icons[item_index]
+		item_sf_path = body_items_sf_paths[item_index]
+		currently_equipped = current_preview_cat_data.equipped_body_sf_path
 	else:
-		printerr("update_button_state: Unknown item_type: " + item_type) # Popravljeno ime funkcije v sporočilu
 		return
 
-	# Logika za stanje gumba glede na to, ali item obstaja
-	if item_sf_path_for_this_button == "" or item_sf_path_for_this_button == null:
-		# button_node.icon = null # ODSTRANJENO
-		button_node.text = "N/A" # Gumb za item, ki (še) ne obstaja
+	var accessory_name = button_node.name
+	var lock_node = button_node.get_parent().get_node_or_null(accessory_name + "Lock")
+
+	if not GlobalDataHandler.has_accessory(accessory_name):
 		button_node.disabled = true
+		button_node.text = ""
+		if lock_node:
+			lock_node.visible = true
 		return
-	else:
-		button_node.disabled = false
-		# button_node.text = "" # To lahko pustiš ali spremeniš glede na želje
-							  # Če Theme prikazuje ikono, je besedilo morda odveč,
-							  # razen če želiš prikazati ime itema.
 
-	# Logika za besedilo gumba glede na to, ali je item opremljen
-	# Ikone se ne nastavljajo več tukaj.
-	if currently_equipped_sf_path == item_sf_path_for_this_button:
-		# Item je opremljen. Theme bi moral prikazati "remove" ali "equipped" ikono.
-		# ODSTRANJENO: Logika za remove_icon_path
-		# if remove_icon_path != "" and remove_icon_path != null:
-			# button_node.icon = load(remove_icon_path)
-		# else: 
-		button_node.text = "X" # Fallback besedilo za "odstrani", če želiš
+	button_node.disabled = false
+	if lock_node:
+		lock_node.visible = false
+
+	if item_sf_path == currently_equipped:
+		button_node.text = "X"
 	else:
-		# Item ni opremljen. Theme bi moral prikazati normalno ikono.
-		# ODSTRANJENO: Logika za default_icon_path_for_this_button
-		# if default_icon_path_for_this_button != "" and default_icon_path_for_this_button != null:
-			# button_node.icon = load(default_icon_path_for_this_button)
-		# else: 
-		button_node.text = "" # Privzeto prazno besedilo, če Theme prikaže ikono itema
-							  # Lahko pa nastaviš na npr.: item_type.capitalize() + " " + str(item_index + 1)
-							  # če želiš ime itema kot besedilo.
+		button_node.text = ""	
+		
+		
 # Funkcija, ki se sproži ob kliku na gumb za GLAVO
 func _on_head_item_button_pressed(item_index: int):
 	if not current_preview_cat_data or not displayed_player_node: return
