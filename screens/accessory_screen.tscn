@@ -470,7 +470,6 @@ text = "Back"
 stream = ExtResource("10_612dn")
 pitch_scale = 0.67
 max_polyphony = 2
-bus = &"SFX"
 parameters/looping = false
 
 [node name="Camera2D" type="Camera2D" parent="."]

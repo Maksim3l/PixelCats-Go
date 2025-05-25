@@ -105,9 +105,7 @@ theme_override_fonts/font = ExtResource("3_iw5bc")
 theme_override_font_sizes/font_size = 4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"SFX"
 
 [node name="death" type="AudioStreamPlayer" parent="."]
-bus = &"SFX"
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

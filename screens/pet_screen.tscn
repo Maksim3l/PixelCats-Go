@@ -380,7 +380,6 @@ expand_mode = 4
 [node name="click" type="AudioStreamPlayer2D" parent="Organizer/UIBottom/BottomUI"]
 stream = ExtResource("19_qes1e")
 volume_db = 1.0
-bus = &"SFX"
 
 [node name="UICenter" type="HBoxContainer" parent="Organizer"]
 offset_left = 57.0
@@ -406,7 +405,6 @@ text = "Back"
 stream = ExtResource("19_qes1e")
 volume_db = 1.0
 pitch_scale = 0.66
-bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 0)

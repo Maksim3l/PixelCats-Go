@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://bmyvk5ge5jq6k"]
+[gd_scene load_steps=109 format=3 uid="uid://bmyvk5ge5jq6k"]
 
 [ext_resource type="Script" uid="uid://b6oe1ot2ejq3s" path="res://scripts/events/calculate_bg.gd" id="1_36nmi"]
 [ext_resource type="Script" uid="uid://bkliwsde236od" path="res://scripts/idle_manage.gd" id="1_g8hcl"]
@@ -41,6 +41,8 @@
 [ext_resource type="Texture2D" uid="uid://5wht657h53p5" path="res://themes/UI_images/PetsUIbtn.png" id="36_gxilw"]
 [ext_resource type="Texture2D" uid="uid://0l1r5pkft8ox" path="res://themes/UI_images/Shop_Icons/shopButtonIconHover.png" id="39_cdxyv"]
 [ext_resource type="Texture2D" uid="uid://cb1pbylyq820d" path="res://themes/UI_images/Shop_Icons/shopButtonIcon.png" id="40_g8hcl"]
+[ext_resource type="Texture2D" uid="uid://ypm62p116pn7" path="res://themes/UI_images/settingBtn.png" id="42_54kng"]
+[ext_resource type="Texture2D" uid="uid://dlg0b7hyl4o8s" path="res://themes/UI_images/settingsBtnHover.png" id="42_vdhkv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aqg4e"]
 atlas = ExtResource("2_24gff")
@@ -321,6 +323,19 @@ texture = ExtResource("40_g8hcl")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_54kng"]
 texture = ExtResource("40_g8hcl")
 
+[sub_resource type="Theme" id="Theme_vdhkv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cq4eh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oeyb8"]
+texture = ExtResource("42_vdhkv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uugju"]
+texture = ExtResource("42_54kng")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gxilw"]
+texture = ExtResource("42_54kng")
+
 [node name="IdleScreen" type="Node2D"]
 script = ExtResource("1_g8hcl")
 
@@ -400,7 +415,6 @@ text = "Battle
 stream = ExtResource("26_6n6su")
 volume_db = 1.0
 pitch_scale = 0.66
-bus = &"SFX"
 
 [node name="UITop" type="HBoxContainer" parent="Organizer"]
 offset_left = -12.0
@@ -561,13 +575,13 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_uvs1c")
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Organizer/UIBottom/TextureRect"]
 stream = ExtResource("26_6n6su")
 volume_db = 1.0
-bus = &"SFX"
 parameters/looping = false
 
 [node name="ShopBtn" type="HBoxContainer" parent="Organizer"]
-offset_left = 66.0923
-offset_right = 87.0923
-offset_bottom = 21.0
+offset_left = 66.0
+offset_top = 17.0
+offset_right = 87.0
+offset_bottom = 38.0
 
 [node name="shop" type="Button" parent="Organizer/ShopBtn"]
 custom_minimum_size = Vector2(20, 0)
@@ -577,19 +591,20 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_cdxyv")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_g8hcl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_54kng")
 
-[node name="SettingsBtn" type="HBoxContainer" parent="."]
+[node name="SettingsBtn" type="HBoxContainer" parent="Organizer"]
 offset_left = 66.0
-offset_top = 17.4439
+offset_top = -1.0
 offset_right = 87.0
-offset_bottom = 38.4439
+offset_bottom = 20.0
 
-[node name="settings" type="Button" parent="SettingsBtn"]
+[node name="settings" type="Button" parent="Organizer/SettingsBtn"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gxilw")
-theme_override_styles/hover = SubResource("StyleBoxTexture_cdxyv")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_g8hcl")
-theme_override_styles/normal = SubResource("StyleBoxTexture_54kng")
+theme = SubResource("Theme_vdhkv")
+theme_override_styles/focus = SubResource("StyleBoxTexture_cq4eh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_oeyb8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uugju")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gxilw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 7)
@@ -610,4 +625,4 @@ limit_bottom = 600
 [connection signal="pressed" from="Organizer/UIBottom/TextureRect/Pets" to="Organizer" method="_on_pets_pressed"]
 [connection signal="pressed" from="Organizer/UIBottom/TextureRect/Pets" to="Organizer/UIBottom" method="_on_pets_pressed"]
 [connection signal="pressed" from="Organizer/ShopBtn/shop" to="Organizer" method="_on_shop_pressed"]
-[connection signal="pressed" from="SettingsBtn/settings" to="Organizer" method="_on_shop_pressed"]
+[connection signal="pressed" from="Organizer/SettingsBtn/settings" to="Organizer" method="_on_settings_pressed"]
