@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddykl5crya4wv"]
+
+[ext_resource type="Script" uid="uid://rwkg8hfxs1nd" path="res://screens/settings_screen.gd" id="1_pm4ph"]
+[ext_resource type="Texture2D" uid="uid://djvfitsiur4md" path="res://themes/UI_images/titleScreenBG.png" id="2_cugyp"]
+[ext_resource type="FontFile" uid="uid://bk0q2iocadv0a" path="res://themes/font/Minecraft.ttf" id="3_tk50u"]
+[ext_resource type="AudioStream" uid="uid://b8l75uny4mxhh" path="res://assets/soundFX/btn_click.mp3" id="4_qjlt7"]
+[ext_resource type="Texture2D" uid="uid://4tuscivg3ud3" path="res://themes/UI_images/backButtonHover.png" id="5_860l1"]
+[ext_resource type="Texture2D" uid="uid://camfeilneors3" path="res://themes/UI_images/backButton.png" id="6_xmm6n"]
+
+[sub_resource type="Theme" id="Theme_0ccum"]
+
+[sub_resource type="Theme" id="Theme_0jdho"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6n5bs"]
+texture = ExtResource("5_860l1")
+region_rect = Rect2(1, 2, 14, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oeuy0"]
+texture = ExtResource("6_xmm6n")
+region_rect = Rect2(1, 2, 14, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gjc2e"]
+texture = ExtResource("6_xmm6n")
+region_rect = Rect2(1, 2, 14, 13)
+
+[node name="SettingsScreen" type="Node2D"]
+script = ExtResource("1_pm4ph")
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = -208.0
+offset_top = -160.0
+offset_right = 368.0
+offset_bottom = 164.0
+texture = ExtResource("2_cugyp")
+
+[node name="Battle3" type="Button" parent="."]
+offset_left = 20.0
+offset_top = 55.0
+offset_right = 69.0
+offset_bottom = 71.0
+theme = SubResource("Theme_0ccum")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_tk50u")
+theme_override_font_sizes/font_size = 5
+text = "master volume"
+flat = true
+icon_alignment = 1
+
+[node name="Battle2" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 81.0
+offset_right = 67.0
+offset_bottom = 97.0
+theme = SubResource("Theme_0ccum")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_tk50u")
+theme_override_font_sizes/font_size = 5
+text = "music volume"
+flat = true
+icon_alignment = 1
+
+[node name="Battle" type="Button" parent="."]
+offset_left = 21.0
+offset_top = 26.0
+offset_right = 70.0
+offset_bottom = 42.0
+theme = SubResource("Theme_0ccum")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_tk50u")
+theme_override_font_sizes/font_size = 8
+text = "SETTINGS"
+flat = true
+icon_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(23, 17)
+stream = ExtResource("4_qjlt7")
+volume_db = 1.0
+pitch_scale = 0.66
+bus = &"SFX"
+
+[node name="master" type="HSlider" parent="."]
+offset_left = 9.0
+offset_top = 65.0
+offset_right = 79.0
+offset_bottom = 81.0
+max_value = 1.0
+step = 0.01
+
+[node name="music" type="HSlider" parent="."]
+offset_left = 9.0
+offset_top = 90.0
+offset_right = 79.0
+offset_bottom = 106.0
+max_value = 1.0
+step = 0.01
+
+[node name="UITopLeft" type="HBoxContainer" parent="."]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 24.0
+offset_bottom = 15.0
+alignment = 1
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="UITopLeft"]
+stream = ExtResource("4_qjlt7")
+pitch_scale = 0.67
+max_polyphony = 2
+bus = &"SFX"
+parameters/looping = false
+
+[node name="BackButton" type="Button" parent="UITopLeft"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme = SubResource("Theme_0jdho")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6n5bs")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_oeuy0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gjc2e")
