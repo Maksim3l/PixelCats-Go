@@ -396,7 +396,6 @@ text = "Back"
 stream = ExtResource("38_ssu4w")
 volume_db = 1.0
 pitch_scale = 0.66
-bus = &"SFX"
 
 [node name="UIBottom" type="HBoxContainer" parent="Organizer"]
 z_index = 2
@@ -486,7 +485,6 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_4afrj")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Organizer/UIBottom/BottomUI"]
 stream = ExtResource("37_k6y6m")
 volume_db = 1.0
-bus = &"SFX"
 
 [node name="UITop" type="HBoxContainer" parent="Organizer"]
 offset_right = 69.0

@@ -786,7 +786,6 @@ alignment = 1
 stream = ExtResource("8_8cook")
 pitch_scale = 0.67
 max_polyphony = 2
-bus = &"SFX"
 parameters/looping = false
 
 [node name="BackButton" type="Button" parent="Organizer/UITopLeft"]

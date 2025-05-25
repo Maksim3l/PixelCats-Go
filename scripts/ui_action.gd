@@ -112,3 +112,16 @@ func _on_shop_pressed():
 	get_tree().current_scene.queue_free()
 	get_tree().root.add_child(new_scene)
 	get_tree().current_scene = new_scene
+	
+func _on_settings_pressed():
+	audio.play()
+	await get_tree().create_timer(0.25).timeout
+	var new_scene = load("res://screens/settings_screen.tscn").instantiate()
+	
+	global_data.coming_from_last = get_tree().current_scene.name
+	GlobalDataHandler.global_data = global_data
+	GlobalDataHandler.save_game()
+	
+	get_tree().current_scene.queue_free()
+	get_tree().root.add_child(new_scene)
+	get_tree().current_scene = new_scene
